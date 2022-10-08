@@ -5,7 +5,7 @@ description: Julien Arino - 3MC Course Epidemiological Modelling - Course 02 - B
 theme: default
 class: invert
 paginate: false
-size: 4K
+size: 16:9
 math: mathjax
 ---
 
@@ -36,7 +36,7 @@ math: mathjax
 
 11-14 October 2022 
 
-Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/github-icon.png)](https://github.com/julien-arino)
+Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/GitHub-Mark-Light-64px.png)](https://github.com/julien-arino)
 
 Department of Mathematics & Data Science Nexus
 University of Manitoba*
@@ -348,7 +348,7 @@ $$
 - Incidence includes two main components:
   - a denumeration of the number of contacts taking place
   - a description of the probability that such a contact, when it takes place, results in the transmission of the pathogen
-- Choosing an appropriate function is hard and probably one of the flunkiest part of epidemic modelling
+- Choosing an appropriate function is hard and probably one of the flunkiest parts of epidemic modelling
 
 ---
 
