@@ -879,11 +879,11 @@ Take SIR model and assume the following
 - A fraction $p$ is vaccinated at birth
 - $f(S,I,N)=\beta SI$
 
-![width:600px center](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/SIR_simple_vacc.png)
+![width:600px center](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIR_simple_vacc_blackBG.png)
 
 ---
 
-![width:800px center](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/SIR_simple_vacc.png)
+![width:800px center](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIR_simple_vacc_blackBG.png)
 
 $$
 \begin{align}
