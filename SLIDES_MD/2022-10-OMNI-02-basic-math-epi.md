@@ -3,6 +3,7 @@ marp: true
 title: Basic concepts of mathematical epidemiology. Models in one population and their basic properties
 description: Julien Arino - 3MC Course Epidemiological Modelling - Course 02 - Basic concepts of mathematical epidemiology. Models in one population and their basic properties
 theme: default
+class: invert
 paginate: false
 size: 4K
 math: mathjax
@@ -30,7 +31,7 @@ math: mathjax
   }
 </style>
 
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, white)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Basic concepts of math epi - Models in one population and their basic properties
 
 4 April 2022 
@@ -46,7 +47,7 @@ Canadian Centre for Disease Modelling
 Canadian COVID-19 Mathematical Modelling Task Force
 NSERC-PHAC EID Modelling Consortium (CANMOD, MfPH, OMNI/RÉUNIS)
 
-<div style = "text-align: justify; position: relative; bottom: -5%; font-size:18px;">
+<div style = "text-align: justify; position: relative; bottom: -5%; font-size:24px;">
 * The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>
 
 <style>
@@ -58,30 +59,37 @@ img[alt~="center"] {
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(white,80%,#f1c40f)" -->
+<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
 
+- Compartmental models
 - The (epidemic) Kermack and McKendrick SIR model
-- SLIAR extension of the KMK model
 - Incidence functions
 - The (endemic) SIS model
-- SLIRS model with constant population
 - Effect of vaccination - Herd immunity
-- SLIRS model - Global properties
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, #f1c40f, 20%, white)" -->
+<!-- _backgroundImage: "linear-gradient(to bottom, red,black)" -->
+# <!--fit-->Compartmental models
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red,black)" -->
 # <!--fit-->The (epidemic) Kermack and McKendrick SIR model
 
 ---
 
 # This is a particular case!
 
-K-MK formulated the model that follows in a much more general work
+Kermack & McKendrick formulated the model that follows in a much more general work
 
 Really worth taking a look at this series of papers!
-- Kermack & McKendrick. [A contribution to the mathematical theory of epidemics](https://doi.org/10.1098/rspa.1927.0118) (1927)
+- [A contribution to the mathematical theory of epidemics](https://doi.org/10.1098/rspa.1927.0118) (1927)
+- [Contributions to the mathematical theory of epidemics. II. The problem of endemicity](https://doi.org/10.1098/rspa.1932.0171) (1932)
+- [Contributions to the mathematical theory of epidemics. III. Further studies of the problem of endemicity](https://doi.org/10.1098/rspa.1933.0106) (1933)
+- [Contributions to the mathematical theory of epidemics IV. Analysis of experimental epidemics of the virus disease mouse ectromelia](https://doi.org/10.1017/S0022172400034902) (1937)
+- [Contributions to the mathematical theory of epidemics. V. Analysis of experimental epidemics of mouse-typhoid; a bacterial disease conferring incomplete immunity](https://doi.org/10.1017/S0022172400011918) (1939)
 
 ---
 
@@ -94,7 +102,7 @@ Really worth taking a look at this series of papers!
 
 ---
 
-# The SIR model without demography
+# The SIR model *without demography*
 
 - The time interval under consideration is sufficiently small that demography can be omitted (we say there is *no vital dynamics*)
 - Individuals in the population can be susceptible ($S$) or infected and infectious with the disease ($I$). Upon recovery or death, they are *removed* from the infectious compartment ($R$)
@@ -175,9 +183,6 @@ Substitute into $\eqref{sys:KMK_2d_dS}$
 - in the first case, $(\bar S,\bar I)=(\gamma/\beta,0)$
 - in the second case, any $\bar S\geq 0$ is an equilibrium (*continuum* of EP)
 
-Second case is a **problem**: usual linearisation does not work as EP are not isolated! (See [Practicum 02](https://julien-arino.github.io/3MC-course-epidemiological-modelling/2022_04_3MC_EpiModelling_P02_Analysis_LargeScaleModels.html))
-
-
 ---
 
 # Workaround - Study $dI/dS$
@@ -253,65 +258,7 @@ $$
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, #f1c40f, 20%, white)" -->
-# <!--fit-->SLIAR extension of the KMK model
-
----
-
-# Extensions of the KMK model
-
-Many many works (especially since COVID-19) have used KMK-type models
-
-- Brauer. [The Kermack–McKendrick epidemic model revisited](https://doi.org/10.1016/j.mbs.2005.07.006) (2005)
-- Arino, Brauer, PvdD, Watmough & Wu. [Simple models for containment of a pandemic](http://dx.doi.org/10.1098/rsif.2006.0112) (2006), which we'll look into now
-- Arino & Portet. [A simple model for COVID-19](http://dx.doi.org/10.1016/j.idm.2020.04.002) (2020)
-
----
-
-# An extension of KMK - SLIAR models
-
-SIR is a little too simple for many diseases:
-
-- No incubation period
-- A lot of infectious diseases (in particular respiratory) have mild and less mild forms depending on the patient
-
-$\implies$ model with SIR but also L(atent) and (A)symptomatic individuals, in which I are now symptomatic individuals
-
-Arino, Brauer, PvdD, Watmough & Wu. [Simple models for containment of a pandemic](http://dx.doi.org/10.1098/rsif.2006.0112) (2006)
-
----
-
-![width:1200px center](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/SLIAR.png)
-
----
-
-## Basic reproduction number
-$$
-\tag{5}
-\mathcal{R}_0=S_0\beta
-\left(
-\frac{p}{\alpha}+\frac{\delta(1-p)}{\eta}
-\right)
-=\frac{S_0\beta\rho}{\alpha}
-$$
-where 
-$$
-\rho = \alpha
-\left(
-\frac{p}{\alpha}+\frac{\delta(1-p)}{\eta}
-\right)
-$$
-
-## Final size relation
-
-$$\tag{6}
-S_0(\ln S_0-\ln S_\infty) =
-\mathcal{R}_0(S_0-S_\infty)+\frac{\mathcal{R}_0I_0}{\rho}
-$$
-
----
-
-<!-- _backgroundImage: "linear-gradient(to bottom, #f1c40f, 20%, white)" -->
+<!-- _backgroundImage: "linear-gradient(to bottom, red,black)" -->
 # <!--fit-->Incidence functions
 
 ---
@@ -528,7 +475,7 @@ $b\neq d$ and $\delta$ disease-induced death rate, periodic solutions found
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, #f1c40f, 20%, white)" -->
+<!-- _backgroundImage: "linear-gradient(to bottom, red,black)" -->
 # <!--fit--> The (endemic) SIS model
 
 ---
@@ -921,343 +868,7 @@ with matrices $F$ and $V$ obtained as indicated. Assume conditions (A1) through 
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, #f1c40f, 20%, white)" -->
-# <!--fit-->SLIRS model with constant population
-
----
-
-# Incubation time
-
-- SIS and SIR: instantaneous progression from  S to I
-- Some incubation periods (time from infection to symptoms - often matches beginning of infectiousness):
-
-| Disease | Incubation |
-|:----|:----|
-| Yersinia Pestis | 2-6 days |
-| Ebola hemorragic fever (HF) | 2-21 days |
-| Marburg HF | 5-10 days |
-| Lassa HF | 1-3 weeks |
-| Tse-tse | weeks, months |
-| HIV/AIDS | months, years |
-
----
-
-# Hypotheses
-
-- Suppose there is demography. New individuals are born at a constant rate independent of the population
-- Disease is not transmitted to newborns (no *vertical transmission*): all births are to the S compartment
-- Disease does not cause additional mortality
-- New infections occur at the rate $f(S,I,N)$
-- There is an incubation period
-- After recovery, individuals are immune to the disease for some time
-
----
-
-![bg right:35% width:300px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/SLIRS_ODE_vertical.png)
-
-# SLIRS model
-
-$$
-\begin{align}
-S' &= b-f(S,I,N)-dS+\nu R
-\tag{20a}\label{sys:SLIR_dS}\\
-L' &= f(S,I,N) -(d+\varepsilon)L 
-\tag{20b}\label{sys:SLIR_dL} \\
-I' &= \varepsilon L -(d+\gamma)I 
-\tag{20c}\label{sys:SLIR_dI} \\
-R' &= \gamma I-(d+\nu)R 
-\tag{20d}\label{sys:SLIR_dR}
-\end{align}
-$$
-
-- $1/\varepsilon$ average duration of the incubation period
-
-- $1/\gamma$ average time until recovery
-
-- $1/\nu$ average duration of immunity
-
----
-
-# Behaviour of the total population
-
-$N=S+L+I+R$ has dynamics
-
-$$
-N' = b-dN
-$$
-
-We can either solve explicitly or "study" qualitatively; either way, $\lim_{t\to\infty}N(t)=\dfrac{b}{d}$
-
-$\implies$ total population asymptotically constant
-
-Note that this is an easy way to set the total population to what you may want it to be: $d$ is known (average lifetime), so set $b$ so $b/d$ equals what you want..
-
----
-
-# DFE
-
-Assume $I=0$
-
-Then $f(S,0,N)=0$ (always a reasonable assumption)
-
-From this, $L=R=0$
-
-$\implies$ DFE has $L=I=R=0$ and $S=N$, denoted
-
-$$
-E_0:=(S,L,I,R)=(N,0,0,0)
-$$
-
----
-
-<!-- _backgroundImage: "linear-gradient(to bottom, #156C26, 20%, white)" -->
-# Classic computation of $\mathcal{R}_0$
-
----
-
-# Computation of $\mathcal{R}_0$
-
-Mathematically
-
-> bifurcation parameter aggregating system parameters, such that the DFE loses *local* asymptotic stability as $\mathcal{R}_0$ crosses 1 from left to right
-
-- Obtained by considering the linearisation of the system at the DFE
-- Quickly becomes unmanageable (matrix size) and we get a non unique form
-
----
-
-Jacobian matrix of $\eqref{sys:SLIR_dS}$-$\eqref{sys:SLIR_dR}$ at an arbitrary point
-$$
-J=
-\begin{pmatrix}
--f_S-d & -f_L & -f_I & -f_R+\nu \\
-f_S & f_L-(d+\varepsilon) & f_I & f_R \\
-0 & \varepsilon & -(d+\gamma) & 0 \\
-0 & 0 & \gamma & -(d+\nu)
-\end{pmatrix}
-$$
-where $f_X = \partial f/\partial X$. Since $N$ (asymptotically) constant, $f_L=f_R=0$, so
-$$
-J=
-\begin{pmatrix}
--f_S-d & 0 & -f_I & \nu \\
-f_S & -(d+\varepsilon) & f_I & 0 \\
-0 & \varepsilon & -(d+\gamma) & 0 \\
-0 & 0 & \gamma & -(d+\nu)
-\end{pmatrix}
-$$
-
----
-
-At the DFE, $f_S=f_S(E_0)=0$ (in most cases) and $f_I=f_I(E_0)$, so
-$$
-J_{DFE}=
-\begin{pmatrix}
--d & 0 & -f_I(E_0) & \nu \\
-0 & -(d+\varepsilon) & f_I(E_0) & 0 \\
-0 & \varepsilon & -(d+\gamma) & 0 \\
-0 & 0 & \gamma & -(d+\nu)
-\end{pmatrix}
-$$
-Eigenvalues are $-d<0$, $-(d+\nu)<0$ and those of
-$$
-\begin{pmatrix}
--(d+\varepsilon) & f_I(E_0) \\
-\varepsilon & -(d+\gamma)
-\end{pmatrix}
-$$
-
----
-
-$$
-\begin{align}
-\left|\begin{matrix}
--(d+\varepsilon+\lambda) & f_I(E_0) \\
-\varepsilon & -(d+\gamma+\lambda)
-\end{matrix}\right|
-&= (d+\varepsilon+\lambda)(d+\gamma+\lambda)
--\varepsilon f_I(E_0) \\
-&= \lambda^2+(2d+\varepsilon+\gamma)\lambda
--\varepsilon f_I(E_0)
-\end{align}
-$$
-If $f_I(E_0)>0$, then there is a single positive real root, while if $f_I(E_0)<0$, either both roots are real and negative or they are complex conjugate
-
----
-
-<!-- _backgroundImage: "linear-gradient(to bottom, #156C26, 20%, white)" -->
-# <!--fit-->Computing $\mathcal{R}_0$ using the next generation matrix method
-
----
-
-# Example of the SLIRS model
-
-Variations of the infected variables described by
-$$
-\begin{align*}
-L' &= f(S,I,N)-(\varepsilon+d) L \\
-I' &= \varepsilon L -(d+\gamma) I
-\end{align*}
-$$
-Thus
-$$
-\left(
-\begin{matrix}
-L \\
-I
-\end{matrix}
-\right)'
-=\left(
-\begin{matrix}
-f(S,I,N) \\
-0
-\end{matrix}
-\right)
--
-\left(
-\begin{matrix}
-(\varepsilon+d) L \\
-(d+\gamma) I-\varepsilon L
-\end{matrix}
-\right)=\mathcal{F}-\mathcal{V}
-$$
-
----
-
-Then compute the Jacobian matrices of vectors $\mathcal{F}$ and $\mathcal{V}$
-$$
-F=\left(
-\begin{matrix}
-f_L(E_0) & f_I(E_0) \\
-0 & 0
-\end{matrix}
-\right),\quad
-V=\left(
-\begin{matrix}
-\varepsilon+d & 0 \\
--\varepsilon & d+\gamma
-\end{matrix}
-\right)
-$$
-
-We have
-$$
-V^{-1}=\frac{1}{(d+\varepsilon)(d+\gamma)}
-\left(
-\begin{matrix}
-d+\gamma & 0 \\
-\varepsilon & d+\varepsilon
-\end{matrix}
-\right)
-$$
-
-Also, when $N$ constant, $f_L(E_0)=0$, then
-$$
-FV^{-1}=\frac{f_I(E_0)}
-{(d+\varepsilon)(d+\gamma)}
-\left(
-\begin{matrix}
-\varepsilon 
-& d+\varepsilon  \\
-0 & 0
-\end{matrix}
-\right)
-$$
-and thus,
-$$
-\mathcal{R}_0=\varepsilon
-\frac{f_I(E_0)}
-{(d+\varepsilon)(d+\gamma)}
-$$
-
----
-
-<div class="theorem">
-
-Let
-$$
-\mathcal{R}_0=
-\dfrac{\varepsilon f_I(E_0)}
-{(d+\varepsilon)(d+\gamma)}
-$$
-
-Then 
-- if $\mathcal{R}_0<1$, the DFE is LAS
-- if $\mathcal{R}_0>1$, the DFE is unstable
-</div>
-
-Important to stress *local* nature of stability that is deduced from this result. We will see later that even when $\mathcal{R}_0<1$, there can be several positive equilibria
-
----
-
-# <!--fit-->Application : most frequently used incidence functions
-
-- Frequency-dependent contacts (mass action incidence)
-$$
-f_I(E_0)=\beta N \Rightarrow\mathcal{R}_0 =
-\frac{\varepsilon\beta N}{(\varepsilon+d)(\gamma+d)} 
-$$
-- Proportion-dependent contacts (standard incidence)
-$$
-f_I(E_0)=\frac{\beta N}{N}
-\Rightarrow\mathcal{R}_0 = \frac{\varepsilon\beta}{(\varepsilon+d)(\gamma+d)}
-$$
-
----
-
-# Remark
-
-Method shown here is easily applied to more complex models
-
-We will see some cases later
-
----
-
-# Links between model types
-
-<style scoped>
-@import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
-</style>
-<div class="grid grid-cols-2 gap-4">
-<div>
-
-$$
-\begin{align*}
-S'&=d(1-S)-f(S,I)+\nu R \\
-L'&=f(S,I)-(d+\varepsilon) L \\
-I'&=\varepsilon L-(d+\gamma)I \\
-R'&=\gamma I-(d+\nu)R
-\end{align*}
-$$
-</div>
-
-<div>
-
-- SLIR is SLIRS where $\nu=0$
-- SLIS limit of an SLIRS when $\nu\to\infty$
-- SLI is SLIR where $\gamma=0$
-- SIRS limit of an SLIRS when $\varepsilon\to\infty$
-- SIR is SIRS where $\nu=0$
-- SIS limit of an SIRS when $\nu\to\infty$
-- SIS limit of an SLIS when $\varepsilon\to\infty$
-- SI is SIS where $\nu=0$ 
-</div>
-
----
-
-# Expressions of $\mathcal{R}_0$
-
-$(\bar S,\bar I)$ the DFE, denote $\overline{f}_I=\partial f/\partial I(\bar S,\bar I)$
-
-| Model | $\mathcal{R}_0$ | Model | $\mathcal{R}_0$ | Model | $\mathcal{R}_0$ |
-|:---|:---:|:---|:---:|:---|:---:|
-| SLIRS | $\dfrac{\varepsilon\overline{f}_I}{(d+\varepsilon)(d+\gamma)}$ | SIRS | $\dfrac{\varepsilon\overline{f}_I}{d+\gamma}$ | SIS | $\dfrac{\overline{f}_I}{d+\gamma}$ |
-| SIR | $\dfrac{\overline{f}_I}{d+\gamma}$ | SLIS | $\dfrac{\varepsilon\overline{f}_I}{(d+\varepsilon)(d+\gamma)}$ | SI | $\dfrac{\overline{f}_I}{d+\gamma}$ | 
-| SLI | $\dfrac{\varepsilon\overline{f}_I}{(d+\varepsilon)(d+\gamma)}$ | SLIR | $\dfrac{\varepsilon\overline{f}_I}{(d+\varepsilon)(d+\gamma)}$ | 
-
----
-
-<!-- _backgroundImage: "linear-gradient(to bottom, #f1c40f, 20%, white)" -->
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Effect of vaccination - Herd immunity
 
 ---
@@ -1322,259 +933,3 @@ By vaccinating a fraction $p>1-1/\mathcal{R}_0$ of newborns, we thus are in a si
 
 This is *herd immunity*
 
----
-
-<!-- _backgroundImage: "linear-gradient(to bottom, #f1c40f, 20%, white)" -->
-# <!--fit-->SLIRS model - Global properties
-
----
-
-- As already mentioned, global stability properties are important in a mathematical context, less so in public health
-- Understanding that a DFE or an EEP are GAS is however important: this precludes the existence of other types of behaviours
-- In the following: models were SEIRS originally, I just wrote as SLIRS
-
----
-
-# SLIRS - Mukherjee, Chattopadhyay & Tapaswi
-
-SLIRS with constant birth rate $d$, *per capita* death rate $d$ and incidence function
-$$
-f(S,I,N)=\beta S^q I^p
-$$
-
-After establishing uniform boundedness of the system, they define 
-$$
-V(S,L,I)=\frac 12\left(
-(S-S^\star )^2+(L-L^\star )^2+(I-I^\star )^2\right)
-$$
-
-<div style = "text-align: justify; position: relative; bottom: -25%; font-size:18px;">
-
-Mukherjee, Chattopadhyay & Tapaswi. [Global stability results of epidemiological models with nonlinear incidence rates](https://doi.org/10.1016/0895-7177(93)90009-N). *Mathematical and Computer Modelling* **18** (1993)
-</div>
-
----
-
-Defining matrix
-$$
-A=\left(
-\begin{array}{ccc}
-\beta I^{*p}g(S)+d+\nu & \frac 12 (\nu-\beta I^{*p}g(S)) & \frac 12
-(\beta S^q h(I)+\nu) \\
-\frac 12(\nu-\beta I^{*p}g(S) & \varepsilon+d & -\frac 12 (\beta S^q
-h(I)+\varepsilon) \\
-\frac 12 (\beta S^q h(I)+\nu) & -\frac 12(\beta S^qh(I)+\varepsilon) &
-\gamma+d
-\end{array}
-\right)
-$$
-with functions $g$ and $h$ s.t.
-$$
-S^q-S^{*q}=(S-S^\star )g(S),\quad I^p-I^{*p}=(I-I^\star )h(I)
-$$
-they obtain the following result
-
-<div class="theorem">
-
-Function $V$ is s.t. $V'<0$ if
-- $4(\beta I^{*p}g(S)+d+\nu)(\varepsilon+d)>(\nu-\beta I^{*p}g(S))^2$
-- $\det A>0$
-</div>
-
-Clearly, this is hard to use in practice so the system was studied in other ways
-
----
-
-# [Li & Muldowney (1995)](https://doi.org/10.1016/0025-5564(95)92756-5) - SLIR model
-
-$$
-\begin{align}
-S' &= d-\beta S^qI^p-dS 
-\tag{23a}\label{sys:SLIR_LiMuldowney_dS} \\
-L' &= \beta S^qI^p -(\varepsilon+d)L
-\tag{23b}\label{sys:SLIR_LiMuldowney_dL} \\
-I' &= \varepsilon L-(\gamma+d)I 
-\tag{23c}\label{sys:SLIR_LiMuldowney_dI} \\
-R' &= \gamma I-dR
-\tag{23d}\label{sys:SLIR_LiMuldowney_dR} 
-\end{align}
-$$
-with $0<p\leq 1$
-
-<div style = "text-align: justify; position: relative; bottom: -25%; font-size:18px;">
-
-Li & Muldowney. [Global stability for the SEIR model in epidemiology](https://doi.org/10.1016/0895-7177(93)90009-N). *Mathematical Biosciences* **125** (1995)
-</div>
-
----
-
-Since 
-$$
-(S+L+I+R)' = d-d(S+L+I+R)
-$$
-the 3-dim. simplex 
-$$
-\Gamma = \{(S,L,I,R)\in\mathbb{R}_+^4;
-S+L+I+R=1\}
-$$
-is positively invariant, $\eqref{sys:SLIR_LiMuldowney_dS}$-$\eqref{sys:SLIR_LiMuldowney_dR}$ dissipative and the global attractor is contained in $\Gamma$
-
-So they work on the simplex
-
----
-
-<div class="theorem">
-
-If $0<p<1$ or $p=1$ and $\sigma>1$, the endemic equilibrium $P^\star$ is globally asymptotically stable in the interior of 
-$$
-T=\{(S,L,I) :O\leq S,E,I\leq 1, S + E + I\leq 1\}
-$$
-</div>
-
-Proof uses compound matrix results
-
----
-
-# Li, Muldowney & PvdD - SLIRS model
-
-SEIRS with incidence
-$$
-f(S,I,N)=\beta g(I)S
-$$
-where $g$ is s.t. $g(0)=0$, $g(I)>0$ for $I\in(0,1]$ and $g\in
-C^1(0,1]$
-
-They normalise the total population, so $S+E+I+R=1$. They make an additional hypothesis about $g$:
-
-- **(H)** $c=\lim_{I\to 0^+} \frac{g(I)}{I}\leq +\infty$; when $0<c<+\infty$, $g(I)\leq cI$ for sufficiently small $I$
-
-<div style = "text-align: justify; position: relative; bottom: -15%; font-size:18px;">
-
-Li, Muldowney & van den Driessche. [Global stability of SEIRS models in epidemiology](https://www.researchgate.net/publication/265334017_Global_stability_of_SEIRS_models_in_epidemiology). *CAMQ* **7** (1999)
-</div>
-
----
-
-We have
-$$
-\frac{\partial\overline{f}}{\partial I}=\beta\frac{\partial\overline{g}}{\partial I}
-$$
-Since $\dfrac{\partial\overline{g}}{\partial I}=\lim_{I\to 0^+}
-\dfrac{g(I)}{I}=c$
-$$
-\mathcal{R}_0=\frac{c\beta\varepsilon}
-{(d+\varepsilon)(d+\gamma)}
-$$
-
-The local stability results already established are valid here, since $g$ is a particular case of the function $f$ used to establish these results
-
----
-
-<div class="definition">
-
-The system is **uniformly persistent** if there exists $0<\epsilon_0<1$ s.t. any solution $(S(t),E(t),I(t),R(t))$ of SEIRS with initial condition $(S(0),E(0),I(0),R(0))\in \overset{\circ}{\Gamma}$ satisfies
-$$
-\begin{equation}\label{eq:SEIRS_persist}\tag{24}
-\begin{array}{c}
-\liminf_{t\to\infty} S(t)\geq \epsilon_0,\quad 
-\liminf_{t\to\infty} E(t)\geq \epsilon_0 \\
-\liminf_{t\to\infty} I(t)\geq \epsilon_0,\quad 
-\liminf_{t\to\infty} R(t)\geq \epsilon_0
-\end{array}
-\end{equation}
-$$
-</div>
-
-<div class="theorem">
-
-If $g(I)$ satisfies hypothesis **(H)**, then system $f(S,I,N)=\beta S^q I^p$ with incidence $f(S,I,N)=\beta S^q I^p$ is uniformly persistent if and only if $\mathcal{R}_0>1$
-</div>
-
----
-
-<div class="theorem">
-
-Suppose that incidence $f(S,I,N)=\beta S^q I^p$ satisfies **(H)** and that
-$$
-|g'(I)|I\leq g(I) \textrm{ pour }I\in(0,1]
-$$
-Suppose additionnally that $\mathcal{R}_0>1$ and that one of the conditions
-$$
-\begin{gather*}
-\gamma\nu<\epsilon_0(\beta\eta_0+\gamma+d)(\beta\eta_0+\nu+d) \\
-\varepsilon-\gamma-d<\nu
-\end{gather*}
-$$
-is satisfied, where 
-$$
-\eta_0=\min_{I\in[\epsilon_0,1]}g(I)>0
-$$
-and $\epsilon_0$ defined by $\eqref{eq:SEIRS_persist}$. Then there is no closed rectifiable curve that is invariant with respect to SEIRS. Furthermore, each semi-trajectory of SEIRS in $\Gamma$ converges to an equilibrium
-</div>
-
-The proof uses compound matrices (see [Practicum 02](https://julien-arino.github.io/3MC-course-epidemiological-modelling/2022_04_3MC_EpiModelling_P02_Analysis_LargeScaleModels.html))
-
----
-
-# Lyapunov function for SLIR and SLIS
-
-Consider an SLIR with constant population normalised to 1 and vertical transmission
-
-$$
-\begin{align}
-S' &= d-\beta SI -pdI-qdL-dS 
-\tag{25a}\label{sys:SEIR_vert_transmission_dS} \\
-L' &= \beta SI +pdI-(\varepsilon+d-qd)L 
-\tag{25b}\label{sys:SEIR_vert_transmission_dL} \\
-I' &= \varepsilon L-(\gamma+d)I 
-\tag{25c}\label{sys:SEIR_vert_transmission_dI}
-\end{align}
-$$
-
-- $p$ proportion of newborns from $I$ who are $I$ at birth
-- $q$ proportion of newborns from $L$ who are $L$ at birth
-- $R$ does not influence the dynamics of the system, so not shown
-
-<div style = "text-align: justify; position: relative; bottom: -15%; font-size:18px;">
-
-Korobeinikov. [Lyapunov functions and global properties for SEIR and SEIS epidemic models](https://doi.org/10.1093/imammb/21.2.75). *Mathematical Medicine and Biology* **21** (2004)
-</div>
-
----
-
-# Equilibria
- 
-- DFE: $E_0=(1,0,0)$
-- EEP: $E^\star =(S^\star,L^\star,I^\star)$ with
-$$
-S^\star =\frac 1{\mathcal{R}_0^v}\quad L^\star =\frac{d}{\varepsilon+d}\left(1-\frac
-  1{\mathcal{R}_0^v}\right) 
-\quad
-I^\star =\frac{d\varepsilon}{(\varepsilon+d)(\gamma+d)}\left(1-\frac
-  1{\mathcal{R}_0^v}\right) 
-$$
-
-where
-$$
-\tag{26}
-\mathcal{R}_0^v=\frac{\beta\varepsilon}
-{(\gamma+d)(\varepsilon+d)-qd(\varepsilon+d)-pd\varepsilon}
-$$
-is the basic reproduction number with vertical transmission. We have $\mathcal{R}_0=\mathcal{R}_0^v \iff p=q=0$. On the other hand, $\mathcal{R}_0^v=1$ when $\mathcal{R}_0=1$
-
-$E^\star$ is biologically relevant only when $\mathcal{R}_0^v>1$
-
----
-
-
-Use the function
-$$
-\tag{27}
-V=\sum a_i(x_i-x_i^\star  \ln x_i)
-$$
-
-<div class="theorem">
- 
-- If $\mathcal{R}_0>1$, then system $\eqref{sys:SEIR_vert_transmission_dS}$-$\eqref{sys:SEIR_vert_transmission_dI}$ has the globally asymptotically stable equilibrium $E^\star$
-- If $\mathcal{R}_0\leq 1$, then system $\eqref{sys:SEIR_vert_transmission_dS}$-$\eqref{sys:SEIR_vert_transmission_dI}$ has the globally asymptotically stable DFE $E_0$ and $E^\star$ is not biologically relevant
-</div>
