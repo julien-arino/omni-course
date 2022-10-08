@@ -18,8 +18,8 @@ minimum height=2em]
 	cloud/.style={minimum width={width("N-1")+2pt},
 		draw, ellipse,fill=red!20}]
 	\node [cloud, fill=green!90] (S) {$S$};
-	\node [cloud, right=of S, fill=red!90] (I) {$I$};
-	\coordinate[left of=S] (h1);
+	\node [cloud, right=1.5cm of S, fill=red!90] (I) {$I$};
+	\coordinate[left=1.5cm of S] (h1);
 	\coordinate[below of=S] (h2);
 	\coordinate[below of=I] (h3);
 	%% Flows
