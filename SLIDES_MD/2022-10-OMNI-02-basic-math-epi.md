@@ -80,13 +80,19 @@ img[alt~="center"] {
 - Compartmental models have become synonymous with epidemiological models
 - While epidemic models have mostly been compartmental, most development in the 1970s-1980s was not about epidemiological models in particular
 - See in particular the works of John Jacquez, Carl Simon, GG Walter
-- Forgotten to a large extent, injustly: there are some really nice results in the field
+- Injustly forgotten to a large extent; there are some really nice results in the field
 
 ---
 
 # Compartment ([Jacquez 1979](https://doi-org.uml.idm.oclc.org/10.1016/B978-0-12-434180-7.50021-8))
 
 > A **compartment** is an amount of some material which acts kinetically like a distinct, homogeneous, well-mixed amount of material. A **compartmental system** consists of one or more compartments which interact by exchanging the material. There may be inputs into one or more compartments from outside the system and there may be excretions from the compartments of the system. 
+
+---
+
+![bg left:25% height:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/compartmental_model_vertical_blackBG.png)
+
+# <!--fit-->A compartment
 
 ---
 
