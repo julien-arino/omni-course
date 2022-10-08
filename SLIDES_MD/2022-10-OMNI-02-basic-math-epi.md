@@ -75,6 +75,21 @@ img[alt~="center"] {
 
 ---
 
+# Compartmental models
+
+- Compartmental models have become synonymous with epidemiological models
+- While epidemic models have mostly been compartmental, most development in the 1970s-1980s was not about epidemiological models in particular
+- See in particular the works of John Jacquez, Carl Simon, GG Walter
+- Forgotten to a large extent, injustly: there are some really nice results in the field
+
+---
+
+# Compartment ([Jacquez 1979](https://doi-org.uml.idm.oclc.org/10.1016/B978-0-12-434180-7.50021-8))
+
+> A **compartment** is an amount of some material which acts kinetically like a distinct, homogeneous, well-mixed amount of material. A **compartmental system** consists of one or more compartments which interact by exchanging the material. There may be inputs into one or more compartments from outside the system and there may be excretions from the compartments of the system. 
+
+---
+
 <!-- _backgroundImage: "linear-gradient(to bottom, red,black)" -->
 # <!--fit-->The (epidemic) Kermack and McKendrick SIR model
 
@@ -84,12 +99,14 @@ img[alt~="center"] {
 
 Kermack & McKendrick formulated the model that follows in a much more general work
 
-Really worth taking a look at this series of papers!
+Really worth taking a look at the series of papers!
 - [A contribution to the mathematical theory of epidemics](https://doi.org/10.1098/rspa.1927.0118) (1927)
-- [Contributions to the mathematical theory of epidemics. II. The problem of endemicity](https://doi.org/10.1098/rspa.1932.0171) (1932)
-- [Contributions to the mathematical theory of epidemics. III. Further studies of the problem of endemicity](https://doi.org/10.1098/rspa.1933.0106) (1933)
-- [Contributions to the mathematical theory of epidemics IV. Analysis of experimental epidemics of the virus disease mouse ectromelia](https://doi.org/10.1017/S0022172400034902) (1937)
-- [Contributions to the mathematical theory of epidemics. V. Analysis of experimental epidemics of mouse-typhoid; a bacterial disease conferring incomplete immunity](https://doi.org/10.1017/S0022172400011918) (1939)
+
+Followed by "Contributions to the mathematical theory of epidemics."
+- [II. The problem of endemicity](https://doi.org/10.1098/rspa.1932.0171) (1932)
+- [III. Further studies of the problem of endemicity](https://doi.org/10.1098/rspa.1933.0106) (1933)
+- [IV. Analysis of experimental epidemics of the virus disease mouse ectromelia](https://doi.org/10.1017/S0022172400034902) (1937)
+- [V. Analysis of experimental epidemics of mouse-typhoid; a bacterial disease conferring incomplete immunity](https://doi.org/10.1017/S0022172400011918) (1939)
 
 ---
 
@@ -102,14 +119,43 @@ Really worth taking a look at this series of papers!
 
 ---
 
+# General setup
+ 
+- Consider a closed population
+- Assume individuals in the population can be in one of three states:
+  - **susceptible** (to the disease) if they are not currently harbouring the pathogen 
+  - **infectious** (and *infected*) if they have contracted the disease and are actively spreading it
+  - **removed** (from being infectious) once they have actively stopped spreading the disease, whether it is through *recovery* or *death*
+
+$\implies$ there are three compartments and the aim of modelling is to describe evolution of numbers in each compartment
+
+--- 
+ 
+ # Types of compartments
+
+- $S(t)$ the number of susceptibles at time $t$
+- $I(t)$ the number of infectious/infected at time $t$
+- $R(t)$ the number removed at time $t$
+- $N(t)=S(t)+I(t)$ the total population
+
+
+---
+
 # The SIR model *without demography*
 
-- The time interval under consideration is sufficiently small that demography can be omitted (we say there is *no vital dynamics*)
-- Individuals in the population can be susceptible ($S$) or infected and infectious with the disease ($I$). Upon recovery or death, they are *removed* from the infectious compartment ($R$)
+- Time interval under consideration sufficiently small that demography can be omitted (we say there is *no vital dynamics*)
 - Incidence is mass action $\beta SI$
+- Incubation period is short or even non-existent
+- Infection has limited duration for each individual
+
+---
+
+# Model flow diagram
 
 ![width:600px center](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIR_KMK_ODE_blackBG.png)
 
+- Flow diagrams represent the different courses individuals may follow before infection and while infected with the disease
+- They are extremely useful communication and working tools
 
 ---
 
@@ -488,17 +534,17 @@ We also assume infection has limited duration for each individual
 
 # Model flow diagram
 
-![width:600px center](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/figure_SIS_base_prop_incidence_birthdN.png)
+![width:600px center](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIS_base_prop_incidence_birthdN_blackBG.png)
 
 ---
 
 # The model
 
-![bg right:34% width:400px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/figure_SIS_base_prop_incidence_birthdN_vertical.png)
+![bg right:34% width:400px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIS_base_prop_incidence_birthdN_vertical_blackBG.png)
 
 $$
 \begin{align}
-S' &= \underbrace{bN}_\textrm{birth}
+S' &= \underbrace{dN}_\textrm{birth}
 -\underbrace{dS}_\textrm{death} 
 -\underbrace{\beta\frac{SI}{N}}_\textrm{infection}
 +\underbrace{\gamma I}_\textrm{recovery}
@@ -516,7 +562,6 @@ Consider initial value problem (IVP) consisting of this system together with ini
 
 # Remarks
  
-- In what follows, assume $b=d$ to keep population constant
 - $\eqref{sys:SIS_base_dS}$-$\eqref{sys:SIS_base_dI}$ is an SIS (Susceptible-Infectious-Susceptible) model
 - If $\gamma=0$ (no recovery), then model is SI
   - In this case, infected individual remains infected their whole life (but disease is not lethal since there is no disease-induced death)
@@ -665,13 +710,13 @@ $$
 
 In summary, the solution to the system in proportions is given by
 $$
-s(t)=1-\frac{i_0(\beta-(d+\gamma))}{i_0\beta(1-e^{-(\beta-(d+\gamma))t})
-  +(\beta-(d+\gamma))e^{-(\beta-(d+\gamma))t}}
+s(t)=1-\frac{i_0({\color{red}\beta-(d+\gamma)})}{i_0\beta(1-e^{-({\color{red}\beta-(d+\gamma)})t})
+  +({\color{red}\beta-(d+\gamma)})e^{-({\color{red}\beta-(d+\gamma)})t}}
 $$
 and
 $$
-i(t)=\frac{i_0(\beta-(d+\gamma))}{i_0\beta(1-e^{-(\beta-(d+\gamma))t})
-  +(\beta-(d+\gamma))e^{-(\beta-(d+\gamma))t}}
+i(t)=\frac{i_0({\color{red}\beta-(d+\gamma)})}{i_0\beta(1-e^{-({\color{red}\beta-(d+\gamma)})t})
+  +({\color{red}\beta-(d+\gamma)})e^{-({\color{red}\beta-(d+\gamma)})t}}
 $$
 
 ---
@@ -720,20 +765,12 @@ For system $\eqref{sys:SIS_base_dS}$-$\eqref{sys:SIS_base_dI}$, the following al
 </div>
 
 ---
-
-# $I^*$ as a function of $\mathcal{R}_0$
-
-The higher $\mathcal{R}_0$, the higher the proportion of infectious individuals in the population
-
-![width:550px center](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/R0.png)
-
----
  
  # Further remarks about $\mathcal{R}_0$
 
-- $\mathcal{R}_0$ determines the propensity of a disease to become established in a population
-- The aim of control policies is therefore to reduce $\mathcal{R}_0$ to values less than 1
-- The "verbal" definition of $\mathcal{R}_0$ is *the average number of secondary infections produced by the introduction of an infectious individual in a completely naive population*
+- $\mathcal{R}_0$ determines the propensity of a disease to become established in a population 
+- When establishment occurs ($\mathcal{R}_0>1$), $\mathcal{R}_0$ also determines the level of endemicity of the disease ($\lim_{t\to\infty}i(t)=1-1/{\mathcal{R}_0}$ and $\lim_{\mathcal{R}_0\to\infty}i^*(t)=1$)
+- The aim of control policies is therefore to reduce $\mathcal{R}_0$ to values less than 1 (ideally) or reduce the value of $\mathcal{R}_0$ in any case to lower endemicity
 - Remark that for our basic model, $1/(d+\gamma)$ is the average time of sojourn in the $I$ compartment before death or recovery and $\beta$ is the probability of infection 
 
 ---
@@ -826,15 +863,16 @@ with matrices $F$ and $V$ obtained as indicated. Assume conditions (A1) through 
 - if $\mathcal{R}_0>1$, the DFE is unstable
 </div>
 
-(We make conditions (A1)-(A5) explicit in [Practicum 02](2022_04_3MC_EpiModelling_P02_Analysis_LargeScaleModels.html) and discuss why it can be important to check they do hold true in [Lecture 09](https://julien-arino.github.io/3MC-course-epidemiological-modelling/2022_04_3MC_EpiModelling_L09_RecentMathematicalModels.html))
+I make conditions (A1)-(A5) explicit in [these slides](2022_04_3MC_EpiModelling_P02_Analysis_LargeScaleModels.html)/[this video](https://youtu.be/KHm7KIt1_ys) and discuss why it can be important to check they do hold true in [these slides](https://julien-arino.github.io/3MC-course-epidemiological-modelling/2022_04_3MC_EpiModelling_L09_RecentMathematicalModels.html)/[this video](https://youtu.be/tFjPug1f4Ms)
 
 ---
 
+<!-- _backgroundImage: "linear-gradient(to bottom, #580D16, 1%, black)" -->
 # Summary thus far
-- An SIR *epidemic* model (the KMK SIR) in which the presence or absence of an epidemic wave is characterised by the value of $\mathcal{R}_0$
-- An SLIAR *epidemic* model extending the KMK SIR
-- An SIS *endemic* model in which the threshold $\mathcal{R}_0=1$ is such that when $\mathcal{R}_0<1$, the disease goes extinct, whereas when $\mathcal{R}_0>1$, the disease becomes established in the population
-- Both the KMK SIR and the SIS are integrable in some sense. **This is an exception!!!**
+- The KMK SIR **epidemic** model in which the presence or absence of an epidemic wave is characterised by the value of $\mathcal{R}_0$
+- An SIS **endemic** model in which the threshold $\mathcal{R}_0=1$ is such that when $\mathcal{R}_0<1$, the disease goes extinct, whereas when $\mathcal{R}_0>1$, the disease becomes established in the population
+- Both KMK SIR and SIS are integrable in some sense. **This is an exception!!!**
+- By abuse of language, we often speak of *epidemic models* when referring to both epidemic and endemic models. We should instead say *epidemiological models* or *models for disease propagation*. That's one quixotic quest that I am not even considering...
 
 
 ---
