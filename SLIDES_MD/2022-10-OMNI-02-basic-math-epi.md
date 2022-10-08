@@ -32,9 +32,9 @@ math: mathjax
 </style>
 
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Basic concepts of math epi - Models in one population and their basic properties
+# Basic concepts of math epi
 
-4 April 2022 
+11-14 October 2022 
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/github-icon.png)](https://github.com/julien-arino)
 
@@ -108,12 +108,12 @@ Really worth taking a look at this series of papers!
 - Individuals in the population can be susceptible ($S$) or infected and infectious with the disease ($I$). Upon recovery or death, they are *removed* from the infectious compartment ($R$)
 - Incidence is mass action $\beta SI$
 
-![width:600px center](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/figure_SIR_KMK_ODE.png)
+![width:600px center](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIR_KMK_ODE_blackBG.png)
 
 
 ---
 
-![bg left:25% height:600px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/figure_SIR_KMK_ODE_vertical.png)
+![bg left:25% height:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIR_KMK_ODE_vertical_blackBG.png)
 
 # <!--fit-->The Kermack-McKendrick SIR model
 $$
@@ -128,7 +128,7 @@ Considered with initial conditions (IC) $S(0)=S_0$, $I(0)=I_0$ and $R(0)=R_0$ (o
 
 ---
 
-![bg left:25% height:600px](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/figure_SIR_KMK_ODE_vertical.png)
+![bg left:25% height:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIR_KMK_ODE_vertical_blackBG.png)
 
 # <!--fit-->The Kermack-McKendrick SIR model
 As often with ODE, write $dX(t)/dt=X'(t)$ and omit time-dependence of state variables:
@@ -284,7 +284,7 @@ The two are of course essentially equivalent, the context tends to drive the for
 
 - Rate at which new cases appear per unit time is the *incidence function*
 $$
-\tag{7}
+\tag{5}
 f(S,I,N)
 $$
 - Depends of the number $S$ of susceptible individuals, $I$ of infectious individuals and, sometimes, of the total population $N$
@@ -298,11 +298,11 @@ $$
 # Two most frequently used functions
 
 The two most frequently used incidence functions are  **mass action incidence**
-$$\tag{8}
+$$\tag{6}
 f(S,I, N)=\beta SI
 $$
 and **standard** (or **proportional**) **incidence**
-$$\tag{9}
+$$\tag{7}
 f(S,I, N)=\beta\frac{SI}{N}
 $$
 
@@ -338,7 +338,7 @@ has units number/time if $\beta$ has units $1/\text{time}$
 
 $$
 \begin{equation}
-\tag{8}\label{eq:incidence_mass_action}
+\tag{6}\label{eq:incidence_mass_action}
 f(S,I, N)=\beta SI
 \end{equation}
  $$
@@ -357,7 +357,7 @@ When population is large, the hypothesis becomes unrealistic
 The other form used frequently:
 $$
 \begin{equation}
-\tag{9}\label{eq:incidence_proportional}
+\tag{7}\label{eq:incidence_proportional}
 f(S,I,N)=\beta\frac{SI}{N}
 \end{equation}
 $$
@@ -388,7 +388,7 @@ Keep in mind units are different, though
 # General incidence
 
 $$
-\tag{10}
+\tag{8}
 f(S,I,N)=\beta S^q I^p
 $$
 These functions were introduced with data fitting in mind: fitting to data, find the $p,q$ best matching the available data
@@ -400,7 +400,7 @@ These functions were introduced with data fitting in mind: fitting to data, find
 The following implements a refuge effect; it assumes that a proportion $0<q<1$ of the population is truly susceptible, because of, e.g., spatial heterogenities
 
 $$
-\tag{11}
+\tag{9}
 f(S,I,N)=
 \begin{cases}
 \beta I\left(N-\dfrac Iq\right),&\textrm{if }I<qN \\
@@ -415,39 +415,10 @@ $$
 # Negative binomial incidence
 
 $$
-\tag{12}
+\tag{10}
 f(S,I,N)=kS\ln\left(1+\beta\frac Ik\right)
 $$
 For small values of $k$, this function describes a very concentrated infection process, while when $k\to\infty$, this function reduces to a mass action incidence
-
----
-
-# Asymptotic contact
-
-$$
-\tag{13}
-f(S,I,N)
-=\frac{N}{1-\varepsilon+\varepsilon N}
-\frac{F(S,I)}{N}
-$$
-where $F$ is one of the functions we just described
-
-When $\varepsilon=0$, contacts are proportionnal to $N$, whereas when $\varepsilon=1$, contacts are independent from $N$
-
----
-
-# Asymptomatic transmission
-
-$$
-\tag{14}
-f(S,I,N)
-=\beta\frac{SI}{c+S+I}
-$$
-where $c$ is a constant. E.g., 
-$$
-\frac{C(N)}N F(S,I)
-$$
-with $C(N)=N/(1-\varepsilon+\varepsilon N)$ the function describing the contact rate and $F(S,I)$ the function describing disease spread, assumed here to be of negative binomial incidence-type
 
 ---
 
@@ -457,7 +428,7 @@ Arino & McCluskey, [Effect of a sharp change of the incidence function on the dy
 
 Scale population so switch occurs at $N=1$ and suppose
 $$
-\tag{15}
+\tag{11}
 F(S,I,N) = 
 \begin{cases}
 \beta SI & \textrm{if }N\leq 1 \\
@@ -531,11 +502,11 @@ S' &= \underbrace{bN}_\textrm{birth}
 -\underbrace{dS}_\textrm{death} 
 -\underbrace{\beta\frac{SI}{N}}_\textrm{infection}
 +\underbrace{\gamma I}_\textrm{recovery}
-\tag{16a}\label{sys:SIS_base_dS}\\
+\tag{12a}\label{sys:SIS_base_dS}\\
 I' &= \underbrace{\beta\frac{SI}{N}}_\textrm{infection}
 -\underbrace{dI}_\textrm{death} 
 -\underbrace{\gamma I}_\textrm{recovery} 
-\tag{16b}\label{sys:SIS_base_dI}
+\tag{12b}\label{sys:SIS_base_dI}
 \end{align}
 $$
 
@@ -618,9 +589,9 @@ $$
 Since $s+i=1$, we can use $s=1-i$ in the latter equation, giving $i'=\beta(1-i)i-(d+\gamma)i$. As a consequence, the *system in proportion* is
 $$
 \begin{align}
-s &= 1-i \tag{17a}\label{sys:SIS_proportion_ds} \\
+s &= 1-i \tag{13a}\label{sys:SIS_proportion_ds} \\
 i' &= \beta(1-i)i-(d+\gamma)i 
-\tag{17b}\label{sys:SIS_proportion_di}
+\tag{13b}\label{sys:SIS_proportion_di}
 \end{align}
 $$
 
@@ -631,7 +602,7 @@ Since $N$ constant, solutions of $\eqref{sys:SIS_base_dS}$-$\eqref{sys:SIS_base_
 Rewrite $\eqref{sys:SIS_proportion_di}$ as
 $$
 \begin{equation} 
-\tag{18}\label{eq:SIS_i_as_Bernoulli}
+\tag{14}\label{eq:SIS_i_as_Bernoulli}
 i'-(\beta-(d+\gamma))i=-\beta i^2
 \end{equation}
 $$
@@ -642,7 +613,7 @@ $$
 so that finally
 $$
 \begin{equation}
-\tag{19}\label{eq:SIS_true_Bernoulli}
+\tag{15}\label{eq:SIS_true_Bernoulli}
 u'+(\beta-(d+\gamma))u=\beta
 \end{equation}
 $$
@@ -887,9 +858,9 @@ Take SIR model and assume the following
 
 $$
 \begin{align}
-S' &= (1-p)dN-dS-\beta SI \tag{21a} \\
-I' &= \beta SI -(d+\gamma)I \tag{21b} \\
-R' &= pdN+\gamma I-dR \tag{21c}
+S' &= (1-p)dN-dS-\beta SI \tag{16a} \\
+I' &= \beta SI -(d+\gamma)I \tag{16b} \\
+R' &= pdN+\gamma I-dR \tag{16c}
 \end{align}
 $$
 
@@ -925,7 +896,7 @@ Therefore
 - $\mathcal{R}_0^\textrm{v}<\mathcal{R}_0$ if $p>0$
 - To control the disease, $\mathcal{R}_0^\text{v}$ must take a value less than 1, i.e.,
 $$
-\tag{22}
+\tag{17}
 \mathcal{R}_0^\text{v}<1 \iff p> 1-\frac{1}{\mathcal{R}_0}
 $$
 
