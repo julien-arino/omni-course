@@ -1,0 +1,27 @@
+\documentclass[crop=true,tikz,border=1pt,varwidth=8in]{standalone}
+
+%\makeatletter
+%%%%%%%%%%%%%%%%%
+\PassOptionsToPackage{force}{filehook}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning}
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=0.87cm,
+minimum height=2em]
+\tikzstyle{line} = [draw, -latex', color=yellow]
+\usetikzlibrary{shapes.symbols,shapes.callouts,patterns}
+\usetikzlibrary{calc}
+
+
+\begin{document}
+\begin{tikzpicture}[auto, %node distance = 2cm, auto,
+	cloud/.style={minimum width={width("N-1")+2pt},
+		draw, ellipse,fill=gray!20}]
+	\node [cloud, fill=green!90] (S) {$S$};
+	\node [cloud, below=of S, fill=red!90] (I) {$I$};
+	\node [cloud, below=of I, fill=blue!90] (R) {$R$};
+    %% Flows
+	\path [line, very thick] (S) to node [midway, right] (TextNode) {$\beta SI$} (I);
+	\path [line, very thick] (I) to node [midway, right] (TextNode) {$\gamma I$} (R);
+\end{tikzpicture}
+\end{document}
