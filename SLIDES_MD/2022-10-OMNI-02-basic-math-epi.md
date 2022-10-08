@@ -90,9 +90,14 @@ img[alt~="center"] {
 
 ---
 
-![bg left:25% height:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/compartmental_model_vertical_blackBG.png)
+![bg left:40% height:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/compartmental_model_vertical_blackBG.png)
 
 # <!--fit-->A compartment
+
+- $q_i$ size of the compartment, i.e., amount of kinetically homogeneous material present in $i$; $q_i\geq 0$
+- $f_{ij}$ and $f_{ji}$ fractional transfer coefficients/functions
+- $f_{0i}$ excretion coefficient/function
+- $i_i(t)$ input from outside the system
 
 ---
 
@@ -362,30 +367,6 @@ In both cases, $\beta$ is the *disease transmission coefficient*
 
 ---
 
-# Units of $\beta$
-
-Recall that if $X(t)$ is the population in compartment $X$ at time $t$, then $X'$ has units $\text{number}/\text{time}$
-
-In a differential equation, left and right hand side must have same units, so..
-
-### Mass action incidence
-
-$$
-\beta SI \propto 
-\beta\times\text{number}\times\text{number}
-$$
-has units number/time if $\beta$ has units $1/(\text{number}\times\text{time})$
-
-### Standard incidence
-
-$$
-\beta SI/N \propto 
-\beta\times\text{number}\times\text{number}/\text{number} \propto \beta \times\text{number}
-$$
-has units number/time if $\beta$ has units $1/\text{time}$
-
----
-
 # Mass action incidence
 
 $$
@@ -434,6 +415,30 @@ $$
 and if the right hand side is satisfied, then $\eqref{eq:incidence_mass_action}$ and $\eqref{eq:incidence_proportional}$ identical
 
 Keep in mind units are different, though
+
+---
+
+# Units of $\beta$
+
+Recall that if $X(t)$ is the population in compartment $X$ at time $t$, then $X'$ has units $\text{number}/\text{time}$
+
+In a differential equation, left and right hand side must have same units, so..
+
+### Mass action incidence
+
+$$
+\beta SI \propto 
+\beta\times\text{number}\times\text{number}
+$$
+has units number/time if $\beta$ has units $1/(\text{number}\times\text{time})$
+
+### Standard incidence
+
+$$
+\beta SI/N \propto 
+\beta\times\text{number}\times\text{number}/\text{number} \propto \beta \times\text{number}
+$$
+has units number/time if $\beta$ has units $1/\text{time}$
 
 ---
 
@@ -508,7 +513,7 @@ $b\neq d$ and $\delta$ disease-induced death rate, periodic solutions found
   - *susceptible* (to the disease) if they are not currently harbouring the pathogen 
   - *infectious* (and *infected*) if they have contracted the disease and are actively spreading it
 
-$\implies$ there are two compartments and the aim of modelling is to describe evolution of numbers in each compartment
+$\implies$ there are two compartments 
 
 --- 
  
@@ -775,7 +780,7 @@ For system $\eqref{sys:SIS_base_dS}$-$\eqref{sys:SIS_base_dI}$, the following al
  # Further remarks about $\mathcal{R}_0$
 
 - $\mathcal{R}_0$ determines the propensity of a disease to become established in a population 
-- When establishment occurs ($\mathcal{R}_0>1$), $\mathcal{R}_0$ also determines the level of endemicity of the disease ($\lim_{t\to\infty}i(t)=1-1/{\mathcal{R}_0}$ and $\lim_{\mathcal{R}_0\to\infty}i^*(t)=1$)
+- When establishment occurs ($\mathcal{R}_0>1$), $\mathcal{R}_0$ also determines the level of endemicity of the disease ($i^*=\lim_{t\to\infty}i(t)=1-1/{\mathcal{R}_0}$ and $\lim_{\mathcal{R}_0\to\infty}i^*=1$)
 - The aim of control policies is therefore to reduce $\mathcal{R}_0$ to values less than 1 (ideally) or reduce the value of $\mathcal{R}_0$ in any case to lower endemicity
 - Remark that for our basic model, $1/(d+\gamma)$ is the average time of sojourn in the $I$ compartment before death or recovery and $\beta$ is the probability of infection 
 
