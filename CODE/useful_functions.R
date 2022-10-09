@@ -1,10 +1,9 @@
+# USEFUL_FUNCTIONS.R
+# 
 # Some useful functions
 #
 # Julien Arino
 # May 2019
-#
-# This file contains several useful functions that I do not want to
-# include in the main Rmd files.
 
 # MAKE_Y_AXIS
 # Formats the y axis ticks and labels so that they are easier to read.

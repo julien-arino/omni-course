@@ -485,6 +485,7 @@ Recent movement (5-10 years): governments (local or higher) create portals where
 
 ```R
 library(wbstats)
+source("useful_functions.R")
 pop_data_CTRY <- wb_data(country = "CAN", indicator = "SP.POP.TOTL",
                          mrv = 100, return_wide = FALSE)
 y_range = range(pop_data_CTRY$value)

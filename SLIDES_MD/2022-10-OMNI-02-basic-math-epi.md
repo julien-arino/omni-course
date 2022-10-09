@@ -269,7 +269,7 @@ $$
 ---
 
 
-![width:1200px center](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/KMK_planar_trajectories.png)
+![width:1200px center](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/KMK_planar_trajectories.png)
 
 Trajectories in phase plane $(S,I)$ corresponding to IC $(S_0,1-S_0)$ and $\beta/\gamma=2.5$
 
