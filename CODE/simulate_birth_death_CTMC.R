@@ -3,8 +3,12 @@
 # This demos both the classic Gillespie algorithm and how things can go bad
 # because of shrinking inter-event times.
 
-b = 0.025   # Birth rate
-d = 0.01   # Death rate
+# Load useful_functions.R, which contains the crop function
+source("useful_functions.R")
+
+# Set model and simulation parameters
+b = 0.01   # Birth rate
+d = 0.02   # Death rate
 t_0 = 0    # Initial time
 N_0 = 100  # Initial population
 
@@ -46,19 +50,34 @@ while (t_curr<=t_f) {
 
 # Make a title for all figures
 main_title = paste0("b=",b,", d=",d)
-fig_title = gsub("\\.", "_", paste0("b=",b,"__d=",d))
+fig_title = gsub("\\.", "_", paste0("b=",b,"_d=",d))
 
 # Do we output the results?
 OUTPUT_PLOT = TRUE
+# Are we plotting for a dark background
+plot_blackBG = TRUE
+if (plot_blackBG) {
+  colour = "white"
+} else {
+  colour = "black"
+}
 
 # Plot the result
 if (OUTPUT_PLOT) {
   png(filename = paste0("../FIGS/CTMC_birth_death_sol_", fig_title, ".png"),
       width = 800, height = 600, res = 120)
+  if (plot_blackBG) {
+    par(bg = 'black', fg = 'white') # set background to black, foreground white
+  }
 }
 plot(t, N, type = "l",
+     xlab = "Time", ylab = "Population",
+     xaxs = "i", xlim = c(t_0, ifelse(t[length(t)]>t_f, t_f, t[length(t)])),
+     col.axis = colour, cex.axis = 1.5,
+     col.lab = colour, cex.lab = 1.5,
+     col.main = colour,
      main = main_title)
-abline(h = N_0, lty = 2)
+abline(h = N_0, lty = 3)
 if (OUTPUT_PLOT) {
   dev.off()
   crop_figure(paste0("../FIGS/CTMC_birth_death_sol_", fig_title, ".png"))
@@ -68,16 +87,25 @@ if (OUTPUT_PLOT) {
 plot(1:(length(t)-1), diff(t),
      xlab = "Jump #", ylab = "Inter-event time",
      main = main_title,
+     col.axis = colour, cex.axis = 1.5,
+     col.lab = colour, cex.lab = 1.5,
+     col.main = colour,
      type = "l")
 
 # Plot the inter-event time. Diff removes one entry, beware..
 if (OUTPUT_PLOT) {
   png(filename = paste0("../FIGS/CTMC_birth_death_ie_vs_t_", fig_title, ".png"),
       width = 800, height = 600, res = 120)
+  if (plot_blackBG) {
+    par(bg = 'black', fg = 'white') # set background to black, foreground white
+  }
 }
 plot(t[2:length(t)], diff(t),
      xlab = "Time", ylab = "Inter-event time",
      main = main_title,
+     col.axis = colour, cex.axis = 1.5,
+     col.lab = colour, cex.lab = 1.5,     
+     col.main = colour,
      type = "l")
 if (OUTPUT_PLOT) {
   dev.off()

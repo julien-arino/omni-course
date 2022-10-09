@@ -4,7 +4,7 @@ library(sqldf)
 library(dplyr)
 library(EpiCurve)
 
-SARS = read.csv("../DATA/SARS-CoV-1_data.csv")
+SARS = read.csv("SARS-CoV-1_data.csv")
 
 ## Three ways to keep only the data for one country
 ctry = "Canada"
@@ -25,10 +25,15 @@ SARS_selected$incidence = c(0, diff(SARS_selected$totalNumberCases))
 SARS_selected = SARS_selected %>%
   filter(incidence > 0)
 
-# Plot the result
 # Before plotting, we need to make the dates column we will use be actual dates..
 SARS_selected$toDate = lubridate::ymd(SARS_selected$toDate)
+
+# Plot the result
+png(file = "../FIGS/SARS-CoV-1_cases_CAN.png", 
+    width = 800, height = 400)
 EpiCurve(SARS_selected,
          date = "toDate", period = "day",
          freq = "incidence",
          title = "SARS-CoV-1 incidence in Canada in 2003")
+# Crop the figure (using a function in useful_functions.R)
+crop_figure("../FIGS/SARS-CoV-1_cases_CAN.png")

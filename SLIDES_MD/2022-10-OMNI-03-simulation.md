@@ -31,6 +31,8 @@ size: 4K
   }
 </style>
 
+<!-- backgroundColor: black -->
+
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Simulation of epidemiological models
 

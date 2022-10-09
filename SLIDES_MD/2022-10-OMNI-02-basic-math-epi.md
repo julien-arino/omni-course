@@ -31,6 +31,7 @@ math: mathjax
   }
 </style>
 
+<!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Basic concepts of math epi
 

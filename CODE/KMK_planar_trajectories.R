@@ -39,11 +39,9 @@ plot_blackBG = TRUE
 png("../FIGS/KMK_planar_trajectories.png", width = 1000, height = 600)
 if (plot_blackBG) {
   par(bg = 'black', fg = 'white') # set background to black, foreground white
-  col_axis = "white"
-  col_lab = "white"
+  colour = "white"
 } else {
-  col_axis = "black"
-  col_lab = "black"
+  colour = "black"
 }
 for (i in 1:length(S)) {
   if (i == 1) {
@@ -53,10 +51,8 @@ for (i in 1:length(S)) {
          xlim = c(0,1), ylim = c(0,1),
          xaxs = "i", yaxs = "i",
          xlab = "S", ylab = "I",
-         col.axis = col_axis,
-         cex.axis = 2,
-         col.lab = col_lab,
-         cex.lab = 2,
+         col.axis = colour, cex.axis = 2,
+         col.lab = colour, cex.lab = 2,
          bty = "n")
     points(S[[i]][length(S[[i]])], I[[i]][length(I[[i]])],
           pch = 19, cex = 3, 
