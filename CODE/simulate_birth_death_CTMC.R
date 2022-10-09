@@ -8,7 +8,7 @@ source("useful_functions.R")
 
 # Set model and simulation parameters
 b = 0.01   # Birth rate
-d = 0.02   # Death rate
+d = 0.01   # Death rate
 t_0 = 0    # Initial time
 N_0 = 100  # Initial population
 
@@ -114,3 +114,4 @@ if (OUTPUT_PLOT) {
   dev.off()
   crop_figure(paste0("../FIGS/CTMC_birth_death_ie_vs_t_", fig_title, ".png"))
 }
+
