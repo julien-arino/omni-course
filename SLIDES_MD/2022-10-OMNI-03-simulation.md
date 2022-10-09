@@ -908,7 +908,7 @@ Easy as $\pi$ :)
 
 # ODE to CTMC : focus on different components
 
-![width:600px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/flow-diagrams/figure_SIS_no_demography_ODE.png)  ![width:400px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/flow-diagrams/figure_SIS_no_demography_CTMC.png)
+![width:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIS_no_demography_flows_ODE_blackBG.png)  ![width:400px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/flow-diagrams/figure_SIS_no_demography_CTMC.png)
 
 ---
 
@@ -1033,6 +1033,9 @@ while {$t\leq t_f$}
 - Individuals born at *per capita* rate $b$
 - Individuals die at *per capita* rate $d$
 - Let's implement this using classic Gillespie
+
+(See [`simulate_birth_death_CTMC.R`](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/simulate_birth_death_CTMC.R) on course GitHub repo)
+
 
 ---
 
@@ -1199,7 +1202,7 @@ SIMS = parLapply(cl = cl,
 stopCluster(cl)
 ```
 
-See `simulate_CTMC_parallel.R` on [Github](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/simulate_CTMC_parallel.R)
+See [`simulate_CTMC_parallel.R`](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/simulate_CTMC_parallel.R) on course GitHub repo
 
 ---
 

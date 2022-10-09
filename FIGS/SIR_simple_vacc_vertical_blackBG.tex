@@ -1,0 +1,36 @@
+\documentclass[crop=true,tikz,border=1pt,varwidth=8in]{standalone}
+
+%\makeatletter
+%%%%%%%%%%%%%%%%%
+\PassOptionsToPackage{force}{filehook}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning}
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=0.87cm,
+minimum height=2em]
+\tikzstyle{line} = [draw, -latex', color=yellow]
+\usetikzlibrary{shapes.symbols,shapes.callouts,patterns}
+\usetikzlibrary{calc}
+
+
+\begin{document}
+\begin{tikzpicture}[auto, %node distance = 2cm, auto,
+	cloud/.style={minimum width={width("N-1")+2pt},
+		draw, ellipse,fill=gray!20}]
+	\node [cloud, fill=green!90] (S) {$S$};
+	\node [cloud, below=of S, fill=red!90] (I) {$I$};
+	\node [cloud, below=of I, fill=blue!90] (R) {$R$};
+    \node [cloud, above=2cm of S, draw=none, fill=none] (birth) {};
+    \node [cloud, right=of S, draw=none, fill=none] (dS) {};
+    \node [cloud, right=of I, draw=none, fill=none] (dI) {};
+    \node [cloud, right=of R, draw=none, fill=none] (dR) {};
+	%% Flows
+    \path [line, very thick] (birth) to node [midway, above, sloped] (TextNode) {$(1-p)dN$} (S);
+    \path [line, very thick, bend right] (birth) to node [midway, below, sloped] (TextNode) {$pdN$} (R);
+	\path [line, very thick] (S) to node [midway, above] (TextNode) {$\beta SI$} (I);
+	\path [line, very thick] (I) to node [midway, above, sloped] (TextNode) {$\gamma I$} (R);
+	\path [line, very thick] (S) to node [midway, above, sloped] (TextNode) {$dS$} (dS);
+	\path [line, very thick] (I) to node [midway, above, sloped] (TextNode) {$dI$} (dI);
+	\path [line, very thick] (R) to node [midway, above, sloped] (TextNode) {$dR$} (dR);
+\end{tikzpicture}
+\end{document}

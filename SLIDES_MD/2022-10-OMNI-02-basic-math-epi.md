@@ -1,7 +1,7 @@
 ---
 marp: true
-title: Basic concepts of mathematical epidemiology. Models in one population and their basic properties
-description: Julien Arino - 3MC Course Epidemiological Modelling - Course 02 - Basic concepts of mathematical epidemiology. Models in one population and their basic properties
+title: Basic concepts of mathematical epidemiology
+description: Julien Arino - OMNI/RÉUNIS & MfPH course on One Health Modelling for Emerging Infectious Diseases - Introduction - Lecture 2 - Basic concepts of mathematical epidemiology
 theme: default
 class: invert
 paginate: false
@@ -33,7 +33,7 @@ math: mathjax
 
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Basic concepts of math epi
+# Basic concepts of mathematical epidemiology
 
 11-14 October 2022 
 
@@ -851,6 +851,22 @@ $$
 \mathcal{R}_0=\rho(FV^{-1})
 $$
 where $\rho$ is the spectral radius
+
+---
+
+Here, there is a single infected compartment, so
+$$
+\mathcal{F}=\beta SI\quad\text{and}\quad\mathcal{V}=(d+\gamma)I
+$$
+So in turn
+$$
+F = \beta\quad\text{and}\quad V=d+\gamma
+$$
+and thus $V^{-1}=1/(d+\gamma)$. Thus, finally
+$$
+\mathcal{R}_0 = \rho\left(FV^{-1}\right) = \rho\left(\frac{\beta}{d+\gamma}\right)
+= \frac{\beta}{d+\gamma}
+$$
 
 
 ---
