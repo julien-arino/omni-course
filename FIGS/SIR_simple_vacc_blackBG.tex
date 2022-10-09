@@ -21,10 +21,16 @@ minimum height=2em]
 	\node [cloud, right=of S, fill=red!90] (I) {$I$};
 	\node [cloud, right=of I, fill=blue!90] (R) {$R$};
     \node [cloud, left=2cm of S, draw=none, fill=none] (birth) {};
+    \node [cloud, above=of S, draw=none, fill=none] (dS) {};
+    \node [cloud, above=of I, draw=none, fill=none] (dI) {};
+    \node [cloud, above=of R, draw=none, fill=none] (dR) {};
 	%% Flows
     \path [line, very thick] (birth) to node [midway, above, sloped] (TextNode) {$(1-p)dN$} (S);
     \path [line, very thick, bend right] (birth) to node [midway, below, sloped] (TextNode) {$pdN$} (R);
 	\path [line, very thick] (S) to node [midway, above] (TextNode) {$\beta SI$} (I);
 	\path [line, very thick] (I) to node [midway, above, sloped] (TextNode) {$\gamma I$} (R);
+	\path [line, very thick] (S) to node [midway, above, sloped] (TextNode) {$dS$} (dS);
+	\path [line, very thick] (I) to node [midway, above, sloped] (TextNode) {$dI$} (dI);
+	\path [line, very thick] (R) to node [midway, above, sloped] (TextNode) {$dR$} (dR);
 \end{tikzpicture}
 \end{document}
