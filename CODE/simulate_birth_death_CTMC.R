@@ -78,6 +78,9 @@ plot(t, N, type = "l",
      col.main = colour,
      main = main_title)
 abline(h = N_0, lty = 3)
+if (N[length(N)]<1e-5) {
+  abline(h = 0, lty = 3)
+}
 if (OUTPUT_PLOT) {
   dev.off()
   crop_figure(paste0("../FIGS/CTMC_birth_death_sol_", fig_title, ".png"))
