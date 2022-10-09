@@ -913,7 +913,7 @@ Take SIR model and assume the following
 
 ---
 
-![width:800px center](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIR_simple_vacc_blackBG.png)
+![bg left:30% width:350px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIR_simple_vacc_vertical_blackBG.png)
 
 $$
 \begin{align}
