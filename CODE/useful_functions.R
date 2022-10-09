@@ -1,68 +1,10 @@
-# USEFUL_FUNCTIONS.R
+# Some useful functions
 #
 # Julien Arino
 # May 2019
 #
 # This file contains several useful functions that I do not want to
 # include in the main Rmd files.
-
-# Table to map region names in mainland France between French and English.
-# Put as many different lists as needed.
-# Make sure order is the same in each sublist.
-region_names_FR = list()
-region_names_FR$fr1 = c("Auvergne-Rhône-Alpes",   
-                        "Bourgogne-Franche-Comté",
-                        "Bretagne",               
-                        "Centre",
-                        "Corse",
-                        "Grand-Est",
-                        "Haut - de-France",       
-                        "Ile-de-France",
-                        "Normandie",
-                        "Nouvelle -Aquitaine",
-                        "Occitanie",
-                        "Pays-de-Loire",
-                        "PACA")
-region_names_FR$fr2 = c("Auvergne-Rhône-Alpes",   
-                        "Bourgogne-Franche-Comté",
-                        "Bretagne",               
-                        "Centre",
-                        "Corse",
-                        "Grand-Est",
-                        "Haut-de-France",       
-                        "Ile-de-France",
-                        "Normandie",
-                        "Nouvelle-Aquitaine",
-                        "Occitanie",
-                        "Pays-de-Loire",                        
-                        "PACA")
-region_names_FR$fr3 = c("AUVERGNE-RHONE-ALPES",
-                        "BOURGOGNE-FRANCHE-COMTE",
-                        "BRETAGNE",
-                        "CENTRE-VAL-DE-LOIRE",
-                        "CORSE",
-                        "GRAND EST",                 
-                        "HAUTS-DE-FRANCE",
-                        "ILE-DE-FRANCE",             
-                        "NORMANDIE",
-                        "NOUVELLE-AQUITAINE",
-                        "OCCITANIE",
-                        "PAYS-DE-LA-LOIRE",
-                        "PROVENCE-ALPES-COTE-D-AZUR")
-region_names_FR$en = c("Auvergne-Rhône-Alpes",
-                       "Bourgogne-Franche-Comté",
-                       "Brittany",
-                       "Centre-Val de Loire",       
-                       "Corsica",
-                       "Grand Est",               
-                       "Hauts-de-France",
-                       "Île-de-France",             
-                       "Normandy",
-                       "Nouvelle-Aquitaine",        
-                       "Occitanie",
-                       "Pays de la Loire",          
-                       "Provence-Alpes-Côte d'Azur")
-
 
 # MAKE_Y_AXIS
 # Formats the y axis ticks and labels so that they are easier to read.
