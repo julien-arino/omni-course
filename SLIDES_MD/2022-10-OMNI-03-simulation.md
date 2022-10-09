@@ -1101,34 +1101,35 @@ while (t_curr<=t_f) {
 
 ---
 
-![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS//CTMC_birth_death_sol_b=0_01__d=0_01.png)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/CTMC_birth_death_sol_b=0_01_d=0_01.png)
 
 ---
 
-![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS//CTMC_birth_death_sol_b=0_01__d=0_02.png)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/CTMC_birth_death_sol_b=0_01_d=0_02.png)
 
 ---
 
-![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS//CTMC_birth_death_sol_b=0_025__d=0_01.png)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/CTMC_birth_death_sol_b=0_03_d=0_01.png)
 
 ---
 
 # Last one did not go well
 
 - Wanted 1000 time units (days?)
-- Interrupted around 500 ($t=473.4544$) because I lost patience
-- (Slide before: the sim stopped because the population went extinct, I did not stop it!)
+- Interrupted at $t=344.4432$ because I lost patience
+- (Penultimate slide: sim stopped because the population went extinct, I did not stop it!)
 - At stop time
-  - $|N| = 241,198$ (and $|t|$ as well, of course!)
+  - N = 103,646
+  - $|N| = 208,217$ (and $|t|$ as well, of course!)
   - time was moving slowly
 ```R
 > tail(diff(t))
-[1] 1.357242e-04 1.291839e-04 5.926044e-05 7.344020e-05 1.401148e-04 4.423529e-04
+[1] 1.282040e-05 5.386999e-04 5.468540e-04 1.779985e-04 6.737294e-05 2.618084e-04
 ```
 
 ---
 
-![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS//CTMC_birth_death_ie_vs_t_b=0_025__d=0_01.png)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/CTMC_birth_death_ie_vs_t_b=0_03_d=0_01.png)
 
 --- 
 
@@ -1198,7 +1199,7 @@ SIMS = parLapply(cl = cl,
 stopCluster(cl)
 ```
 
-See `simulate_CTMC_parallel.R` on [Github](https://github.com/julien-arino/UK-APASI)
+See `simulate_CTMC_parallel.R` on [Github](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/simulate_CTMC_parallel.R)
 
 ---
 
