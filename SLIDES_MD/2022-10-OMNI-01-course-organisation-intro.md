@@ -277,7 +277,7 @@ $\implies$ $I(t)$ in an epidemiological model is **prevalence**, not **incidence
 
 ---
 
-# <!-- fit -->Use of data in epidemiology - Undergoind a transformation
+# <!-- fit -->Use of data in epidemiology - Undergoing a transformation
 
 - Epidemiology has long relied on data
 - Many developments in statistics originate there

@@ -58,10 +58,16 @@ for (i in 1:length(S)) {
          col.lab = col_lab,
          cex.lab = 2,
          bty = "n")
+    points(S[[i]][length(S[[i]])], I[[i]][length(I[[i]])],
+          pch = 19, cex = 3, 
+          col = ifelse((I[[i]][length(I[[i]])] < max(I[[i]])), "red", "white"))
   } else if (i<length(S)) {
     lines(S[[i]], I[[i]], 
           col = ifelse((I[[i]][length(I[[i]])] < max(I[[i]])), "red", "white"),
           lwd = 3)
+    points(S[[i]][length(S[[i]])], I[[i]][length(I[[i]])],
+           pch = 19, cex = 3, 
+           col = ifelse((I[[i]][length(I[[i]])] < max(I[[i]])), "red", "white"))
   } else {
     lines(S[[i]], I[[i]])
   }
