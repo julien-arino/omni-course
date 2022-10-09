@@ -23,20 +23,19 @@ png(file = sprintf("../FIGS/pop_%s.png", ctry),
     width = 800, height = 400)
 if (plot_blackBG) {
   par(bg = 'black', fg = 'white') # set background to black, foreground white
-  col_axis = "white"
-  col_lab = "white"
+  colour = "white"
 } else {
-  col_axis = "black"
-  col_lab = "black"
+  colour = "black"
 }
 plot(pop_data_CTRY$date, pop_data_CTRY$value * y_axis$factor,
      xlab = "Year", ylab = "Population", type = "b", lwd = 2,
-     col.axis = col_axis,
-     cex.axis = 2,
-     col.lab = col_lab,
-     cex.lab = 1.5,
+     col.axis = colour, cex.axis = 2,
+     col.lab = colour, cex.lab = 1.5,
      yaxt = "n")
-axis(2, at = y_axis$ticks, labels = y_axis$labels, las = 1)
+axis(2, at = y_axis$ticks, labels = y_axis$labels, 
+     las = 1,
+     col.axis = colour,
+     cex.lab = 2)
 dev.off()
 
 # Crop the figure (using a function in useful_functions.R)

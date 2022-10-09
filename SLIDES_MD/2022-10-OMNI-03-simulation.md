@@ -502,7 +502,7 @@ crop_figure("pop_CAN.png")
 
 ---
 
-![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/pop_ZAF.png)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/pop_CAN.png)
 
 ---
 
