@@ -77,7 +77,7 @@ params$I_0 = 1
 params$beta = params$R_0*params$gamma/(params$Pop-params$I_0)
 # Number of simulations. We may want to save all simulation parameters later,
 # so we add it here
-params$number_sims = 100
+params$number_sims = 500
 
 # Detect number of cores (often good to use all but 1, i.e. detectCores()-1)
 # Here, we also test if we are on a 3990X or similar, as R doesn't do 128 threads
@@ -86,7 +86,7 @@ if (nb_cores > 124) {
   nb_cores = 124
 }
 # Values of I_0 we consider (we do those sequentially)
-values_I_0 = c(1)
+values_I_0 = c(1,2,5)
 # Run main computation loop (iterative part)
 for (I_0 in values_I_0) {
   writeLines(paste0("I_0=",I_0))
