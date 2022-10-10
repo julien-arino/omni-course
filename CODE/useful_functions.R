@@ -50,6 +50,20 @@ make_y_axis <- function(yrange) {
   return(y_axis)
 }
 
+# PLOT_HR_YAXIS
+#
+# Plot data using a human readable y-axis
+plot_hr_yaxis <- function(x, y, ...) {
+  y_range = range(y, na.rm = TRUE)
+  y_axis <- make_y_axis(y_range)
+  plot(x,y*y_axis$factor,
+       yaxt = "n", ...)
+  axis(2, at = y_axis$ticks,
+       labels = y_axis$labels,
+       las = 1, cex.axis=0.8)
+  return(y_axis)
+}
+
 # CROP_FIGURE
 #
 # Crop an output pdf file. Requires to have pdfcrop installed

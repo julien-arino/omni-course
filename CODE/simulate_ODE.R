@@ -1,8 +1,8 @@
 library(deSolve)
 library(latex2exp)
 
-# Source a file with a few helpful functions for plotting (nice axes labels, crop figure)
-source(sprintf("%s/../functions_useful.R", here::here()))
+# Load useful_functions.R, which contains the crop function
+source("useful_functions.R")
 
 # Right hand side of the ODE
 rhs_SIS_ODE = function(t, x, p) {
@@ -74,7 +74,7 @@ for (r in R_0) {
 max_I = max(unlist(lapply(sol_ODE, function(x) max(x[,"I"]))))
 
 # Plot
-png(file = sprintf("%s/FIGURES/ODE_SIS.png", here::here()),
+png(file = "../FIGS/ODE_SIS.png",
     width = 1200, height = 800, res = 200)
 y_axis = plot_hr_yaxis(sol_ODE[[1]][,"time"], sol_ODE[[1]][,"I"],
                        y_range = c(0, max_I),
@@ -93,5 +93,5 @@ legend("topleft", legend = TeX(names(EP)), cex = 0.8,
        lty = unlist(lapply(EP, function(x) x$lty)),
        lwd = c(3,3,3))
 dev.off()
-crop_figure(file = sprintf("%s/FIGURES/ODE_SIS.png", here::here()))
+crop_figure(file = "../FIGS/ODE_SIS.png")
 
