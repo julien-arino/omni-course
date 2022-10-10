@@ -12,7 +12,7 @@ library(dplyr)
 library(latex2exp)
 
 # Source a file with a few helpful functions for plotting (nice axes labels, crop figure)
-source(sprintf("%s/../functions_useful.R", here::here()))
+source("useful_functions.R")
 
 # Make data frame from list of results
 # Assumes all list entries are similar
@@ -68,11 +68,11 @@ run_one_sim = function(params_vary, params) {
 
 # To run in parallel, it useful to put parameters in a list
 params = list()
-params$Pop = 1000
+params$Pop = 100
 params$gamma = 1/5
-params$R_0 = 2.5
-params$t_f = 150
-params$I_0 = 2
+params$R_0 = 1.5
+params$t_f = 100
+params$I_0 = 1
 # R0=(beta/gamma)*S0, so beta=R0*gamma/S0
 params$beta = params$R_0*params$gamma/(params$Pop-params$I_0)
 # Number of simulations. We may want to save all simulation parameters later,
@@ -80,9 +80,13 @@ params$beta = params$R_0*params$gamma/(params$Pop-params$I_0)
 params$number_sims = 100
 
 # Detect number of cores (often good to use all but 1, i.e. detectCores()-1)
-no_cores <- detectCores()
+# Here, we also test if we are on a 3990X or similar, as R doesn't do 128 threads
+nb_cores <- detectCores()
+if (nb_cores > 124) {
+  nb_cores = 124
+}
 # Values of I_0 we consider (we do those sequentially)
-values_I_0 = c(1, 2, 3, 4, 5)
+values_I_0 = c(1)
 # Run main computation loop (iterative part)
 for (I_0 in values_I_0) {
   writeLines(paste0("I_0=",I_0))
@@ -91,7 +95,7 @@ for (I_0 in values_I_0) {
   params_vary = list()
   # Vary R_0 and I_0
   i = 1
-  for (R_0 in c(seq(0.5, 0.95, by = 0.05), seq(1.05, 3, by = 0.05))) {
+  for (R_0 in c(seq(0.5, 3, by = 0.05))) {
     for (j in 1:params$number_sims) {
       params_vary[[i]] = list()
       params_vary[[i]]$R_0 = R_0
@@ -100,7 +104,7 @@ for (I_0 in values_I_0) {
     }
   }
   # Initiate cluster
-  cl <- makeCluster(no_cores)
+  cl <- makeCluster(nb_cores)
   # Export needed library to cluster
   clusterEvalQ(cl,{
     library(GillespieSSA2)
@@ -116,49 +120,70 @@ for (I_0 in values_I_0) {
                  X = params_vary, 
                  fun =  function(x) run_one_sim(x, params))
   stopCluster(cl)
-  saveRDS(SIMS, file = sprintf("%s/RESULTS/SIMS_I0_%d.Rds", here::here(), I_0))
+  saveRDS(SIMS, file = sprintf("SIMS_I0_%02d.Rds", I_0))
 }
 
 
-# #SIMS = readRDS(file = sprintf("%s/SIMS.Rds", here::here()))
-# 
-# # Use dplyr syntax: count the number of extinctions (TRUE and FALSE)
-# # after grouping by R_0 value
-# results = make_df_from_list(SIMS) %>%
-#   count(I_0, R_0, extinct)
-# # Take the result and prepare to negate those where n=params$number_sims
-# tmp = results %>%
-#   filter(n == params$number_sims)
-# tmp_insert = tmp
-# tmp_insert$extinct = ifelse(tmp$extinct == TRUE, FALSE, TRUE)
-# tmp_insert$n = rep(0, dim(tmp_insert)[1])
-# # Now inject this result and keep extinct==TRUE
-# results = rbind(results, tmp_insert) %>%
-#   filter(extinct == TRUE) %>%
-#   arrange(I_0, R_0)
-# results$pct_extinct = results$n/params$number_sims*100
-# 
-# # Values I_0
-# values_I_0 = unique(results$I_0)
-# # Plot
-# png(file = sprintf("%s/FIGURES/extinctions_fct_R0.png", here::here()),
-#     width = 1200, height = 800, res = 200)
-# tmp = results %>%
-#   filter(I_0 == values_I_0[1])
-# plot(tmp$R_0, tmp$pct_extinct,
-#      type = "l", lwd = 2,
-#      ylim = c(0, max(results$pct_extinct)),
-#      xlab = TeX("R_0"), ylab = "Percentage extinctions")
-# for (i in 2:length(values_I_0)) {
-#   tmp = results %>%
-#     filter(I_0 == values_I_0[i])
-#   lines(tmp$R_0, tmp$pct_extinct,
-#         type = "l", lwd = 2, lty = i)
-# }
-# abline(v = 1, lty = "dotted")
+#SIMS = readRDS(file = "SIMS_I0_1.Rds")
+
+# Use dplyr syntax: count the number of extinctions (TRUE and FALSE)
+# after grouping by R_0 value
+results = make_df_from_list(SIMS) %>%
+  count(I_0, R_0, extinct)
+# Take the result and prepare to negate those where n=params$number_sims
+tmp = results %>%
+  filter(n == params$number_sims)
+tmp_insert = tmp
+tmp_insert$extinct = ifelse(tmp$extinct == TRUE, FALSE, TRUE)
+tmp_insert$n = rep(0, dim(tmp_insert)[1])
+# Now inject this result and keep extinct==TRUE
+results = rbind(results, tmp_insert) %>%
+  filter(extinct == TRUE) %>%
+  arrange(I_0, R_0)
+results$pct_extinct = results$n/params$number_sims*100
+
+# Values I_0
+values_I_0 = unique(results$I_0)
+
+# Are we plotting for a dark background
+plot_blackBG = TRUE
+if (plot_blackBG) {
+  colour = "white"
+} else {
+  colour = "black"
+}
+
+# Prepare y-axis for human readable form
+y_axis = make_y_axis(c(0, 100))
+
+# Plot
+png(file = "../FIGS/extinctions_fct_R0.png",
+    width = 1200, height = 800, res = 200)
+if (plot_blackBG) {
+  par(bg = 'black', fg = 'white') # set background to black, foreground white
+}
+tmp = results %>%
+  filter(I_0 == values_I_0[1])
+plot(tmp$R_0, tmp$pct_extinct,
+     type = "b", lwd = 2,
+     ylim = c(0, 100), yaxt = "n",
+     col.axis = colour, cex.axis = 1.25,
+     col.lab = colour, cex.lab = 1.1,
+     xlab = TeX("$R_0$"), ylab = "Percentage extinctions")
+for (i in 2:length(values_I_0)) {
+  tmp = results %>%
+    filter(I_0 == values_I_0[i])
+  lines(tmp$R_0, tmp$pct_extinct,
+        type = "l", lwd = 2, lty = i)
+}
+abline(v = 1, lty = "dotted")
 # legend("topright",
-#        legend = TeX(sprintf("I_0=%d", values_I_0)),
+#        legend = TeX(sprintf("$I_0$=%d", values_I_0)),
 #        lty = 1:length(values_I_0), lwd = rep(2, length(values_I_0)))
-# dev.off()
-# crop_figure(file = sprintf("%s/FIGURES/extinctions_fct_R0.png", here::here()))
-# 
+axis(2, at = y_axis$ticks, labels = y_axis$labels, 
+     las = 1,
+     col.axis = colour,
+     cex.axis = 0.75)
+dev.off()
+crop_figure(file = "../FIGS/extinctions_fct_R0.png")
+

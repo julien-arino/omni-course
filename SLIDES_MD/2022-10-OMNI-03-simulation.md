@@ -759,7 +759,13 @@ Next slides: $P^\star = 100$, $\gamma=1/5$, $\mathcal{R}_0=\{0.8,1.5,2.5\}$ (and
 
 ---
 
-# When $I_0=2$, extinctions happen quite frequently
+# When $I_0=1$, extinctions happen quite frequently
+
+In following slide, we set $I_0=1$ and run 100 simulation for each value of $\mathcal{R}_0$ from 0.5 to 3 (by steps of 0.05)
+
+---
+
+# When $I_0=1$, extinctions happen quite frequently
 
 ![height:600px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/stochastic/extinctions_fct_R0.png)
 
@@ -807,6 +813,7 @@ A continuous time Markov chain can be formulated in terms of
 Here, time is in $\mathbb{R}_+$
 
 ---
+# Example of a simple birth-death process
 
 For small $\Delta t$,
 $$
@@ -822,71 +829,6 @@ o(\Delta t) & \textrm{otherwise}
 \end{align*}
 $$
 with $o(\Delta t)\to 0$ as $\Delta t\to 0$
-
----
-
-# Forward Kolmogorov equations
-
-Assume we know $I(0)=k$. Then
-$$
-\begin{multline*}
-p_i(t+\Delta t)= p_{i-1}(t)B(i-1)\Delta t+p_{i+1}(t)D(i+1)\Delta t \\
-+p_i(t)[1-(B(i)+D(i))\Delta t]+o(\Delta t)
-\end{multline*}
-$$
-Compute $(p_i(t+\Delta t)-p_i(t))/\Delta t$ and take $\lim_{\Delta t\to 0}$, giving
-$$
-\begin{align*}
-\frac d{dt}p_0 &= p_1D(1) \\
-\frac d{dt}p_i &= p_{i-1}B(i-1)+p_{i+1}D(i+1)-p_i[B(i)+D(i)] \quad i=1,\ldots,N
-\end{align*}
-$$
-
-**Forward Kolmogorov equations** associated to the CTMC
-
----
-
-# In vector form
-
-Write previous system as
-$$
-p'=Qp
-$$
-with
-$$
-Q=
-\begin{pmatrix}
-0 & D(1) & 0 & \cdots & 0 \\
-0 & -(B(1)+D(1)) & D(2) & \cdots & 0 \\
-0 & B(1) & -(B(2)+D(2)) & \cdots & 0 \\
-&&& \\
-&&&& D(N) \\
-&&&& -D(N)
-\end{pmatrix}
-$$
-$Q$ **generator matrix**. Of course,
-$$
-p(t)=e^{Qt}p(0)
-$$
-
-
----
-
-# Linking DTMC and CTMC for small $\Delta t$
-
-DTMC:
-$$
-p(t+\Delta t)=P(\Delta t)p(t)
-$$
-for transition matrix $P(\Delta t)$. Let $\Delta t\to 0$, obtain Kolmogorov equations for CTMC
-$$
-\frac d{dt} p = Qp
-$$
-where
-$$
-Q=\lim_{\Delta t\to 0}\frac{P(\Delta t)-\mathbb{I}}{\Delta t}=P'(0)
-$$
-
 
 --- 
 
@@ -1173,7 +1115,7 @@ plot(sol$time, sol$state[,"I"], type = "l",
 
 ---
 
-![bg contain](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/stochastic/one_CTMC_sim.png)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/one_CTMC_sim.png)
 
 ---
 
