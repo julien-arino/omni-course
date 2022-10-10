@@ -74,6 +74,8 @@ tictoc::toc()
 
 # Determine maximum value of I for plot
 I_max = max(unlist(lapply(sol, function(x) max(x$state[,"I"], na.rm = TRUE))))
+# Prepare y-axis for human readable form
+y_axis = make_y_axis(c(0, I_max))
 
 # We want to show trajectories that go to zero differently from those that go endemic,
 # so we do a bit of preprocessing, adding a colour field each solution
@@ -95,18 +97,23 @@ png(file = "../FIGS/several_CTMC_sims.png",
 if (plot_blackBG) {
   par(bg = 'black', fg = 'white') # set background to black, foreground white
 }
-plot(sol[[1]]$time, sol[[1]]$state[,"I"],
+plot(sol[[1]]$time, sol[[1]]$state[,"I"]*y_axis$factor,
      xlab = "Time (days)", ylab = "Prevalence",
      type = "l",
      xlim = c(0, t_f), ylim = c(0, I_max), 
      col.axis = colour, cex.axis = 1.25,
      col.lab = colour, cex.lab = 1.1,
+     yaxt = "n",
      col = sol[[1]]$colour, lwd = sol[[1]]$lwd)
 for (i in 2:nb_sims) {
-  lines(sol[[i]]$time, sol[[i]]$state[,"I"],
+  lines(sol[[i]]$time, sol[[i]]$state[,"I"]*y_axis$factor,
         type = "l",
         col = sol[[i]]$colour, lwd = sol[[i]]$lwd)
 }
+axis(2, at = y_axis$ticks, labels = y_axis$labels, 
+     las = 1,
+     col.axis = colour,
+     cex.axis = 0.75)
 dev.off()
 crop_figure("../FIGS/several_CTMC_sims.png")
 

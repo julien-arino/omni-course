@@ -755,7 +755,7 @@ Next slides: $P^\star = 100$, $\gamma=1/5$, $\mathcal{R}_0=\{0.8,1.5,2.5\}$ (and
 
 # <!--fit-->In stochastic world, make that ''$\mathcal{R}_0$ rules-*ish*'' ($\mathcal{R}_0=1.5$)
 
-![height:600px center](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/stochastic/several_CTMC_sims.png)
+![height:600px center](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/several_CTMC_sims.png)
 
 ---
 
@@ -1187,8 +1187,11 @@ plot(sol$time, sol$state[,"I"], type = "l",
 To see multiple realisations: good idea to parallelise, then interpolate results. Write a function, e.g.,  `run_one_sim` that .. runs one simulation, then..
 
 ```R
-no_cores <- detectCores()-1
-cl <- makeCluster(no_cores)
+nb_cores <- detectCores()
+if (nb_cores > 124) {
+  nb_cores = 124
+}
+cl <- makeCluster(nb_cores)
 clusterEvalQ(cl,{
   library(GillespieSSA2)
 })
@@ -1212,12 +1215,12 @@ See [`simulate_CTMC_parallel.R`](https://raw.githubusercontent.com/julien-arino/
 
 # Benefit of parallelisation
 
-Run the parallel code for 50 sims between `tictoc::tic()` and `tictoc::toc()`, giving `158.103 sec elapsed`, then the sequential version
+Run the parallel code for 50 sims between `tictoc::tic()` and `tictoc::toc()`, giving `4.785 sec elapsed`, then the sequential version
 ```R
 tictoc::tic()
 SIMS = lapply(X = 1:params$number_sims, 
               FUN =  function(x) run_one_sim(params))
 tictoc::toc()
 ```
-which gives `158.306 sec elapsed` on a 64C/128T AMD Ryzen Threadripper 3990X (21.46$\times$ faster !)
+which gives `158.306 sec elapsed` on a 64C/128T AMD Ryzen Threadripper 3990X. That is, parallel ran 33.08$\times$ faster !)
 
