@@ -33,6 +33,9 @@ sol <- ssa(
     final_time = t_f,
 )
 
+# Prepare y-axis for human readable form
+y_axis = make_y_axis(c(0, max(sol$state[,"I"])))
+
 # Are we plotting for a dark background
 plot_blackBG = TRUE
 if (plot_blackBG) {
@@ -50,7 +53,12 @@ plot(sol$time, sol$state[,"I"],
      type = "l",
      col.axis = colour, cex.axis = 1.25,
      col.lab = colour, cex.lab = 1.1,
+     yaxt = "n",
      xlab = "Time (days)", ylab = "Prevalence")
+axis(2, at = y_axis$ticks, labels = y_axis$labels, 
+     las = 1,
+     col.axis = colour,
+     cex.axis = 0.75)
 dev.off()
 crop_figure(file = "../FIGS/one_CTMC_sim.png")
 
