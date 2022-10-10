@@ -7,7 +7,7 @@ source("useful_functions.R")
 # Total population
 Pop = 100
 # Initial number of infectious
-I_0 = 2
+I_0 = 1
 # Parameters
 gamma = 1/5
 # R0 would be (beta/gamma)*S0, so beta=R0*gamma/S0
@@ -33,18 +33,31 @@ sol <- ssa(
     final_time = t_f,
 )
 
-#plot_ssa(out)
-png(file = sprintf("%s/FIGURES/one_CTMC_sim.png", here::here()),
+# Are we plotting for a dark background
+plot_blackBG = TRUE
+if (plot_blackBG) {
+  colour = "white"
+} else {
+  colour = "black"
+}
+
+png(file = "../FIGS/one_CTMC_sim.png",
     width = 1200, height = 800, res = 200)
+if (plot_blackBG) {
+  par(bg = 'black', fg = 'white') # set background to black, foreground white
+}
 plot(sol$time, sol$state[,"I"],
      type = "l",
-     xlab = "Time (days)", ylab = "Number infectious")
+     col.axis = colour, cex.axis = 1.25,
+     col.lab = colour, cex.lab = 1.1,
+     xlab = "Time (days)", ylab = "Prevalence")
 dev.off()
-crop_figure(file = sprintf("%s/FIGURES/one_CTMC_sim.png", here::here()))
+crop_figure(file = "../FIGS/one_CTMC_sim.png")
 
 
 nb_sims = 50
 sol = list()
+tictoc::tic()
 for (i in 1:nb_sims) {
   writeLines(paste("Start simulation", i))
   set.seed(NULL)
@@ -55,10 +68,9 @@ for (i in 1:nb_sims) {
       params = params,
       method = ssa_exact(),
       final_time = t_f,
-      #census_interval = .001,
-      #verbose = TRUE
     )
 }
+tictoc::toc()
 
 # Determine maximum value of I for plot
 I_max = max(unlist(lapply(sol, function(x) max(x$state[,"I"], na.rm = TRUE))))
@@ -70,19 +82,25 @@ for (i in 1:nb_sims) {
   val_last_I = as.numeric(sol[[i]]$state[idx_last_I,"I"])
   if (val_last_I == 0) {
     sol[[i]]$colour = "dodgerblue4"
-    sol[[i]]$lwd = 2
+    sol[[i]]$lwd = 1
   } else {
-    sol[[i]]$colour = "black"
+    sol[[i]]$colour = ifelse(plot_blackBG, "white", "black")
     sol[[i]]$lwd = 0.5
   }
 }
 
 # Now do the plot
-png(file = sprintf("%s/FIGURES/several_CTMC_sims.png", here::here()),
+png(file = "../FIGS/several_CTMC_sims.png",
     width = 1200, height = 800, res = 200)
+if (plot_blackBG) {
+  par(bg = 'black', fg = 'white') # set background to black, foreground white
+}
 plot(sol[[1]]$time, sol[[1]]$state[,"I"],
-     xlab = "Time (days)", ylab = "Number infectious",
-     ylim = c(0, I_max), type = "l",
+     xlab = "Time (days)", ylab = "Prevalence",
+     type = "l",
+     xlim = c(0, t_f), ylim = c(0, I_max), 
+     col.axis = colour, cex.axis = 1.25,
+     col.lab = colour, cex.lab = 1.1,
      col = sol[[1]]$colour, lwd = sol[[1]]$lwd)
 for (i in 2:nb_sims) {
   lines(sol[[i]]$time, sol[[i]]$state[,"I"],
@@ -90,6 +108,6 @@ for (i in 2:nb_sims) {
         col = sol[[i]]$colour, lwd = sol[[i]]$lwd)
 }
 dev.off()
-crop_figure(sprintf("%s/FIGURES/several_CTMC_sims.png", here::here()))
+crop_figure("../FIGS/several_CTMC_sims.png")
 
 

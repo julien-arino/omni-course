@@ -745,11 +745,11 @@ $$\mathcal{R}_0 = \dfrac{\beta}{\gamma}P^\star$$
 - If $\mathcal{R}_0=\beta P^\star/\gamma<1$, the disease dies out (*disease-free* equilibrium)
 - If $\mathcal{R}_0>1$, it becomes established at an *endemic* equilibrium $I^\star=P^\star-\gamma/\beta=(1-1/\mathcal{R}_0)P^\star$
 
-Next slides: $P^\star = 100$K, $\gamma=1/5$, $\mathcal{R}_0=\{0.8,1.5,2.5\}$ (and $\beta=\gamma \mathcal{R}_0/P^\star$)
+Next slides: $P^\star = 100$, $\gamma=1/5$, $\mathcal{R}_0=\{0.8,1.5,2.5\}$ (and $\beta=\gamma \mathcal{R}_0/P^\star$), $I_0=1$
 
 ---
 
-![bg contain](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/stochastic/ODE_SIS.png)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/ODE_SIS.png)
 
 ---
 
@@ -1212,12 +1212,12 @@ See [`simulate_CTMC_parallel.R`](https://raw.githubusercontent.com/julien-arino/
 
 # Benefit of parallelisation
 
-Run the parallel code for 100 sims between `tictoc::tic()` and `tictoc::toc()`, giving `66.958 sec elapsed`, then the sequential version
+Run the parallel code for 50 sims between `tictoc::tic()` and `tictoc::toc()`, giving `158.103 sec elapsed`, then the sequential version
 ```R
 tictoc::tic()
 SIMS = lapply(X = 1:params$number_sims, 
               FUN =  function(x) run_one_sim(params))
 tictoc::toc()
 ```
-which gives `318.141 sec elapsed` on a 6C/12T Intel(R) Core(TM) i9-8950HK CPU @ 2.90GHz (4.75$\times$ faster) or `12.067 sec elapsed` versus `258.985 sec elapsed` on a 32C/64T AMD Ryzen Threadripper 3970X 32-Core Processor (21.46$\times$ faster !)
+which gives `158.306 sec elapsed` on a 64C/128T AMD Ryzen Threadripper 3990X (21.46$\times$ faster !)
 

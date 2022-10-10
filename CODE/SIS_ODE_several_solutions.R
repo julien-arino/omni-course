@@ -35,10 +35,10 @@ value_EP = function(params) {
 
 # It useful to put parameters in a list
 params = list()
-params$Pop = 100000
+params$Pop = 100
 params$gamma = 1/5
 params$R_0 = 1.5
-params$t_f = 150
+params$t_f = 100
 params$I_0 = 2
 # R0 is (beta/gamma)*S0, so beta=R0*gamma/S0
 params$beta = params$R_0*params$gamma/(params$Pop-params$I_0)
