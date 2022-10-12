@@ -138,6 +138,7 @@ you can use Jupyter notebooks from [syzygy.ca](https://syzygy.ca), it is free. N
 
 - [Julia](https://julialang.org/)
 - [Octave](https://octave.org/) (MatLab's GPL cousin)
+- [SciLab](https://www.scilab.org/)
 - [Maxima](https://maxima.sourceforge.io/) (more for symbolic computations)
 - [SageMath](https://www.sagemath.org/) (tries to bridge most of the former)
 
@@ -462,7 +463,7 @@ There is still a loop, but you can split this list, use it on different machines
 Recent movement (5-10 years): governments (local or higher) create portals where data are centralised and published
 
 - [Winnipeg](https://data.winnipeg.ca/)
-- [Alberta](https://open.alberta.ca/opendata)
+- [Alberta](https://open.alberta.ca/opendata), [B.C.](https://catalogue.data.gov.bc.ca/), [Ontario](https://data.ontario.ca/)
 - [Canada](https://open.canada.ca/en/open-data)
 - [Europe](https://data.europa.eu/euodp/data/)
 - [UN](http://data.un.org/)
@@ -695,7 +696,7 @@ $$
 
 # Implementing in practice
 
-See the code [practicum_01_fitting.R](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/practicum_01_fitting.R), which we will go over now
+See the code [SIR_KMK_fitting.R](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/CODE/SIR_KMK_fitting.R), which we will go over now
 
 ---
 
@@ -734,7 +735,7 @@ See the code [practicum_01_fitting.R](https://raw.githubusercontent.com/julien-a
 
 Constant total population $P^\star$
 
-<span style="display: block; margin-left: auto; margin-right: auto; width: 25%">![width:400px](figure_SIS_base_no_demography.png)</span>
+<span style="display: block; margin-left: auto; margin-right: auto; width: 25%">![width:400px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIS_base_no_demography.png)</span>
 
 Basic reproduction number:
 $$\mathcal{R}_0 = \dfrac{\beta}{\gamma}P^\star$$
