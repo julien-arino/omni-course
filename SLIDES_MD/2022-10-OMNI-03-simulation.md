@@ -731,13 +731,13 @@ See the code [SIR_KMK_fitting.R](https://raw.githubusercontent.com/julien-arino/
 
 ---
 
-# Running example - SIS model without demography
+![bg left:40% height:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIS_base_MA_incidence_noDemog_vertical_blackBG.png)
+# Running example 
+## SIS model without demography
 
-Constant total population $P^\star$
+- Constant total population $P^\star$
 
-<span style="display: block; margin-left: auto; margin-right: auto; width: 25%">![width:400px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIS_base_no_demography.png)</span>
-
-Basic reproduction number:
+- Basic reproduction number
 $$\mathcal{R}_0 = \dfrac{\beta}{\gamma}P^\star$$
 
 ---
