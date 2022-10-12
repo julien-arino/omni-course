@@ -1,0 +1,1 @@
+This directory contains various figures used in the course. Note that `.tex` files are those used to produce the flow diagrams. Compile a file to `pdf`, then use a syntax such as in the bash script `convert_pdf_to_png` to convert the result to a `png` file.
