@@ -1,7 +1,7 @@
 ---
 marp: true
-title: Course organisation
-description: Julien Arino - 3MC Course Epidemiological Modelling - Lecture 00 - Course organisation
+title: Course organisation & History of Mathematical Epidemiology
+description: Julien Arino - OMNI/RÉUNIS & MfPH course on One Health Modelling for Emerging Infectious Diseases - Introduction - Lecture 1 - Course organisation and History of Mathematical Epidemiology
 theme: default
 class: invert
 math: mathjax
@@ -35,7 +35,7 @@ size: 4K
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # OMNI course (Part I)  organisation
 
-# Introduction to Mathematical Epidemiology
+# History of Mathematical Epidemiology
 
 11-14 October 2022 
 

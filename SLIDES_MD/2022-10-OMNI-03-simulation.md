@@ -1,7 +1,7 @@
 ---
 marp: true
-title: Stochastic aspects in the spread of epidemics
-description: Lecture 06 - 3MC Course Epidemiological Modelling - Julien Arino - Stochastic aspects in the spread of epidemics
+title: Simulation of epidemiological models
+description: Julien Arino - OMNI/RÉUNIS & MfPH course on One Health Modelling for Emerging Infectious Diseases - Introduction - Lecture 3 - Simulation of epidemiological models
 theme: default
 class: invert
 math: mathjax
@@ -61,6 +61,7 @@ NSERC-PHAC EID Modelling Consortium (CANMOD, MfPH, OMNI/RÉUNIS)
 - Programming in R
 - Dealing with data
 - Solving ODE numerically
+- Simulating continuous-time Markov chains
 
 ---
 
