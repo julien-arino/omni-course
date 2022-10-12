@@ -86,7 +86,7 @@ if (nb_cores > 124) {
   nb_cores = 124
 }
 # Values of I_0 we consider (we do those sequentially)
-values_I_0 = c(1,2,5)
+values_I_0 = c(1,2,3,5,10)
 # Run main computation loop (iterative part)
 for (I_0 in values_I_0) {
   writeLines(paste0("I_0=",I_0))
@@ -157,7 +157,7 @@ if (plot_blackBG) {
 y_axis = make_y_axis(c(0, 100))
 
 # Plot
-png(file = "../FIGS/extinctions_fct_R0.png",
+png(file = "../FIGS/extinctions_fct_R0_I0.png",
     width = 1200, height = 800, res = 200)
 if (plot_blackBG) {
   par(bg = 'black', fg = 'white') # set background to black, foreground white
@@ -185,5 +185,5 @@ axis(2, at = y_axis$ticks, labels = y_axis$labels,
      col.axis = colour,
      cex.axis = 0.75)
 dev.off()
-crop_figure(file = "../FIGS/extinctions_fct_R0.png")
+crop_figure(file = "../FIGS/extinctions_fct_R0_I0.png")
 

@@ -759,15 +759,19 @@ Next slides: $P^\star = 100$, $\gamma=1/5$, $\mathcal{R}_0=\{0.8,1.5,2.5\}$ (and
 
 ---
 
-# When $I_0=1$, extinctions happen quite frequently
+# Extinctions happen quite frequently
 
-In following slide, we set $I_0=1$ and run 100 simulation for each value of $\mathcal{R}_0$ from 0.5 to 3 (by steps of 0.05)
+In following slide, we 
+- vary $I_0$ in $\{1,2,3,5,10\}$
+- vary $\mathcal{R}_0$ from 0.5 to 3 by steps of 0.05
+- run 500 simulation for each value pair
+- record the percentage of realisations that see extinctions in the time period under consideration ([0,100] days)
 
 ---
 
 # When $I_0=1$, extinctions happen quite frequently
 
-![height:600px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/stochastic/extinctions_fct_R0.png)
+![height:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/extinctions_fct_R0.png)
 
 ---
 
