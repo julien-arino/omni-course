@@ -856,7 +856,7 @@ Easy as $\pi$ :)
 
 # ODE to CTMC : focus on different components
 
-![width:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIS_no_demography_flows_ODE_blackBG.png)  ![width:400px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/flow-diagrams/figure_SIS_no_demography_CTMC.png)
+![width:600px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIS_no_demography_flows_ODE_blackBG.png)  ![width:400px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SIS_CTMC_MAIncidence_noDemog.png)
 
 ---
 
