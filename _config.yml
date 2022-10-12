@@ -1,0 +1,7 @@
+theme: jekyll-theme-minimal
+title: OMNI/RÉUNIS Course on One Health Modelling for Emerging Infectious Diseases - Part I
+description: Julien Arino - Course material (slides and code).
+show_downloads: true
+google_analytics: UA-1943806-8
+plugins:
+  - jekyll-sitemap
