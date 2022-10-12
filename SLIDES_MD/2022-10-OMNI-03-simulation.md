@@ -824,7 +824,7 @@ Here, time is in $\mathbb{R}_+$
 For small $\Delta t$,
 $$
 \begin{align*}
-p_{ji}(\Delta t) &= \mathbb{P}\left\{I(t+\Delta)=j|I(t)=i\right\} \\
+p_{ji}(\Delta t) &= \mathbb{P}\left\{I(t+\Delta t)=j|I(t)=i\right\} \\
 &=
 \begin{cases}
 B(i)\Delta t+o(\Delta t) & j=i+1 \\
