@@ -105,15 +105,11 @@ Cannot remember who I heard using the expression originally... Joke aside, a ver
 
 ---
 
-![bg contain 95%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/images_large_es-2017-02811q_0001.jpeg "From https://doi.org/10.1021/acs.est.7b02811")
+![bg contain 95% invert](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/images_large_es-2017-02811q_0001.jpeg "From https://doi.org/10.1021/acs.est.7b02811")
 
 ---
 
-![bg contain](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Modified_F-Diagram.jpg/1280px-Modified_F-Diagram.jpg "From https://doi.org/10.1021/acs.est.7b02811")
-
----
-
-![bg contain 95%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/images_large_es-2017-02811q_0001.jpeg "From https://doi.org/10.1021/acs.est.7b02811")
+![bg contain invert](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Modified_F-Diagram.jpg/1280px-Modified_F-Diagram.jpg "From https://doi.org/10.1021/acs.est.7b02811")
 
 ---
 
@@ -121,7 +117,7 @@ Cannot remember who I heard using the expression originally... Joke aside, a ver
 
 [Example](https://doi.org/10.1371/journal.ppat.1009503) of fungi
 
-![center width:1200px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/journal.ppat.1009503.g001.PNG)
+![center width:1200px invert](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/journal.ppat.1009503.g001.PNG)
 
 ---
 
@@ -159,13 +155,13 @@ Spread by eating or drinking food or water contaminated with the feces of an inf
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/E_coli_at_10000x%2C_original.jpg/1280px-E_coli_at_10000x%2C_original.jpg)
 
 # Escherichia coli
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/ARS_Campylobacter_jejuni.jpg/768px-ARS_Campylobacter_jejuni.jpg)
 
 # Campylobacter
 
@@ -200,7 +196,7 @@ See [CDC](https://www.cdc.gov/cholera/index.html), [WHO](https://www.who.int/hea
 
 ---
 
-![bg left:50%](https://upload.wikimedia.org/wikipedia/commons/c/c7/Snow-cholera-map.jpg)
+![bg left:50% invert](https://upload.wikimedia.org/wikipedia/commons/c/c7/Snow-cholera-map.jpg)
 
 # <!--fit-->[London cholera epidemic of 1854](https://fr.wikipedia.org/wiki/Épidémie_de_choléra_de_Broad_Street)
 
@@ -218,7 +214,7 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/EMpylori.jpg)
 
 # Helicobacter
 
