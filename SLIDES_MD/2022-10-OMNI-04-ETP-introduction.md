@@ -97,6 +97,14 @@ Group of diseases associated with the ingestion of food or water contaminated by
 
 ---
 
+# The "celebrated" fecal-oral route ;)
+
+Cannot remember who I heard using the expression originally... Joke aside, a very common dissemination route
+
+![center](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/F-diagram-01.jpg/1280px-F-diagram-01.jpg)
+
+---
+
 # Climate change ... changes things
 
 [Example](https://doi.org/10.1371/journal.ppat.1009503) of fungi
@@ -117,7 +125,25 @@ Group of diseases associated with the ingestion of food or water contaminated by
 
 --- 
 
+![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SalmonellaNIAID_zoom.jpg "From https://en.wikipedia.org/wiki/Salmonella")
+
 # Salmonella
+
+Genus of Gram-negative bacteria (not reactive to the Gram staining method)
+
+Most infections due to ingestion of food contaminated by animal or human feces (e.g., bad handwashing practices at food vendor)
+
+---
+
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/SalmonellaTyphiFlagellarStain.jpg/1280px-SalmonellaTyphiFlagellarStain.jpg)
+
+# Typhoid fever
+
+Caused by *Salmonella Typhi*
+
+Symptoms vary from mild to severe; usually begin six to 30 days after exposure
+
+Spread by eating or drinking food or water contaminated with the feces of an infected person
 
 ---
 
@@ -133,7 +159,7 @@ Group of diseases associated with the ingestion of food or water contaminated by
 
 # *Vibrio*
 
-Genus of Gram-negative bacteria (not reactive to the Gram staining method)
+Genus of Gram-negative bacteria
 
 Name comes from latin *vibro*, "to move rapidly to and fro, to shake, to agitate"
 
@@ -272,16 +298,30 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 - Cryptococcus
 - Coccidioides
 
-<div style = "text-align: justify; position: relative; bottom: -35%; font-size:20px;">
+<div style = "text-align: justify; position: relative; bottom: -30%; font-size:20px;">
 
 Denham, Wambaugh & Brown. [How Environmental Fungi Cause a Range of Clinical Outcomes in Susceptible Hosts](https://doi.org/10.1016/j.jmb.2019.05.003), J Molecular Bio 2019.
 </div>
 
 ---
 
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Aspergillus_niger_01.jpg/1280px-Aspergillus_niger_01.jpg)
+
 # Aspergillus
 
+Genus consisting of 837 species
+
+Named after *aspergillium* (holy water sprinkler) after first observation in 1729 by Pier Antonio Micheli, biologist and ... priest
+
+On the left: *aspergillus niger*
+
+*Aspergillus fumigatus* causes most (>90%) infections, in particular in individuals with an immunodeficiency
+
+Invasive pulmonary aspergillosis (IPA): fungi enter the lung, invade and damage lung tissue and enter blood vessels. CFR 50%-95% depending on speed of diagnosis, condition...
+
 ---
+
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Cryptococcus_neoformans_using_a_light_India_ink_staining_preparation_PHIL_3771_lores.jpg/1280px-Cryptococcus_neoformans_using_a_light_India_ink_staining_preparation_PHIL_3771_lores.jpg)
 
 # Cryptococcus
 
