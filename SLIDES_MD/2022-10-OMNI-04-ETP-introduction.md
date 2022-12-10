@@ -89,12 +89,19 @@ Characteristic is that the pathogens replicate or survive in an abiotic environm
 - Enteric diseases
 - Food-borne diseases
 
-
 ---
 
 # Enteric diseases
 
 Group of diseases associated with the ingestion of food or water contaminated by microorganisms and microbial toxins that attack the gastrointestinal tract
+
+---
+
+# Climate change ... changes things
+
+[Example](https://doi.org/10.1371/journal.ppat.1009503) of fungi
+
+![center width:1200px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/journal.ppat.1009503.g001.PNG)
 
 ---
 
@@ -114,7 +121,7 @@ Group of diseases associated with the ingestion of food or water contaminated by
 
 ---
 
-# EC
+# Escherichia coli
 
 ---
 
@@ -187,6 +194,31 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 
 ---
 
+# Giarda lamblia
+
+---
+
+# Cryptosporidium parvum
+
+---
+
+# Naeglaria fowleri
+
+---
+
+# Toxoplasma gondii
+
+---
+
+# Ascaris lumbricoides
+
+---
+
+# Taenia saginata
+
+
+---
+
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Environmentally transmitted viruses
 
@@ -201,8 +233,62 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 
 ---
 
+# Adenoviruses
+
+---
+
+# Enteroviruses and paraechoviruses
+
+---
+
+# Hepatitis A virus (HAV)
+
+---
+
+# Hepatitis E virus (HEV)
+
+---
+
+# Rotaviruses
+
+---
+
+# Rhinoviruses 
+
+---
+
+# Influenza viruses
+
+---
+
+# Coronaviruses
+
+---
+
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Environmentally transmitted fungi
+
+- Aspergillus
+- Cryptococcus
+- Coccidioides
+
+<div style = "text-align: justify; position: relative; bottom: -35%; font-size:20px;">
+
+Denham, Wambaugh & Brown. [How Environmental Fungi Cause a Range of Clinical Outcomes in Susceptible Hosts](https://doi.org/10.1016/j.jmb.2019.05.003), J Molecular Bio 2019.
+</div>
+
+---
+
+# Aspergillus
+
+---
+
+# Cryptococcus
+
+---
+
+# Coccidioides
+
 
 
 
