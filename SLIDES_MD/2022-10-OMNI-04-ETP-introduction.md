@@ -229,34 +229,49 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Environmentally transmitted parasites
 
-- Giarda lamblia
+- Giardia lamblia
 - Cryptosporidium parvum
-- Naeglaria fowleri
+- Naegleria fowleri
 - Toxoplasma gondii
 - Ascaris lumbricoides
 - Taenia saginata
 
 ---
 
-![bg left:40%]()
+![bg left:60%](https://upload.wikimedia.org/wikipedia/commons/0/08/Giardia_lamblia_SEM_8698_lores.jpg)
 
-# Giarda lamblia
+# <!--fit--> Giardia lamblia
 
----
+Flagellated microorganism of genus *Giardia*
 
-![bg left:40%]()
+Colonises small intestine
 
-# Cryptosporidium parvum
-
----
-
-![bg left:40%]()
-
-# Naeglaria fowleri
+Causes diarrhea (giardiasis)
 
 ---
 
-![bg left:40%]()
+![bg contain invert](https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Giardia_life_cycle_en.svg/2116px-Giardia_life_cycle_en.svg.png)
+
+---
+
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Cryptosporidium_parvum_01.jpg/1280px-Cryptosporidium_parvum_01.jpg)
+
+# <!--fit-->Cryptosporidium parvum
+
+---
+
+![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/Naegleria_fowleri_lifecycle_stages.jpg)
+
+
+# Naegleria fowleri
+
+A.k.a. "brain-eating amoeba"...
+
+Shapeshifting amoeboflagellate excavate
+
+---
+
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Toxoplasma_gondii.jpg/1024px-Toxoplasma_gondii.jpg)
 
 # Toxoplasma gondii
 
@@ -265,6 +280,10 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 ![bg left:40%]()
 
 # Ascaris lumbricoides
+
+---
+
+![bg contain invert](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Ascaris_lumbricoides_life_cycle.tif/lossless-page1-1058px-Ascaris_lumbricoides_life_cycle.tif.png)
 
 ---
 
