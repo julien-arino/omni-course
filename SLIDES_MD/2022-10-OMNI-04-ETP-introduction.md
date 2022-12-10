@@ -6,7 +6,7 @@ theme: default
 class: invert
 math: mathjax
 paginate: false
-size: 4K
+size: 4:3
 ---
 
 <style>
@@ -82,7 +82,7 @@ Part 3 of the OMNI/RÉUNIS course
 
 ---
 
-# A wide variety of diseases and pathogens
+# <!--fit-->A wide variety of diseases and pathogens
 
 Characteristic is that the pathogens replicate or survive in an abiotic environment
 
@@ -99,7 +99,7 @@ Group of diseases associated with the ingestion of food or water contaminated by
 
 # The "celebrated" fecal-oral route ;)
 
-Cannot remember who I heard using the expression originally... Joke aside, a very common dissemination route for ETP
+Cannot remember who I heard using the expression originally... Joke aside, a common dissemination route for ETP
 
 ![center](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/F-diagram-01.jpg/1280px-F-diagram-01.jpg)
 
@@ -175,7 +175,7 @@ Genus of Gram-negative bacteria
 
 Name comes from latin *vibro*, "to move rapidly to and fro, to shake, to agitate"
 
-Several species cause foodborne infections. Most common diseases:
+Several species cause foodborne infections:
 - cholera
 - vibriosis
 - also involved in wound infections
@@ -220,7 +220,7 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/a/a7/Harmannella_entrapping_Legionella.png)
 
 # Legionella
 
@@ -354,13 +354,17 @@ Denham, Wambaugh & Brown. [How Environmental Fungi Cause a Range of Clinical Out
 
 # Aspergillus
 
-Genus consisting of 837 species
+Genus with 837 species
 
-Named after *aspergillium* (holy water sprinkler) after first observation in 1729 by Pier Antonio Micheli, biologist and ... priest
+Named after *aspergillium* (holy water sprinkler), first observation in 1729 by Pier Antonio Micheli, biologist and ... priest
 
 On the left: *aspergillus niger*
 
-*Aspergillus fumigatus* causes most (>90%) infections, in particular in individuals with an immunodeficiency
+*Aspergillus fumigatus* causes >90% infections, in particular in individuals with an immunodeficiency
+
+---
+
+# Aspergillus fumigatus infections
 
 Invasive pulmonary aspergillosis (IPA): fungi enter the lung, invade and damage lung tissue and enter blood vessels. CFR 50%-95% depending on speed of diagnosis, condition...
 
@@ -372,10 +376,13 @@ Invasive pulmonary aspergillosis (IPA): fungi enter the lung, invade and damage 
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/Coccidioidomycosis_-_PAS_stain_(5286000370).jpg)
+
 
 # Coccidioides
 
+---
 
+![bg contain invert](https://upload.wikimedia.org/wikipedia/commons/1/19/Life_cycle_of_Coccidioides.PNG "From https://doi.org/10.1371/journal.ppat.1004762")
 
 
