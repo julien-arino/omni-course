@@ -99,9 +99,21 @@ Group of diseases associated with the ingestion of food or water contaminated by
 
 # The "celebrated" fecal-oral route ;)
 
-Cannot remember who I heard using the expression originally... Joke aside, a very common dissemination route
+Cannot remember who I heard using the expression originally... Joke aside, a very common dissemination route for ETP
 
 ![center](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/F-diagram-01.jpg/1280px-F-diagram-01.jpg)
+
+---
+
+![bg contain 95%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/images_large_es-2017-02811q_0001.jpeg "From https://doi.org/10.1021/acs.est.7b02811")
+
+---
+
+![bg contain](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Modified_F-Diagram.jpg/1280px-Modified_F-Diagram.jpg "From https://doi.org/10.1021/acs.est.7b02811")
+
+---
+
+![bg contain 95%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/images_large_es-2017-02811q_0001.jpeg "From https://doi.org/10.1021/acs.est.7b02811")
 
 ---
 
@@ -147,9 +159,13 @@ Spread by eating or drinking food or water contaminated with the feces of an inf
 
 ---
 
+![bg left:40%]()
+
 # Escherichia coli
 
 ---
+
+![bg left:40%]()
 
 # Campylobacter
 
@@ -196,13 +212,19 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 
 ---
 
+![bg left:40%]()
+
 # Vibriosis
 
 ---
 
+![bg left:40%]()
+
 # Helicobacter
 
 ---
+
+![bg left:40%]()
 
 # Legionella
 
@@ -220,28 +242,39 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 
 ---
 
+![bg left:40%]()
+
 # Giarda lamblia
 
 ---
+
+![bg left:40%]()
 
 # Cryptosporidium parvum
 
 ---
 
+![bg left:40%]()
+
 # Naeglaria fowleri
 
 ---
+
+![bg left:40%]()
 
 # Toxoplasma gondii
 
 ---
 
+![bg left:40%]()
+
 # Ascaris lumbricoides
 
 ---
 
-# Taenia saginata
+![bg left:40%]()
 
+# Taenia saginata
 
 ---
 
@@ -259,33 +292,49 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 
 ---
 
+![bg left:40%]()
+
 # Adenoviruses
 
 ---
+
+![bg left:40%]()
 
 # Enteroviruses and paraechoviruses
 
 ---
 
+![bg left:40%]()
+
 # Hepatitis A virus (HAV)
 
 ---
+
+![bg left:40%]()
 
 # Hepatitis E virus (HEV)
 
 ---
 
+![bg left:40%]()
+
 # Rotaviruses
 
 ---
+
+![bg left:40%]()
 
 # Rhinoviruses 
 
 ---
 
+![bg left:40%]()
+
 # Influenza viruses
 
 ---
+
+![bg left:40%]()
 
 # Coronaviruses
 
@@ -326,6 +375,8 @@ Invasive pulmonary aspergillosis (IPA): fungi enter the lung, invade and damage 
 # Cryptococcus
 
 ---
+
+![bg left:40%]()
 
 # Coccidioides
 
