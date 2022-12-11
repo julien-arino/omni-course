@@ -54,9 +54,9 @@ NSERC-PHAC EID Modelling Consortium (CANMOD, MfPH, OMNI/RÉUNIS)
 
 # <!--fit-->Environmental transmission of<br> bacterial and fungal pathogens
 
-## A.k.a. Environmentally transmitted pathogens (ETP)
+## <!--fit-->A.k.a. Environmentally transmitted pathogens (ETP)
 
-Part 3 of the OMNI/RÉUNIS course
+Theme 3 of the OMNI/RÉUNIS course
 
 ---
 
@@ -69,7 +69,7 @@ Part 3 of the OMNI/RÉUNIS course
 
 <!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
-- Common features to ETP
+- Common features in ETP
 - Bacteria
 - Parasites
 - Viruses
@@ -78,7 +78,7 @@ Part 3 of the OMNI/RÉUNIS course
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
-# <!--fit-->Common features to ETP
+# <!--fit-->Common features in ETP
 
 ---
 
@@ -329,21 +329,32 @@ Sometimes called [Charlie](https://youtu.be/TTyNNu1mIgY) ;)
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/1024px-Hepatitis_E_virus.jpg)
 
-# Hepatitis E virus (HEV)
+# <!--fit-->Hepatitis E virus (HEV)
 
 ---
 
-![bg left:40%]()
+![bg left:30% width:400px](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Rotavirus_Reconstruction.jpg/1170px-Rotavirus_Reconstruction.jpg)
 
 # Rotaviruses
 
+Genus of double-stranded RNA viruses, with Rotavirus A causing >90% of human infections (mostly in kids due to acquired immunity)
+
+Estimated +150K deaths in 2019
+
+Also pathogen of livestock
+
+
 ---
 
-![bg left:40%]()
+![bg left:40% width:400px](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Rhinovirus_isosurface.png/1060px-Rhinovirus_isosurface.png)
 
 # Rhinoviruses 
+
+Used to be a genus, now part of enteroviruses
+
+H2H but also through fomites
 
 ---
 
@@ -387,7 +398,9 @@ On the left: *aspergillus niger*
 
 ---
 
-# Aspergillus fumigatus infections
+![bg left:40% width:500px](https://www.ccjm.org/content/ccjom/86/6/369/F1.large.jpg "From https://doi.org/10.3949/ccjm.86a.18093")
+
+# <!--fit-->Aspergillus fumigatus infections
 
 Invasive pulmonary aspergillosis (IPA): fungi enter the lung, invade and damage lung tissue and enter blood vessels. CFR 50%-95% depending on speed of diagnosis, condition...
 
