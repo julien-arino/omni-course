@@ -63,7 +63,14 @@ Theme 3 of the OMNI/RÉUNIS course
 # Bibliographic resources
 
 - Charles Gerba. Chapter on [Environmentally Transmitted Pathogens](https://doi.org/10.1016/B978-0-12-370519-8.00022-5) in [Environmental Microbiology](https://doi.org/10.1016/B978-0-12-370519-8.X0001-6). Where applicable, I follow the same order
-- Lanzas et al, [On modelling environmentallytransmitted pathogens](https://doi.org/10.1098/rsfs.2019.0056)
+- CDC
+- Wikipedia and linked resources
+- Google Scholar
+
+# Images sources
+
+- Wikipedia, Google Image Search, papers...
+- Note that some diagrams have weird colours: I am inverting them to generate a black background...
 
 ---
 
@@ -91,11 +98,16 @@ Characteristic is that the pathogens replicate or survive in an abiotic environm
 
 Important to define precisely what it is we mean by ETP, since the *environment* can be taken to mean anything outside the body, allowing most pathogens to fall into this class
 
+See, e.g., the US CDC [Division of Foodborne, Waterborne, and Environmental Diseases](https://www.cdc.gov/ncezid/dfwed/index.html)
+
 ---
 
 # Enteric diseases
 
 Group of diseases associated with the ingestion of food or water contaminated by microorganisms and microbial toxins that attack the gastrointestinal tract
+
+From chatGPT:
+> An enteric disease is an illness that affects the digestive system, specifically the intestines. Enteric diseases can be caused by a variety of factors, including viral, bacterial, or parasitic infections, as well as toxins or other harmful substances. These diseases can result in a range of symptoms, including stomach pain, nausea, vomiting, diarrhea, and fever
 
 ---
 
@@ -115,11 +127,33 @@ Cannot remember who I heard using the expression originally... Joke aside, a com
 
 ---
 
+# Fomites
+
+An inanimate object that can transfer a pathogen to a new host after being contaminated or exposed to the pathogen
+
+- Extremely important in hospital settings
+- Elevator buttons and door knobs of SARS-CoV-1
+
+![width:600px center invert](https://www.researchgate.net/profile/James-Hughes-21/publication/237016126/figure/fig1/AS:202716765790219@1425342851705/Layout-of-ninth-floor-of-Hotel-Metropole-where-superspreading-event-of-severe-acute.png)
+
+---
+
 # Climate change ... changes things
 
 [Example](https://doi.org/10.1371/journal.ppat.1009503) of fungi
 
 ![center width:1200px invert](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/journal.ppat.1009503.g001.PNG)
+
+---
+
+# Another common theme - AMR
+
+> Antimicrobial resistance occurs when microorganisms (such as bacteria, fungi, viruses, and parasites) develop the ability to survive exposure to antimicrobial drugs (such as antibiotics, antifungals, antivirals, and antimalarials). This means that the drugs that were previously effective at killing the microorganisms or preventing their growth no longer work, and the infections they cause can become difficult or even impossible to treat. Antimicrobial resistance can lead to longer-lasting and more severe infections, and it can spread to other people. It is a major public health concern, and efforts are underway to address it.
+---
+
+# Now we take a short tour
+
+**Warning :** some images are not pretty!
 
 ---
 
@@ -130,16 +164,25 @@ Cannot remember who I heard using the expression originally... Joke aside, a com
 - Escherichia coli
 - Campylobacter
 - Vibrio
-- Helicobacter
+- Helicobacter pylori
 - Legionella
+- Listeria
 
 --- 
 
-![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SalmonellaNIAID_zoom.jpg "From https://en.wikipedia.org/wiki/Salmonella")
+# Common themes in ET-Bacteria
 
-# Salmonella
+- Gram-negative/Gram-positive
+    - Gram-negative bacteria are not reactive to the Gram staining method
+- Resistance to antibiotics, in particular Gram-negative bacteria in hospital settings, e.g.
 
-Genus of Gram-negative bacteria (not reactive to the Gram staining method)
+---
+
+![bg left:40% width:500px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/SalmonellaNIAID_zoom.jpg "From https://en.wikipedia.org/wiki/Salmonella")
+
+# [Salmonella](https://www.cdc.gov/salmonella/index.html)
+
+Genus of Gram-negative bacteria
 
 Most infections due to ingestion of food contaminated by animal or human feces (e.g., bad handwashing practices at food vendor)
 
@@ -147,7 +190,7 @@ Most infections due to ingestion of food contaminated by animal or human feces (
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/SalmonellaTyphiFlagellarStain.jpg/1280px-SalmonellaTyphiFlagellarStain.jpg)
 
-# Typhoid fever
+# [Typhoid fever](https://www.cdc.gov/typhoid-fever/index.html)
 
 Caused by *Salmonella Typhi*
 
@@ -159,13 +202,29 @@ Spread by eating or drinking food or water contaminated with the feces of an inf
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/E_coli_at_10000x%2C_original.jpg/1280px-E_coli_at_10000x%2C_original.jpg)
 
-# Escherichia coli
+# [*Escherichia coli*](https://www.cdc.gov/ecoli/index.html)
+
+Gram-negative bacterium of genus *Escherichia* commonly found in intestines of warm-blooded organisms
+
+Some serotypes cause serious food poisoning
+
+Unwashed vegetables, poorly butchered and undercooked meat
+
+Cause gastroenteritis, urinary tract infections and neonatal meningitis in humans
 
 ---
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/ARS_Campylobacter_jejuni.jpg/768px-ARS_Campylobacter_jejuni.jpg)
 
-# Campylobacter
+# [*Campylobacter*](https://www.cdc.gov/campylobacter/index.html)
+
+Genus of Gram-negative bacteria
+
+Causes campylobacteriosis (diarrhoeal disease) in humans
+
+Self-limiting (no treatment required)
+
+Mostly transmitted from poultry but also present in water
 
 ---
 
@@ -188,7 +247,7 @@ Commonly found in salt water environments
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/9/9d/Cholera_bacteria_SEM.jpg)
 
-# *Vibrio cholerae*
+# [*Vibrio cholerae*](https://www.who.int/health-topics/cholera)
 
 Transmitted through the ingestion of fecally contaminated food and water
 
@@ -210,21 +269,33 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/nejmicm1716464_f1.jpeg "From https://doi.org/10.1056/NEJMicm1716464")
 
-# Vibriosis
+# [*Vibrio vulnificus*](https://www.cdc.gov/vibrio/index.html)
+
+Severe form stemming from consumption of raw or undercooked seafood (mainly oysters)
+
+Can lead to necrotising fasciitis (flesh eating disease)
+
+Patient on the left [had to be amputated](https://doi.org/10.1056/NEJMicm1716464)
 
 ---
 
 ![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/EMpylori.jpg)
 
-# Helicobacter
+# [*Helicobacter pylori*](https://wwwnc.cdc.gov/travel/yellowbook/2020/travel-related-infectious-diseases/helicobacter-pylori)
 
 ---
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/a/a7/Harmannella_entrapping_Legionella.png)
 
-# Legionella
+# [Legionella](https://www.cdc.gov/legionella/)
+
+---
+
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Listeria_monocytogenes_PHIL_2287_lores.jpg/819px-Listeria_monocytogenes_PHIL_2287_lores.jpg)
+
+# [Listeria](https://www.cdc.gov/listeria/index.html)
 
 ---
 
@@ -240,15 +311,17 @@ Studied by [John Snow](https://en.wikipedia.org/wiki/John_Snow)
 
 ---
 
-![bg left:60%](https://upload.wikimedia.org/wikipedia/commons/0/08/Giardia_lamblia_SEM_8698_lores.jpg)
+![bg left:40% width:400px](https://upload.wikimedia.org/wikipedia/commons/0/08/Giardia_lamblia_SEM_8698_lores.jpg)
 
-# <!--fit--> Giardia lamblia
+# <!--fit--> [*Giardia lamblia*](https://www.cdc.gov/parasites/giardia/index.html)
 
 Flagellated microorganism of genus *Giardia*
 
 Colonises small intestine
 
 Causes diarrhea (giardiasis)
+
+Found on surfaces, in soil, food or water contaminated with feces of infected people or animals
 
 ---
 
@@ -258,30 +331,56 @@ Causes diarrhea (giardiasis)
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Cryptosporidium_parvum_01.jpg/1280px-Cryptosporidium_parvum_01.jpg)
 
-# <!--fit-->Cryptosporidium parvum
+# <!--fit-->[*Cryptosporidium parvum*](https://www.cdc.gov/dpdx/cryptosporidiosis/)
+
+Protozoan
+
+Infects wide variety of vertebrate hosts
+
+Wide range of signs and symptoms; immunocompetent patients may present self-limiting diarrheal illness, typically resolving within 2–3 weeks; immunocompromised patients may have more severe complications
+
+---
+
+![bg contain invert](https://www.cdc.gov/dpdx/cryptosporidiosis/modules/Cryptosporidium_LifeCycle_lg.jpg)
 
 ---
 
 ![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/Naegleria_fowleri_lifecycle_stages.jpg)
 
 
-# Naegleria fowleri
+# [*Naegleria fowleri*](https://www.cdc.gov/parasites/naegleria/index.html)
 
 A.k.a. "brain-eating amoeba"...
 
 Shapeshifting amoeboflagellate excavate
 
+Lives in soil and warm fresh water
+
+3 infections/year in the US, typically fatal
+
 ---
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Toxoplasma_gondii.jpg/1024px-Toxoplasma_gondii.jpg)
 
-# Toxoplasma gondii
+# [*Toxoplasma gondii*](https://www.cdc.gov/dpdx/toxoplasmosis/)
+
+Protozoan parasite infecting most species of warm-blooded animals and causes toxoplasmosis
+
+Toxoplasmosis: only definitive hosts are domestic cats and their relatives
+
+---
+
+![bg contain invert](https://www.cdc.gov/dpdx/toxoplasmosis/modules/Toxoplasma_LifeCycle_BAM1.gif?_=04818)
 
 ---
 
 ![bg left:40%](https://cdn.britannica.com/05/182605-050-468F9404/handful-laboratory-technician-Kenya-worms-Ascaris-lumbricoides.jpg)
 
-# <!--fit-->Ascaris lumbricoides
+# <!--fit-->[*Ascaris lumbricoides*](https://www.cdc.gov/dpdx/ascariasis/)
+
+Very large (adult females: 20 to 35 cm; adult males: 15 to 30 cm) nematodes (roundworms) that parasitise the human intestine
+
+*A. lumbricoides* primary species involved in human infections globally, but *Ascaris* derived from pigs (*A. suum*) may also infect humans
 
 ---
 
@@ -289,11 +388,21 @@ Shapeshifting amoeboflagellate excavate
 
 ---
 
+![bg contain invert](https://www.cdc.gov/dpdx/ascariasis/modules/Ascariasis_LifeCycle_lg.jpg)
+
+---
+
 ![bg left:45% width:400px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/tapeworm.png)
 
-# Taenia saginata
+# [Taenia saginata](https://www.cdc.gov/dpdx/taeniasis/)
 
-Sometimes called [Charlie](https://youtu.be/TTyNNu1mIgY) ;)
+Cestodes *Taenia saginata* (beef tapeworm), *T. solium* (pork tapeworm) and *T. asiatica* (Asian tapeworm). *Taenia solium* can also cause cysticercosis
+
+Sometimes called [Charlie](https://youtu.be/TTyNNu1mIgY?t=503) ;)
+
+---
+
+![bg contain invert](https://www.cdc.gov/dpdx/taeniasis/modules/Taenia_LifeCycle.gif)
 
 ---
 
