@@ -277,7 +277,7 @@ Shapeshifting amoeboflagellate excavate
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://cdn.britannica.com/05/182605-050-468F9404/handful-laboratory-technician-Kenya-worms-Ascaris-lumbricoides.jpg)
 
 # Ascaris lumbricoides
 
@@ -287,9 +287,11 @@ Shapeshifting amoeboflagellate excavate
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://phil.cdc.gov/PHIL_Images/20031208/87d4bff74e41427cb278526bd9cbe76a/5260_lores.jpg)
 
 # Taenia saginata
+
+Sometimes called [Charlie](https://youtu.be/TTyNNu1mIgY) ;)
 
 ---
 
@@ -307,7 +309,7 @@ Shapeshifting amoeboflagellate excavate
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/Adenovirus_4.jpg)
 
 # Adenoviruses
 
