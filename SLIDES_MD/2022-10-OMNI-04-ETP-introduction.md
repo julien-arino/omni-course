@@ -81,6 +81,7 @@ Theme 3 of the OMNI/RÉUNIS course
 - Parasites
 - Viruses
 - Fungi
+- In summary
 
 ---
 
@@ -106,14 +107,14 @@ See, e.g., the US CDC [Division of Foodborne, Waterborne, and Environmental Dise
 
 Group of diseases associated with the ingestion of food or water contaminated by microorganisms and microbial toxins that attack the gastrointestinal tract
 
-From chatGPT:
+From [chatGPT](https://openai.com/blog/chatgpt/):
 > An enteric disease is an illness that affects the digestive system, specifically the intestines. Enteric diseases can be caused by a variety of factors, including viral, bacterial, or parasitic infections, as well as toxins or other harmful substances. These diseases can result in a range of symptoms, including stomach pain, nausea, vomiting, diarrhea, and fever
 
 ---
 
 # The "celebrated" fecal-oral route ;)
 
-Cannot remember who I heard using the expression originally... Joke aside, a common dissemination route for ETP
+Cannot remember who I heard using the expression originally... Joke aside, a common dissemination route for ETP; I will write F-OR
 
 ![center](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/F-diagram-01.jpg/1280px-F-diagram-01.jpg)
 
@@ -170,11 +171,18 @@ An inanimate object that can transfer a pathogen to a new host after being conta
 
 --- 
 
-# Common themes in ET-Bacteria
+# <!--fit-->Gram-negative and Gram-positive bacteria
 
-- Gram-negative/Gram-positive
-    - Gram-negative bacteria are not reactive to the Gram staining method
-- Resistance to antibiotics, in particular Gram-negative bacteria in hospital settings, e.g.
+- Gram-negative bacteria are not reactive to the Gram staining method, i.e., they do not retain the crystal violet stain used in the Gram staining method of bacterial differentiation
+- Gram-positive bacteria retain the violet stain
+
+![width:400px center](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Gram_stain_01.jpg/1280px-Gram_stain_01.jpg)
+
+---
+
+# Resistance to antibiotics
+
+In particular Gram-negative bacteria in hospital settings
 
 ---
 
@@ -410,11 +418,12 @@ Sometimes called [Charlie](https://youtu.be/TTyNNu1mIgY?t=503) ;)
 # <!--fit-->Environmentally transmitted viruses
 
 - Adenoviruses
-- Enteroviruses and paraechoviruses
+- Enteroviruses 
+- Rhinoviruses 
+- Paraechoviruses
 - Hepatitis A virus (HAV)
 - Hepatitis E virus (HEV)
 - Rotaviruses
-- Rhinoviruses 
 - Influenza viruses
 - Coronaviruses
 
@@ -422,38 +431,19 @@ Sometimes called [Charlie](https://youtu.be/TTyNNu1mIgY?t=503) ;)
 
 ![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/Adenovirus_4.jpg)
 
-# Adenoviruses
+# [Adenoviruses](https://www.cdc.gov/adenovirus/index.html)
+
+Medium-sized (90-100 nm) double-stranded DNA viruses
+
+More than 50 types cause infections in humans, mostly respiratory illnesses
+
+Resistant to many common disinfectants and can remain infectious for long periods on environmental surfaces and medical instruments
 
 ---
 
 ![bg left:40%]()
 
-# Enteroviruses and paraechoviruses
-
----
-
-![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/f/f5/Hepatitis_A_virus_02.jpg)
-
-# <!--fit-->Hepatitis A virus (HAV)
-
----
-
-![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/1024px-Hepatitis_E_virus.jpg)
-
-# <!--fit-->Hepatitis E virus (HEV)
-
----
-
-![bg left:30% width:400px](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Rotavirus_Reconstruction.jpg/1170px-Rotavirus_Reconstruction.jpg)
-
-# Rotaviruses
-
-Genus of double-stranded RNA viruses, with Rotavirus A causing >90% of human infections (mostly in kids due to acquired immunity)
-
-Estimated +150K deaths in 2019
-
-Also pathogen of livestock
-
+# Enteroviruses
 
 ---
 
@@ -464,6 +454,50 @@ Also pathogen of livestock
 Used to be a genus, now part of enteroviruses
 
 H2H but also through fomites
+
+---
+
+![bg left:40%]()
+
+# Paraechoviruses
+
+---
+
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/f/f5/Hepatitis_A_virus_02.jpg)
+
+# <!--fit-->[Hepatitis A virus (HAV)](https://www.cdc.gov/hepatitis/hav/index.htm)
+
+Found in stool and blood of infected individuals
+
+Transmission through close personal contact with an infected person or through eating contaminated food or drink (F-OR)
+
+Vaccine preventable
+
+---
+
+![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/1024px-Hepatitis_E_virus.jpg)
+
+# <!--fit-->[Hepatitis E virus (HEV)](https://www.cdc.gov/hepatitis/hev/index.htm)
+
+Found in the stool of an infected person
+
+In developing countries, people most often get HEV via F-OR. In developed countries, people have gotten sick with hepatitis E after eating raw or undercooked pork, venison, wild boar meat, or shellfish
+
+---
+
+![bg left:30% width:400px](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Rotavirus_Reconstruction.jpg/1170px-Rotavirus_Reconstruction.jpg)
+
+# [Rotaviruses](https://www.cdc.gov/rotavirus/index.html)
+
+Genus of double-stranded RNA viruses, with Rotavirus A causing >90% of human infections (mostly in kids due to acquired immunity)
+
+Estimated +150K deaths in 2019
+
+Also pathogen of livestock
+
+F-OR and through contaminated surfaces
+
+Vaccine preventable
 
 ---
 
@@ -495,7 +529,7 @@ Denham, Wambaugh & Brown. [How Environmental Fungi Cause a Range of Clinical Out
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Aspergillus_niger_01.jpg/1280px-Aspergillus_niger_01.jpg)
 
-# Aspergillus
+# [*Aspergillus*](https://www.cdc.gov/fungal/diseases/aspergillosis/index.html)
 
 Genus with 837 species
 
@@ -509,25 +543,49 @@ On the left: *aspergillus niger*
 
 ![bg left:40% width:500px](https://www.ccjm.org/content/ccjom/86/6/369/F1.large.jpg "From https://doi.org/10.3949/ccjm.86a.18093")
 
-# <!--fit-->Aspergillus fumigatus infections
+# <!--fit-->[Aspergillus fumigatus infections](https://www.cdc.gov/fungal/diseases/aspergillosis/symptoms.html)
 
 Invasive pulmonary aspergillosis (IPA): fungi enter the lung, invade and damage lung tissue and enter blood vessels. CFR 50%-95% depending on speed of diagnosis, condition...
 
 ---
 
+![bg contain invert](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/aspergillus_resistance.png "From https://www.cdc.gov/fungal/diseases/aspergillosis/antifungal-resistant.html")
+
+---
+
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Cryptococcus_neoformans_using_a_light_India_ink_staining_preparation_PHIL_3771_lores.jpg/1280px-Cryptococcus_neoformans_using_a_light_India_ink_staining_preparation_PHIL_3771_lores.jpg)
 
-# Cryptococcus
+# <!--fit-->[*Cryptococcus neoformans*](https://www.cdc.gov/fungal/cdc-and-fungal/cryptococcal-meningitis.html)
+
+Fungus living in the environment worldwide
+
+In immunocompromised or immunodeficient people, can cause cryptococcal meningitis
+
+Est. 152K cases and 112K deaths worldwide / year
 
 ---
 
 ![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/Coccidioidomycosis_-_PAS_stain_(5286000370).jpg)
 
 
-# Coccidioides
+# [*Coccidioides*](https://www.cdc.gov/fungal/diseases/coccidioidomycosis/index.html)
+
+Fungus living in the soil in SW USA, parts of Mexico and Central and South America, with expanding range
+
+Causes Valley fever
 
 ---
 
 ![bg contain invert](https://upload.wikimedia.org/wikipedia/commons/1/19/Life_cycle_of_Coccidioides.PNG "From https://doi.org/10.1371/journal.ppat.1004762")
 
+---
 
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->In summary
+
+---
+
+- Wide variety of pathogens
+- Some infections are vaccine preventable
+- Many infections go through the F-OR and highlight the need for improved sanitation
+- Problem of resistance to antimicrobials (AMR) is wide-spread and should be considered
