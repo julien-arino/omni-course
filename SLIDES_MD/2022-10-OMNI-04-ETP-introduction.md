@@ -89,6 +89,8 @@ Characteristic is that the pathogens replicate or survive in an abiotic environm
 - Enteric diseases
 - Food-borne diseases
 
+Important to define precisely what it is we mean by ETP, since the *environment* can be taken to mean anything outside the body, allowing most pathogens to fall into this class
+
 ---
 
 # Enteric diseases
@@ -279,7 +281,7 @@ Shapeshifting amoeboflagellate excavate
 
 ![bg left:40%](https://cdn.britannica.com/05/182605-050-468F9404/handful-laboratory-technician-Kenya-worms-Ascaris-lumbricoides.jpg)
 
-# Ascaris lumbricoides
+# <!--fit-->Ascaris lumbricoides
 
 ---
 
@@ -287,7 +289,7 @@ Shapeshifting amoeboflagellate excavate
 
 ---
 
-![bg left:40%](https://phil.cdc.gov/PHIL_Images/20031208/87d4bff74e41427cb278526bd9cbe76a/5260_lores.jpg)
+![bg left:45% width:400px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/tapeworm.png)
 
 # Taenia saginata
 
@@ -321,9 +323,9 @@ Sometimes called [Charlie](https://youtu.be/TTyNNu1mIgY) ;)
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/f/f5/Hepatitis_A_virus_02.jpg)
 
-# Hepatitis A virus (HAV)
+# <!--fit-->Hepatitis A virus (HAV)
 
 ---
 
