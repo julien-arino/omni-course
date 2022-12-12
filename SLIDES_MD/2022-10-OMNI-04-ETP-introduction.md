@@ -33,7 +33,7 @@ size: 4:3
 
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->Environmental transmission of bacterial, <br>viral and fungal pathogens
+# <!--fit-->Environmental transmission of bacterial, <br>parasitic, viral and fungal pathogens
 
 12-16 December 2022 
 
@@ -52,7 +52,7 @@ NSERC-PHAC EID Modelling Consortium (CANMOD, MfPH, OMNI/RÉUNIS)
 
 ---
 
-# <!--fit-->Environmental transmission of bacterial, <br>viral and fungal pathogens
+# <!--fit-->Environmental transmission of bacterial, <br>parasitic, viral and fungal pathogens
 
 ## <!--fit-->A.k.a. Environmentally transmitted pathogens (ETP)
 
