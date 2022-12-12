@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Environmental transmission of bacterial and fungal pathogens - Introduction
+title: Environmental transmission of bacterial, viral and fungal pathogens - Introduction
 description: Julien Arino - OMNI/RÉUNIS & MfPH course on One Health Modelling for Emerging Infectious Diseases - Environmentally transmitted pathogens - Introduction
 theme: default
 class: invert
@@ -33,9 +33,9 @@ size: 4:3
 
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->Environmental transmission of bacterial and <br>fungal pathogens - Introduction
+# <!--fit-->Environmental transmission of bacterial, <br>viral and fungal pathogens
 
-December 2022 
+12-16 December 2022 
 
 Julien Arino ([julien.arino@umanitoba.ca](mailto:Julien.Arino@umanitoba.ca)) [![width:32px](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/GitHub-Mark-Light-64px.png)](https://github.com/julien-arino)
 
@@ -52,7 +52,7 @@ NSERC-PHAC EID Modelling Consortium (CANMOD, MfPH, OMNI/RÉUNIS)
 
 ---
 
-# <!--fit-->Environmental transmission of<br> bacterial and fungal pathogens
+# <!--fit-->Environmental transmission of bacterial, <br>viral and fungal pathogens
 
 ## <!--fit-->A.k.a. Environmentally transmitted pathogens (ETP)
 
@@ -70,7 +70,7 @@ Theme 3 of the OMNI/RÉUNIS course
 # Images sources
 
 - Wikipedia, Google Image Search, papers...
-- Note that some diagrams have weird colours: I am inverting them to generate a black background...
+- Note that some diagrams have weird colours: I am inverting them to have a black background...
 
 ---
 
@@ -177,12 +177,6 @@ An inanimate object that can transfer a pathogen to a new host after being conta
 - Gram-positive bacteria retain the violet stain
 
 ![width:400px center](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Gram_stain_01.jpg/1280px-Gram_stain_01.jpg)
-
----
-
-# Resistance to antibiotics
-
-In particular Gram-negative bacteria in hospital settings
 
 ---
 
@@ -293,17 +287,37 @@ Patient on the left [had to be amputated](https://doi.org/10.1056/NEJMicm1716464
 
 # [*Helicobacter pylori*](https://wwwnc.cdc.gov/travel/yellowbook/2020/travel-related-infectious-diseases/helicobacter-pylori)
 
+Small, Gram-negative, rod-shaped bacterium
+
+F-OR
+
+Major cause of peptic ulcer disease and gastritis
+
 ---
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/a/a7/Harmannella_entrapping_Legionella.png)
 
-# [Legionella](https://www.cdc.gov/legionella/)
+# [*Legionella*](https://www.cdc.gov/legionella/)
+
+Genus of Gram-negative bacteria
+
+*L. pneumophila* is causative agent of legionellosis and Pontiac fever
+
+Most commonly spread by cooling towers (well known outbreak of 1976 in Philadelphia infecting 221 and killing 34)
 
 ---
 
 ![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Listeria_monocytogenes_PHIL_2287_lores.jpg/819px-Listeria_monocytogenes_PHIL_2287_lores.jpg)
 
 # [Listeria](https://www.cdc.gov/listeria/index.html)
+
+Genus of Gram-positive bacteria with 21 species
+
+*L. monocytogenes* causes most human cases
+
+CFR ~ 20%
+
+Can be found in soil ($\Rightarrow$ contamination of vegetables) and can be carried by animal
 
 ---
 
@@ -316,6 +330,7 @@ Patient on the left [had to be amputated](https://doi.org/10.1056/NEJMicm1716464
 - Toxoplasma gondii
 - Ascaris lumbricoides
 - Taenia saginata
+- Schistosoma
 
 ---
 
@@ -392,10 +407,6 @@ Very large (adult females: 20 to 35 cm; adult males: 15 to 30 cm) nematodes (rou
 
 ---
 
-![bg contain invert](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Ascaris_lumbricoides_life_cycle.tif/lossless-page1-1058px-Ascaris_lumbricoides_life_cycle.tif.png)
-
----
-
 ![bg contain invert](https://www.cdc.gov/dpdx/ascariasis/modules/Ascariasis_LifeCycle_lg.jpg)
 
 ---
@@ -414,18 +425,32 @@ Sometimes called [Charlie](https://youtu.be/TTyNNu1mIgY?t=503) ;)
 
 ---
 
+![bg left:45% width:600px](https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Schistosoma_20041-300.jpg/1280px-Schistosoma_20041-300.jpg)
+
+# Schistosoma
+
+Genus of trematodes, parasitic flatworms responsible for schistosomiasis
+
+Released from infected freshwater snails
+
+Burden estimate vary, but ~ 240M affected and 4K-200K deaths per year
+
+F-OR with a twist
+
+---
+
+![bg contain invert](https://upload.wikimedia.org/wikipedia/commons/b/b9/Schistosomiasis_life_cycle.png)
+
+---
+
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Environmentally transmitted viruses
 
 - Adenoviruses
 - Enteroviruses 
-- Rhinoviruses 
-- Paraechoviruses
 - Hepatitis A virus (HAV)
 - Hepatitis E virus (HEV)
 - Rotaviruses
-- Influenza viruses
-- Coronaviruses
 
 ---
 
@@ -441,25 +466,44 @@ Resistant to many common disinfectants and can remain infectious for long period
 
 ---
 
-![bg left:40%]()
+![bg left:40%](https://upload.wikimedia.org/wikipedia/commons/b/b0/Ev-d68-photo-1.jpg)
 
-# Enteroviruses
+# [Enteroviruses](https://www.cdc.gov/non-polio-enterovirus/index.html)
+
+Positive-sense single-stranded RNA virus
+
+Named because of enteric transmission (through the intestine)
+
+Enteroviruses can be found in an infected person’s
+- feces
+- secretions
+- blister fluid
+
+So, of course, F-OR; plus fomites
+
+---
+
+![bg left:40%](https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/polio-virus.jpeg)
+
+# [Poliovirus](https://www.cdc.gov/polio/index.htm)
+
+Enterovirus C with 3 serotypes
+
+Single-stranded positive-sense RNA genome with protein capsid
+
+F-OR 
+
+Vaccine preventable
 
 ---
 
 ![bg left:40% width:400px](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Rhinovirus_isosurface.png/1060px-Rhinovirus_isosurface.png)
 
-# Rhinoviruses 
+# [Rhinoviruses](https://www.ncbi.nlm.nih.gov/books/NBK279543/)
 
 Used to be a genus, now part of enteroviruses
 
 H2H but also through fomites
-
----
-
-![bg left:40%]()
-
-# Paraechoviruses
 
 ---
 
@@ -498,18 +542,6 @@ Also pathogen of livestock
 F-OR and through contaminated surfaces
 
 Vaccine preventable
-
----
-
-![bg left:40%]()
-
-# Influenza viruses
-
----
-
-![bg left:40%]()
-
-# Coronaviruses
 
 ---
 
