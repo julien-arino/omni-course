@@ -10,7 +10,7 @@
 
 
 \title{Environmentally Transmitted Pathogens}
-\subtitle{ODE models}
+\subtitle{Models}
 \author{Julien Arino}
 \date{January 2023}
 
@@ -28,30 +28,618 @@
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
-\section{Cholera models}
+\section{A few models of Cvjetanovi\'c}
 
-\begin{frame}{The Kermack-McKendrick model}
-This model is typically called the Kermack-McKendrick (KMK) SIR model 
-\begin{subequations}\label{sys:KMK}
-  \begin{align}
-    S' &= -\beta SI \tag{1a}\label{sys:KMK_dS} \\
-    I' &= \beta SI-\gamma I  \tag{1b}\label{sys:KMK_dI} \\
-    R' &= \gamma I  \tag{1c}\label{sys:KMK_dR}
-    \end{align}  
-\end{subequations}
-\vfill
-\begin{center}
-  \begin{tikzpicture}[scale=1.5, transform shape]
-    \node [circle, fill=green!50, text=black] (S) {$S$};
-    \node [circle, right=1.5cm of S, fill=red!90, text=black] (I) {$I$};
-    \node [circle, right=1.5cm of I, fill=blue!90, text=black] (R) {$R$};
-    %% Flows
-    \path [line, very thick] (S) to node [midway, above] (TextNode) {$\beta SI$} (I);
-    \path [line, very thick] (I) to node [midway, above] (TextNode) {$\gamma I$} (R);
-  \end{tikzpicture}    
-\end{center}
+\begin{frame}
+  \begin{itemize}
+    \item Cvjetanovi\'c, Grab, Uemura \& World Health Organization. \href{https://apps.who.int/iris/handle/10665/43033}{Dynamics of acute bacterial diseases : epidemiological models and their application in public health}. World Health Organization (1978)  
+    \item Briscoe. \href{https://doi.org/10.1093/ije/9.3.265}{On the use of simple analytic mathematical models of communicable diseases}.
+    \emph{International Journal of Epidemiology} \textbf{9}(3) (1980)
+  \end{itemize}
+  \vfill
+  Models of (Branko) Cvjetanovi\'c are in discrete time and quite detailed on the epi side
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\subsection{A tetanus model}
+
+\begin{frame}{Tetanus}
+  Bacterial infection caused by \emph{Clostridium tetani}
+  \vfill
+  Spores everywhere in the environment, including soil, dust, and manure
+  \vfill
+  Spores develop into bacteria when they enter the body
+  \vfill
+  Not spread P2P (so not a classic model)
+  \vfill
+  Incubation period usually 3-21 days (average 8 days). Can range from 1 day to several months, depending on the kind of wound. Most cases occur within 14 days
+  \vfill
+  1 to 2 in 10 cases are fatal
 \end{frame}
 
+\maxFrameImage{../FIGS/tetanus-vacc-media_inverted.jpg}
+
+\begin{frame}
+  \begin{center}
+    \def\vertskip{*-2}
+    \def\horzskip{*2}
+    \begin{tikzpicture}[scale=0.75, transform shape]
+      \node [rectangle, fill=gray!10, text=black] at (-2\horzskip,0\vertskip) (S_nb) {Newborn};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,0\vertskip) (S) {Susceptible population};
+      \node [rectangle, fill=gray!10, text=black] at (-2\horzskip,1\vertskip) (L_nb) {Incubating newborn};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,1\vertskip) (L) {Incubating population};
+      \node [rectangle, fill=gray!10, text=black] at (-2\horzskip,2\vertskip) (I_nb) {Sick newborn};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,2\vertskip) (I) {Sick population};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,3\vertskip) (D) {Tetanus deaths};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,4\vertskip) (R) {Active immunity 10 years};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,5\vertskip) (R_p) {Passive immunity 6 months};
+      %% Flows
+      \path [line, very thick] (S_nb) to node [midway, above] (TextNode) {} (S);
+      \path [line, very thick] (S_nb) to node [midway, above] (TextNode) {} (L_nb);
+      \path [line, very thick] (L_nb) to node [midway, above] (TextNode) {} (I_nb);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (D);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (R);
+      \path [line, very thick, bend right=60] (S_nb.west) to node [midway, above] (TextNode) {} (R_p.west);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (S.-170);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (R);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (D);
+      \path [line, very thick] (S) to node [midway, above] (TextNode) {} (L);
+      \path [line, very thick] (L) to node [midway, above] (TextNode) {} (I);
+      \path [line, very thick, bend left=75] (I) to node [midway, above] (TextNode) {} (S);
+      \path [line, very thick] (I) to node [midway, above] (TextNode) {} (R);
+      \path [line, very thick] (I) to node [midway, above] (TextNode) {} (D);
+      \path [line, very thick, bend right=60] (R.east) to node [midway, above] (TextNode) {} (S.-10);      
+      \path [line, very thick, bend right=60, anchor=east] (R_p.east) to node [midway, above] (TextNode) {} (S.east);      
+    \end{tikzpicture}    
+  \end{center}  
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \def\vertskip{*-1.5}
+    \def\horzskip{*1}
+    \begin{tikzpicture}[scale=1, transform shape]
+      \node [rectangle, fill=gray!10, text=black] at (-2\horzskip,0\vertskip) (S_nb) {$S_b$};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,0\vertskip) (S) {$S$};
+      \node [rectangle, fill=gray!10, text=black] at (-2\horzskip,1\vertskip) (L_nb) {$L_b$};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,1\vertskip) (L) {$L$};
+      \node [rectangle, fill=gray!10, text=black] at (-2\horzskip,2\vertskip) (I_nb) {$I_b$};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,2\vertskip) (I) {$I$};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,3\vertskip) (D) {$D$};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,4\vertskip) (R) {$R$};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,5\vertskip) (R_p) {$R_b$};
+      %% Flows
+      \path [line, very thick] (S_nb) to node [midway, above] (TextNode) {} (S);
+      \path [line, very thick] (S_nb) to node [midway, above] (TextNode) {} (L_nb);
+      \path [line, very thick] (L_nb) to node [midway, above] (TextNode) {} (I_nb);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (D);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (R);
+      \path [line, very thick, bend right=60] (S_nb.west) to node [midway, above] (TextNode) {} (R_p.west);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (S.-170);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (R);
+      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (D);
+      \path [line, very thick] (S) to node [midway, above] (TextNode) {} (L);
+      \path [line, very thick] (L) to node [midway, above] (TextNode) {} (I);
+      \path [line, very thick, bend left=55] (I) to node [midway, above] (TextNode) {} (S.south west);
+      \path [line, very thick] (I) to node [midway, above] (TextNode) {} (R);
+      \path [line, very thick] (I) to node [midway, above] (TextNode) {} (D);
+      \path [line, very thick, bend right=60] (R.east) to node [midway, above] (TextNode) {} (S.-10);      
+      \path [line, very thick, bend right=60, anchor=east] (R_p.east) to node [midway, above] (TextNode) {} (S.east);      
+    \end{tikzpicture}    
+  \end{center}  
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\subsection{A cholera model}
+
+\begin{frame}{A cholera model}
+  \begin{center}
+    \def\vertskip{*1.75}
+    \begin{tikzpicture}[scale=0.75, transform shape]
+      \node [rectangle, fill=gray!10, text=black] at (0,0\vertskip) (S_nb) {Newborn};
+      \node [rectangle, fill=gray!10, text=black] at (0,1\vertskip) (S) {Susceptible};
+      \node [rectangle, fill=gray!10, text=black] at (4,1\vertskip) (V) {Vaccinated (immune)};
+      \node [rectangle, fill=gray!10, text=black, text width=2.5cm] at (-4,2\vertskip) (C_c) {Contact carrier (5-7 days)};
+      \node [rectangle, fill=gray!10, text=black, text width=2.5cm] at (0,2\vertskip) (L_I) {Incubating infectious (1-3 days)};
+      \node [rectangle, fill=gray!10, text=black, text width=2.5cm] at (4,2\vertskip) (L_nI) {Incubating non infectious (1-3 days)};
+      \node [rectangle, fill=gray!10, text=black] at (0,3\vertskip) (I_I) {Sick infectious (3-6 days)};
+      \node [rectangle, fill=gray!10, text=black, text width=2.5cm] at (4,4\vertskip) (C_r) {Convalescent carrier (14-21 days)};
+      \node [rectangle, fill=gray!10, text=black, text width=2.5cm] at (0,4\vertskip) (R_s) {Healthy resistant};
+      \node [rectangle, fill=gray!10, text=black, text width=2.5cm] at (-4,4\vertskip) (D) {Deaths from cholera};
+      \node [rectangle, fill=gray!10, text=black] at (4,5\vertskip) (C_p) {Chronic carrier};
+      %% Flows
+      \path [line, very thick] (S_nb) to node [midway, above] (TextNode) {} (S);
+      \path [line, very thick] (S.north east) to node [midway, above] (TextNode) {} (V.north west);
+      \path [line, very thick] (V.south west) to node [midway, above] (TextNode) {} (S.south east);
+      \path [line, very thick] (S) to node [midway, above] (TextNode) {} (C_c);
+      \path [line, very thick] (S) to node [midway, above] (TextNode) {} (L_I);
+      \path [line, very thick] (S) to node [midway, above] (TextNode) {} (L_nI);
+      \path [line, very thick] (L_I) to node [midway, above] (TextNode) {} (I_I);
+      \path [line, very thick] (L_nI) to node [midway, above] (TextNode) {} (I_I);
+      \path [line, rounded corners, very thick] (C_c) -- (-4,0.5\vertskip) -- (-1.5,0.5\vertskip) -- (S.south);
+      \path [line, very thick] (I_I) to node [midway, above] (TextNode) {} (D);
+      \path [line, very thick] (I_I) to node [midway, above] (TextNode) {} (R_s);
+      \path [line, very thick] (I_I) to node [midway, above] (TextNode) {} (C_r);
+      \path [line, very thick] (C_r) to node [midway, above] (TextNode) {} (C_p);
+      \path [line, rounded corners, very thick] (I_I.east) -- (6,3\vertskip) -- (6,0.5\vertskip) -- (1.5,0.5\vertskip) -- (S.south);
+      \path [line, rounded corners, very thick] (C_r.east) -- (6,4\vertskip) -- (6,0.5\vertskip) -- (1.5,0.5\vertskip) -- (S.south);
+      \path [line, rounded corners, very thick] (C_c) -- (-6,2\vertskip) -- (-6,5\vertskip) -- (C_p);
+      \path [line, rounded corners, very thick] (C_c) -- (-6,2\vertskip) -- (-6,5\vertskip) -- (-1.5,5\vertskip) -- (R_s);
+      \path [line, very thick] (C_r) to node [midway, above] (TextNode) {} (R_s);
+      \path [line, rounded corners, very thick] (R_s) -- (0,4.6\vertskip) -- (7,4.6\vertskip) -- (7,0.5\vertskip) -- (1.5,0.5\vertskip) -- (S.south);
+    \end{tikzpicture}    
+  \end{center}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\section{A model of Capasso for ETP}
+
+\begin{frame}{A minimal model of V. Capasso}
+  \begin{center}
+    \def\vertskip{*1.75}
+    \def\horzskip{*2}
+    \begin{tikzpicture}[scale=1.5, transform shape]
+      \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (H) {$H$};
+      \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (E) {$E$};
+      %% Flows between
+      \path [line, very thick, bend left] (H) to node [near end, above] (TextNode) {$c_HH$} (E);
+      \path [line, very thick, bend left] (E) to node [near end, below] (TextNode) {$g(E)$} (H);
+      %% Flows out of
+      \path [line, very thick] (H) to node [midway, above] (TextNode) {$\gamma_HH$} (-1.75\horzskip,0\vertskip);
+      \path [line, very thick] (E) to node [midway, below] (TextNode) {$d_EE$} (1.75\horzskip,0\vertskip);
+      %% Vertical line
+      \draw [dashed, very thick, color=red] (0\horzskip,-1\vertskip) -- (0\horzskip,1\vertskip);
+      %% Text
+      \node [color=red] at (-1\horzskip,-1\vertskip) {Human population};
+      \node [color=red] at (1\horzskip,-1\vertskip) {Environment};
+    \end{tikzpicture}    
+  \end{center}  
+  $1/\gamma_H$ mean infectious period, $1/d_E$ mean lifetime of the agent in the environment, $c_H$ growth rate of the agent due to the human population, $g(E)$ ``force of infection'' (I would say ``incidence'') of the agent on human population
+\end{frame}
+
+\begin{frame}{Incidence function}
+  \begin{equation}
+    \label{eq:incidence_function_Capasso}
+    g(E) = N\beta ph(E)
+  \end{equation}
+  where
+  \begin{itemize}
+    \item $N$ total human population
+    \item $\beta$ fraction of susceptible individuals in $N$
+    \item $p$ fraction exposed to contaminated environment per unit time (``probability per unit time to have a ``snack'' of contaminated food'')
+    \item $h(E)$ probability for an exposed susceptible to get the infection
+  \end{itemize}
+  Typically, we would assume $p$ and $\beta$ independent of $E$ and $H$ and $h$ to be saturating
+\end{frame}
+
+\begin{frame}
+  To ensure \eqref{eq:incidence_function_Capasso} satisfies these conditions, we can assume
+  \begin{itemize}
+    \item $0<g(e_1)<g(e_2)$ for $0<e_1<e_2$
+    \item $g(0)=0$
+    \item $g''(z)<0$ for all $z>0$
+    \item $0<g'_+(0)<\infty$  (right derivative)
+    \item $\lim_{z\to\infty}\frac{g(z)}{z}<\frac{d_E\gamma_H}{c_H}$
+  \end{itemize}
+  \vfill
+  Of course, we also assume $d_E,c_H,\gamma_H>0$
+\end{frame}
+
+\begin{frame}{The model}
+  \begin{subequations}
+    \label{sys:capasso_EH}
+    \begin{align}
+      E' &= c_HH-d_EE \label{sys:capasso_EH_dE} \\
+      H' &= g(E)-\gamma_HH \label{sys:capasso_EH_dH}
+    \end{align}
+  \end{subequations}
+  \begin{center}
+    \def\vertskip{*1.75}
+    \def\horzskip{*2}
+    \begin{tikzpicture}[scale=1, transform shape]
+      \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (H) {$H$};
+      \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (E) {$E$};
+      %% Flows between
+      \path [line, very thick, bend left] (H) to node [near end, above] (TextNode) {$c_HH$} (E);
+      \path [line, very thick, bend left] (E) to node [near end, below] (TextNode) {$g(E)$} (H);
+      %% Flows out of
+      \path [line, very thick] (H) to node [midway, above] (TextNode) {$\gamma_HH$} (-1.75\horzskip,0\vertskip);
+      \path [line, very thick] (E) to node [midway, below] (TextNode) {$d_EE$} (1.75\horzskip,0\vertskip);
+      %% Vertical line
+      \draw [dashed, very thick, color=red] (0\horzskip,-1\vertskip) -- (0\horzskip,1\vertskip);
+      %% Text
+      \node [color=red] at (-1\horzskip,-1\vertskip) {Human population};
+      \node [color=red] at (1\horzskip,-1\vertskip) {Environment};
+    \end{tikzpicture}    
+  \end{center}
+  \vfill
+  Pay attention to the flows..! $E'$ does not have a $-g(E)$ and $H'$ does not have $-c_HH$. Why?
+\end{frame}
+
+\begin{frame}
+  Let
+  \begin{equation}
+    \label{eq:R0_capasso}
+    \R_0 = \frac{g'_+(0)c_H}{d_E\gamma_H}
+  \end{equation}
+  \begin{theorem}
+    \begin{itemize}
+      \item If $0<\R_0<1$, then \eqref{sys:capasso_EH} admits only the trivial equilibrium in the positive orthant, which is GAS
+      \item If $\R_0>1$, then two EP exist: $(0,0)$, which is unstable, and $z^\star=(E^\star,H^\star)$ with $E^\star,H^\star>0$, GAS in $\IR_+^2\setminus\{0,0\}$
+    \end{itemize}
+  \end{theorem}
+\end{frame}
+
+
+\begin{frame}{Adding a periodic component}
+  Assume $p$ in \eqref{eq:incidence_function_Capasso} takes the form 
+  \begin{equation}
+    p(t)=p(t+\omega)>0,\quad t\in\IR
+  \end{equation}
+  i.e., $p$ has period $\omega$. So we now consider the incidence
+  \begin{equation}
+    \label{eq:incidence_Capasso_periodic}
+    g(t,E)=p(t)h(E)
+  \end{equation}
+  with $h$ having the properties prescribed earlier.
+  Letting 
+  \begin{equation}
+    p_{min} := \min_{0\leq t\leq\omega}p(t),\quad
+    p_{max} := \max_{0\leq t\leq\omega}p(t)
+  \end{equation}
+  then we require that 
+  \begin{equation}
+    \lim_{z\to\infty}\frac{g(z)}{z}<\frac{d_E\gamma_H}{c_Hp_{max}}
+  \end{equation}
+\end{frame}
+
+
+\begin{frame}
+  Let
+  \begin{equation}
+    \label{eq:R0_capasso_periodic}
+    \R_0^{min} = \frac{c_Hp_{min}h'_+(0)}{d_E\gamma_H},\quad 
+    \R_0^{max} = \frac{c_Hp_{max}h'_+(0)}{d_E\gamma_H}
+  \end{equation}
+  \begin{theorem}
+    \begin{itemize}
+      \item If $0<\R_0^{max}<1$, then \eqref{sys:capasso_EH} with incidence \eqref{eq:incidence_Capasso_periodic} always goes to extinction
+      \item If $\R_0^{min}>1$, then a unique nontrivial periodic endemic state exists for \eqref{sys:capasso_EH} with incidence \eqref{eq:incidence_Capasso_periodic}
+    \end{itemize}
+  \end{theorem}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\section{A model for zoonotic transmission of waterborne disease}
+
+\begin{frame}{Zoonotic transmission of waterborne disease}
+  Waters, Hamilton, Sidhu, Sidhu, Dunbar. \href{https://doi-org.uml.idm.oclc.org/10.1007/s11538-015-0136-y}{Zoonotic transmission of waterborne disease: a mathematical model}. 
+  \emph{Bull Math Biol}  (2016)
+
+  Used for instance to model Giardia transmission from possums to humans
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \def\vertskip{*2}
+    \def\horzskip{*3}
+    \begin{tikzpicture}[scale=1, transform shape]
+      \node [rectangle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (S_H) {Susceptible humans};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (I_H) {Infectious humans};
+      \node [rectangle, fill=gray!10, text=black] at (-1\horzskip,2\vertskip) (S_A) {Susceptible animals};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,2\vertskip) (I_A) {Infectious animals};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (W) {Live oo/cysts in water};
+      %% Flows 
+      \path [line, very thick] (S_H.south east) to node [midway, below] (TextNode) {P2P transmission} (I_H.south west);
+      \path [line, dashed, very thick] (S_H.north east) to node [near end, above] (TextNode) {conversion of oo/cysts to infection} (I_H.north west);
+      \path [line, very thick, bend left] (I_H) to node [midway, below] (TextNode) {recovery} (S_H);
+      \path [line, very thick] (S_A.north east) to node [midway, above] (TextNode) {A2A transmission} (I_A.north west);
+      \path [line, very thick] (I_A.south west) to node [midway, below] (TextNode) {recovery} (S_A.south east);
+      %% Flows of W
+      \path [line, dashed, very thick] (W) to node [midway, above] (TextNode) {Death of oo/cysts in water} (-2\horzskip,1\vertskip);
+      \path [line, dashed, very thick] (W) to node [near start, left] (TextNode) {pick up rate} (0\horzskip,0.35\vertskip);
+      \path [line, dashed, very thick] (I_A) to node [midway, below] (TextNode) {deposit rate} (W);
+    \end{tikzpicture}    
+  \end{center}  
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \def\vertskip{*2}
+    \def\horzskip{*2}
+    \begin{tikzpicture}[scale=1.25, transform shape]
+      \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (S_H) {$S_H$};
+      \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (I_H) {$I_H$};
+      \node [circle, fill=gray!10, text=black] at (-1\horzskip,2\vertskip) (S_A) {$S_A$};
+      \node [circle, fill=gray!10, text=black] at (1\horzskip,2\vertskip) (I_A) {$I_A$};
+      \node [circle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (W) {$W$};
+      %% Flows between
+      \path [line, very thick] (S_H) to node [midway, below] (TextNode) {$\beta_H$} (I_H);
+      \path [line, dashed, very thick, bend left] (S_H) to node [near end, above] (TextNode) {$\rho$} (I_H);
+      \path [line, very thick, bend left] (I_H) to node [midway, below] (TextNode) {$\gamma_HI_H$} (S_H);
+      \path [line, very thick, bend left] (S_A) to node [midway, above] (TextNode) {$\beta_A$} (I_A);
+      \path [line, very thick, bend left] (I_A) to node [midway, above] (TextNode) {$\gamma_AI_A$} (S_A);
+      %% Flows of W
+      \path [line, dashed, very thick] (W) to node [midway, above] (TextNode) {$\mu W$} (-0.75\horzskip,1\vertskip);
+      \path [line, dashed, very thick] (W) to node [near start, left] (TextNode) {$\eta$} (0\horzskip,0.35\vertskip);
+      \path [line, dashed, very thick] (I_A) to node [midway, below, sloped] (TextNode) {$\alpha I_A$} (W);
+    \end{tikzpicture}    
+  \end{center}  
+\end{frame}
+
+
+\begin{frame}{The full model}
+  \begin{subequations}
+    \label{sys:WaterHamilton_etal}
+    \begin{align}
+      S_A' &= -\beta_AS_AI_A+\gamma_AI_A \\
+      I_A' &= \beta_AS_AI_A-\gamma_AI_A \\
+      W' &= \alpha I_A-\eta W(S_H+I_H)-\mu W \\
+      S_H' &= -\rho\eta WS_H-\beta_HS_HI_H+\gamma_HI_H \\
+      I_H' &= \rho\eta WS_H+\beta_HS_HI_H-\gamma_HI_H 
+    \end{align}
+  \end{subequations}
+  \vfill
+  Considered with $N_A=S_A+I_A$ and $N_H=S_H+I_H$ constant
+\end{frame}
+
+\begin{frame}{Simplified model}
+  Because $N_A$ and $N_H$ are constant, \eqref{sys:WaterHamilton_etal} can be simplified:
+  \begin{subequations}
+    \label{sys:WaterHamilton_etal_simplified}
+    \begin{align}
+      I_A' &= \beta_AN_AI_A-\gamma_AI_A-\beta_AI_A^2 \\
+      W' &= \alpha I_A-\eta WN_H-\mu W \\
+      I_H' &= \rho\eta W(N_H-I_H)+\beta_HN_HI_H-\gamma_HI_H-\beta_HI_H^2 
+    \end{align}
+  \end{subequations}
+  \vfill
+  Three EP: DFE $(0,0,0)$; endemic disease in humans because of H2H transmission; endemic in both H and A because of W
+\end{frame}
+
+
+\begin{frame}
+  Three EP: DFE $(0,0,0)$; endemic disease in humans because of H2H transmission; endemic in both H and A because of W
+  \vfill
+  Let
+  \begin{equation}
+    \R_{0A} = \frac{\beta_A}{\gamma_A}N_A\quad\text{and}\quad
+    \R_{0H} = \frac{\beta_H}{\gamma_H}N_H
+  \end{equation}
+  \vfill
+  \begin{itemize}
+    \item DFE LAS if $\R_{0A}<1$ and $\R_{0H}<1$, unstable if $\R_{0A}>1$ or $\R_{0H}>1$
+    \item If $\R_{0H}>1$ and $\R_{0A}<1$, \eqref{sys:WaterHamilton_etal_simplified} goes to EP with endemicity only in humans
+    \item Endemic EP with both A and H requires $\R_{0A}>1$ and $\R_{0H}<1$
+  \end{itemize}
+  Note that proof is \textbf{not} global
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\section{A few models of schistosomiasis}
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\subsection{A first model of Woolhouse}
+\begin{frame}{A model of Woolhouse}
+  Woolhouse. \href{}{On the application of mathematical models of schistosome transmission dynamics. I. Natural transmission}. \emph{Acta Tropica} \textbf{49}:241-270 (1991)
+\end{frame}
+
+\begin{frame}{The model}
+  Population of $H$ individuals using a body of water containing $N$ snails
+  \vfill
+  $i_H$ mean number of schistosomes per person and $i_S$ the proportion of patent infections in snails 
+  (prevalence)
+  \vfill
+  \begin{subequations}
+    \label{sys:Woolhouse}
+    \begin{align}
+      i_H' &= \alpha Ni_S-\gamma i_H \\
+      i_S' &= \beta Hi_H(1-i_S)-\mu_2 i_S
+    \end{align}
+  \end{subequations}
+  \begin{itemize}
+    \item $\alpha$ number of schistosomes produced per person per infected snail per unit time
+    \item $1/\gamma$ average life expectancy of a schistosome
+    \item $1/\mu_2$ average life expectancy of an infected snail
+    \item $\beta$ transmission parameter
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  Let the basic reproductive rate for schistosomes be
+  \begin{equation}
+    \label{eq:R0_Woolhouse}
+    \R_0 = \frac{\alpha N\beta H}{\gamma\mu_2}
+  \end{equation}
+  \vfill
+  \eqref{sys:Woolhouse} has two EP
+  \begin{itemize}
+    \item $(i_H^\star,i_S^\star)=(0,0)$, LAS when $\R_0<1$ and unstable when $\R_0>1$
+    \item $(i_H^\star,i_S^\star)=\left(\dfrac{\alpha N}{\gamma}-\dfrac{\mu_2}{\beta H},1-\dfrac{1}{\R_0}\right)$, which only ``exists'' when $\R_0>1$ (and is LAS then)
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\subsection{A second model of Woolhouse -- Latency}
+\begin{frame}{Extending the model}
+  Interval between infection of a snail and onset of patency (release of cercariae) is \emph{prepatent} or \emph{latent} period
+  \begin{subequations}
+    \label{sys:Woolhouse2}
+    \begin{align}
+      i_H' &= \alpha Ni_S-\gamma i_H \\
+      \ell_S' &= \beta Hi_H(1-\ell_S-i_S)-\sigma\ell_S-\mu_1\ell_S \\
+      i_S' &= \sigma\ell_S-\mu_2 i_S
+    \end{align}
+  \end{subequations}
+  \begin{itemize}
+    \item $1/\sigma$ average duration of prepatent period
+    \item $f=\sigma/(\sigma+\mu_1)$ fraction of infected snails surviving prepatent period
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  The basic reproductive rate for schistosomes is now
+  \begin{equation}
+    \label{eq:R0_Woolhouse2}
+    \R_0 = f\frac{\alpha N\beta H}{\gamma\mu_2}
+  \end{equation}
+  \vfill
+  \eqref{sys:Woolhouse2} has endemic EP
+  \[
+    (i_H^\star,i_S^\star)=\left(\dfrac{\alpha N\sigma}{\gamma(\sigma+\mu_2)}-\dfrac{\mu_2(\sigma+\mu_1)}{\beta H(\sigma+\mu_2)},\frac{\sigma}{\sigma+\mu_2}\left(1-\dfrac{1}{\R_0}\right)\right)
+  \]
+\end{frame}
+
+\begin{frame}
+  Also has models
+  \begin{itemize}
+    \item where snails lose infectiousness (assumed to happen sometimes)
+    \item with larval population dynamics
+    \item single variable models
+    \item human immigration and emigration
+    \item reservoir hosts
+  \end{itemize}
+  \vfill
+  Really worth a read
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\subsection{A third model of Woolhouse -- Heterogeneous contacts}
+\begin{frame}{Heterogeneities in contact rates}
+  $I_{i}$ the number of schistosomes in person $i=1,\ldots,H$ and $i_{Sj}$ the proportion of patent infected snails in site $j=1,\ldots,L$ ($L$ sites each supporting $N$ snails)
+  \vfill
+  \begin{center}
+    \def\vertskip{*2}
+    \def\horzskip{*1.5}
+    \begin{tikzpicture}[scale=1, transform shape]
+      \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (site1) {$i_{S1}$};
+      \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (site2) {$i_{S2}$};
+      \node [circle, fill=gray!10, text=black] at (-1\horzskip,1\vertskip) (indiv1) {$I_1$};
+      \node [circle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (indiv2) {$I_2$};
+      \node [circle, fill=gray!10, text=black] at (1\horzskip,1\vertskip) (indiv3) {$I_3$};
+      %% Flows between
+      \path [line, very thick] (indiv1) to node [midway, below] (TextNode) {} (site1);
+      \path [line, very thick] (indiv2) to node [near end, above] (TextNode) {} (site1);
+      \path [line, very thick] (indiv2) to node [midway, below] (TextNode) {} (site2);
+      \path [line, very thick] (indiv3) to node [midway, above] (TextNode) {} (site2);
+      % Text
+      \node [color=red] at (-2\horzskip,1\vertskip) {Individuals};
+      \node [color=red] at (-2\horzskip,0\vertskip) {Sites};
+    \end{tikzpicture}    
+  \end{center}  
+\end{frame}
+
+\begin{frame}
+  $I_{i}$ the number of schistosomes in person $i=1,\ldots,H$ and $i_{Sj}$ the proportion of patent infected snails in site $j=1,\ldots,L$ ($L$ sites each supporting $N$ snails)
+  \begin{subequations}
+    \label{sys:Woolhouse_3}
+    \begin{align}
+      I_{i}' &= \alpha\left(\sum_j \eta_{ij}Ni_{Sj}\right)-\gamma I_{i} \\
+      i_{Sj}' &= \beta\left(\sum_i \eta_{ij}I_i\right)(1-i_{Sj})-\mu_2 i_{Sj}
+    \end{align}
+  \end{subequations}
+  \vfill
+  $\eta_{ij}$ rate of water contact by individual $i$ at site $j$
+  \vfill  
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\subsection{Spatial aspects -- Cholera in Haiti}
+\begin{frame}{Spatial aspects -- Cholera in Haiti}
+  Tuite, Tien, Eisenberg, Earn, Ma \& Fisman.
+  \href{https://doi.org/10.7326/0003-4819-154-9-201105030-00334}{Cholera Epidemic in Haiti, 2010: Using a Transmission Model to Explain Spatial Spread of Disease and Identify Optimal Control Interventions}. \emph{Annals of Internal Medicine} \textbf{154}(9) (2011)
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \def\vertskip{*1}
+    \def\horzskip{*4.5}
+    \begin{tikzpicture}[scale=0.9, transform shape]
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1.5\vertskip) (S_p) {$s_p$};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,1.5\vertskip) (I_p) {$i_p$};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,1.5\vertskip) (R_p) {$r_p$};
+      \node [circle, fill=gray!10, text=black] at (0.5\horzskip,4\vertskip) (W_p) {$W_p$};
+      \node [circle, fill=black, color=red, text=white] at (0.5\horzskip,1.5\vertskip) (lambda_p) {$\lambda_ps_p$};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,-1.5\vertskip) (S_q) {$s_q$};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,-1.5\vertskip) (I_q) {$i_q$};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,-1.5\vertskip) (R_q) {$r_q$};
+      \node [circle, fill=gray!10, text=black] at (0.5\horzskip,-4\vertskip) (W_q) {$W_q$};
+      %% Boxes
+      \path [line, rounded corners, thin] (-0.2\horzskip,0.8\vertskip) -- (-0.2\horzskip,4.75\vertskip) -- (2.2\horzskip,4.75\vertskip) -- (2.2\horzskip,0.8\vertskip) -- cycle;
+      \path [line, rounded corners, thin] (-0.2\horzskip,-0.8\vertskip) -- (-0.2\horzskip,-4.75\vertskip) -- (2.2\horzskip,-4.75\vertskip) -- (2.2\horzskip,-0.8\vertskip) -- cycle;
+      %% Flows in p
+      \draw [very thick, color=yellow] (S_p) -- (lambda_p);
+      \path [line, very thick] (lambda_p) to node [midway, above] (TextNode) {} (I_p);
+      \path [line, very thick] (I_p) to node [midway, above] (TextNode) {$\gamma i_p$} (R_p);
+      \path [line, very thick, dashed] (I_p) to node [midway, above] (TextNode) {$\xi i_p$} (W_p);
+      \path [line, very thick, dashed] (W_p) to node [midway, left] (TextNode) {$\beta_WW_p$} (lambda_p);
+      \path [line, very thick] (W_p) to node [midway, above] (TextNode) {$\xi W_p$} (0.1\horzskip,4\vertskip);
+      %% Flows in q
+      \path [line, very thick] (S_q) to node [midway, above] (TextNode) {$\lambda_qs_q$} (I_q);
+      \path [line, very thick] (I_q) to node [midway, above] (TextNode) {$\gamma i_q$} (R_q);
+      \path [line, very thick, dashed] (I_q) to node [midway, above] (TextNode) {$\xi i_q$} (W_q);
+      \path [line, very thick] (W_q) to node [midway, above] (TextNode) {$\xi W_q$} (0.1\horzskip,-4\vertskip);
+      %% lambda_p
+      \path [line, very thick, dashed] (I_q) to node [midway, left] (TextNode) {$\frac{\kappa P_pP_q}{d^n}$} (lambda_p);
+      \path [line, very thick, dashed, bend right=50] (I_p) to node [midway, below] (TextNode) {$\beta_Ii_p$} (lambda_p);
+      %% Distance between patches
+      \draw [line,very thick] (1.5\horzskip,0.8\vertskip) -- (1.5\horzskip,-0.8\vertskip);
+      \draw [line,very thick] (1.5\horzskip,-0.8\vertskip) -- (1.5\horzskip,0.8\vertskip);
+      \node [color=yellow, text width=3cm] at (1.85\horzskip,0\vertskip) {Distance between regions (d)};
+    \end{tikzpicture}    
+  \end{center}  
+\end{frame}
+
+%\maxFrameImage{../FIGS/Tuite_etal_cholera_model.png}
+
+\begin{frame}
+  \textbf{Metapopulation} model with \textbf{implicit} movement
+  \begin{subequations}
+    \begin{align}
+      s_p' &= \mu-\lambda_ps_p-\mu s_p \\
+      i_p' &= -\gamma i_p+\lambda_p s_p-\mu i_p \\
+      r_p' &= \gamma r_p-\mu r_p \\
+      w_p' &= \xi(i_p-w_p)
+    \end{align}
+    with force of infection
+    \begin{equation}
+      \lambda_p = \beta_{i_p}i_p+\beta_{W_p}w_p+\sum_{q=1}^{10}\theta_{pq}i_q
+    \end{equation}
+  \end{subequations}
+  \vfill
+  Influence of infection prevalence in $q$ on incidence in $p$ is gravity-type
+  \[
+    \theta_{pq}=\kappa\frac{P_pP_q}{d^n}
+  \]
+\end{frame}
+
+\maxFrameImage{../FIGS/334ff2.jpeg}
+
+% \begin{frame}{A few other interesting papers}
+%   \begin{itemize}
+%     \item Joel E. Cohen. \href{https://www.jstor.org/stable/2096727}{Mathematical Models of Schistosomiasis}. \emph{Annual Review of Ecology and Systematics} \textbf{8}:209-233 (1977) 
+%   \end{itemize}
+% \end{frame}
 
 
 \end{document}
