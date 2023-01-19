@@ -4,7 +4,7 @@ library(latex2exp)
 # Load useful_functions.R, which contains the crop function
 source("useful_functions.R")
 
-# The growth functions
+# Functions for the incidence function
 h = function(E, params) {
   # Use a Michaelis Menten type growth
   OUT = params$g_max * E / (params$g_half+E)
@@ -58,12 +58,26 @@ sol_ODE = ode(y = IC,
               parms = params)
 
 
+# Are we plotting for a dark background
+plot_blackBG = TRUE
+# Plot (and save) the result
+png("../FIGS/Capasso_ETP_1.png", width = 1000, height = 600)
+if (plot_blackBG) {
+  par(bg = 'black', fg = 'white') # set background to black, foreground white
+  colour = "white"
+} else {
+  colour = "black"
+}
 
 plot(sol_ODE[,"time"], sol_ODE[,"H"],
      type = "l", lwd = 2,
-     xlab = "Time (days)", ylab = "Value")
+     xlab = "Time (days)", ylab = "Value",
+     col.axis = colour, cex.axis = 2,
+     col.lab = colour, cex.lab = 2)
 lines(sol_ODE[,"time"], sol_ODE[,"E"], 
       lwd = 2, lty = 3)
 legend("bottomright", legend = c("H(t)", "E(t)"),
        lwd = c(2,2), lty = c(1,3), inset = 0.01)
+dev.off()
+#crop_figure("../FIGS/Capasso_ETP_1.png")
 

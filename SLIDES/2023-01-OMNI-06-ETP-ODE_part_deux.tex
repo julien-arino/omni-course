@@ -164,58 +164,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \subsection{The model of Capasso for ETP}
 
-\begin{frame}{A minimal model of V. Capasso}
-  \begin{center}
-    \def\vertskip{*1.75}
-    \def\horzskip{*2}
-    \begin{tikzpicture}[scale=1.5, transform shape]
-      \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (H) {$H$};
-      \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (E) {$E$};
-      %% Flows between
-      \path [line, very thick, bend left] (H) to node [near end, above] (TextNode) {$c_HH$} (E);
-      \path [line, very thick, bend left] (E) to node [near end, below] (TextNode) {$g(E)$} (H);
-      %% Flows out of
-      \path [line, very thick] (H) to node [midway, above] (TextNode) {$\gamma_HH$} (-1.75\horzskip,0\vertskip);
-      \path [line, very thick] (E) to node [midway, below] (TextNode) {$d_EE$} (1.75\horzskip,0\vertskip);
-      %% Vertical line
-      \draw [dashed, very thick, color=red] (0\horzskip,-1\vertskip) -- (0\horzskip,1\vertskip);
-      %% Text
-      \node [color=red] at (-1\horzskip,-1\vertskip) {Human population};
-      \node [color=red] at (1\horzskip,-1\vertskip) {Environment};
-    \end{tikzpicture}    
-  \end{center}  
-  $1/\gamma_H$ mean infectious period, $1/d_E$ mean lifetime of the agent in the environment, $c_H$ growth rate of the agent due to the human population, $g(E)$ ``force of infection'' (I would say ``incidence'') of the agent on human population
-\end{frame}
-
-\begin{frame}{Incidence function}
-  \begin{equation}
-    \label{eq:incidence_function_Capasso}
-    g(E) = h(E)N\beta p
-  \end{equation}
-  where
-  \begin{itemize}
-    \item $h(E)$ probability for an exposed susceptible to get the infection
-    \item $N$ total human population
-    \item $\beta$ fraction of susceptible individuals in $N$
-    \item $p$ fraction exposed to contaminated environment per unit time (``probability per unit time to have a ``snack'' of contaminated food'')
-  \end{itemize}
-  Typically, we would assume $p$ and $\beta$ independent of $E$ and $H$ and $h$ to be saturating
-\end{frame}
-
-\begin{frame}
-  To ensure \eqref{eq:incidence_function_Capasso} satisfies these conditions, we can assume
-  \begin{itemize}
-    \item $0<g(e_1)<g(e_2)$ for $0<e_1<e_2$
-    \item $g(0)=0$
-    \item $g''(z)<0$ for all $z>0$
-    \item $0<g'_+(0)<\infty$  (right derivative)
-    \item $\lim_{z\to\infty}\frac{g(z)}{z}<\frac{d_E\gamma_H}{c_H}$
-  \end{itemize}
-  \vfill
-  Of course, we also assume $d_E,c_H,\gamma_H>0$
-\end{frame}
-
-\begin{frame}{The model}
+\begin{frame}{Recall the base model of Capasso}
   \begin{subequations}
     \label{sys:capasso_EH}
     \begin{align}
@@ -242,9 +191,27 @@
       \node [color=red] at (1\horzskip,-1\vertskip) {Environment};
     \end{tikzpicture}    
   \end{center}
-  \vfill
-  Pay attention to the flows..! $E'$ does not have a $-g(E)$ and $H'$ does not have $-c_HH$. Why?
+  $1/\gamma_H$ mean infectious period, $1/d_E$ mean lifetime of the agent in the environment, $c_H$ growth rate of the agent due to the human population, $g(E)$ incidence of the agent on human population
 \end{frame}
+
+\begin{frame}{Incidence function}
+  \begin{equation}
+    \label{eq:incidence_function_Capasso}
+    g(E) = h(E)N\beta p
+  \end{equation}
+  where
+  \begin{itemize}
+    \item $h(E)$ probability for an exposed susceptible to get the infection
+    \item $N$ total human population
+    \item $\beta$ fraction of susceptible individuals in $N$
+    \item $p$ fraction exposed to contaminated environment per unit time (``probability per unit time to have a ``snack'' of contaminated food'')
+  \end{itemize}
+  Typically, we would assume $p$ and $\beta$ independent of $E$ and $H$ and $h$ to be saturating. We take a Holling type II functional response
+  \begin{equation}
+    h(E)=h_{max}\frac{E}{h_{half}+E}
+  \end{equation}
+\end{frame}
+
 
 \begin{frame}
   Let
@@ -259,6 +226,78 @@
     \end{itemize}
   \end{theorem}
 \end{frame}
+
+\begin{frame}[fragile]{Simulating (in \code{R}) -- Incidence function}
+\begin{lstlisting}
+h = function(E, params) {
+  # Use Michaelis Menten (Holling type II) growth
+  OUT = params$g_max * E / (params$g_half+E)
+  return(OUT)
+}
+g = function(E, params) {
+  OUT = params$N * params$beta * params$p * h(E,params)
+  return(OUT)
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{The right hand side}
+\begin{lstlisting}
+rhs_Capasso_ODE = function(t, x, params) {
+  with(as.list(c(x, params)), {
+    dE = c_H*H-d_E*E
+    dH = g(E, params)-gamma_H*H
+    list(c(dE, dH))
+  })
+}  
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Setting parameters}
+\begin{lstlisting}
+# Put parameters in a list
+params = list()
+params$N = 1000       # Total population
+params$gamma_H = 1/10 # Infectious period
+params$d_E = 1/5      # Lifetime agent
+params$c_H = 0.1      # Flow from humans
+# Human characteristics and behaviour
+params$beta = 0.2 # Fraction susceptible
+params$p = 0.1    # Probability of having "snack"
+# Growth function
+params$g_max = 10
+params$g_half = 100
+# Final time
+params$t_f = 150  
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Running and plotting (base)}
+\begin{lstlisting}
+IC <- c(E = 10, H = 0)
+tspan = seq(from = 0, to = params$t_f, by = 0.1)
+
+sol_ODE = ode(y = IC,
+              func = rhs_Capasso_ODE,
+              times = tspan,
+              parms = params)
+
+plot(sol_ODE[,"time"], sol_ODE[,"H"],
+      type = "l", lwd = 2,
+      xlab = "Time (days)", ylab = "Value")
+lines(sol_ODE[,"time"], sol_ODE[,"E"], 
+      lwd = 2, lty = 3)
+legend("bottomright", legend = c("H(t)", "E(t)"),
+        lwd = c(2,2), lty = c(1,3), inset = 0.01)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \includegraphics[width=\textwidth]{../FIGS/Capasso_ETP_1}
+  \end{center}
+\end{frame}
+
 
 
 \begin{frame}{Adding a periodic component}
