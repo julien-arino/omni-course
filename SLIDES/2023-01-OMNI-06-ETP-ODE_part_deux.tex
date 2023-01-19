@@ -28,36 +28,10 @@
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
-\section{A few models of Cvjetanovi\'c}
-
-\begin{frame}
-  \begin{itemize}
-    \item Cvjetanovi\'c, Grab, Uemura \& World Health Organization. \href{https://apps.who.int/iris/handle/10665/43033}{Dynamics of acute bacterial diseases : epidemiological models and their application in public health}. World Health Organization (1978)  
-    \item Briscoe. \href{https://doi.org/10.1093/ije/9.3.265}{On the use of simple analytic mathematical models of communicable diseases}.
-    \emph{International Journal of Epidemiology} \textbf{9}(3) (1980)
-  \end{itemize}
-  \vfill
-  Models of (Branko) Cvjetanovi\'c are in discrete time and quite detailed on the epi side
-\end{frame}
+\section{Some considerations about numerics}
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
-\subsection{A tetanus model}
-
-\begin{frame}{Tetanus}
-  Bacterial infection caused by \emph{Clostridium tetani}
-  \vfill
-  Spores everywhere in the environment, including soil, dust, and manure
-  \vfill
-  Spores develop into bacteria when they enter the body
-  \vfill
-  Not spread P2P (so not a classic model)
-  \vfill
-  Incubation period usually 3-21 days (average 8 days). Can range from 1 day to several months, depending on the kind of wound. Most cases occur within 14 days
-  \vfill
-  1 to 2 in 10 cases are fatal
-\end{frame}
-
-\maxFrameImage{../FIGS/tetanus-vacc-media_inverted.jpg}
+\subsection{The tetanus model of Cvjetanovi\'c}
 
 \begin{frame}
   \begin{center}
@@ -129,7 +103,7 @@
   \end{center}  
 \end{frame}
 
-\begin{frame}{The discrete-time tetanus model (my notation)}
+\begin{frame}{The discrete-time tetanus model (notation mine)}
   \begin{subequations}
     \begin{align}
       \Delta S_b &= bT \\
@@ -151,21 +125,22 @@
   \end{subequations}
 \end{frame}
 
-\begin{frame}
-  PI: period of incubation. Mean duration 6 days for newborn and 8 days for general population. Corresponding daily rate of exit $\varepsilon_b=0.1667$ and $\varepsilon=0.125$
-
-  PS: period of sickness. Mean duration 3 days for newborn and 14 days for general population. So daily rate of exit $\gamma_b=0.3333$ per sick newborn and $\gamma=0.0714$ for sick general in general population.
-
-  Mortality from tetanus. Untreated tetanus cases, fatality rate 90\% for newborn $S_b$ and 40\% for general population. Treated: 80\% for newborn and 30\% general population.
-
-  Immunity. Tetanus cases do not lead to immunity to reinfection. But as a general rule, recovered people are vaccinated. Convalescents and general population effectively immunised by complete course of vaccination go to $R$ for average 10 years, Daily rate of exit is $\nu=0.000274$ per person.
-  Newborn to women vaccinated during pregnancy are temporarily protected by maternal antibodies and pass through $R_b$ for a mean duration of 6 months. Daily rate of exit $\nu_b=0.005479$ per immunised newborn
-
-  Live birth rate 35 per 1,000 population and annual crude death rate 15 per 1,000 population (annual rate of growth 2\%). Corresponding daily birth and death rates $b=0.00009889$ and $d=0.0000411$ per person.
+\begin{frame}{Parameter assumptions -- Tetanus}
+  \begin{itemize}
+    \item \textbf{Incubation period --} Mean duration 6 days for newborn and 8 days for general population $\Rightarrow$ daily rate of exit $\varepsilon_b=0.1667$ and $\varepsilon=0.125$
+    \item \textbf{Period of sickness --} Mean duration 3 days for newborn and 14 days for general population $\Rightarrow$ daily rate of exit $\gamma_b=0.3333$ per sick newborn and $\gamma=0.0714$ for sick general in general population
+    \item \textbf{Mortality from tetanus --} Untreated tetanus cases, fatality rate 90\% for newborn $S_b$ and 40\% for general population. Treated: 80\% for newborn and 30\% general population
+    \item \textbf{Immunity --} Tetanus cases do not lead to immunity to reinfection. But as a general rule, recovered people are vaccinated. Convalescents and general population effectively immunised by complete course of vaccination go to $R$ for average 10 years, daily rate of exit is $\nu=0.000274$ per person.
+    \item \textbf{Immunity of newborns --} Newborn to women vaccinated during pregnancy are temporarily protected by maternal antibodies and pass through $R_b$ for a mean duration of 6 months. Daily rate of exit $\nu_b=0.005479$ per immunised newborn
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{Force of infection}
-  No H2H transmission $\implies$ incidence proportional to number of susceptible individuals and force of infection, which quantifies combined effect of all variables involved in infection process:
+\begin{frame}{Parameter assumptions -- Demography}
+  Live birth rate 35 per 1,000 population and annual crude death rate 15 per 1,000 population (annual rate of growth 2\%) $\Rightarrow$ daily birth and death rates $b=0.00009889$ and $d=0.0000411$ per person, respectively
+\end{frame}
+
+\begin{frame}{Parameter assumptions -- Force of infection}
+  No H2H transmission $\Rightarrow$ incidence proportional to number of susceptible individuals and force of infection, which quantifies combined effect of all variables involved in infection process:
   \begin{itemize}
     \item degree of soil contamination with \emph{Clostridium tetani}
     \item climate
@@ -174,7 +149,9 @@
     \item socioeconomic conditions
     \item level of medical care for the wounded and during deliveries
   \end{itemize}
+\end{frame}
 
+\begin{frame}
   Force of infection acting on newborn ($\lambda_b$) and susceptible population ($\lambda$) fixed at 3 different levels adequate for reproducing the following stable annual incidence rates of tetanus cases in the community
   \begin{itemize}
     \item For newborn, 200 cases, 400 cases and 600 cases per 100,000 newborn
@@ -185,9 +162,7 @@
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-\section{A model of Capasso for ETP}
+\subsection{The model of Capasso for ETP}
 
 \begin{frame}{A minimal model of V. Capasso}
   \begin{center}
@@ -328,9 +303,7 @@
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-\section{A model for zoonotic transmission of waterborne disease}
+\subsection{A model for zoonotic transmission of waterborne disease}
 
 \begin{frame}{Zoonotic transmission of waterborne disease}
   Waters, Hamilton, Sidhu, Sidhu, Dunbar. \href{https://doi-org.uml.idm.oclc.org/10.1007/s11538-015-0136-y}{Zoonotic transmission of waterborne disease: a mathematical model}. 
@@ -438,13 +411,7 @@
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-\section{A few models of schistosomiasis}
-
-%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-\subsection{A first model of Woolhouse}
+\subsection{The first schistosomiasis model of Woolhouse}
 \begin{frame}{A model of Woolhouse}
   Woolhouse. \href{}{On the application of mathematical models of schistosome transmission dynamics. I. Natural transmission}. \emph{Acta Tropica} \textbf{49}:241-270 (1991)
 \end{frame}
@@ -486,53 +453,7 @@
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
-\subsection{A second model of Woolhouse -- Latency}
-\begin{frame}{Extending the model}
-  Interval between infection of a snail and onset of patency (release of cercariae) is \emph{prepatent} or \emph{latent} period
-  \begin{subequations}
-    \label{sys:Woolhouse2}
-    \begin{align}
-      i_H' &= \alpha Ni_S-\gamma i_H \\
-      \ell_S' &= \beta Hi_H(1-\ell_S-i_S)-\sigma\ell_S-\mu_1\ell_S \\
-      i_S' &= \sigma\ell_S-\mu_2 i_S
-    \end{align}
-  \end{subequations}
-  \begin{itemize}
-    \item $1/\sigma$ average duration of prepatent period
-    \item $f=\sigma/(\sigma+\mu_1)$ fraction of infected snails surviving prepatent period
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  The basic reproductive rate for schistosomes is now
-  \begin{equation}
-    \label{eq:R0_Woolhouse2}
-    \R_0 = f\frac{\alpha N\beta H}{\gamma\mu_2}
-  \end{equation}
-  \vfill
-  \eqref{sys:Woolhouse2} has endemic EP
-  \[
-    (i_H^\star,i_S^\star)=\left(\dfrac{\alpha N\sigma}{\gamma(\sigma+\mu_2)}-\dfrac{\mu_2(\sigma+\mu_1)}{\beta H(\sigma+\mu_2)},\frac{\sigma}{\sigma+\mu_2}\left(1-\dfrac{1}{\R_0}\right)\right)
-  \]
-\end{frame}
-
-\begin{frame}
-  Also has models
-  \begin{itemize}
-    \item where snails lose infectiousness (assumed to happen sometimes)
-    \item with larval population dynamics
-    \item single variable models
-    \item human immigration and emigration
-    \item reservoir hosts
-  \end{itemize}
-  \vfill
-  Really worth a read
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-\subsection{A third model of Woolhouse -- Heterogeneous contacts}
+\subsection{The third schistosomiasis model of Woolhouse -- Heterogeneous contacts}
 \begin{frame}{Heterogeneities in contact rates}
   $I_{i}$ the number of schistosomes in person $i=1,\ldots,H$ and $i_{Sj}$ the proportion of patent infected snails in site $j=1,\ldots,L$ ($L$ sites each supporting $N$ snails)
   \vfill
