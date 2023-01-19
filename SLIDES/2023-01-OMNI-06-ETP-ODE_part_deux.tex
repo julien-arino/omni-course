@@ -187,6 +187,7 @@
 
 \begin{frame}{Similarities/differences}
   \begin{center}
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabular}{cc}
       $x'=f(x), x(t_0)=x_0, x\in\IR^n$
       &
@@ -196,9 +197,12 @@
       Fixed points (FP) $x^\star$ s.t. $f(x^\star)=x^\star$ \\
       LAS EP $\Leftrightarrow$ $s(Df(x^\star))<0$
       &
-      LAS FP $\Leftrightarrow$ $\rho(Df(x^\star))<1$
+      LAS FP $\Leftrightarrow$ $\rho(Df(x^\star))<1$ \\
+      
     \end{tabular}    
   \end{center}
+  \vfill
+  ($s$ the \textbf{spectral abscissa} $=\max\{\Re(\lambda)$, $\lambda\in\mathsf{Sp}(Df(x^\star))\}$, $\rho$ the \textbf{spectral radius} $=\max\{|\lambda|,\lambda\in\mathsf{Sp}(Df(x^\star))\}$)
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
@@ -226,7 +230,7 @@
       \path [line, very thick] (H) to node [midway, above] (TextNode) {$\gamma_HH$} (-1.75\horzskip,0\vertskip);
       \path [line, very thick] (E) to node [midway, below] (TextNode) {$d_EE$} (1.75\horzskip,0\vertskip);
       %% Vertical line
-      \draw [dashed, very thick, color=red] (0\horzskip,-1\vertskip) -- (0\horzskip,1\vertskip);
+      \draw [dashed, very thick, color=red] (0\horzskip,-1.1\vertskip) -- (0\horzskip,0.65\vertskip);
       %% Text
       \node [color=red] at (-1\horzskip,-1\vertskip) {Human population};
       \node [color=red] at (1\horzskip,-1\vertskip) {Environment};
