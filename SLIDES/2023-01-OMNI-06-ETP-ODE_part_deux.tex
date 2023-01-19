@@ -159,6 +159,47 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{A crash course on discrete-time systems}
+  We have seen systems of ordinary differential equations (ODE) of the form 
+  \[
+    \frac{d}{dt}x(t)=f(x(t))
+  \]
+  often written omitting dependence on $t$, i.e.,
+  \begin{equation}\label{eq:ODE}
+    x' = f(x)
+  \end{equation}
+  where $x\in\IR^n$ and $f:\IR^n\to\IR^n$. The system is considered together with an initial condition $x(t_0)=x_0\in\IR^n$.
+  \vfill
+  The \textbf{independent} variable $t\in\IR$
+\end{frame}
+
+\begin{frame}
+  A discrete-time system takes the form
+  \begin{equation}\label{eq:DTS}
+    x(t+\Delta t) = f(x(t))
+  \end{equation}
+  where $x(t)\in\IR^n$ and $f:\IR^n\to\IR^n$
+  \vfill
+  In a discrete-time system, $t$ is discrete and can be assumed to be in $\IZ$ or $\IN$ (in practice, before ``recasting'', it is in $\mathbb{Q}$), we often write $x(t+1)=f(x(t))$, assuming $\Delta t=1$..
+  \vfill
+  Together with an initial condition $x(t_0)=x_0\in\IR^n$, this constitutes a sequence that describes the evolution of the state $x$
+\end{frame}
+
+\begin{frame}{Similarities/differences}
+  \begin{center}
+    \begin{tabular}{cc}
+      $x'=f(x), x(t_0)=x_0, x\in\IR^n$
+      &
+      $x(t+\Delta t)=f(x(t)), x(t_0)=x_0, x\in\IR^n$ \\
+      Equilibria (EP) $x^\star$ s.t. $f(x^\star)=0_{\IR^n}$ 
+      &
+      Fixed points (FP) $x^\star$ s.t. $f(x^\star)=x^\star$ \\
+      LAS EP $\Leftrightarrow$ $s(Df(x^\star))<0$
+      &
+      LAS FP $\Leftrightarrow$ $\rho(Df(x^\star))<1$
+    \end{tabular}    
+  \end{center}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
@@ -212,20 +253,6 @@
   \end{equation}
 \end{frame}
 
-
-\begin{frame}
-  Let
-  \begin{equation}
-    \label{eq:R0_capasso}
-    \R_0 = \frac{g'_+(0)c_H}{d_E\gamma_H}
-  \end{equation}
-  \begin{theorem}
-    \begin{itemize}
-      \item If $0<\R_0<1$, then \eqref{sys:capasso_EH} admits only the trivial equilibrium in the positive orthant, which is GAS
-      \item If $\R_0>1$, then two EP exist: $(0,0)$, which is unstable, and $z^\star=(E^\star,H^\star)$ with $E^\star,H^\star>0$, GAS in $\IR_+^2\setminus\{0,0\}$
-    \end{itemize}
-  \end{theorem}
-\end{frame}
 
 \begin{frame}[fragile]{Simulating (in \code{R}) -- Incidence function}
 \begin{lstlisting}
@@ -298,6 +325,46 @@ legend("bottomright", legend = c("H(t)", "E(t)"),
   \end{center}
 \end{frame}
 
+\begin{frame}
+  Let
+  \begin{equation}
+    \label{eq:R0_capasso}
+    \R_0 = \frac{g'_+(0)c_H}{d_E\gamma_H}
+  \end{equation}
+  \begin{theorem}
+    \begin{itemize}
+      \item If $0<\R_0<1$, then \eqref{sys:capasso_EH} admits only the trivial equilibrium in the positive orthant, which is GAS
+      \item If $\R_0>1$, then two EP exist: $(0,0)$, which is unstable, and $z^\star=(E^\star,H^\star)$ with $E^\star,H^\star>0$, GAS in $\IR_+^2\setminus\{0,0\}$
+    \end{itemize}
+  \end{theorem}
+\end{frame}
+
+\begin{frame}[fragile]{Computing $\R_0$}
+  With the chosen $g$, we have
+  \[
+    g'(E) = 
+    \frac{N \beta pg_{half} g_{max}}
+    {(g_{half}+E)^2}
+  \]
+  whence
+  \[
+    g_+'(0)=\frac{N \beta pg_{max}}
+    {g_{half}}
+  \]
+  and thus
+  \begin{equation}
+    \R_0 = \frac{N \beta pg_{max}}
+    {g_{half}}\;\frac{c_H}{d_E\gamma_H}
+  \end{equation}
+\begin{lstlisting}
+R0 = function(params) {
+  with(as.list(params), {
+    R0 = N*beta*p*g_max*c_H / (g_half*d_E*gamma_H)
+    return(R0)
+  })
+}  
+\end{lstlisting}
+\end{frame}
 
 
 \begin{frame}{Adding a periodic component}

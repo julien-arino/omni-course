@@ -24,6 +24,13 @@ rhs_Capasso_ODE = function(t, x, params) {
   })
 }
 
+R0 = function(params) {
+  with(as.list(params), {
+    R0 = N*beta*p*g_max*c_H / (g_half*d_E*gamma_H)
+    return(R0)
+  })
+}
+
 # Put parameters in a list
 params = list()
 params$N = 1000       # Total population
@@ -81,3 +88,4 @@ legend("bottomright", legend = c("H(t)", "E(t)"),
 dev.off()
 #crop_figure("../FIGS/Capasso_ETP_1.png")
 
+R0(params)
