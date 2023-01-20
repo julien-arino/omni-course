@@ -239,6 +239,7 @@
   $1/\gamma_H$ mean infectious period, $1/d_E$ mean lifetime of the agent in the environment, $c_H$ growth rate of the agent due to the human population, $g(E)$ incidence of the agent on human population
 \end{frame}
 
+
 \begin{frame}{Incidence function}
   \begin{equation}
     \label{eq:incidence_function_Capasso}
@@ -371,6 +372,149 @@ R0 = function(params) {
 \end{frame}
 
 
+\begin{frame}{Showing things dynamically using Shiny}
+  Shiny is an \code{R} library (made by RStudio) to easily make interactive displays
+  \vfill
+  See some documentation \href{https://shiny.rstudio.com/}{here}
+  \vfill
+  Some examples \href{https://shiny.rstudio.com/gallery/}{here} and \href{https://github.com/rstudio/shiny-examples}{here}
+  \vfill
+  Create a subdirectory with the name of your app and a file called \code{app.R} in there
+\end{frame}
+
+
+\begin{frame}{Structure of a Shiny app}
+  Need to use library \code{shiny}
+  \vfill
+  Define two elements
+  \begin{itemize}
+    \item \code{ui}, which sets up the user interface
+    \item \code{server}, which handles the computations, generation of figures, etc.
+  \end{itemize}
+  \vfill
+  I explain different elements as we progress. See the code in the \code{CODE} folder and \code{Capasso\_simpleETP\_shiny} subdirectory
+\end{frame}
+
+
+\begin{frame}[fragile]{The \code{ui} part}
+Here, we use \code{fluidPage} to create the UI. There are other functions: \code{fillPage}, \code{fixedPage}, \code{flowLayout}, \code{navbarPage}, \code{sidebarLayout}, \code{splitLayout} and \code{verticalLayout}
+\vfill
+\begin{lstlisting}
+# Define UI
+ui <- fluidPage(
+)  
+\end{lstlisting}
+\vfill
+We now fill this function
+\end{frame}
+
+\begin{frame}[fragile]{A title and some sliders}
+\begin{lstlisting}
+# Application title
+titlePanel("Simple ETP model of Capasso"),
+# Sidebar with slider inputs for some parameters
+sidebarLayout(
+    sidebarPanel(
+      sliderInput("inv_gamma_H",
+                  "Average infectious period (days):",
+                  min = 0,
+                  max = 30,
+                  value = 10),
+      sliderInput("c_H",
+                  "Flow from humans:",
+                  min = 0,
+                  max = 2,
+                  value = 0.1),
+\end{lstlisting}
+\vfill
+Plus other sliders for all other parameters
+\end{frame}
+
+\begin{frame}[fragile]{Note the little trick...}
+\begin{lstlisting}
+sliderInput("inv_gamma_H",
+"Average infectious period (days):",
+min = 0,
+max = 30,
+value = 10),
+\end{lstlisting}
+\vfill
+I want to give a user friendly version of the parameter value, using the number of days rather than the inverse, whereas the model uses the latter. So I prefix the variable name by \code{inv\_} and then process as follows in the \code{server} part
+\begin{lstlisting}
+params <- list()
+for (param_name in names(input)) {
+  if (grepl("inv_", param_name)) {
+    new_param_name = gsubs("inv_", "", param_name)
+    params[[new_param_name]] = 1/input[[param_name]]
+  } else {
+    params[[param_name]] = input[[param_name]]
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{The \code{server} part}
+\begin{lstlisting}
+# Define server logic required to draw the result
+server <- function(input, output) {
+  ##
+  ## Expression that generates the plot
+  ##
+  output$a_odePlot <- renderPlot({
+    params <- list()
+    params$N = 1000 # We could let this vary, we don't here..
+    for (param_name in names(input)) {
+      if (grepl("inv_", param_name)) {
+        new_param_name = gsub("inv_", "", param_name)
+        params[[new_param_name]] = 1/input[[param_name]]
+      } else {
+        params[[param_name]] = input[[param_name]]
+      }
+    }
+    # Initial conditions and time span
+    IC <- c(E = 10, H = 0)
+    tspan <- seq(from = 0, to = params$tf, by = 0.1)  
+\end{lstlisting}
+\end{frame}
+  
+
+\begin{frame}[fragile]{The \code{server} part (continued)}
+\begin{lstlisting}
+    # Compute solution
+    sol_ODE = ode(y = IC,
+                  func = rhs_Capasso_ODE,
+                  times = tspan,
+                  parms = params)
+    # Make the plot
+    y_max = max(max(sol_ODE[,"H"]),sol_ODE[,"E"])
+    plot(sol_ODE[,"time"], sol_ODE[,"H"],
+          type = "l", lwd = 2,
+          xlab = "Time (days)", ylab = "Value",
+          ylim = c(0, y_max),
+          main = sprintf("R_0=%1.2f", round(R0(params),2)))
+    lines(sol_ODE[,"time"], sol_ODE[,"E"], 
+          lwd = 2, lty = 3)
+    legend("topleft", legend = c("H(t)", "E(t)"),
+            lwd = c(2,2), lty = c(1,3), inset = 0.01)
+  })
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Finally, run the code}
+\begin{lstlisting}
+# Run the application 
+shinyApp(ui = ui, server = server)
+\end{lstlisting}
+\end{frame}
+  
+
+\begin{frame}
+The simulation functions can be outside of \code{ui} or \code{server}, this makes the code neater
+\vfill
+These functions are the same as before (right hand side, g, h, R0), so they are not shown here
+\end{frame}
+
 \begin{frame}{Adding a periodic component}
   Assume $p$ in \eqref{eq:incidence_function_Capasso} takes the form 
   \begin{equation}
@@ -407,115 +551,6 @@ R0 = function(params) {
       \item If $\R_0^{min}>1$, then a unique nontrivial periodic endemic state exists for \eqref{sys:capasso_EH} with incidence \eqref{eq:incidence_Capasso_periodic}
     \end{itemize}
   \end{theorem}
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-\subsection{A model for zoonotic transmission of waterborne disease}
-
-\begin{frame}{Zoonotic transmission of waterborne disease}
-  Waters, Hamilton, Sidhu, Sidhu, Dunbar. \href{https://doi-org.uml.idm.oclc.org/10.1007/s11538-015-0136-y}{Zoonotic transmission of waterborne disease: a mathematical model}. 
-  \emph{Bull Math Biol}  (2016)
-
-  Used for instance to model Giardia transmission from possums to humans
-\end{frame}
-
-\begin{frame}
-  \begin{center}
-    \def\vertskip{*2}
-    \def\horzskip{*3}
-    \begin{tikzpicture}[scale=1, transform shape]
-      \node [rectangle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (S_H) {Susceptible humans};
-      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (I_H) {Infectious humans};
-      \node [rectangle, fill=gray!10, text=black] at (-1\horzskip,2\vertskip) (S_A) {Susceptible animals};
-      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,2\vertskip) (I_A) {Infectious animals};
-      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (W) {Live oo/cysts in water};
-      %% Flows 
-      \path [line, very thick] (S_H.south east) to node [midway, below] (TextNode) {P2P transmission} (I_H.south west);
-      \path [line, dashed, very thick] (S_H.north east) to node [near end, above] (TextNode) {conversion of oo/cysts to infection} (I_H.north west);
-      \path [line, very thick, bend left] (I_H) to node [midway, below] (TextNode) {recovery} (S_H);
-      \path [line, very thick] (S_A.north east) to node [midway, above] (TextNode) {A2A transmission} (I_A.north west);
-      \path [line, very thick] (I_A.south west) to node [midway, below] (TextNode) {recovery} (S_A.south east);
-      %% Flows of W
-      \path [line, dashed, very thick] (W) to node [midway, above] (TextNode) {Death of oo/cysts in water} (-2\horzskip,1\vertskip);
-      \path [line, dashed, very thick] (W) to node [near start, left] (TextNode) {pick up rate} (0\horzskip,0.35\vertskip);
-      \path [line, dashed, very thick] (I_A) to node [midway, below] (TextNode) {deposit rate} (W);
-    \end{tikzpicture}    
-  \end{center}  
-\end{frame}
-
-\begin{frame}
-  \begin{center}
-    \def\vertskip{*2}
-    \def\horzskip{*2}
-    \begin{tikzpicture}[scale=1.25, transform shape]
-      \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (S_H) {$S_H$};
-      \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (I_H) {$I_H$};
-      \node [circle, fill=gray!10, text=black] at (-1\horzskip,2\vertskip) (S_A) {$S_A$};
-      \node [circle, fill=gray!10, text=black] at (1\horzskip,2\vertskip) (I_A) {$I_A$};
-      \node [circle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (W) {$W$};
-      %% Flows between
-      \path [line, very thick] (S_H) to node [midway, below] (TextNode) {$\beta_H$} (I_H);
-      \path [line, dashed, very thick, bend left] (S_H) to node [near end, above] (TextNode) {$\rho$} (I_H);
-      \path [line, very thick, bend left] (I_H) to node [midway, below] (TextNode) {$\gamma_HI_H$} (S_H);
-      \path [line, very thick, bend left] (S_A) to node [midway, above] (TextNode) {$\beta_A$} (I_A);
-      \path [line, very thick, bend left] (I_A) to node [midway, above] (TextNode) {$\gamma_AI_A$} (S_A);
-      %% Flows of W
-      \path [line, dashed, very thick] (W) to node [midway, above] (TextNode) {$\mu W$} (-0.75\horzskip,1\vertskip);
-      \path [line, dashed, very thick] (W) to node [near start, left] (TextNode) {$\eta$} (0\horzskip,0.35\vertskip);
-      \path [line, dashed, very thick] (I_A) to node [midway, below, sloped] (TextNode) {$\alpha I_A$} (W);
-    \end{tikzpicture}    
-  \end{center}  
-\end{frame}
-
-
-\begin{frame}{The full model}
-  \begin{subequations}
-    \label{sys:WaterHamilton_etal}
-    \begin{align}
-      S_A' &= -\beta_AS_AI_A+\gamma_AI_A \\
-      I_A' &= \beta_AS_AI_A-\gamma_AI_A \\
-      W' &= \alpha I_A-\eta W(S_H+I_H)-\mu W \\
-      S_H' &= -\rho\eta WS_H-\beta_HS_HI_H+\gamma_HI_H \\
-      I_H' &= \rho\eta WS_H+\beta_HS_HI_H-\gamma_HI_H 
-    \end{align}
-  \end{subequations}
-  \vfill
-  Considered with $N_A=S_A+I_A$ and $N_H=S_H+I_H$ constant
-\end{frame}
-
-\begin{frame}{Simplified model}
-  Because $N_A$ and $N_H$ are constant, \eqref{sys:WaterHamilton_etal} can be simplified:
-  \begin{subequations}
-    \label{sys:WaterHamilton_etal_simplified}
-    \begin{align}
-      I_A' &= \beta_AN_AI_A-\gamma_AI_A-\beta_AI_A^2 \\
-      W' &= \alpha I_A-\eta WN_H-\mu W \\
-      I_H' &= \rho\eta W(N_H-I_H)+\beta_HN_HI_H-\gamma_HI_H-\beta_HI_H^2 
-    \end{align}
-  \end{subequations}
-  \vfill
-  Three EP: DFE $(0,0,0)$; endemic disease in humans because of H2H transmission; endemic in both H and A because of W
-\end{frame}
-
-
-\begin{frame}
-  Three EP: DFE $(0,0,0)$; endemic disease in humans because of H2H transmission; endemic in both H and A because of W
-  \vfill
-  Let
-  \begin{equation}
-    \R_{0A} = \frac{\beta_A}{\gamma_A}N_A\quad\text{and}\quad
-    \R_{0H} = \frac{\beta_H}{\gamma_H}N_H
-  \end{equation}
-  \vfill
-  \begin{itemize}
-    \item DFE LAS if $\R_{0A}<1$ and $\R_{0H}<1$, unstable if $\R_{0A}>1$ or $\R_{0H}>1$
-    \item If $\R_{0H}>1$ and $\R_{0A}<1$, \eqref{sys:WaterHamilton_etal_simplified} goes to EP with endemicity only in humans
-    \item Endemic EP with both A and H requires $\R_{0A}>1$ and $\R_{0H}<1$
-  \end{itemize}
-  Note that proof is \textbf{not} global
 \end{frame}
 
 
@@ -674,13 +709,6 @@ R0 = function(params) {
   \]
 \end{frame}
 
-\maxFrameImage{../FIGS/334ff2.jpeg}
-
-% \begin{frame}{A few other interesting papers}
-%   \begin{itemize}
-%     \item Joel E. Cohen. \href{https://www.jstor.org/stable/2096727}{Mathematical Models of Schistosomiasis}. \emph{Annual Review of Ecology and Systematics} \textbf{8}:209-233 (1977) 
-%   \end{itemize}
-% \end{frame}
 
 
 \end{document}
