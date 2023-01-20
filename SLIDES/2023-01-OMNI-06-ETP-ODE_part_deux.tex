@@ -202,7 +202,12 @@
     \end{tabular}    
   \end{center}
   \vfill
-  ($s$ the \textbf{spectral abscissa} $=\max\{\Re(\lambda)$, $\lambda\in\mathsf{Sp}(Df(x^\star))\}$, $\rho$ the \textbf{spectral radius} $=\max\{|\lambda|,\lambda\in\mathsf{Sp}(Df(x^\star))\}$)
+  \textbf{Notation --} 
+  if $A\in\M_n$ is a matrix, $\mathsf{Sp}(A)=\{\lambda\in\IC: A\bv=\lambda\bv,\bv\neq\b0\}$ is its \textbf{spectrum}, i.e., the set of all its eigenvalues and
+  \begin{itemize}
+    \item $s(A)=\max\{\Re(\lambda)$, $\lambda\in\mathsf{Sp}(A)\}$ is its \textbf{spectral abscissa}
+    \item $\rho(A)=\max\{|\lambda|,\lambda\in\mathsf{Sp}(A)\}$ is its \textbf{spectral radius}
+  \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
@@ -453,6 +458,13 @@ for (param_name in names(input)) {
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}
+  The simulation functions can be outside of \code{ui} or \code{server}, this makes the code neater
+  \vfill
+  These functions are the same as before (right hand side, g, h, R0), so they are not shown here
+\end{frame}
+    
+
 \begin{frame}[fragile]{The \code{server} part}
 \begin{lstlisting}
 # Define server logic required to draw the result
@@ -508,12 +520,6 @@ shinyApp(ui = ui, server = server)
 \end{lstlisting}
 \end{frame}
   
-
-\begin{frame}
-The simulation functions can be outside of \code{ui} or \code{server}, this makes the code neater
-\vfill
-These functions are the same as before (right hand side, g, h, R0), so they are not shown here
-\end{frame}
 
 \begin{frame}{Adding a periodic component}
   Assume $p$ in \eqref{eq:incidence_function_Capasso} takes the form 

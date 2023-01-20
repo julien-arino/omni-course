@@ -125,7 +125,7 @@ server <- function(input, output) {
          main = sprintf("R_0=%1.2f", round(R0(params),2)))
     lines(sol_ODE[,"time"], sol_ODE[,"E"], 
           lwd = 2, lty = 3)
-    legend("bottomright", legend = c("H(t)", "E(t)"),
+    legend("topleft", legend = c("H(t)", "E(t)"),
            lwd = c(2,2), lty = c(1,3), inset = 0.01)
   })
 }
