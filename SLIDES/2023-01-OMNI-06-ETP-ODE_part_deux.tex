@@ -68,11 +68,11 @@
   \end{center}  
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Flow diagram (demography not shown)}
   \begin{center}
-    \def\vertskip{*-1.5}
+    \def\vertskip{*-1.75}
     \def\horzskip{*1}
-    \begin{tikzpicture}[scale=1, transform shape]
+    \begin{tikzpicture}[scale=0.8, transform shape]
       \node [rectangle, fill=gray!10, text=black] at (-2\horzskip,0\vertskip) (S_nb) {$S_b$};
       \node [rectangle, fill=gray!10, text=black] at (2\horzskip,0\vertskip) (S) {$S$};
       \node [rectangle, fill=gray!10, text=black] at (-2\horzskip,1\vertskip) (L_nb) {$L_b$};
@@ -81,24 +81,23 @@
       \node [rectangle, fill=gray!10, text=black] at (2\horzskip,2\vertskip) (I) {$I$};
       \node [rectangle, fill=gray!10, text=black] at (0\horzskip,3\vertskip) (D) {$D$};
       \node [rectangle, fill=gray!10, text=black] at (0\horzskip,4\vertskip) (R) {$R$};
-      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,5\vertskip) (R_p) {$R_b$};
-      %% Flows
-      \path [line, very thick] (S_nb) to node [midway, above] (TextNode) {} (S);
-      \path [line, very thick] (S_nb) to node [midway, above] (TextNode) {} (L_nb);
-      \path [line, very thick] (L_nb) to node [midway, above] (TextNode) {} (I_nb);
-      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (D);
-      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (R);
-      \path [line, very thick, bend right=60] (S_nb.west) to node [midway, above] (TextNode) {} (R_p.west);
-      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (S.-170);
-      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (R);
-      \path [line, very thick] (I_nb) to node [midway, above] (TextNode) {} (D);
-      \path [line, very thick] (S) to node [midway, above] (TextNode) {} (L);
-      \path [line, very thick] (L) to node [midway, above] (TextNode) {} (I);
-      \path [line, very thick, bend left=55] (I) to node [midway, above] (TextNode) {} (S.south west);
-      \path [line, very thick] (I) to node [midway, above] (TextNode) {} (R);
-      \path [line, very thick] (I) to node [midway, above] (TextNode) {} (D);
-      \path [line, very thick, bend right=60] (R.east) to node [midway, above] (TextNode) {} (S.-10);      
-      \path [line, very thick, bend right=60, anchor=east] (R_p.east) to node [midway, above] (TextNode) {} (S.east);      
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,4.9\vertskip) (R_p) {$R_b$};
+      %% Flows (newborn)
+      \path [line, very thick] (S_nb) to node [midway,above] (TextNode) {$b(1-\lambda_b)(T-R)$} (S);
+      \path [line, very thick] (S_nb) to node [midway,right] (TextNode) {$\lambda_bb(T-R)$} (L_nb);
+      \path [line, very thick] (L_nb) to node [midway,above,sloped] (TextNode) {$\varepsilon_bL_b$} (I_nb);
+      \path [line, very thick] (I_nb) to node [midway,above,sloped] (TextNode) {$\pi_{I_bD}\gamma_bI_b$} (D);
+      \path [line, very thick] (I_nb) to node [midway,below,sloped] (TextNode) {$\pi_{I_bR}\gamma_bI_b$} (R);
+      \path [line, very thick, bend right=60] (S_nb.west) to node [midway,above] (TextNode) {$bR$} (R_p.west);
+      \path [line, very thick] (I_nb) to node [sloped,pos=0.4,above] (TextNode) {$\pi_{I_bS}\gamma_bI_b$} (S.-170);
+      \path [line, very thick, bend right=60, anchor=east] (R_p.east) to node [midway,below,sloped] (TextNode) {$\nu_bI_b$} (S.east);      
+      %% Flows (others)
+      \path [line, very thick] (S) to node [midway,right] (TextNode) {$\lambda S$} (L);
+      \path [line, very thick] (L) to node [midway,above,sloped] (TextNode) {$\varepsilon L$} (I);
+      \path [line, very thick, bend left=55] (I) to node [sloped,midway,below] (TextNode) {$\tau_{IS}\gamma I$} (S.south west);
+      \path [line, very thick] (I) to node [midway,below,sloped] (TextNode) {$\pi_{IR}\gamma I$} (R);
+      \path [line, very thick] (I) to node [midway,above,sloped] (TextNode) {$\pi_{ID}\gamma I$} (D);
+      \path [line, very thick, bend right=60] (R.east) to node [midway,below,sloped] (TextNode) {$\nu R$} (S.-10);
     \end{tikzpicture}    
   \end{center}  
 \end{frame}
@@ -107,14 +106,15 @@
   \begin{subequations}
     \begin{align}
       \Delta S_b &= bT \\
-      \Delta S &= b(1-\lambda_b)(T-R)+\nu R+\nu_bI+R_{5,2}\gamma_bI_b+R_{6,2}\gamma I-(\lambda+d-\delta_T)S \\
+      \Delta S &= b(1-\lambda_b)(T-R)+\nu R+\nu_bI_b+\nu I+\pi_{I_bS}\gamma_bI_b+\pi_{IS}\gamma I \\ 
+      &\quad -(\lambda+d-\delta_T)S \nonumber \\
       \Delta L_b &= \lambda_bb(T-R)-(\varepsilon_b+d-\delta_T)L_b \\
       \Delta L &= \lambda S-(\varepsilon+d-\delta_T)L \\
       \Delta I_b &= \varepsilon_bL_b-(\gamma_b+d-\delta_T)I \\
       \Delta I &= \varepsilon L-(\gamma+d-\delta_T)I \\
-      \Delta R &= R_{5,7}\gamma_bI_b+R_{6,7}\gamma I-(\nu+d-\delta_T)R \\
+      \Delta R &= \pi_{I_bR}\gamma_bI_b+\pi_{IR}\gamma I-(\nu+d-\delta_T)R \\
       \Delta R_b &= bR-(\nu_b+d-\delta_T)R_b\\
-      \Delta D &= R_{5,9}\gamma_bI_b+R_{6,9}\gamma I
+      \Delta D &= \pi_{I_bD}\gamma_bI_b+\pi_{ID}\gamma I
     \end{align}
     where
     \begin{equation}
@@ -132,6 +132,28 @@
     \item \textbf{Mortality from tetanus --} Untreated tetanus cases, fatality rate 90\% for newborn $S_b$ and 40\% for general population. Treated: 80\% for newborn and 30\% general population
     \item \textbf{Immunity --} Tetanus cases do not lead to immunity to reinfection. But as a general rule, recovered people are vaccinated. Convalescents and general population effectively immunised by complete course of vaccination go to $R$ for average 10 years, daily rate of exit is $\nu=0.000274$ per person.
     \item \textbf{Immunity of newborns --} Newborn to women vaccinated during pregnancy are temporarily protected by maternal antibodies and pass through $R_b$ for a mean duration of 6 months. Daily rate of exit $\nu_b=0.005479$ per immunised newborn
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Deciding on infection outcome -- $\pi$}
+  Parameters $\pi$ are proportion of individuals who follow a certain route post-infection
+  \vfill
+  \begin{itemize}
+    \item $\pi_{I_b\bullet}$ proportion of infected newborn who
+    \begin{itemize}
+      \item $\pi_{I_bS}$ recover without immunity
+      \item $\pi_{I_bR}$ recover with immunity
+      \item $\pi_{I_bD}$ die (0.9)
+    \end{itemize}
+    $\pi_{I_bS}+\pi_{I_bR}+\pi_{I_bD}=1$
+    \vfill
+    \item $\pi_{I\bullet}$ proportion of infected who
+    \begin{itemize}
+      \item $\pi_{IS}$ recover without immunity
+      \item $\pi_{IR}$ recover with immunity
+      \item $\pi_{ID}$ die (0.4)
+    \end{itemize}
+    $\pi_{IS}+\pi_{IR}+\pi_{ID}=1$
   \end{itemize}
 \end{frame}
 
@@ -208,6 +230,96 @@
     \item $s(A)=\max\{\Re(\lambda)$, $\lambda\in\mathsf{Sp}(A)\}$ is its \textbf{spectral abscissa}
     \item $\rho(A)=\max\{|\lambda|,\lambda\in\mathsf{Sp}(A)\}$ is its \textbf{spectral radius}
   \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Simulating the system}
+The \code{R} package we use for ODE (\code{deSolve}) can also do discrete-time systems, with very little adaptation.. 
+\vfill
+The function call is then of the form 
+\begin{lstlisting}
+sol <- ode(func = tetanus_Cvjetanovic, y = IC, times = 0:30, 
+           parms = params, method = "iteration")
+\end{lstlisting}
+\vfill
+From the help for \code{ode}
+\begin{quote}
+  Method ``iteration'' is special in that here the function \code{func} should return the new value of the state variables rather than the rate of change
+\end{quote}
+\end{frame}
+
+\begin{frame}[fragile]{The right hand side}
+\begin{lstlisting}
+tetanus_Cvjetanovic = function(t, y, params) {
+  with(as.list(c(y, params)), {
+    T = S+L_b+L+I_b+I+R+R_b
+    dD = pi_IbD*gamma_b*I_b+pi_ID*gamma*I
+    delta_T = dD/T
+    dS_b = b*T
+    dS = b*(1-lambda_b)*(T-R)+nu*R+nu_b*I+pi_IbS*gamma_b*I_b +
+      pi_IS*gamma*I-(lambda+d-delta_T)*S
+    dL_b = lambda_b*b*(T-R)-(epsilon_b+d-delta_T)*L_b
+    dL = lambda*S-(epsilon+d-delta_T)*L
+    dI_b = epsilon_b*L_b-(gamma_b+d-delta_T)*I
+    dI = epsilon*L-(gamma+d-delta_T)*I
+    dR = pi_IbR*gamma_b*I_b+pi_IR*gamma*I-(nu+d-delta_T)*R
+    dR_b = b*R-(nu_b+d-delta_T)*R_b
+    list(c(S_b+dS_b,S+dS,L_b+dL_b,L+dL,I_b+dI_b,I+dI,R+dR,R_b+dR_b,D+dD))
+  })
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Set parameters}
+\begin{lstlisting}
+params = list()
+params$epsilon_b = 0.1667
+params$epsilon = 0.125
+params$gamma_b = 1/3
+params$gamma = 0.0714
+params$nu = 0.000274
+params$nu_b = 0.005479
+params$b = 0.00009889
+params$d = 0.0000411
+
+params$pi_IbS = 0.05
+params$pi_IS = 0.3
+params$pi_IbR = 0.05
+params$pi_IR = 0.3
+params$pi_IbD = 0.9
+params$pi_ID = 0.4
+
+params$lambda_b = 0.1
+params$lambda = 0.1  
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{A last few things then run}
+\begin{lstlisting}
+IC = c(S_b = 0,
+  S = 100000,
+  L_b = 0,
+  L = 0,
+  I_b = 0,
+  I = 0,
+  R = 0,
+  R_b = 0,
+  D = 0)
+tspan = 0:30 
+sol <- ode(func = tetanus_Cvjetanovic, y = IC, times = tspan, 
+      parms = params, method = "iteration")
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}{A few remarks about this model}
+To set $\lambda_b$ and $\lambda$, we need to explore numerically model response
+\vfill
+Discrete-time models can be analysed in pretty much the same way as continuous time ones, but this one will be hard: there is no DFFP!
+\vfill
+This means the usual methods for computing $\R_0$ will not work, as there is no DFFP to perturb away from...
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
@@ -559,25 +671,45 @@ shinyApp(ui = ui, server = server)
   \end{theorem}
 \end{frame}
 
+\begin{frame}[fragile]{How to add periodicity in numerics?}
+\begin{lstlisting}
+p_t = function(t, params) {
+  angle = 2*pi/params$p_period
+  OUT = cos(angle*t) # Make the base cos wave
+  OUT = OUT/2*(params$p_max-params$p_min) # Scale
+  OUT = OUT-min(OUT)+params$p_min # Shift up
+  return(OUT)
+}   
+g = function(E, params, t) {
+  OUT = params$N * params$beta * p_t(t, params) * h(E,params)
+  return(OUT)
+}
+R0 = function(params) {
+  with(as.list(params), {
+    R0 = list()
+    R0$min = N*beta*p_min*g_max*c_H / (g_half*d_E*gamma_H)
+    R0$max = N*beta*p_max*g_max*c_H / (g_half*d_E*gamma_H)
+    return(R0)
+  })
+}  
+\end{lstlisting}
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
 \subsection{The first schistosomiasis model of Woolhouse}
-\begin{frame}{A model of Woolhouse}
-  Woolhouse. \href{}{On the application of mathematical models of schistosome transmission dynamics. I. Natural transmission}. \emph{Acta Tropica} \textbf{49}:241-270 (1991)
-\end{frame}
-
 \begin{frame}{The model}
   Population of $H$ individuals using a body of water containing $N$ snails
   \vfill
-  $i_H$ mean number of schistosomes per person and $i_S$ the proportion of patent infections in snails 
+  $I_H$ mean number of schistosomes per person and $i_S$ the proportion of patent infections in snails 
   (prevalence)
   \vfill
   \begin{subequations}
     \label{sys:Woolhouse}
     \begin{align}
-      i_H' &= \alpha Ni_S-\gamma i_H \\
-      i_S' &= \beta Hi_H(1-i_S)-\mu_2 i_S
+      I_H' &= \alpha Ni_S-\gamma I_H \\
+      i_S' &= \beta HI_H(1-i_S)-\mu_2 i_S
     \end{align}
   \end{subequations}
   \begin{itemize}
@@ -586,6 +718,20 @@ shinyApp(ui = ui, server = server)
     \item $1/\mu_2$ average life expectancy of an infected snail
     \item $\beta$ transmission parameter
   \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Simulating -- The ODE}
+\begin{lstlisting}
+# Right hand side of the ODE
+rhs_Woolhouse1_ODE = function(t, x, params) {
+  with(as.list(c(x, params)), {
+    dI_H = alpha*N*i_S-gamma*I_H
+    di_S = beta*H*I_H*(1-i_S)-mu_2*i_S
+    list(c(dI_H, di_S))
+  })
+}  
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}
@@ -597,9 +743,49 @@ shinyApp(ui = ui, server = server)
   \vfill
   \eqref{sys:Woolhouse} has two EP
   \begin{itemize}
-    \item $(i_H^\star,i_S^\star)=(0,0)$, LAS when $\R_0<1$ and unstable when $\R_0>1$
-    \item $(i_H^\star,i_S^\star)=\left(\dfrac{\alpha N}{\gamma}-\dfrac{\mu_2}{\beta H},1-\dfrac{1}{\R_0}\right)$, which only ``exists'' when $\R_0>1$ (and is LAS then)
+    \item $(I_H^\star,i_S^\star)=(0,0)$, LAS when $\R_0<1$ and unstable when $\R_0>1$
+    \item $(I_H^\star,i_S^\star)=\left(\dfrac{\alpha N}{\gamma}-\dfrac{\mu_2}{\beta H},1-\dfrac{1}{\R_0}\right)$, which only ``exists'' when $\R_0>1$ (and is LAS then)
   \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Using $\R_0$ to set $\beta$}
+\begin{lstlisting}
+# Put parameters in a list
+params = list()
+params$H = 100        # Total human population
+params$N = 1000       # Total population snails
+params$alpha = 20     # Nb schistosomes/infected H/unit time
+params$gamma = 1/1000 # Life expectancy schistosome
+params$mu_2 = 1/70    # Life expectancy infected snail
+# Set beta through R_0:
+# R_0= alpha*N*beta*H/(gamma*mu_2),
+# so, given R_0, 
+# beta = R_0*gamma*mu_2/(alpha*N*H)
+params$R_0 = 2.5     # Desired value of R_0
+params$beta = params$R_0*params$gamma*params$mu_2 / 
+  (params$alpha*params$N*params$H)
+\end{lstlisting}
+\end{frame}
+    
+    
+  
+\begin{frame}[fragile]{Helping these computations}
+\begin{lstlisting}
+R0_Woolhouse_ODE = function(params) {
+  with(as.list(params), {
+    R0 = alpha*N*beta*H/(gamma*mu_2)
+    return(R0)
+  })
+}
+EEP_Woolhouse_ODE = function(params) {
+  with(as.list(params), {
+    OUT = list()
+    OUT$I_H = alpha*N/gamma-mu_2/(beta*H)
+    OUT$i_S = 1-1/R0_Woolhouse_ODE(params)
+    return(OUT)
+  })
+}  
+\end{lstlisting}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%
@@ -644,76 +830,119 @@ shinyApp(ui = ui, server = server)
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%
-\subsection{Spatial aspects -- Cholera in Haiti}
-\begin{frame}{Spatial aspects -- Cholera in Haiti}
-  Tuite, Tien, Eisenberg, Earn, Ma \& Fisman.
-  \href{https://doi.org/10.7326/0003-4819-154-9-201105030-00334}{Cholera Epidemic in Haiti, 2010: Using a Transmission Model to Explain Spatial Spread of Disease and Identify Optimal Control Interventions}. \emph{Annals of Internal Medicine} \textbf{154}(9) (2011)
+\begin{frame}{How to deal with large systems}
+A system like \eqref{sys:Woolhouse_3} is a \textbf{large system} of ODE, as there are $H+L$ differential equations, with that number potentially large
+\vfill
+Large systems of this type (very few different types of equations) are quite simple numerically but require some organisation\dots 
+\vfill
+Rather than name the state variables, it is better to use the vector \code{x} with indices for the different types of variables
 \end{frame}
 
-\begin{frame}
-  \begin{center}
-    \def\vertskip{*1}
-    \def\horzskip{*4.5}
-    \begin{tikzpicture}[scale=0.9, transform shape]
-      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1.5\vertskip) (S_p) {$s_p$};
-      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,1.5\vertskip) (I_p) {$i_p$};
-      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,1.5\vertskip) (R_p) {$r_p$};
-      \node [circle, fill=gray!10, text=black] at (0.5\horzskip,4\vertskip) (W_p) {$W_p$};
-      \node [circle, fill=black, color=red, text=white] at (0.5\horzskip,1.5\vertskip) (lambda_p) {$\lambda_ps_p$};
-      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,-1.5\vertskip) (S_q) {$s_q$};
-      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,-1.5\vertskip) (I_q) {$i_q$};
-      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,-1.5\vertskip) (R_q) {$r_q$};
-      \node [circle, fill=gray!10, text=black] at (0.5\horzskip,-4\vertskip) (W_q) {$W_q$};
-      %% Boxes
-      \path [line, rounded corners, thin] (-0.2\horzskip,0.8\vertskip) -- (-0.2\horzskip,4.75\vertskip) -- (2.2\horzskip,4.75\vertskip) -- (2.2\horzskip,0.8\vertskip) -- cycle;
-      \path [line, rounded corners, thin] (-0.2\horzskip,-0.8\vertskip) -- (-0.2\horzskip,-4.75\vertskip) -- (2.2\horzskip,-4.75\vertskip) -- (2.2\horzskip,-0.8\vertskip) -- cycle;
-      %% Flows in p
-      \draw [very thick, color=yellow] (S_p) -- (lambda_p);
-      \path [line, very thick] (lambda_p) to node [midway, above] (TextNode) {} (I_p);
-      \path [line, very thick] (I_p) to node [midway, above] (TextNode) {$\gamma i_p$} (R_p);
-      \path [line, very thick, dashed] (I_p) to node [midway, above] (TextNode) {$\xi i_p$} (W_p);
-      \path [line, very thick, dashed] (W_p) to node [midway, left] (TextNode) {$\beta_WW_p$} (lambda_p);
-      \path [line, very thick] (W_p) to node [midway, above] (TextNode) {$\xi W_p$} (0.1\horzskip,4\vertskip);
-      %% Flows in q
-      \path [line, very thick] (S_q) to node [midway, above] (TextNode) {$\lambda_qs_q$} (I_q);
-      \path [line, very thick] (I_q) to node [midway, above] (TextNode) {$\gamma i_q$} (R_q);
-      \path [line, very thick, dashed] (I_q) to node [midway, above] (TextNode) {$\xi i_q$} (W_q);
-      \path [line, very thick] (W_q) to node [midway, above] (TextNode) {$\xi W_q$} (0.1\horzskip,-4\vertskip);
-      %% lambda_p
-      \path [line, very thick, dashed] (I_q) to node [midway, left] (TextNode) {$\frac{\kappa P_pP_q}{d^n}$} (lambda_p);
-      \path [line, very thick, dashed, bend right=50] (I_p) to node [midway, below] (TextNode) {$\beta_Ii_p$} (lambda_p);
-      %% Distance between patches
-      \draw [line,very thick] (1.5\horzskip,0.8\vertskip) -- (1.5\horzskip,-0.8\vertskip);
-      \draw [line,very thick] (1.5\horzskip,-0.8\vertskip) -- (1.5\horzskip,0.8\vertskip);
-      \node [color=yellow, text width=3cm] at (1.85\horzskip,0\vertskip) {Distance between regions (d)};
-    \end{tikzpicture}    
-  \end{center}  
+\begin{frame}[fragile]{Indexing positions}
+\begin{lstlisting}
+params = list()
+params$H = 100        # Total human population
+params$L = 5          # Number of sites  
+\end{lstlisting}
+Then if we define
+\begin{lstlisting}
+params$idx_I_H = 1:params$H
+params$idx_i_S = (params$H+1):(params$H+params$L)  
+\end{lstlisting}
+in the ODE, we will be able to use something like
+\begin{lstlisting}
+I_H = x[params$idx_I_H]
+i_S = x[params$idx_i_S]
+\end{lstlisting}
 \end{frame}
 
-%\maxFrameImage{../FIGS/Tuite_etal_cholera_model.png}
-
-\begin{frame}
-  \textbf{Metapopulation} model with \textbf{implicit} movement
-  \begin{subequations}
-    \begin{align}
-      s_p' &= \mu-\lambda_ps_p-\mu s_p \\
-      i_p' &= -\gamma i_p+\lambda_p s_p-\mu i_p \\
-      r_p' &= \gamma r_p-\mu r_p \\
-      w_p' &= \xi(i_p-w_p)
-    \end{align}
-    with force of infection
-    \begin{equation}
-      \lambda_p = \beta_{i_p}i_p+\beta_{W_p}w_p+\sum_{q=1}^{10}\theta_{pq}i_q
-    \end{equation}
-  \end{subequations}
-  \vfill
-  Influence of infection prevalence in $q$ on incidence in $p$ is gravity-type
-  \[
-    \theta_{pq}=\kappa\frac{P_pP_q}{d^n}
-  \]
+\begin{frame}{Computing the incidence}
+Here again, easy to do (and computationally efficacious) provided you are careful
+\vfill
+$K=[\eta_{ij}]$ is an $H\times L$ matrix. Denote $I_H=(I_{1},\ldots,I_{H})^T$ and $i_S=(i_{S1},\ldots,i_{SL})^T$
+\vfill
+Then
+\[
+  \sum_j \eta_{ij}Ni_{Sj} = N\sum_j \eta_{ij}i_{Sj}
+  =K i_S
+\]
+and
+\[
+  \sum_i \eta_{ij}I_i = I_H^TK
+\]
 \end{frame}
+
+
+% %%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%
+% \subsection{Spatial aspects -- Cholera in Haiti}
+% \begin{frame}{Spatial aspects -- Cholera in Haiti}
+%   Tuite, Tien, Eisenberg, Earn, Ma \& Fisman.
+%   \href{https://doi.org/10.7326/0003-4819-154-9-201105030-00334}{Cholera Epidemic in Haiti, 2010: Using a Transmission Model to Explain Spatial Spread of Disease and Identify Optimal Control Interventions}. \emph{Annals of Internal Medicine} \textbf{154}(9) (2011)
+% \end{frame}
+
+% \begin{frame}
+%   \begin{center}
+%     \def\vertskip{*1}
+%     \def\horzskip{*4.5}
+%     \begin{tikzpicture}[scale=0.9, transform shape]
+%       \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1.5\vertskip) (S_p) {$s_p$};
+%       \node [rectangle, fill=gray!10, text=black] at (1\horzskip,1.5\vertskip) (I_p) {$i_p$};
+%       \node [rectangle, fill=gray!10, text=black] at (2\horzskip,1.5\vertskip) (R_p) {$r_p$};
+%       \node [circle, fill=gray!10, text=black] at (0.5\horzskip,4\vertskip) (W_p) {$W_p$};
+%       \node [circle, fill=black, color=red, text=white] at (0.5\horzskip,1.5\vertskip) (lambda_p) {$\lambda_ps_p$};
+%       \node [rectangle, fill=gray!10, text=black] at (0\horzskip,-1.5\vertskip) (S_q) {$s_q$};
+%       \node [rectangle, fill=gray!10, text=black] at (1\horzskip,-1.5\vertskip) (I_q) {$i_q$};
+%       \node [rectangle, fill=gray!10, text=black] at (2\horzskip,-1.5\vertskip) (R_q) {$r_q$};
+%       \node [circle, fill=gray!10, text=black] at (0.5\horzskip,-4\vertskip) (W_q) {$W_q$};
+%       %% Boxes
+%       \path [line, rounded corners, thin] (-0.2\horzskip,0.8\vertskip) -- (-0.2\horzskip,4.75\vertskip) -- (2.2\horzskip,4.75\vertskip) -- (2.2\horzskip,0.8\vertskip) -- cycle;
+%       \path [line, rounded corners, thin] (-0.2\horzskip,-0.8\vertskip) -- (-0.2\horzskip,-4.75\vertskip) -- (2.2\horzskip,-4.75\vertskip) -- (2.2\horzskip,-0.8\vertskip) -- cycle;
+%       %% Flows in p
+%       \draw [very thick, color=yellow] (S_p) -- (lambda_p);
+%       \path [line, very thick] (lambda_p) to node [midway, above] (TextNode) {} (I_p);
+%       \path [line, very thick] (I_p) to node [midway, above] (TextNode) {$\gamma i_p$} (R_p);
+%       \path [line, very thick, dashed] (I_p) to node [midway, above] (TextNode) {$\xi i_p$} (W_p);
+%       \path [line, very thick, dashed] (W_p) to node [midway, left] (TextNode) {$\beta_WW_p$} (lambda_p);
+%       \path [line, very thick] (W_p) to node [midway, above] (TextNode) {$\xi W_p$} (0.1\horzskip,4\vertskip);
+%       %% Flows in q
+%       \path [line, very thick] (S_q) to node [midway, above] (TextNode) {$\lambda_qs_q$} (I_q);
+%       \path [line, very thick] (I_q) to node [midway, above] (TextNode) {$\gamma i_q$} (R_q);
+%       \path [line, very thick, dashed] (I_q) to node [midway, above] (TextNode) {$\xi i_q$} (W_q);
+%       \path [line, very thick] (W_q) to node [midway, above] (TextNode) {$\xi W_q$} (0.1\horzskip,-4\vertskip);
+%       %% lambda_p
+%       \path [line, very thick, dashed] (I_q) to node [midway, left] (TextNode) {$\frac{\kappa P_pP_q}{d^n}$} (lambda_p);
+%       \path [line, very thick, dashed, bend right=50] (I_p) to node [midway, below] (TextNode) {$\beta_Ii_p$} (lambda_p);
+%       %% Distance between patches
+%       \draw [line,very thick] (1.5\horzskip,0.8\vertskip) -- (1.5\horzskip,-0.8\vertskip);
+%       \draw [line,very thick] (1.5\horzskip,-0.8\vertskip) -- (1.5\horzskip,0.8\vertskip);
+%       \node [color=yellow, text width=3cm] at (1.85\horzskip,0\vertskip) {Distance between regions (d)};
+%     \end{tikzpicture}    
+%   \end{center}  
+% \end{frame}
+
+% %\maxFrameImage{../FIGS/Tuite_etal_cholera_model.png}
+
+% \begin{frame}
+%   \textbf{Metapopulation} model with \textbf{implicit} movement
+%   \begin{subequations}
+%     \begin{align}
+%       s_p' &= \mu-\lambda_ps_p-\mu s_p \\
+%       i_p' &= -\gamma i_p+\lambda_p s_p-\mu i_p \\
+%       r_p' &= \gamma r_p-\mu r_p \\
+%       w_p' &= \xi(i_p-w_p)
+%     \end{align}
+%     with force of infection
+%     \begin{equation}
+%       \lambda_p = \beta_{i_p}i_p+\beta_{W_p}w_p+\sum_{q=1}^{10}\theta_{pq}i_q
+%     \end{equation}
+%   \end{subequations}
+%   \vfill
+%   Influence of infection prevalence in $q$ on incidence in $p$ is gravity-type
+%   \[
+%     \theta_{pq}=\kappa\frac{P_pP_q}{d^n}
+%   \]
+% \end{frame}
 
 
 
