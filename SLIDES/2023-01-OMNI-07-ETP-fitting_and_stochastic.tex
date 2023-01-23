@@ -1,0 +1,320 @@
+\documentclass[aspectratio=169]{beamer}
+
+%\documentclass[handout]{beamer}
+%% To make 4 per page
+%\usepackage{pgfpages}
+%\mode<handout>{\setbeamercolor{background canvas}{bg=white}}
+%\pgfpagesuselayout{4 on 1}[letterpaper,landscape]%,border shrink=5mm]
+
+\input{slides_setup_nonLightBoard_blackBG.tex}
+
+
+\title{Environmentally Transmitted Pathogens}
+\subtitle{Models}
+\author{Julien Arino}
+\date{January 2023}
+
+
+\begin{document}
+%\stretchon
+
+% The title page
+\begin{frame}[noframenumbering,plain]
+  \titlepage
+\end{frame}
+\addtocounter{page}{-1}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Fitting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{General principles}
+\begin{frame}{Fitting a model to parameters}
+Very simplified version of what is done in practice
+
+There are way more elaborate methods. See, e.g., 
+\begin{itemize}
+    \item Roda. \href{https://doi.org/10.1016/j.idm.2019.12.007}{Bayesian inference for dynamical systems}
+    \item Portet. \href{https://doi.org/10.1016/j.idm.2019.12.010}{A primer on model selection using the Akaike Information Criterion}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Parameter fitting problem}
+Assume given data points $(t_i,y_i)$, $i=1,\ldots,N$, with $y_i\in\IR^n$ and $t_i\in\I\subset\IR$, where $\I$ is some interval of time
+\vfill
+Assume model parameters are  in a set $\P$
+\vfill
+Solution to the ODE is $x(t,p)$ for $t\in\I$ and a given $p\in\P$ (we emphasise the dependent of the solution on the chosen point in parameter space)
+\vfill
+{
+    \setbeamercolor{block title}{bg=red!60, fg=black}
+    \setbeamercolor{block body}{bg=red!10, fg=black}
+    \begin{block}{Parameter fitting problem}
+        Find $p\in\P$ such that the solution $x(t,p)$ ``most closely matches'' the data points
+    \end{block}    
+}
+\end{frame}
+
+\begin{frame}
+    Could also be another type of system (discrete-time, continuous-time Markov chain -- in which case we would likely use mean solution over a number of realisations, etc.), but in any event, a time series somewhat comparable with the data 
+\end{frame}
+
+\begin{frame}{Mathematical formulation}
+We want to minimise the error function
+\begin{equation}\label{eq:general_error}
+    E(p) = \sum_{i=1}^N \|h(x(t_i))-y_i\|
+\end{equation}
+\begin{itemize}
+    \item $h:\IR^n\to\IR^n$ is an \textbf{observation function}, which selects the relevant part of the solution to match to the data
+    \item The norm is usually the Euclidean norm, but could be different depending on the problem at hand
+    \item Given a parametre $p$ in an (admissible part) of parameter space, compute the solution to the ODE, then deduce $E(p)$
+    \item Use a minimisation algorithm to find a minimum of $E(p)$ while varying $p$  
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{What are $y_i$ and $h(x(t_i))$ here?}
+    Infectious disease data is ofen in terms of \emph{incidence} (number of new cases per unit time) rather than \emph{prevalence} (number of cases currently present in the population)
+    \vfill
+    In, say, an SIR model with mass action incidence, incidence is $\beta SI$, so, using the Euclidean norm
+    \begin{equation}
+        E(p)=\sum_{i=1}^N(\beta S(t_i)I(t_i)-y_i)^2
+    \end{equation}
+    where $S(t_i)$ and $I(t_i)$ are the values of the numerical solution to the ODE at the times $t_i$ in the data 
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A simple example -- The logistic function}
+
+\begin{frame}{}
+    To illustrate the method, let us use  a simple case and fit the logistic equation $N'=rN(1-N/K)$ to some population data
+    \vfill 
+    We use El Salvador, whose population seems to be experiencing growth slowdown. We get population data from the World Bank
+    \vfill
+    We seek values of $r$ and $K$ that minimise $E(p)$ given by \eqref{eq:general_error} with norm the Euclidean norm
+\end{frame}
+
+\begin{frame}[fragile]{The right hand side}
+This one is quite simple, of course\ldots
+\vfill
+\begin{lstlisting}
+RHS_logistic <- function(t, x, p) {
+    with(as.list(c(x,p)), {
+    dN <- r*N*(1-N/K)
+    return(list(dN))
+    })
+}    
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Getting the population data}
+\begin{lstlisting}
+library(wbstats)
+get_pop_data <- function(CTRY) {
+    pop = wb_data("SP.POP.TOTL", country = CTRY,
+                mrv = 100, return_wide = FALSE)
+    pop = pop[,c("date", "value")]
+    pop = pop[order(pop$date),]
+    pop$date = as.numeric(pop$date)
+    pop$value = as.numeric(pop$value)
+    return(pop)
+}    
+\end{lstlisting}
+which we call later using
+\begin{lstlisting}
+pop = get_pop_data("El Salvador")
+\end{lstlisting}
+\vfill
+Note that if you do not set \code{return\_wide=TRUE}, the column with the return value is named like the indicator (\code{SP.POP.TOTL} here), otherwise it is \code{value}
+\end{frame}
+
+
+\begin{frame}{The error function}
+    This is the function that does most of the work
+    \vfill
+    \begin{itemize}
+        \item Takes as input the parameters that vary and any other required parameters
+        \item Computes the solution of the ODE
+        \begin{itemize}
+            \item Capitalise on the fact that \code{ode} returns the solution at \code{times} that you can specify!
+            \item If your data is at times, say, $t=1,2,5,10$, then you can pass \code{times=c(1,2,5,10)} and get the solution at these times, making the next step easy
+        \end{itemize}
+        \item Compute the error
+    \end{itemize}
+    \vfill
+    Actually, this does not do most of the work but this is definitely where \emph{you} need to do most of the work
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+error_fit <- function(p_vary, 
+                      params, 
+                      data,
+                      method = "rk4") {
+    # Anything that changes during optimisation is set here
+    params$r = as.numeric(p_vary["r"])
+    params$K = as.numeric(p_vary["K"])
+    # Set the initial condition
+    N0 = data$value[1]
+    IC = c(N = N0)
+    # Compute the solution
+    sol = ode(y = IC, times = data$date, func = RHS_logistic, 
+              parms = params, method = method)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{One little trick}
+    If a parameter value or a solution is ``not acceptable'', one easy way to deal with this is to return an error value of \code{Inf} (i.e., $\infty$) and immediately exit the error function
+    \vfill
+\begin{lstlisting}
+    if (sol[dim(sol)[1],"time"] < data$date[length(data$date)]) {
+        return(Inf)
+    }    
+\end{lstlisting}
+would be triggered if, for instance, the numerical integration finished early (because solutions explode, e.g.)
+\vfill
+Useful also, e.g., if you want to exclude regions in parameter space. Say you want to find parameters s.t. $\R_0\leq 10$, then you could return an \code{Inf} error whenever parameters are s.t. $\R_0>10$
+\end{frame}
+
+
+\begin{frame}[fragile]{Computing the actual error}
+\begin{lstlisting}[numbers=left]
+    diff_values = data$value - sol[,"N"]
+    diff_values_squared = diff_values^2
+    error = sum(diff_values_squared)
+    return(error)
+}  # END error_incidence
+\end{lstlisting}
+\vfill
+Line 1: here, $h(x)=x$, we can simply use $N(t)$ as the observed variable. So we compute the $y_i-N(t_i)$, since we have set \code{times=data\$date} and thus have matching time points
+\vfill
+Line 2: square the values (recall that by default, \code{R} does Hadamard-type operations, so here, squares each entry in the vector), giving a vector with entries $(y_i-N(t_i))^2$
+\vfill
+Line 3: sum the elements of the vector, i.e., obtain $\sum_{i}(y_i-N(t_i))^2$
+\end{frame}
+
+\begin{frame}[fragile]{Set up a last few things}
+Back in the main code, set values for the parameters, although they will be changed by the optimiser
+\begin{lstlisting}
+params = list()
+params$r = 1
+params$K = max(pop$value)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Now let an optimiser do the actual work}
+Here, let us use a genetic algorithm
+\begin{lstlisting}
+library(GA)
+GA = ga(
+  type = "real-valued",
+  fitness = function(x) 
+    -error_fit(p_vary = c(r = x[1], K = x[2]),
+               params = params,
+               data = pop,
+               method = "rk4"),
+  parallel = TRUE,
+  lower = c(0.1, 1000000),
+  upper = c(10, 10000000),
+  optim = TRUE,
+  optimArgs = list(method = "CG"),
+  suggestions = c(1, params$K),
+  popSize = 500,
+  maxiter = 200
+)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Explaining the algorithm and the call to \code{GA}}
+    A \textbf{genetic algorithm} (GA) mimics evolution selecting for increased fitness.
+    \vfill
+    \begin{itemize}
+        \item A \textbf{gene} is a point $p^\star\in\P$ in parameter space, so, here, a given value $(r^\star,K^\star)$ of $(r,K)$
+        \item The \textbf{fitness} of the gene is the value of the function to optimise when evaluated at $p^\star$, i.e., here, $E(p^\star)$ (i.e., \code{error\_fit})
+        \item A GA ``wants to'' maximise fitness, so we actually use $-E(p)$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Setting up the gene pool}
+    \begin{itemize}
+        \item Start with a randomly selected population of \code{popSize} genes (500 here)
+        \item Within these \code{popSize} genes, one (could be more) is a \code{suggestion}. Here, I have taken \code{r=1} and \code{K=params\$K=max(pop\$value)}
+        \item Genes other than the suggested ones are selected at random (potentially following some distribution, but by default and here, uniformly) between \code{lower} and \code{upper}
+        \item  (The order of elements of the gene is important in some places, including \code{suggestions}, \code{upper} and \code{lower})
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+At each iteration, up to a maximum \code{maxiter} (200 here)
+\begin{itemize}
+    \item Compute the fitness of all \code{popSize} genes
+    \item Retain the genes with highest fitness
+    \item Throw in new genes, some at random like before but others using ``constrained randomness'', i.e., using analogues of genetic operations such as mutations, crossovers, etc.
+    \item Once the next generation is ready, i.e., there are \code{popSize} genes, restart
+\end{itemize}
+\vfill
+It is possible to specify how much of the existing gene pool to keep, etc.
+\end{frame}
+
+\begin{frame}{Two interesting options}
+\begin{enumerate}
+    \item \code{parallel=TRUE} (needs libraries \code{parallel} and \code{doParallel}) parallelises the code. Each function (fitness) evaluation is completely independent from others, so this algorithm parallelises very nicely, leading to potentially consequential speedups
+    \item \code{optim=TRUE} interrupts the GA execution (including parallel component if used) to perform a step of deterministic gradient descent search close to the best value found so far, in case there is no change in best value for a few generation. This allows to potentially fine tune a stochastically found optimum
+\end{enumerate}
+\vfill
+\textbf{Note --} If you want to limit the number of threads used (to avoid completely bogging down your computer), you can specify a number of threads to use, instead, e.g., \code{parallel=10}. Currently, you also \emph{must} specify \code{parallel=124} if you have a CPU with more than 124 threads
+\end{frame}
+
+\maxFrameImage{../FIGS/fit_logistic_1}
+
+
+\begin{frame}[fragile]{Varying also $N_0$}
+    Previous graph fits precisely the first data point. We can want to also fit $N_0$
+    \vfill
+    In the function \code{error\_incidence}, add
+\begin{lstlisting}
+params$N0 = as.numeric(p_vary["N0"])
+\end{lstlisting}
+then in the call to \code{error\_incidence} in \code{ga},
+\begin{lstlisting}
+fitness = function(x)
+    -error_incidence(p_vary = c(r = x[1], K = x[2], N0 = x[3]),
+                     params = params,
+                     data = pop,
+                     method = "rk4"),
+\end{lstlisting}
+We get a smaller error and something like on the next page
+\end{frame}
+
+\maxFrameImage{../FIGS/fit_logistic_2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The issue of parameter identifiability}
+
+\begin{frame}{}
+    See, e.g., Roda \emph{et al}: \href{https://doi.org/10.1016/j.idm.2020.03.001}{Why is it difficult to accurately predict the COVID-19 epidemic?}
+    \vfill
+    We seek to minimise the (error) function
+    \begin{equation}\tag{\ref{eq:general_error}}
+        E(p) = \sum_{i=1}^N \|h(x(t_i))-y_i\|
+    \end{equation}
+    \vfill
+    \begin{itemize}
+        \item It is possible (extremely likely with complex models) that several values of $p$ minimise $E(p)$
+        \item It is also possible that the value(s) found for $p$ are only \emph{local} minima 
+        \item These problems are linked to the so-called \textbf{identifiability} problem
+    \end{itemize}
+\end{frame}
+
+
+\end{document}
