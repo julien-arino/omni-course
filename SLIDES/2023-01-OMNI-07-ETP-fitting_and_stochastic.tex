@@ -302,8 +302,6 @@ We get a smaller error and something like on the next page
 \subsection{The issue of parameter identifiability}
 
 \begin{frame}{}
-    See, e.g., Roda \emph{et al}: \href{https://doi.org/10.1016/j.idm.2020.03.001}{Why is it difficult to accurately predict the COVID-19 epidemic?}
-    \vfill
     We seek to minimise the (error) function
     \begin{equation}\tag{\ref{eq:general_error}}
         E(p) = \sum_{i=1}^N \|h(x(t_i))-y_i\|
@@ -316,5 +314,57 @@ We get a smaller error and something like on the next page
     \end{itemize}
 \end{frame}
 
+\begin{frame}{An example of Bellman and \r{A}str\"om (MBS 1970)}
+    A system is analysed by injecting a tracer in compartment $C_1$ and taking samples from same compartment
+    \begin{center}
+        \def\vertskip{*1.75}
+        \def\horzskip{*2}
+        \begin{tikzpicture}[scale=1.5, transform shape]
+          \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (C1) {$C_1$};
+          \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (C2) {$C_2$};
+          %% Flows between
+          \path [line, very thick, bend left] (C1) to node [midway, above] (TextNode) {$k_2C_1$} (C2);
+          \path [line, very thick, bend left] (C2) to node [midway, below] (TextNode) {$k_3C_2$} (C1);
+          %% Flows in
+          \path [line, very thick] (-1.75\horzskip,0\vertskip) to node [midway, above] (TextNode) {$u$} (C1);
+          %% Flows out of
+          \path [line, very thick] (C1) to node [midway, left] (TextNode) {$k_1C_1$} (-1\horzskip,1\vertskip);
+          \path [line, very thick] (C2) to node [midway, right] (TextNode) {$k_4C_2$} (1\horzskip,1\vertskip);
+        \end{tikzpicture}    
+    \end{center}  
+\end{frame}
+
+
+\begin{frame}
+    \begin{center}
+        \def\vertskip{*1.75}
+        \def\horzskip{*2}
+        \begin{tikzpicture}[scale=1, transform shape]
+          \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (C1) {$C_1$};
+          \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (C2) {$C_2$};
+          %% Flows between
+          \path [line, very thick, bend left] (C1) to node [midway, above] (TextNode) {$k_2C_1$} (C2);
+          \path [line, very thick, bend left] (C2) to node [midway, below] (TextNode) {$k_3C_2$} (C1);
+          %% Flows in
+          \path [line, very thick] (-1.75\horzskip,0\vertskip) to node [midway, above] (TextNode) {$u$} (C1);
+          %% Flows out of
+          \path [line, very thick] (C1) to node [midway, left] (TextNode) {$k_1C_1$} (-1\horzskip,1\vertskip);
+          \path [line, very thick] (C2) to node [midway, right] (TextNode) {$k_4C_2$} (1\horzskip,1\vertskip);
+        \end{tikzpicture}    
+    \end{center} 
+    \begin{subequations}
+        \label{sys:BellmanAstrom}
+        \begin{align}
+            C_1' &= -(k_1+k_2)C_1+k_3C_2+u \\
+            C_2' &= k_2C_1-(k_3+k_4)C_2 \\
+            y &= C_1
+        \end{align}
+    \end{subequations}
+    \vfill
+    Take Laplace transform (could also take matrix exponential), giving transfer function
+    \[
+        G(s) = \frac{s+k_3+k_4}{s^2+(k_1+k_2+k_3+k_4)s+(k_1+k_2)(k_3+k_4)-k_2k_3}
+    \]
+\end{frame}
 
 \end{document}
