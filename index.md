@@ -12,5 +12,6 @@ For those who would be looking for more details about the modelling part, I have
 4. Environmental transmission of bacterial, parasitic, viral and fungal pathogens. Introduction. [Slides](2022-10-OMNI-04-ETP-introduction.html)/[Video](https://youtu.be/9-ST6P8Lb70)
 5. Models for environmentally transmitted pathogens. [Slides](2023-01-OMNI-05-ETP-ODE.pdf)/[Video](https://youtu.be/cLzj7l8F29I)
 6. Models for environmentally transmitted pathogens - Part deux - Simulation. [Slides](2023-01-OMNI-06-ETP-ODE_part_deux.pdf)/[Video](https://youtu.be/VXwd-UzgZNE)
+7. Identifying parameters and identifiability issues. [Slides]()/[Video](https://youtu.be/eYRoTdkR5F0)
 
 <!--- Image credit: Malaria parasite entering a red blood cell. https://flic.kr/p/V8qaYt. National Institute of Allergy and Infectious Diseases, NIH. CC BY NC 2.0 --->
