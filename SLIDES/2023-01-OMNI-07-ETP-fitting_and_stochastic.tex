@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169]{beamer}
+\documentclass[aspectratio=43]{beamer}
 
 %\documentclass[handout]{beamer}
 %% To make 4 per page
@@ -37,7 +37,7 @@
 \subsection{General principles}
 \begin{frame}{Fitting a model to parameters}
 Very simplified version of what is done in practice
-
+\vfill
 There are way more elaborate methods. See, e.g., 
 \begin{itemize}
     \item Roda. \href{https://doi.org/10.1016/j.idm.2019.12.007}{Bayesian inference for dynamical systems}
@@ -310,61 +310,137 @@ We get a smaller error and something like on the next page
     \begin{itemize}
         \item It is possible (extremely likely with complex models) that several values of $p$ minimise $E(p)$
         \item It is also possible that the value(s) found for $p$ are only \emph{local} minima 
-        \item These problems are linked to the so-called \textbf{identifiability} problem
+        \item These problems are linked to the so-called \textbf{identifiability problem}
     \end{itemize}
 \end{frame}
 
-\begin{frame}{An example of Bellman and \r{A}str\"om (MBS 1970)}
-    A system is analysed by injecting a tracer in compartment $C_1$ and taking samples from same compartment
-    \begin{center}
-        \def\vertskip{*1.75}
-        \def\horzskip{*2}
-        \begin{tikzpicture}[scale=1.5, transform shape]
-          \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (C1) {$C_1$};
-          \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (C2) {$C_2$};
-          %% Flows between
-          \path [line, very thick, bend left] (C1) to node [midway, above] (TextNode) {$k_2C_1$} (C2);
-          \path [line, very thick, bend left] (C2) to node [midway, below] (TextNode) {$k_3C_2$} (C1);
-          %% Flows in
-          \path [line, very thick] (-1.75\horzskip,0\vertskip) to node [midway, above] (TextNode) {$u$} (C1);
-          %% Flows out of
-          \path [line, very thick] (C1) to node [midway, left] (TextNode) {$k_1C_1$} (-1\horzskip,1\vertskip);
-          \path [line, very thick] (C2) to node [midway, right] (TextNode) {$k_4C_2$} (1\horzskip,1\vertskip);
-        \end{tikzpicture}    
-    \end{center}  
+\begin{frame}{An example adapted from Bellman and \r{A}str\"om (MBS 1970)}
+    Inject a tracer in compartment $C_1$ and take samples from same compartment
+    \vfill
+    \begin{minipage}{0.3\textwidth}
+        \begin{center}
+            \def\vertskip{*1.75}
+            \def\horzskip{*2}
+            \begin{tikzpicture}[scale=0.75, transform shape]
+            \node [circle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (C1) {$C_1$};
+            \node [circle, fill=gray!10, text=black] at (0\horzskip,-1\vertskip) (C2) {$C_2$};
+            %% Flows between
+            \path [line, very thick, bend left] (C1) to node [midway, right] (TextNode) {$k_{12}C_1$} (C2);
+            \path [line, very thick, bend left] (C2) to node [midway, left] (TextNode) {$k_{21}C_2$} (C1);
+            %% Flows in
+            \path [line, very thick] (-0.75\horzskip,1\vertskip) to node [midway, above] (TextNode) {$u$} (C1);
+            %% Flows out of
+            \path [line, very thick] (C1) to node [midway, above] (TextNode) {$k_{10}C_1$} (1\horzskip,1\vertskip);
+            \path [line, very thick] (C2) to node [midway, above] (TextNode) {$k_{20}C_2$} (1\horzskip,-1\vertskip);
+            \end{tikzpicture}    
+        \end{center}
+    \end{minipage}
+    \begin{minipage}{0.64\textwidth}
+        \begin{itemize}
+            \item $C_1$ mass of drug in blood system
+            \item $x_2$ mass of drug in gastro-intestinal system
+            \item $y$ observed concentration of drug (blood test)
+            \item $V_1$ volume of observed compartment (blood system)
+            \item $k_{ij}$ rates of transfer from $i$ to $j$ 
+            \item $u$ injection rate
+        \end{itemize}
+    \end{minipage}
 \end{frame}
 
+
+% \begin{frame}
+%     \begin{center}
+%         \def\vertskip{*1.75}
+%         \def\horzskip{*2}
+%         \begin{tikzpicture}[scale=1, transform shape]
+%           \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (C1) {$C_1$};
+%           \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (C2) {$C_2$};
+%           %% Flows between
+%           \path [line, very thick, bend left] (C1) to node [midway, above] (TextNode) {$k_{12}C_1$} (C2);
+%           \path [line, very thick, bend left] (C2) to node [midway, below] (TextNode) {$k_{21}C_2$} (C1);
+%           %% Flows in
+%           \path [line, very thick] (-1.75\horzskip,0\vertskip) to node [midway, above] (TextNode) {$u$} (C1);
+%           %% Flows out of
+%           \path [line, very thick] (C1) to node [midway, left] (TextNode) {$k_{10}C_1$} (-1\horzskip,1\vertskip);
+%           \path [line, very thick] (C2) to node [midway, right] (TextNode) {$k_{20}C_2$} (1\horzskip,1\vertskip);
+%         \end{tikzpicture}    
+%     \end{center} 
+%     \begin{subequations}
+%         \label{sys:BellmanAstrom}
+%         \begin{align}
+%             C_1' &= -(k_{10}+k_{12})C_1+k_{21}C_2+u \\
+%             C_2' &= k_{12}C_1-(k_{21}+k_{20})C_2 \\
+%             y &= C_1
+%         \end{align}
+%     \end{subequations}
+%     \vfill
+%     Take Laplace transform (could also take matrix exponential), giving transfer function
+%     \[
+%         G(s) = \frac{s+k_{21}+k_{20}}{s^2+(k_{10}+k_{12}+k_{21}+k_{20})s+(k_{10}+k_{12})(k_{21}+k_{20})-k_{12}k_{21}}
+%     \]
+% \end{frame}
+
+
+\begin{frame}{The model for a single injection}
+	\begin{minipage}{0.3\textwidth}
+		\begin{center}
+            \def\vertskip{*1.75}
+            \def\horzskip{*2}
+            \begin{tikzpicture}[scale=0.75, transform shape]
+            \node [circle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (C1) {$C_1$};
+            \node [circle, fill=gray!10, text=black] at (0\horzskip,-1\vertskip) (C2) {$C_2$};
+            %% Flows between
+            \path [line, very thick, bend left] (C1) to node [midway, right] (TextNode) {$k_{12}C_1$} (C2);
+            \path [line, very thick, bend left] (C2) to node [midway, left] (TextNode) {$k_{21}C_2$} (C1);
+            %% Flows in
+            \path [line, very thick] (-0.75\horzskip,1\vertskip) to node [midway, above] (TextNode) {$u$} (C1);
+            %% Flows out of
+            \path [line, very thick] (C1) to node [midway, above] (TextNode) {$k_{10}C_1$} (1\horzskip,1\vertskip);
+            \path [line, very thick] (C2) to node [midway, above] (TextNode) {$k_{20}C_2$} (1\horzskip,-1\vertskip);
+            \end{tikzpicture}    
+        \end{center}
+	\end{minipage}
+	\begin{minipage}{0.68\textwidth}
+        \begin{subequations}
+            \label{sys:BellmanAstrom}
+            \begin{align}
+                C_1' &= -(k_{12}+k_{10})C_1+k_{21}C_2 \label{sys:BellmanAstrom_dC1} \\
+                C_2'&= k_{12}C_1-(k_{21}+k_{12})C_2 \label{sys:BellmanAstrom_dC2} \\
+                C_1(0)&=D, C_2(0)=0 \label{sys:BellmanAstrom_IC} \\
+                y&=C_1/V_1  \label{sys:BellmanAstrom_obs} 
+            \end{align}
+        \end{subequations}
+	\end{minipage}
+	\vfill
+    Rather than continuous input, assume here ``one shot'', $C_1(0)=D$
+    \vfill
+	5 parameters ($V_1$ and $k_{ij}$) to estimate
+\end{frame}
 
 \begin{frame}
-    \begin{center}
-        \def\vertskip{*1.75}
-        \def\horzskip{*2}
-        \begin{tikzpicture}[scale=1, transform shape]
-          \node [circle, fill=gray!10, text=black] at (-1\horzskip,0\vertskip) (C1) {$C_1$};
-          \node [circle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (C2) {$C_2$};
-          %% Flows between
-          \path [line, very thick, bend left] (C1) to node [midway, above] (TextNode) {$k_2C_1$} (C2);
-          \path [line, very thick, bend left] (C2) to node [midway, below] (TextNode) {$k_3C_2$} (C1);
-          %% Flows in
-          \path [line, very thick] (-1.75\horzskip,0\vertskip) to node [midway, above] (TextNode) {$u$} (C1);
-          %% Flows out of
-          \path [line, very thick] (C1) to node [midway, left] (TextNode) {$k_1C_1$} (-1\horzskip,1\vertskip);
-          \path [line, very thick] (C2) to node [midway, right] (TextNode) {$k_4C_2$} (1\horzskip,1\vertskip);
-        \end{tikzpicture}    
-    \end{center} 
-    \begin{subequations}
-        \label{sys:BellmanAstrom}
-        \begin{align}
-            C_1' &= -(k_1+k_2)C_1+k_3C_2+u \\
-            C_2' &= k_2C_1-(k_3+k_4)C_2 \\
-            y &= C_1
-        \end{align}
-    \end{subequations}
-    \vfill
-    Take Laplace transform (could also take matrix exponential), giving transfer function
-    \[
-        G(s) = \frac{s+k_3+k_4}{s^2+(k_1+k_2+k_3+k_4)s+(k_1+k_2)(k_3+k_4)-k_2k_3}
+	Computing the solution to \eqref{sys:BellmanAstrom_dC1}-\eqref{sys:BellmanAstrom_dC2} with initial condition \eqref{sys:BellmanAstrom_IC} and substituting into the observation equation \eqref{sys:BellmanAstrom_obs} gives
+	\[
+        y(t)=K_1e^{-\lambda_1 t}+K_2e^{-\lambda_2 t}
     \]
+	where
+    \[
+        K_1=\frac{D(k_{21}+k_{20}-\lambda_1)}{V_1(\lambda_2-\lambda_1)},
+        \quad
+        K_2=\frac{D(k_{21}+k_{20}-\lambda_2)}{V_1(\lambda_1-\lambda_2)}
+    \]
+    \begin{multline*}
+        \lambda_1=\frac 12 \Bigl( k_{12}+k_{21}+k_{10}+k_{20} \\
+        + \bigl( (k_{12}+k_{21}+k_{10}+k_{20})^2 - 4\left((k_{21}+k_{20})(k_{12}+k_{10} \right)-k_{21}k_{12})\bigr)^{1/2} \Bigr)
+    \end{multline*}
+	\begin{multline*}
+        \lambda_2=\frac 12\Bigl( k_{12}+k_{21}+k_{10}+k_{20} \\
+        -\left( (k_{12}+k_{21}+k_{10}+k_{20})^2 - 4\left((k_{21}+k_{20})(k_{12}+k_{10}\right )-k_{21}k_{12})\right)^{1/2} \Bigr)
+    \end{multline*}
+	
+	
+	$K_1$, $K_2$, $\lambda_1$, and $\lambda_2$ can be determined from observed concentration curve.
+	But there are 4 equations and 5 unknown parameters  $\Rightarrow$ the model is \textbf{structurally unidentifiable}
 \end{frame}
+
 
 \end{document}
