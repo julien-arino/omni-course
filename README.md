@@ -1,1 +1,1 @@
-# omni-course-part1
+# OMNI/REUNIS course
