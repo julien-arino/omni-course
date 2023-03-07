@@ -18,6 +18,15 @@ For those who would be looking for more details about the modelling part, I have
 6. Models for environmentally transmitted pathogens - Part deux - Simulation. [Slides](2023-01-OMNI-06-ETP-ODE_part_deux.pdf)/[Video](https://youtu.be/VXwd-UzgZNE)
 7. Identifying parameters and identifiability issues. [Slides]()/[Video](https://youtu.be/eYRoTdkR5F0)
 
-### Part II
+### Part II - Livestock diseases
+
+Note that for now, I am using the following to have the information easily accessible, none of the topics below have slides at a point where they can be downloaded. Links to slides and videos will be added when they become available.
+
+8. Introduction to foot and mouth disease, avian influenza (1 hour).
+9. Introduction to livestock modelling (2 hours).
+10. Introduction to mathematical modelling of foot and mouth disease and avian influenza in livestock (2 hours).
+11. Extension of the livestock models to include livestock movement (markets, trading between farms, selling for meat processing) (3 hours).
+12. Discussion of disease control within the livestock movement environment (1 hour).
+
 
 <!--- Image credit: Malaria parasite entering a red blood cell. https://flic.kr/p/V8qaYt. National Institute of Allergy and Infectious Diseases, NIH. CC BY NC 2.0 --->
