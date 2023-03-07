@@ -28,5 +28,3 @@ Note that for now, I am using the following to have the information easily acces
 11. Extension of the livestock models to include livestock movement (markets, trading between farms, selling for meat processing) (3 hours).
 12. Discussion of disease control within the livestock movement environment (1 hour).
 
-
-<!--- Image credit: Malaria parasite entering a red blood cell. https://flic.kr/p/V8qaYt. National Institute of Allergy and Infectious Diseases, NIH. CC BY NC 2.0 --->
