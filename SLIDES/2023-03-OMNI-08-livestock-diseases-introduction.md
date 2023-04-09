@@ -162,11 +162,11 @@ See, e.g., [this report](https://bulletin.woah.org/?panorama=05-1-02-2021-1_tt) 
 
 ---
 
-![bg contain invert](../FIGS/impact-of-zoonoses.png)
+![bg contain invert](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/impact-of-zoonoses.png)
 
 ---
 
-![bg contain invert](../FIGS/avg-monthly-cost-disease-outbreak.png)
+![bg contain invert](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/avg-monthly-cost-disease-outbreak.png)
 
 ---
 
@@ -178,11 +178,11 @@ See, e.g., [this report](https://bulletin.woah.org/?panorama=05-1-02-2021-1_tt) 
 
 ---
 
-![bg contain](../FIGS/impact-trans-area-diseases-part1.png "https://www.fao.org/3/i5512e/i5512e.pdf")
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/impact-trans-area-diseases-part1.png "https://www.fao.org/3/i5512e/i5512e.pdf")
 
 ---
 
-![bg contain](../FIGS/impact-trans-area-diseases-part2.png "https://www.fao.org/3/i5512e/i5512e.pdf")
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/impact-trans-area-diseases-part2.png "https://www.fao.org/3/i5512e/i5512e.pdf")
 
 ---
 
@@ -202,7 +202,7 @@ All have potential global implications, but the scale of most transmission event
 
 ---
 
-![bg contain left:50%](../FIGS/17-Figure2.4-1.png "https://link.springer.com/chapter/10.1007/978-1-4614-5338-3_2")
+![bg contain left:50%](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/17-Figure2.4-1.png "https://link.springer.com/chapter/10.1007/978-1-4614-5338-3_2")
 
 # Scrapie
 
@@ -212,7 +212,7 @@ Fatal degenerative disease affecting the nervous system
 
 ---
 
-![bg contain left:50%](../FIGS/scrapies-signs-symptoms.png)
+![bg contain left:50%](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/scrapies-signs-symptoms.png)
 
 Name derived from one of the clinical signs of the condition: affected animals compulsively scrape off their fleeces against rocks, trees or fences
 
@@ -227,7 +227,7 @@ Other clinical signs include excessive lip smacking, altered gaits and convulsiv
 
 ---
 
-![bg contain left:40%](../FIGS/Electronmicrograph_of_the_foot-and-mouth_disease_virus.png)
+![bg contain left:40%](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/Electronmicrograph_of_the_foot-and-mouth_disease_virus.png)
 
 # FMD-HMD
 Severe, highly communicable **viral** disease of cattle and swine
@@ -238,7 +238,7 @@ Elephants, hedgehogs and some rodents also susceptible but do not develop clinic
 
 ---
 
-![bg contain left:60%](../FIGS/Foot_and_mouth_disease_in_mouth.jpg)
+![bg contain left:60%](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/Foot_and_mouth_disease_in_mouth.jpg)
 
 Fever and blister-like sores on the tongue and lips, in the mouth, on the teats and between the hooves
 
@@ -261,7 +261,7 @@ Many affected animals recover, but the disease leaves them weakened and debilita
 
 ---
 
-![bg contain left:50%](../FIGS/images_large_10.1177_0300985812467472-fig1.jpeg "https://journals.sagepub.com/doi/10.1177/0300985812467472")
+![bg contain left:50%](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/images_large_10.1177_0300985812467472-fig1.jpeg "https://journals.sagepub.com/doi/10.1177/0300985812467472")
 
 # <!--fit-->Bovine tuberculosis (bTB)
 
@@ -277,7 +277,7 @@ In countries with eradication programs, e.g., Canada, advanced disease is rare a
 
 ---
 
-![bg left:45%](../FIGS/img-5-small700.jpg)
+![bg left:45% invert](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/img-5-small700.jpg)
 
 Infected animals with progressive disease shed the bacteria in respiratory secretions and aerosols, feces, milk, and sometimes in urine, vaginal secretions, or semen
 
@@ -287,7 +287,7 @@ Where infected wildlife are a reservoir of disease, there is potential for trans
 
 ---
 
-![bg contain left:40%](../FIGS/GPW-Updated-CFIA-registration-list-HeaderImg_Artboard-1.3-scaled.jpg)
+![bg contain left:40%](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/GPW-Updated-CFIA-registration-list-HeaderImg_Artboard-1.3-scaled.jpg)
 # <!--fit-->Bovine TB in Canada
 
 Reportable disease, suspect cases must be reported to CFIA; CFIA conducts investigation to determine if the disease present
@@ -315,15 +315,15 @@ Only a quarter of the affected countries were applying all the relevant control 
 
 ---
 
-![bg contain](../FIGS/3-1_map_ENG_72-1200x609.jpg)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/3-1_map_ENG_72-1200x609.jpg)
 
 ---
 
-![bg contain invert](../FIGS/prevalence-TB-bovine-subsahara.png)
+![bg contain invert](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/prevalence-TB-bovine-subsahara.png)
 
 ---
 
-![bg contain invert](../FIGS/prevalence-taux-apparent-TB-bovine-subsahara.png)
+![bg contain invert](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/prevalence-taux-apparent-TB-bovine-subsahara.png)
 
 ---
 
@@ -342,7 +342,7 @@ Only a quarter of the affected countries were applying all the relevant control 
 
 ---
 
-![bg contain](../FIGS/FAO-pastoralisme-au-Tchad.png)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/FAO-pastoralisme-au-Tchad.png)
 
 ---
 
@@ -351,7 +351,7 @@ Only a quarter of the affected countries were applying all the relevant control 
 
 ---
 
-![bg contain left:40%](../FIGS/H1N1_navbox.jpg)
+![bg contain left:40%](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/H1N1_navbox.jpg)
 
 # Avian influenza
 
@@ -379,35 +379,35 @@ Adapted to birds but can also stably adapt and sustain P2P transmission
 
 ---
 
-![bg contain](../FIGS/Map-Boreal-Bird-Migrations.jpg)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/Map-Boreal-Bird-Migrations.jpg)
 
 <!-----
 
-![bg contain](../FIGS/mm-birds3.jpg)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/mm-birds3.jpg)
 -->
 ---
 
-![bg contain](../FIGS/e71b4510-a97b-4285-9675-1c2f4aaf4ad9.jpg)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/e71b4510-a97b-4285-9675-1c2f4aaf4ad9.jpg)
 
 ---
 
-![bg contain](../FIGS/Learn_CCSC_AK-Flyway-exhibit-hero.jpg)
+![bg contain](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/Learn_CCSC_AK-Flyway-exhibit-hero.jpg)
 
 ---
 
-![bg contain invert](../FIGS/AI-cases-animals1.png)
+![bg contain invert](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/AI-cases-animals1.png)
 
 ---
 
-![bg contain invert](../FIGS/AI-cases-animals2.png)
+![bg contain invert](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/AI-cases-animals2.png)
 
 ---
 
-![bg contain invert](../FIGS/AI-cases-animals3.png)
+![bg contain invert](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/AI-cases-animals3.png)
 
 ---
 
-![bg contain invert](../FIGS/AI-cases-humans.png)
+![bg contain invert](https://raw.githubusercontent.com/julien-arino/omni-course/main/FIGS/AI-cases-humans.png)
 
 ---
 
@@ -427,3 +427,19 @@ See (in French) [here](https://agriculture.gouv.fr/influenza-aviaire-la-situatio
 - Epizooty from August 2021 to May 2022
 - "À la mi-octobre 2022, environ 21,8 millions d'animaux (palmipèdes et volailles) avaient été abattus en France dans le cadre de la gestion de la crise (août 2021-mai 2022)"
 - "À la date du 23 juin 2022, la France comptait 1 378 foyers d’influenza aviaire hautement pathogène (IAHP) en élevage, 72 cas en faune sauvage et 35 cas en basse-cours"
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->In conclusion
+
+---
+
+Diseases of livestock
+
+- are widespread and attack
+  - highly organised "food production systems"
+  - more traditional food production systems as well
+- threaten the livelihood of many
+- threaten food security
+- have potential pathogenic consequences in humans
