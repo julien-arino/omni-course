@@ -53,7 +53,7 @@
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\section{Modelling cattle}
+\section{Models for cattle}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -64,11 +64,14 @@
         \begin{tikzpicture}
             \node[inner sep=0pt] (cow) at (0,0)
                 {\includegraphics[width=.5\textwidth]{../FIGS/BiarB98i8.png}};
-        \end{tikzpicture}
+                \draw[->, ultra thick] (-4,0) to (cow);
+                \draw[->, ultra thick] (cow) to (4,0);
+            \end{tikzpicture}
     \end{center}
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-cover.png}
 \maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-abbreviations.png}
 \maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-model-structure.png}
@@ -100,6 +103,7 @@
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Sun_etal-cow-sync-cover.png}
 \maxFrameImage{../FIGS/Sun_etal-cow-sync-single-cow-model.png}
 \maxFrameImage{../FIGS/Sun_etal-cow-sync-switching-conditions.png}
@@ -108,6 +112,7 @@
 \maxFrameImage{../FIGS/Sun_etal-cow-sync-behaviour-coupled.png}
 
 
+%%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-cover.png}
 \maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-model-structure.png}
 \maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-overall-dynamics.png}
@@ -116,6 +121,7 @@
 \maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-sims.png}
 
 
+%%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Pla-sow-herds-cover.png}
 \maxFrameImage{../FIGS/Pla-sow-herds-events.png}
 \maxFrameImage{../FIGS/Pla-sow-herds-models-reviewed.png}
