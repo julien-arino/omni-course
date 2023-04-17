@@ -1,0 +1,327 @@
+\documentclass[aspectratio=43]{beamer}
+
+%\documentclass[handout]{beamer}
+%% To make 4 per page
+%\usepackage{pgfpages}
+%\mode<handout>{\setbeamercolor{background canvas}{bg=white}}
+%\pgfpagesuselayout{4 on 1}[letterpaper,landscape]%,border shrink=5mm]
+
+\input{slides_setup_nonLightBoard_whiteBG.tex}
+
+% Make presentation notes
+\usepackage{pgfpages}
+\setbeameroption{second mode text on second screen=left}%This option causes the second screen to show the second mode material
+\setbeameroption{show notes on second screen}
+
+
+\title{Modelling livestock}
+\author{Julien Arino}
+\date{April 2023}
+
+
+\begin{document}
+%\stretchon
+
+% The title page
+\begin{frame}[noframenumbering,plain]
+  \titlepage
+\end{frame}
+\addtocounter{page}{-1}
+
+
+
+
+
+\begin{frame}{Why?}
+    Yes, why, really, must I tell you about this ?
+    \vfill
+    I model the spread of infectious diseases and, less frequently, more general interactions between species (mathematical ecology)
+    \vfill
+    I have even modelled how filaments grow (assemble) in cells
+    \vfill
+    But ``modelling livestock'' ? Nope, never
+    \vfill
+    So let's take a (for the most part uninformed) dive in models of livestock
+\end{frame}
+
+\begin{frame}{Wait..}
+    Digging through the literature, there's actually quite a lot and some of it is quite fun!
+    \vfill
+    This will be a completely non-exhaustive and random review of some models I have found \textbf{excluding} anything infectious disease related
+\end{frame}
+\note{In the interest of time, I have just cut and pasted the content}
+
+
+\begin{frame}[noframenumbering,plain]{Outline}
+    \tableofcontents[hideallsubsections]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Models for cattle}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Models for individuals}
+
+\begin{frame}{At the individual level}
+    \begin{center}
+        \begin{tikzpicture}
+            \node[inner sep=0pt] (cow) at (0,0)
+                {\includegraphics[width=.5\textwidth]{../FIGS/BiarB98i8.png}};
+                \draw[->, ultra thick] (-4,0) to (cow);
+                \draw[->, ultra thick, dotted] (cow) to (4,0);
+                \draw[->, ultra thick, dashed] (-1,1.5) to (-1.5,2.5);
+                \draw[->, ultra thick, dashed] (0,1.5) to (0,2.5);
+                \draw[->, ultra thick, dashed] (1,1.5) to (1.5,2.5);
+                \draw[->, ultra thick, dotted] (1,-2) to (1,-3);
+            \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-cover.png}
+\note{Figuring out this metabolism can help understand how to increase milk production}
+\maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-abbreviations.png}
+\note{These abbreviations are used in the diagram on the following page}
+\maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-model-structure.png}
+\note{We would not call this a steady state diagram but rather a flow diagram or, perhaps more appropriately, an interaction diagram}
+\maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-notation.png}
+\note{These are used in the equations}
+\maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-some-parameters.png}
+\maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-model1.png}
+\maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-model2.png}
+\maxFrameImage{../FIGS/Volpe_etal-mammary-gland-metabolism-cows-model3.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-cover.png}
+\note{Important in particular because of concerns about climate change. Methane makes up 16\% of the anthropogenic greenhouse gas emissions, of which 40\% comes from agriculture.}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-model1.png}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-model2.png}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-variables-params.png}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-experimental1.png}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-experimental2.png}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-experimental3.png}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-experimental4.png}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-data.png}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-variables.png}
+\maxFrameImage{../FIGS/Wang_etal-cows-methane-emissions-sims_vs_data.png}
+\note{Colour is morning and afternoon. Important is third figure, which shows the match between predicted and observed values}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Appuhamy_etal-manure-lactating-cows-cover.png}
+\note{Another byproduct of cattle husbandry: manure}
+\maxFrameImage{../FIGS/Appuhamy_etal-manure-lactating-cows-model.png}
+\note{This is a statistical model, the only one in this course}
+\maxFrameImage{../FIGS/Appuhamy_etal-manure-lactating-cows-equations.png}
+\maxFrameImage{../FIGS/Appuhamy_etal-manure-lactating-cows-statistics.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Models for herds}
+\note{So far, we have seen models of the production of milk as well as two byproducts of cattle husbandry: methane and manure. We come back to manure later (how to get rid of it) and see how growth of weight can be modelled when we look at other animals. 
+
+For now, let's look at herds}
+
+\begin{frame}{At the herd level}
+    \begin{center}
+        \begin{tikzpicture}
+            \node[inner sep=0pt] (cow1) at (0,0)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+                \node[inner sep=0pt] (cow2) at (2,0)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+                \node[inner sep=0pt] (cow3) at (1,2)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+                \node[inner sep=0pt] (cow4) at (0.5,-1.5)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+                \node[inner sep=0pt] (cow5) at (2.5,1.5)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Sun_etal-cow-sync-cover.png}
+\note{Very interesting, albeit quite abstract, model.
+
+Uses so-called switching systems
+
+Very cool model}
+\maxFrameImage{../FIGS/Sun_etal-cow-sync-single-cow-model.png}
+\note{Start with a single cow
+
+$x$ desire to eat, $y$ desire to lie down, both in $[0,1]$
+
+Explain the model}
+\maxFrameImage{../FIGS/Sun_etal-cow-sync-switching-conditions.png}
+\note{$x$ desire to eat, $y$ desire to lie down, both in $[0,1]$
+
+$\E$ eating, $\R$ resting, $\S$ standing}
+\maxFrameImage{../FIGS/Sun_etal-cow-sync-switching-scenarios.png}
+\note{Explain right figure first, where the squares have sides $x$ and $y$ in $[0,1]$ or $[]\delta,1]$}
+\maxFrameImage{../FIGS/Sun_etal-cow-sync-coupling.png}
+\maxFrameImage{../FIGS/Sun_etal-cow-sync-behaviour-coupled.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-cover.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-explain.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-model1.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-model2.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-model3.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-model4.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-model5.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-model6.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-model7.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-troop-length-theory.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-experiments.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-experimental-data.png}
+\maxFrameImage{../FIGS/ShiyomiTsuiki-grazing-fitted-troop-lengths.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Coleman_etal-plant-animal-interface-cover.png}
+\maxFrameImage{../FIGS/Coleman_etal-plant-animal-interface-animals-plants.png}
+\maxFrameImage{../FIGS/Coleman_etal-plant-animal-interface-diet-selection.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Gregorini_etal-grazing-cover.png}
+\maxFrameImage{../FIGS/Gregorini_etal-grazing-model1.png}
+\maxFrameImage{../FIGS/Gregorini_etal-grazing-model2.png}
+\maxFrameImage{../FIGS/Gregorini_etal-grazing-model3.png}
+\maxFrameImage{../FIGS/Gregorini_etal-grazing-sim.png}
+\maxFrameImage{../FIGS/Gregorini_etal-grazing-parameters1.png}
+\maxFrameImage{../FIGS/Gregorini_etal-grazing-parameters2.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Keshtkar_etal-reactor-manure-cover.png}
+\maxFrameImage{../FIGS/Keshtkar_etal-reactor-manure-reactor-structure.png}
+\maxFrameImage{../FIGS/Keshtkar_etal-reactor-manure-kinetics.png}
+\maxFrameImage{../FIGS/Keshtkar_etal-reactor-manure-nomenclature.png}
+\maxFrameImage{../FIGS/Keshtkar_etal-reactor-manure-chemistry.png}
+\maxFrameImage{../FIGS/Keshtkar_etal-reactor-manure-equations1.png}
+\maxFrameImage{../FIGS/Keshtkar_etal-reactor-manure-equations2.png}
+\maxFrameImage{../FIGS/Keshtkar_etal-reactor-manure-sim.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Models for other herds}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Pla-sow-herds-cover.png}
+\maxFrameImage{../FIGS/Pla-sow-herds-events.png}
+\maxFrameImage{../FIGS/Pla-sow-herds-models-reviewed.png}
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Teleken_etal-growth-models-cover.png}
+\maxFrameImage{../FIGS/Teleken_etal-growth-models-models.png}
+\maxFrameImage{../FIGS/Teleken_etal-growth-models-inflection-point.png}
+\maxFrameImage{../FIGS/Teleken_etal-growth-models-data-used.png}
+\maxFrameImage{../FIGS/Teleken_etal-growth-models-some-fits-1.png}
+\maxFrameImage{../FIGS/Teleken_etal-growth-models-goodness-fit.png}
+\maxFrameImage{../FIGS/Teleken_etal-growth-models-some-fits-2.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Akinsola_etal-growth-chicken-cover.png}
+\maxFrameImage{../FIGS/Akinsola_etal-growth-chicken-growth-functions.png}
+\maxFrameImage{../FIGS/Akinsola_etal-growth-chicken-experimental-site.png}
+\maxFrameImage{../FIGS/Akinsola_etal-growth-chicken-experimental-site2.png}
+\maxFrameImage{../FIGS/Akinsola_etal-growth-chicken-estimates.png}
+
+
+
+\begin{frame}{Heterogeneous herds}
+    \begin{center}
+        \begin{tikzpicture}
+            \node[inner sep=0pt] (goat1) at (-1,-1.5)
+                {\includegraphics[width=.15\textwidth]{../FIGS/goat1.png}};
+            \node[inner sep=0pt] (goat2) at (-0.75,1.5)
+                {\includegraphics[width=.15\textwidth]{../FIGS/goat1.png}};
+            \node[inner sep=0pt] (goat3) at (4,0)
+                {\includegraphics[width=.15\textwidth]{../FIGS/goat1.png}};
+                    \node[inner sep=0pt] (cow1) at (0,0)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+            \node[inner sep=0pt] (cow2) at (2,0)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+            \node[inner sep=0pt] (cow3) at (1,2)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+            \node[inner sep=0pt] (cow4) at (0.5,-1.5)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+            \node[inner sep=0pt] (cow5) at (2.5,1.5)
+                {\includegraphics[width=.3\textwidth]{../FIGS/BiarB98i8.png}};
+            \node[inner sep=0pt] (pig1) at (3.5,2.5)
+                {\includegraphics[width=.15\textwidth]{../FIGS/pig1.png}};
+            \node[inner sep=0pt] (pig2) at (3,-2)
+                {\includegraphics[width=.15\textwidth]{../FIGS/pig1.png}};
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-cover.png}
+\maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-overall-dynamics.png}
+\maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-model-structure.png}
+\maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-goat-equations.png}
+\maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-parameter-types.png}
+\maxFrameImage{../FIGS/Shabb_etal-Mongolian-livestock-sims.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Models for management}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Hirooka-beef-prod-systems-cover.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/StygarMakulska-beef-prod-systems-cover.png}
+\maxFrameImage{../FIGS/StygarMakulska-beef-prod-systems-model-types.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Menendez_etal-modeling-animal-nutrition-cover.png}
+\maxFrameImage{../FIGS/Menendez_etal-modeling-animal-nutrition-process-with-modelling.png}
+\maxFrameImage{../FIGS/Menendez_etal-modeling-animal-nutrition-conceptual.png}
+\maxFrameImage{../FIGS/Menendez_etal-modeling-animal-nutrition-continuous-vs-rotational.png}
+\maxFrameImage{../FIGS/Menendez_etal-modeling-animal-nutrition-precision-system-models.png}
+\maxFrameImage{../FIGS/Menendez_etal-modeling-animal-nutrition-some-models.png}
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+\begin{frame}{Conclusion}
+    Many interesting models
+    \vfill
+    (Many models have never been ``properly'' studied mathematically and are ``waiting'' for an analysis)
+    \vfill
+    I showed only one statistical model, but the majority of published work used to be statistical 
+    \vfill
+    Contrary to other fields: easy to generate data of good quality
+    \vfill 
+    I voluntarily excluded disease-related works.. but they are easy to find!
+\end{frame}
+
+
+\end{document}

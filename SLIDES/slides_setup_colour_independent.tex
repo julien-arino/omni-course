@@ -243,6 +243,19 @@ minimum height=2em]
 \end{frame}
 }
 
+% Add note to previous slide
+\newcommand{\maxFrameImageNote}[2]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]
+{#1}
+\end{center}
+\end{changemargin}
+\note{#2}
+\end{frame}
+}
+
 % This uses the entire whole screen (to include in frame)
 \newcommand{\maxFrameImageNoFrame}[1]{
 \begin{changemargin}{-1cm}{-1cm}
