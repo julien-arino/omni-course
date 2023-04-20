@@ -31,21 +31,1189 @@
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-\section{Metapopulation models}
-
-\subsection{\`A la Levins}
-\subsection{\`A la Levin}
 
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\section{A few models}
+\section[Brief history]{A brief history of metapopulations}
+
+\frame{\frametitle{What are metapopulations?}
+Metapopulations are \emph{populations} of \emph{populations}.
+\vfill
+Two main types of metapopulation models:
+\begin{itemize}
+\item \emph{patch occupancy models}. Describe whether a location is \emph{occupied} by a species or not. Depends on the occupancy of neighboring or connected locations. Dynamics describes the number of occupied locations
+\item Models with \emph{explicit movement}. Movement between locations is described explicitly. In each location, a set of differential equations describes the dynamics of the populations present
+\end{itemize}
+}
+
+\frame{\frametitle{What is a location?}
+A \emph{location} is a unit (typically geographical) within which the population is considered homogeneous
+\begin{itemize}
+\item city
+\item region
+\item country
+\item but also, location where a given species lives (for example, forest, swamp, etc.)
+\end{itemize}
+\vfill
+Locations may or may not overlap
+}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection[Implicit movement]{Metapopulations \`a la Levins}
+
+\begin{frame}{A model of Richard Levins (1969)}
+    R. Levins. \href{https://doi.org/10.1093/besa/15.3.237}{Some Demographic and Genetic Consequences of Environmental Heterogeneity for Biological Control}. 
+    Bulletin of the Entomological Society of America \textbf{15}(3): 237-240 (1969)
+    \vfill
+    Cited 4,400+ times, numerous higher order ``offspring''
+	\vfill
+	Quickly evolved to include prey-predators or competition systems
+\end{frame}
+
+\begin{frame}{The Levins model}
+Rate of change of \# of local populations $P$:
+\begin{equation}
+P' = \beta P \left( 1 - \frac{P}{T} \right) -\mu P
+\label{eq:Levins}
+\end{equation}
+$\beta$ immigration rate between \emph{locations}, $T$ total number of locations and $\mu$ extinction rate of local populations
+\vfill
+Ecologists \& mathematicians think of patches differently. For mathematicians, typically, one place in space. To be clear, in the remainder of these slides, I will speak of \emph{locations}
+\end{frame}
+
+\begin{frame}{Metapopulations with implicit movement}
+    Same philosophy as the Levins model
+    \vfill
+    \begin{itemize}
+        \item There is a set $\P$ of locations called \emph{locations}
+        \item Each location $p\in\P$ has an internal dynamics $x_p=f_p(x_p)$, where $x_p\in\IR_+^{n_p}$ and $f_p:\IR^{n_p}\to \IR^{n_p}$
+        \item No flow of individuals between locations
+        \item The influence of location $q\neq p$ on $p$ is described through a function $g_{qp}(x_p,x_q)$, where $x_q\in\IR^{n_q}$ and $g_p:\IR^{n_p}\times\IR^{n_q}\to\IR^{n_p}$
+    \end{itemize}
+    \vfill
+    So the population in location $p\in\P$ has dynamics
+    \begin{equation}\label{eq:metapop_implicit_mvt_generic}
+        x_p' = f_p(x_p)
+        +\sum\dind{q\in\P}{q\neq p}
+        g_{qp}(x_p,x_q)
+    \end{equation}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection[Explicit movement]{Metapopulations with explicit movement}
+
+\begin{frame}{Levins-type vs Explicit movement}
+	Levins model and its offspring: movement is implicit
+	\[
+	P' = \beta P \left( 1 - \frac{P}{T} \right) -\mu P
+	\]
+	$\beta$ immigration rate between locations incorporates geography
+	\vfill
+	Sometimes we have explicit movement information or want to incorporate known spatial information $\implies$ models with explicit movement 
+	\vfill Levin (1974) 
+\end{frame}
+
+\frame{\frametitle{Metapopulations with explicit movement}
+	Split continuous space into $N$ discrete geographical locations (\emph{ptatches})
+	\vfill
+	Each location contains \textbf{compartments} (homogeneous groups of individuals). E.g., preys, predators, etc. 
+	\vfill
+	Here, we consider a single compartment, the \emph{species of interest}, with no further compartmentalisation
+	\vfill
+	Individuals \emph{may} move between locations; $m_{qp}\geq 0$ rate of movement of individuals from location $p=1,\ldots,N$ to location $q=1,\ldots,N$
+	\vfill
+}
+
+\frame{\frametitle{Explicit movement (focus on $P_1$)}
+	\begin{center}		
+	\begin{tikzpicture}[auto, %node distance = 2cm, auto,
+	cloud/.style={minimum width={width("N-1")+2pt},
+		draw, ellipse,fill=red!70}]
+	\node [cloud] (P1) {$P_1$};
+	\node [cloud, above right=of P1] (P2) {$P_2$};
+	\node [cloud, right=of P1] (P3) {$P_3$};
+	\node [cloud, below right=of P1] (P4) {$P_4$};
+	\node [cloud, below=of P1] (P5) {$P_5$};
+	\node [cloud, below left=of P1] (P6) {$P_6$};
+	\node [cloud, above left=of P1] (Pk) {$P_k$};
+	%% Outflows
+	\path [line, very thick, blue] (P1) to [bend left = 20] node [midway, left] (TextNode) {$m_{21}$} (P2);
+	\path [line, very thick, blue] (P1) to [bend left = 20] node [midway, below] (TextNode) {$m_{31}$} (P3);
+	\path [line, very thick, blue] (P1) to [bend left = 20] node [pos=0.9, right] (TextNode) {$m_{51}$} (P5);
+	\path [line, very thick, blue] (P1) to [bend left = 20] node [midway, right] (TextNode) {$m_{61}$} (P6);
+	\path [line, very thick, blue, densely dashed] (P1) to [bend left = 20] node [midway, left] (TextNode) {$m_{k1}$} (Pk);
+	%% Inflows
+	\path [line, very thick, red] (P2) to [bend left = 20] node [midway, right] (TextNode) {$m_{12}$} (P1);
+	\path [line, very thick, red] (P4) to [bend left = 20] node [right] (TextNode) {$m_{14}$} (P1);
+	\path [line, very thick, red] (P6) to [bend left = 20] node [left] (TextNode) {$m_{16}$} (P1);
+	\path [line, very thick, red, densely dashed] (Pk) to [bend left = 20] node [right, pos=0.1] (TextNode) {$m_{1k}$} (P1);
+	\end{tikzpicture}
+	\end{center}
+	\[
+	P_1' = {\red \sum_{\substack{j=1\\j\neq 1}}^{N}m_{1j}P_j}
+	{\blue -P_1\sum_{\substack{j=1\\j\neq 1}}^{N}m_{j1}}
+	\]
+	or
+	\[
+	P_1' = \sum_{j=1}^{N} m_{1j}P_j
+	\textrm{ assuming }
+	m_{11}=-\sum_{\substack{j=1\\j\neq 1}}^{N} m_{j1}
+	\]
+}
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{The general context}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{The graph setting}
+
+
+\begin{frame}\frametitle{Graph setting}
+Suppose
+\begin{itemize} 
+\item $|\P|$ locations, vertices in a (directed) graph $\G$
+\item Each location contains a certain number of compartments belonging to a common set $\C$ of compartments
+\item Arcs of $\G$ represent the possibility for a given compartment to move between two locations; any two locations are connected by a maximum of $|\C|$ edges
+\end{itemize}
+\vfill
+Graph is a digraph: movement is not always symmetric
+\end{frame}
+
+
+\begin{frame}
+$\G=(\P,\A)$ is multi-digraph, where 
+\begin{itemize}
+	\item $\P$ is the set of vertices (locations)
+	\item $\A$ is the set of arcs, i.e., an ordered multiset of pairs of elements of $\P$
+\end{itemize}
+\vfill
+Any two vertices $X,Y\in\P$ are connected by at most $|\C|$ arcs from $X$ to $Y$ and at most $|\C|$ arcs from $Y$ to $X$
+\vfill
+Because there are $|\C|$ compartments and movements are compartment-specific, we also define, for all $c\in\C$, $\P_c$ and $\A_c$ as well as the compartment-specific digraphs $\G^c=(\P_c,\A_c)$
+\end{frame}
+
+
+\frame{\frametitle{Connection matrix}
+For a given compartment $c\in\C$, a \emph{connection matrix} can be associated to the digraph $\G_c$
+\vfill
+This is the \textbf{adjacency matrix} of $\G_c$, but we emphasize the reason why we use $\G_c$ by using the term \emph{connection}
+\vfill
+Choosing an ordering of elements of $\P$, the $(i,j)$ entry of the $|\P|\times|\P|$-matrix $\N_c=\N_c(\G_c)$ is one if $R^c(P_i,P_j)$ and zero otherwise, i.e., if $P_i$ has no direct access to $P_j$
+\vfill
+For convenience, the ordering of the locations is generally assumed the same for all compartments
+}
+
+\frame{\frametitle{Strongly connected multi-digraph}
+\begin{definition}[Strongly connected components]
+For a given compartment $s$, the \textbf{strongly connected components} (or \textbf{strong components}, for short) are such that, for all locations $X,Y$ in a strong component, compartment $s$ in $X$ has access to $Y$
+\end{definition}
+\vfill
+\begin{definition}[Strong connectedness for a compartment]
+The multi-digraph is strongly connected for compartment $c$ if all locations belong to the same strong component of $\G_c$
+\end{definition}
+}
+
+\frame{\frametitle{Srong connectedness and irreducibility}
+\begin{definition}[Reducible/irreducible matrix]
+	\label{def:reducible_irreducible_matrix}
+	A matrix $A$ is \textbf{reducible} if there exists a permutation matrix $P$ such that $P^TAP$ is block upper triangular. A matrix that is not reducible is \textbf{irreducible}
+\end{definition}
+\vfill
+Matrix $A\in\IF^{n\times n}$ is irreducible if for all $i,j=1,\ldots,n$, there exists $k$ such that $a_{ij}^k>0$, where $a_{ij}^k$ is the $(i,j)$-entry in $A^k$
+\vfill
+\begin{theorem}
+	Strong connectedness $\Leftrightarrow$ \textbf{irreducibility} of the connection matrix $\mathcal{C}_c$
+\end{theorem}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Generic model}
+
+\frame{\frametitle{Notation}
+\begin{itemize}
+	\item $N_{cp}(t)$ number of individuals of compartment $c$ in location $p$ at time $t$
+	\vfill
+	\item $N_c=\left(N_{c1},\ldots,N_{c|\P|}\right)^T$ distribution of individuals of compartment $c\in\C$ among the different locations 
+	\vfill
+	\item $N^p=\left(N_1^p,\ldots,N_{|\P|}^p\right)^T$ composition of the population in location $p\in\P$
+\end{itemize}
+}
+
+\frame{\frametitle{Metapopulation models with linear movement}
+Use a linear autonomous movement operator
+\vfill
+Then, for a given compartment $c\in\C$ and in a given location $p\in\P$
+\[
+	N_{cp}'=f_{cp}(N^p)
+	+\sum\dind{q\in\P}{q\neq p}m_{cpq}N_{cq} 
+	-\left(\sum\dind{q\in\P}{q\neq p}m_{cqp}\right)N_{cp}
+\]
+where $m_{cpq}$ rate of movement of individuals in compartment $c\in\C$ from location $q\in\P$ to location $p\in\P$
+}
+
+\begin{frame}{A more compact notation}
+	To make 
+	\[
+		N_{cp}'=f_{cp}(N^p)
+		+\sum\dind{q\in\P}{q\neq p}m_{cpq}N_{cq} 
+		-\left(\sum\dind{q\in\P}{q\neq p}m_{cqp}\right)N_{cp}
+	\]
+	more compact, denote the rate of leaving location $p$ as
+	\begin{equation}
+		m_{cpp} = -\sum\dind{q\in\P}{q\neq p}m_{cqp}
+	\end{equation}
+	Then
+	\begin{equation}\label{eq:general_metapop_linear_migration}
+		N_s'=f_{cp}(N^p)+\sum_{q\in\P}m_{cpq}N_{cq}
+	\end{equation}
+\end{frame}
+
+\begin{frame}{Vector form of the system}
+For compartment $c\in\C$,
+\begin{equation}\label{eq:general_metapop}
+N_c'=f(N)+\mathcal{M}_cN_c
+\end{equation}
+with
+\begin{equation}\label{eq:movement_matrix}
+\mathcal{M}_c =
+\begin{pmatrix}
+-\sum\limits_{k\in\P}m_{ck1} & m_{c12} & \cdots & m_{c1|\P|} \\
+& & & \\
+m_{c|\P|1} & m_{c|\P|2} & \cdots & -\sum\limits_{k\in\P}m_{ck|\P|}
+\end{pmatrix}
+\end{equation}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+\subsection{The movement matrix}
+
+\begin{frame}{Definitions and notation for matrices}
+\begin{itemize}
+	\item $M\in\mathbb{R}^{n\times n}$ a square matrix with entries denoted $m_{ij}$
+	\vfill
+	\item $M\geq\mathbf{0}$ if $m_{ij}\geq 0$ for all $i,j$ (could be the zero matrix); $M>\mathbf{0}$ if $M\geq\mathbf{0}$ and $\exists i,j$ with $m_{ij}>0$; $M\gg\mathbf{0}$ if $m_{ij}>0$ $\forall i,j=1,\ldots,n$. Same notation for vectors
+	\vfill
+	\item $\sigma(M)=\{\lambda\in\mathbf{C}; M\lambda=\lambda\mathbf{v}, \mathbf{v}\neq\mathbf{0}\}$ \textbf{spectrum} of $M$
+	\vfill
+	\item $\rho(M)=\max_{\lambda\in\sigma(M)}\{|\lambda|\}$ \textbf{spectral radius}
+	\vfill
+	\item $s(M)=\max_{\lambda\in\sigma(M)}\{\Re(\lambda)\}$ \textbf{spectral abscissa} (or \textbf{stability modulus})
+	\vfill
+	\item $M$ is an \textbf{M-matrix} if it is a \textbf{Z-matrix} ($m_{ij}\leq 0$ for $i\neq j$) and $M = s\mathbb{I}-A$, with $A\geq 0$ and $s\geq \rho(A)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The movement matrix}
+	The matrix
+	\begin{equation}\tag{\ref{eq:movement_matrix}}
+		\mathcal{M}_c =
+		\begin{pmatrix}
+		-\sum\limits_{k\in\P}m_{ck1} & m_{c12} & \cdots & m_{c1|\P|} \\
+		& & & \\
+		m_{c|\P|1} & m_{c|\P|2} & \cdots & -\sum\limits_{k\in\P}m_{ck|\P|}
+		\end{pmatrix}
+	\end{equation}
+	is the \textbf{movement matrix}
+	\vfill
+	It plays an extremely important role in the analysis of metapopulation systems, so we'll spend some time discussing its properties
+	\vfill
+$\mathcal{M}_c$ describes
+\begin{itemize} 
+\item existence of connections
+\item when they exist, their ``intensity''
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Properties of the movement matrix $\M$}
+	First, remark $-\M_c$ is a Laplacian matrix (cf. Michael's course)
+	\vfill
+	\begin{lemma}\label{lemma:behaviour_Mc}
+		\begin{enumerate}
+			\item $0\in\sigma(\M)$ corresponding to left e.v. $\11^T$ \hfill[$\sigma$ spectrum]
+			\item $-\M$ is a singular M-matrix
+			\item $0=s(\M)\in\sigma(\M)$ \hfill[$s$ spectral abscissa]
+			\item If $\M$ irreducible, then $s(\M)$ has multiplicity 1
+		\end{enumerate}
+	\end{lemma}
+	\vfill
+	For complete proof of Lemma~\ref{lemma:behaviour_Mc} and Proposition~\ref{prop:behaviour_Mc} (next page), see \href{http://dx.doi.org/10.1007/s11538-019-00593-1}{Arino, Bajeux \& Kirkland, BMB 2019}
+\end{frame}
+
+\begin{frame}
+	\begin{proposition}[$D$ a diagonal matrix]
+		\label{prop:behaviour_Mc}
+		\begin{enumerate}
+			\item $s(\M+d\II)=d$, $\forall d\in\IR$
+			\item $s(\M+D)\in\sigma(\M+D)$ associated to $\bv>\b0$. If $\M$ irreducible, $s(\M+D)$ has  multiplicity 1 and is associated to $\bv\gg \b0$
+			\item If $\diag (D)\gg \b0$, then $D-\M$ invertible M-matrix and $(D-\M)^{-1}> \b0$
+			\item $\M$ irreducible and $\diag(D)>\b0$ $\Longrightarrow$ $D-\M$ nonsingular irreducible M-matrix and $(D-\M)^{-1}\gg \b0$		
+		\end{enumerate}
+	\end{proposition}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
+\subsection{Behaviour of the mobility component}
+\frame{\frametitle{Behaviour of the mobility component}
+Assume no within-location dynamics, just movement. Then \eqref{eq:general_metapop} takes the form
+\begin{equation}\label{eq:mobility_compartment}
+	N_c' = \mathcal{M}_cN_c
+\end{equation}
+\vfill
+\begin{theorem}\label{th:GAS_metapop1}
+For a given compartment $c\in\C$, suppose that the movement matrix $\M_c$ is irreducible. Then for any $N_c(0)>0$, \eqref{eq:mobility_compartment} satisfies
+\[
+\lim_{t\to\infty}N_c(t)=N_c^\star\gg 0
+\]
+\end{theorem}
+\vfill
+Note that $N_c^\star$ depends on $\nbOne^TN_c(0)$
+}
+
+
+
+\begin{frame}{Reduction to total population per location}
+Let 
+\[
+	T_p = \sum_{c\in\C}N_{cp}
+\]
+be the total population in location $p$
+\vfill
+It is often posssible to obtain, in each location $p\in\P$, an equation for the evolution of the total population that takes the form
+\begin{equation}\label{eq:dT_total_population}
+	T_p' = 
+	D_p(T_p)+\sum_{c\in\C}\sum_{q\in\P}m_{cpq}N_{cq}
+\end{equation}
+where $D_p(T_p)$ describes the demography in location $p$
+\end{frame}
+
+\begin{frame}{Nature of the demography}
+	Most common types of demographic functions
+	\begin{itemize}
+		\item $D_p(T_p)=b_p-d_pT_p$ (asymptotically constant population)
+		\item $D_p(T_p)=b_pT_p-d_pT_p$ 
+		\item $D_p(T_p)=d_pT_p-d_pT_p=0$ (constant population)
+		\item $D_p(T_p)=r_pT_p(1-T_p/K_p)$ (logistic demography)
+	\end{itemize}
+	\vfill
+	In what follows, assume 
+	\begin{equation}\label{eq:demography_function}
+		D_p(T_p)=b_p-d_pT_p
+	\end{equation}
+\end{frame}
+
+\begin{frame}{Vector / matrix form of the equation}
+Assuming demography is of the form \eqref{eq:demography_function}, write \eqref{eq:dT_total_population} in vector form
+\begin{equation}\label{sys:dN_general} 
+	\mathbf{T}'=\mathbf{b}-\bd\bT+\sum_{c\in\C}\mathcal{M}_c\bN_{c}	
+\end{equation}
+where 
+\begin{itemize}
+	\item $\mathbf{b}=(b_1,\ldots,b_{|\mathcal{P}|})^T\in\IR^{|\P|}$
+	\item $\mathbf{T}=(T_1,\ldots,T_{|\mathcal{P}|})^T\in\IR^{|\P|}$
+	\item $\mathbf{N}=(N_{c1},\ldots,N_{c{|\mathcal{P}|}})^T\in\IR^{|\P|}$
+	\item $\bd=\mathsf{diag}\left(d_1,\ldots,d_{|\mathcal{P}|}\right)\in\IR^{|\mathcal{P}|\times|\mathcal{P}|}$
+	\item $\mathcal{M}_c\in\IR^{|\mathcal{P}|\times|\mathcal{P}|}$
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{The nice case}
+Suppose movement rates \textbf{equal for all compartments}, i.e.,
+$$
+\M_c\equiv\M
+$$
+\vfill
+(stronger than Definition~\ref{def:mvt_similar_for_all_compartments}, which only requires zero/nonzero patterns in all $\M_c$, $c\in\C$, to be the same)
+\vfill
+Then
+\begin{align}
+\bT' &= \bb-\bd\bT+\M\sum_{c\in\C}\bN_{c} \nonumber \\
+&= \bb-\bd\bT+\M\bT \label{sys:pSLIRS_toy_dN}
+\end{align}
+\end{frame}
+
+
+\begin{frame}{Equilibria}
+$$
+\begin{aligned}
+\bT'=\b0 &\Leftrightarrow \mathbf{b}-\bd\mathbf{T}+\mathcal{M}\mathbf{T}=\mathbf{0} \\
+&\Leftrightarrow (\bd-\mathcal{M})\mathbf{T}=\mathbf{b} \\
+&\Leftrightarrow \mathbf{T}^\star=(\bd-\mathcal{M})^{-1}\mathbf{b}
+\end{aligned}
+$$
+given, of course, that $\bd-\mathcal{M}$ (or, equivalently, $\mathcal{M}-\bd$) is invertible.. 
+\vfill
+Is it?
+\end{frame}
+
+\begin{frame}{Nonsingularity of $\mathcal{M}-\bd$}
+Using the spectrum shift of Theorem~\ref{prop:behaviour_Mc}{(1)}
+\[
+s\left(\mathcal{M}-\min_{p\in\mathcal{P}}d_p\right)=-\min_{p\in\mathcal{P}}d_p
+\]
+This gives a constraint: for total population to behave well (in general, we want this), we \emph{must assume all death rates are positive}
+\vfill
+Assume they are (in other words, assume $\bd$ nonsingular). Then $\mathcal{M}-\bd$ is nonsingular and $\bT^\star=(\bd-\mathcal{M})^{-1}\mathbf{b}$ unique
+\end{frame}
+
+
+\begin{frame}{Behaviour of the total population}
+\framesubtitle{Equal irreducible movement case}
+$\mathbf{T}^\star=(\bd-\mathcal{M})^{-1}\mathbf{b}$ attracts solutions of
+$$
+\mathbf{T}'=\mathbf{b}-\bd\mathbf{T}+\mathcal{M}\mathbf{T}=:f(\mathbf{T})
+$$
+\vfill
+Indeed, we have
+$$
+Df=\mathcal{M}-\bd
+$$
+\vfill
+Since we now assume that $\bd$ is nonsingular, we have by Theorem~\ref{prop:behaviour_Mc}{(1)} that $s(\mathcal{M}-\min_{p\in\mathcal{P}}d_p)=-\min_{p\in\mathcal{P}}d_p<0$
+\vfill
+$\mathcal{M}$ irreducible $\rightarrow$ $\mathbf{T}^\star\gg 0$ (provided $\mathbf{b}>\mathbf{0}$, of course)
+\end{frame}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Diseases in metapopulations}
+
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{A few sample models}
+
+
+\frame{\frametitle{The toy SLIRS model in patches}
+\begin{center}
+	\begin{tikzpicture}[scale=1, every node/.style={transform shape},
+		auto, %node distance = 2cm, auto,
+		box/.style={minimum width={width("N-1")+2pt},
+			draw, rectangle,fill=red!70}]
+		%% States
+		\node [box] at (0,2) (S) {$S$};
+		\node [box] at (2,2) (L) {$L$};
+		\node [box] at (4,2) (I) {$I$};
+		\node [box] at (6,2) (R) {$R$};
+		%% Flows
+		\path [line, thick] (-1.5,2) to node [midway, above] (TextNode) {$B(N)$} (S);
+		\path [line, thick] (S) to node [midway, above, sloped] (TextNode) {$\Phi$} (L);
+		\path [line, thick] (L) to node [midway, above] (TextNode) {$\varepsilon L$} (I);
+		\path [line, thick] (I) to node [sloped, midway, above] (TextNode) {$\gamma I$} (R);
+		\draw [>=latex,->, thick, rounded corners] (R) -- +(0,0.75) -- ++(-6,0.75) node[midway, above] {$\nu R$} -- (S);
+		\path [line, thick] (S) to node [midway, right] (TextNode) {$dS$} ++(0,-1);
+		\path [line, thick] (L) to node [midway, right] (TextNode) {$dL$} ++(0,-1);
+		\path [line, thick] (I) to node [midway, right] (TextNode) {$(d+\delta)I$} ++(0,-1);
+		\path [line, thick] (R) to node [midway, right] (TextNode) {$dR$} ++(0,-1);
+	\end{tikzpicture}
+\end{center}
+\begin{subequations}\label{sys:SLIRS}
+\begin{align}
+S' &= \B(N)+\nu R-\Phi-dS \\
+L' &= \Phi-(\varepsilon+d)L\\
+I' &= \varepsilon L-(\gamma+d+\delta)I\\
+R' &= \gamma I-(\nu+d)R
+\end{align}
+\end{subequations}
+$\Phi$ force of infection. Depends on $S,I$, possibly $N$. In general
+\[
+\Phi=\beta(N)\phi(S,I)
+\] 
+
+Mass action, $\Phi=\beta SI$, proportional incidence, $\Phi=\beta SI/N$
+}
+
+
+
+\frame{\frametitle{$|\mathcal{P}|$-SLIRS model}
+\begin{subequations}
+	\label{sys:pSLIRS}
+	\begin{align}
+		S_{p}' &=\mathcal{B}_p\left(N_p\right)+\nu_pR_p-\Phi_p-d_pS_p 
+		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}} m_{Spq}S_{q}} 
+		\label{sys:pSLIRS_dS} \\
+		L_{p}' &=\Phi_p-\left( \varepsilon_{p}+d_{p}\right)L_{p}
+		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}} m_{Lpq}L_{q}} 
+		\label{sys:pSLIRS_dL} \\
+		I_{p}' &=\varepsilon_pL_p-(\gamma_p+d_p)I_p
+		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}} m_{Ipq}I_{q}} 
+		\label{sys:pSLIRS_dI} \\
+		R_{p}' &=\gamma _{p}I_{p}-\left(\nu_{p}+d_{p}\right)R_{p}
+		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}} m_{Rpq}R_{q}} 
+		\label{sys:pSLIRS_dR} 
+	\end{align}
+	with incidence 
+	\begin{equation}
+		\Phi_p=\beta_p\frac{S_pI_p}{N_p^{q_p}},\qquad q_p\in\{0,1\}
+		\label{sys:pSLIRS_incidence} 
+	\end{equation}
+\end{subequations}	
+}
+
+\begin{frame}
+\frametitle{$|\S|\;|\P|$-SLIRS (multiple species)}
+$p\in\P$ and $s\in\mathcal{S}$ (a set of species)
+\vfill
+\begin{subequations}
+	\label{sys:spSLIRS}
+	\begin{align}
+		S_{sp}' &= \mathcal{B}_{sp}(N_{sp})+\nu_{sp}R_{sp}-\Phi_{sp}-d_{sp}S_{sp}
+		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}} m_{Sspq}S_{sq}} 
+		\label{sys:spSLIRS_dS} \\
+		L_{sp}' &= \Phi_{sp}-(\varepsilon_{sp}+d_{sp})L_{sp}
+		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}}m_{Lspq}L_{sq}}
+		\label{sys:spSLIRS_dL} \\
+		I_{sp}' &= \varepsilon_{sp}L_{sp}-(\gamma_{sp}+d_{sp})I_{sp}
+		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}} m_{Ispq}I_{sq}}
+		\label{sys:spSLIRS_dI} \\
+		R_{sp} &= \gamma _{sp}I_{sp}-(\nu_{sp}+d_{sp})R_{sp}
+		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}} m_{Rspq}R_{sq}} 
+		\label{sys:spSLIRS_dR} 
+	\end{align}
+	with incidence
+	\begin{equation}
+	\Phi_{sp}=\sum_{k\in\mathcal{S}}\beta_{skp}\frac{S_{sp}I_{kp}}{N_p^{q_p}},\qquad q_p\in\{0,1\}
+	\label{sys:spSLIRS_incidence} 
+	\end{equation}
+\end{subequations}
+\vfill
+{\tiny
+\begin{itemize}
+\setlength{\itemsep}{-5pt}
+\item JA, Davis, Hartley, Jordan, Miller \& PvdD. \href{https://julien-arino.github.io/assets/pdf/papers/2005_ArinoDavisHartleyJordanMillerPvdD-MMB22.pdf}{A multi-species epidemic model with spatial dynamics}. \emph{Mathematical Medicine and Biology} \textbf{22}(2):129-142 (2005)\newline 
+\item JA, Jordan \& PvdD. \href{https://julien-arino.github.io/assets/pdf/papers/2007_ArinoJordanPvdD-MBS206.pdf}{Quarantine in a multi-species epidemic model with spatial dynamics}. \emph{Mathematical Biosciences} \textbf{206}(1):46-60 (2007)
+\end{itemize}}
+\end{frame}
+
+\frame{
+\frametitle{$|\P|^2$-SLIRS (residents-travellers)}
+\begin{subequations}
+	\label{sys:ppSLIRS}
+	\begin{align}
+		S_{pq}' =& 
+		\mathcal{B}_{pq}\left(N_p^r\right)+\nu_{pq} R_{pq}-\Phi_{pq}-d_{pq}S_{pq} \color{red}{+\textstyle{\sum_{k\in\mathcal{P}}} m_{Spqk}S_{pk}} 
+		\label{sys:ppSLIRS_dS} \\
+		L_{pq}' =& \Phi_{pq}
+		-(\varepsilon_{pq}+d_{pq})L_{pq}
+		\color{red}{+\textstyle{\sum_{k\in\mathcal{P}}} m_{Lpqk}L_{pk}} 
+		\label{sys:ppSLIRS_dL} \\
+		I_{pq}' =& \varepsilon_{pq} L_{pq}
+		-(\gamma_{pq}+d_{pq})I_{pq}
+		\color{red}{+\textstyle{\sum_{k\in\mathcal{P}}} m_{Ipqk}I_{pk}} 
+		\label{sys:ppSLIRS_dI} \\
+		R_{pq}' =& \gamma_{pq} I_{pq}
+		-(\nu_{pq}+d_{pq})R_{pq}
+		\color{red}{+\textstyle{\sum_{k\in\mathcal{P}}} m_{Rpqk}R_{pk}}
+		\label{sys:ppSLIRS_dR} 
+	\end{align}
+	with incidence
+	\begin{equation}
+		\Phi_{pq}=\sum_{k\in\mathcal{P}}\beta_{pqk}\frac{S_{pq}I_{kq}}{N_p^{q_q}},\qquad q_q=\{0,1\}
+		\label{sys:ppSLIRS_incidence} 
+	\end{equation}
+\end{subequations}
+
+\vfill
+{\tiny
+\begin{itemize}
+%\setlength{\itemsep}{-5pt}
+\item Sattenspiel \& Dietz. \href{https://doi.org/10.1016/0025-5564(94)00068-B}{A structured epidemic model incorporating geographic mobility among regions} (1995)
+\item JA \& PvdD. \href{https://julien-arino.github.io/assets/pdf/papers/2003_ArinoPvdD-MPS10_correct.pdf}{A multi-city epidemic model}. \emph{Mathematical Population Studies} \textbf{10}(3):175-193 (2003)
+\item JA \& PvdD. \href{https://julien-arino.github.io/assets/pdf/papers/2003_ArinoPvdD-LNCIS294.pdf}{The basic reproduction number in a multi-city compartmental epidemic model}. In \emph{Positive Systems} (2003)
+\end{itemize}}
+}
+
+
+\frame{\frametitle{Steps for an analysis}
+\textbf{Basic steps}
+\begin{enumerate}
+\item Well-posedness of the system
+\item Existence of disease free equilibria (DFE)
+\item Computation of a reproduction number $\R_0$, study local asymptotic stability of DFE
+\item If DFE unique, prove global asymptotic stability when $\R_0<1$
+\end{enumerate}
+\textbf{Additional steps}
+\begin{enumerate}\setcounter{enumi}{4}
+\item Existence of \emph{mixed} equilibria, with some locations at DFE and others with disease
+\item Computation of some bounds on $\R_0$
+\item EEP and its LAS \& GAS properties
+\end{enumerate}
+$\ldots$
+}
+
+\begin{frame}{Analysis -- Toy system}
+For simplicity, consider $|\mathcal{P}|$-SLIRS with $\mathcal{B}_p(N_p)=\mathcal{B}_p$
+\begin{subequations}
+	\label{sys:pSLIRS_toy}
+	\begin{align}
+		S_{p}' &=\mathcal{B}_p-\Phi_p-d_pS_p+\nu_pR_p
+		+\textstyle{\sum_{q\in\mathcal{P}}} m_{Spq}S_{q} 
+		\label{sys:pSLIRS_toy_dS} \\
+		L_{p}' &=\Phi_p-\left( \varepsilon_{p}+d_{p}\right)L_{p}
+		+\textstyle{\sum_{q\in\mathcal{P}}} m_{Lpq}L_{q} 
+		\label{sys:pSLIRS_toy_dL} \\
+		I_{p}' &=\varepsilon_pL_p-(\gamma_p+d_p)I_p
+		+\textstyle{\sum_{q\in\mathcal{P}}} m_{Ipq}I_{q} 
+		\label{sys:pSLIRS_toy_dI} \\
+		R_{p}' &=\gamma _{p}I_{p}-\left(\nu_{p}+d_{p}\right)R_{p}
+		+\textstyle{\sum_{q\in\mathcal{P}}} m_{Rpq}R_{q}
+		\label{sys:pSLIRS_toy_dR} 
+	\end{align}
+	with incidence
+	\begin{equation}
+		\Phi_p=\beta_p\frac{S_pI_p}{N_p^{q_p}},\qquad q_p\in\{0,1\}
+		\label{sys:pSLIRS_toy_incidence} 
+	\end{equation}			
+\end{subequations}
+\vfill
+System of $4|\mathcal{P}|$ equations
+\end{frame}
+
+\begin{frame}{Don't panic: size is not that bad..}
+System of $4|\mathcal{P}|$ equations !!!
+\vfill
+However, a lot of structure: 
+\begin{itemize}
+	\item $|\mathcal{P}|$ \emph{copies} of individual units, each comprising 4 equations
+	\item Dynamics of individual units well understood
+	\item Coupling is linear
+\end{itemize}
+\vfill
+$\implies$ Good case of large-scale system
+\vfill
+(matrix analysis is your friend)
+
+\end{frame}
+
+
+% %%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%
+% \subsection{Well-posedness}
+
+\frame{\frametitle{Existence and uniqueness}
+\begin{itemize}
+\item
+Existence and uniqueness of solutions classic, assured by good choice of birth and force of infection functions
+\vfill
+\item
+In the cases treated later, the birth function is either constant or a linear combination of state variables
+\vfill
+\item May exist problems at the origin, if the force of infection is not defined there
+\vfill
+\item
+Assumption form now on: existence and uniqueness
+\end{itemize}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Existence of a DFE}
+
+\frame{\frametitle{Disease free equilibrium}
+The model is at equilibrium if the time derivatives are zero
+\vfill
+\begin{definition}[Metapopulation DFE]
+In the case of system \eqref{sys:pSLIRS_toy}, location $p\in\P$ is at a disease-free equilibrium (DFE) if $L_{p}=I_{p}=0$, and the $|\P|$-location model is at a \textbf{metapopulation DFE} if $L_{p}=I_{p}=0$ for all $p\in\P$
+\end{definition}
+\vfill
+Here, we want to find the DFE for the $|\P|$-location model. Later, the existence of mixed equilibria, with some locations at the DFE and others at an endemic equilibrium, is considered
+\vfill
+(For \eqref{sys:spSLIRS}, replace $L_p$ with $L_{sp}$ and $I_p$ with $I_{sp}$, for \eqref{sys:ppSLIRS}, replace $L_p$ by $L_{pp}$ and $I_p$ by $I_{pp}$. To simplify notation, we could write $L_{\bullet}$ and $I_{\bullet}$)
+}
+
+\begin{frame}{}
+Assume \eqref{sys:pSLIRS_toy} at metapopulation DFE. Then $\Phi_p=0$ and 
+\begin{align*}
+0 &=\mathcal{B}_p-d_pS_p+\nu_pR_p
++\textstyle{\sum_{q\in\mathcal{P}}} m_{Spq}S_{q} \\
+0 &=-\left(\nu_{p}+d_{p}\right)R_{p}
++\textstyle{\sum_{q\in\mathcal{P}}} m_{Rpq}R_{q}
+\end{align*}
+Want to solve for $S_p,R_p$. Here, it is best (crucial in fact) to remember some linear algebra. Write system in vector form:
+\begin{align*}
+\mathbf{0} &=\mathbf{b}-\bd\mathbf{S}+\mathbf{\nu}\bR+\mathcal{M}^S\mathbf{S} \\
+\mathbf{0} &=-\left(\mathbf{\nu}+\bd\right)\bR+\mathcal{M}^R\bR
+\end{align*}
+where $\mathbf{S},\bR,\mathbf{b}\in\mathbb{R}^{|\mathcal{P}|}$, $\bd,\mathbf{\nu},\mathcal{M}^S,\mathcal{M}^R$ $|\mathcal{P}|\times|\mathcal{P}|$-matrices ($\bd,\mathbf{\nu}$ diagonal)
+\end{frame}
+
+\begin{frame}{$\bR$ at DFE}
+Recall second equation:
+$$
+\mathbf{0} =-\left(\mathbf{\nu}+\bd\right)\bR+\mathcal{M}^R\bR \Leftrightarrow (\mathcal{M}^R-\mathbf{\nu}-\bd)\bR=\mathbf{0}
+$$
+\vfill
+So unique solution $\bR=\mathbf{0}$ if $\mathcal{M}^R-\mathbf{\nu}-\bd$ invertible
+Is it?
+\vfill
+We have been here before! 
+\vfill
+From spectrum shift, $s(\mathcal{M}^R-\mathbf{\nu}-\bd)=-\min_{p\in\mathcal{P}}(\nu_p+d_p)<0$
+\vfill
+So, given $\mathbf{L}=\mathbf{I}=\mathbf{0}$, $\bR=\mathbf{0}$ is the unique equilibrium and
+$$
+\lim_{t\to\infty}\bR(t)=\mathbf{0}
+$$
+\vfill
+$\implies$ DFE has $\mathbf{L}=\mathbf{I}=\bR=\mathbf{0}$
+\end{frame}
+
+
+\begin{frame}{$\mathbf{S}$ at the DFE}
+DFE has $\mathbf{L}=\mathbf{I}=\bR=\mathbf{0}$ and $\mathbf{b}-\bd\mathbf{S}+\mathcal{M}^S\mathbf{S}=\mathbf{0}$, i.e.,
+$$
+\mathbf{S}=(\bd-\mathcal{M}^S)^{-1}\mathbf{b}
+$$
+\vfill
+Recall: $-\mathcal{M}^S$ singular M-matrix. From previous reasoning, $\bd-\mathcal{M}^S$ has \textbf{instability modulus} shifted \emph{right} by $\min_{p\in\mathcal{P}}d_p$. So:
+\begin{itemize}
+\item $\bd-\mathcal{M}^S$ invertible
+\item $\bd-\mathcal{M}^S$ nonsingular M-matrix
+\end{itemize}
+\vfill
+Second point $\implies (\bd-\mathcal{M}^S)^{-1}>\mathbf{0}\implies (\bd-\mathcal{M}^S)^{-1}\mathbf{b}> \mathbf{0}$  (would have $\gg\mathbf{0}$ if $\mathcal{M}^S$ irreducible)
+\vfill
+So DFE makes sense with
+$$
+(\mathbf{S},\mathbf{L},\mathbf{I},\bR)=\left((\bd-\mathcal{M}^S)^{-1}\mathbf{b},\mathbf{0},\mathbf{0},\mathbf{0}\right)
+$$
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Computation of a reproduction number}
+
+\begin{frame}{Computing the basic reproduction number $\R_0$}
+Use next generation method with $\Xi=\{L_1,\ldots,L_{|\mathcal{P}|},I_1,\ldots,I_{|\mathcal{P}|}\}$, $\Xi'=\mathcal{F}-\mathcal{V}$
+$$
+\mathcal{F}=\left(\Phi_1,\ldots,\Phi_{|\mathcal{P}|},0,\ldots,0\right)^T
+$$
+$$
+\mathcal{V}=
+\begin{pmatrix}
+\left( \varepsilon_{1}+d_{1}\right)L_{1}
+-\sum\limits_{q\in\mathcal{P}} m_{L1q}L_{q} \\
+\vdots \\
+\left( \varepsilon_{|\mathcal{P}|}+d_{|\mathcal{P}|}\right)L_{|\mathcal{P}|}
+-\sum\limits_{q\in\mathcal{P}} m_{L|\mathcal{P}|q}L_{q} \\
+-\varepsilon_1L_1+(\gamma_1+d_1)I_1
+-\sum\limits_{q\in\mathcal{P}} m_{I1q}I_{q} \\
+\vdots \\
+-\varepsilon_{|\mathcal{P}|}L_{|\mathcal{P}|}
++(\gamma_{|\mathcal{P}|}+d_{|\mathcal{P}|})I_{|\mathcal{P}|}
+-\sum\limits_{q\in\mathcal{P}} m_{I|\mathcal{P}|q}I_{q}
+\end{pmatrix}
+$$
+\end{frame}
+
+
+\begin{frame}
+Differentiate w.r.t. $\Xi$:
+$$
+D\mathcal{F}
+=
+\begin{pmatrix}
+\dfrac{\partial\Phi_1}{\partial L_1} & \cdots &
+\dfrac{\partial\Phi_1}{\partial L_{|\mathcal{P}|}} & 
+\dfrac{\partial\Phi_1}{\partial I_1} & \cdots &
+\dfrac{\partial\Phi_1}{\partial I_{|\mathcal{P}|}} \\
+\vdots & & \vdots & \vdots & & \vdots \\
+\dfrac{\partial\Phi_{|\mathcal{P}|}}{\partial L_1} & \cdots &
+\dfrac{\partial\Phi_{|\mathcal{P}|}}{\partial L_{|\mathcal{P}|}} & 
+\dfrac{\partial\Phi_{|\mathcal{P}|}}{\partial I_1} & \cdots &
+\dfrac{\partial\Phi_{|\mathcal{P}|}}{\partial I_{|\mathcal{P}|}} \\
+0 & \cdots & 0 & 0 & \cdots & 0 \\
+\vdots & & \vdots & \vdots & & \vdots \\
+0 & \cdots & 0 & 0 & \cdots & 0
+\end{pmatrix}
+$$
+\end{frame}
+
+\begin{frame}
+Note that
+$$
+\frac{\partial\Phi_p}{\partial L_k}=\frac{\partial\Phi_p}{\partial I_k}=0
+$$
+whenever $k\neq p$, so
+$$
+D\mathcal{F}
+=
+\begin{pmatrix}
+\mathsf{diag}\left(
+\frac{\partial\Phi_1}{\partial L_1},\ldots,\frac{\partial\Phi_{|\mathcal{P}|}}{\partial L_{|\mathcal{P}|}}\right) &
+\mathsf{diag}\left(
+\frac{\partial\Phi_1}{\partial I_1},\ldots,\frac{\partial\Phi_{|\mathcal{P}|}}{\partial I_{|\mathcal{P}|}}\right) \\
+\mathbf{0} & \mathbf{0} 
+\end{pmatrix}
+$$
+\end{frame}
+
+\begin{frame}{Evaluate $D\mathcal{F}$ at DFE}
+	\begin{minipage}[t]{0.45\textwidth}
+		If $\Phi_p=\beta_pS_pI_p$, then
+		\begin{itemize}
+			\item $\dfrac{\partial\Phi_p}{\partial L_p}=0$
+			\item $\dfrac{\partial\Phi_p}{\partial I_p}=\beta_pS_p$
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}[t]{0.45\textwidth}
+		If $\Phi_p=\beta_p\dfrac{S_pI_p}{N_p}$, then
+		\begin{itemize}
+			\item $\dfrac{\partial\Phi_p}{\partial L_p}=\beta_p\dfrac{S_pI_p}{N_p^2}=0$ at DFE
+			\item $\dfrac{\partial\Phi_p}{\partial I_p}=\beta_p\dfrac{S_p}{N_p}$ at DFE
+		\end{itemize}
+	\end{minipage}
+	\vfill
+In both cases, $\partial/\partial L$ block is zero so
+$$
+F=D\mathcal{F}(DFE)=
+\begin{pmatrix}
+\mathbf{0} & \mathsf{diag}\left(
+\frac{\partial\Phi_1}{\partial I_1},\ldots,\frac{\partial\Phi_{|\mathcal{P}|}}{\partial I_{|\mathcal{P}|}}\right) \\
+\mathbf{0} & \mathbf{0}
+\end{pmatrix}
+$$
+\end{frame}
+
+\begin{frame}{Compute $D\mathcal{V}$ and evaluate at DFE}
+$$
+V=
+\begin{pmatrix}
+\mathsf{diag}_p(\varepsilon_p+d_p)-\mathcal{M}^L & \mathbf{0} \\
+-\mathsf{diag}_p(\varepsilon_p) & \mathsf{diag}_p(\gamma_p+d_p)-\mathcal{M}^I
+\end{pmatrix}
+$$
+where $\mathsf{diag}_p(z_p):=\mathsf{diag}(z_1,\ldots,z_{|\mathcal{P}|})$
+\vfill
+Inverse of $V$ easy ($2\times 2$ block lower triangular):
+$$
+V^{-1}
+=
+\begin{pmatrix}
+\left(\mathsf{diag}_p(\varepsilon_p+d_p)-\mathcal{M}^L\right)^{-1} & \mathbf{0} \\
+\tilde V_{21}^{-1} & \left(\mathsf{diag}_p(\gamma_p+d_p)-\mathcal{M}^I\right)^{-1}
+\end{pmatrix}
+$$
+where
+\begin{multline*}
+	\tilde V_{21}^{-1}=
+	\left(\mathsf{diag}_p(\varepsilon_p+d_p)-\mathcal{M}^L\right)^{-1}\\ 
+	\mathsf{diag}_p(\varepsilon_p)
+	\left(\mathsf{diag}_p(\gamma_p+d_p)-\mathcal{M}^I\right)^{-1}		
+\end{multline*}
+\end{frame}
+
+\begin{frame}{$\R_0$ as $\rho(FV^{-1})$}
+Next generation matrix
+$$
+FV^{-1}=
+\begin{pmatrix}
+\mathbf{0} & F_{12} \\
+\mathbf{0} & \mathbf{0}
+\end{pmatrix}
+\begin{pmatrix}
+\tilde V_{11}^{-1} & \mathbf{0} \\
+\tilde V_{21}^{-1} & \tilde V_{22}^{-1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+F_{12}\tilde V_{21}^{-1} & F_{12}\tilde V_{22}^{-1} \\
+\mathbf{0} & \mathbf{0}
+\end{pmatrix}
+$$
+where $\tilde V_{ij}^{-1}$ is block $ij$ in $V^{-1}$. So
+$$
+\R_0=\rho\left(F_{12}\tilde{V}_{21}^{-1}\right)
+$$
+i.e.,
+\begin{multline*}
+	\R_0=\rho\Biggl(
+		\mathsf{diag}\left(
+		\frac{\partial\Phi_1}{\partial I_1},\ldots,\frac{\partial\Phi_{|\mathcal{P}|}}{\partial I_{|\mathcal{P}|}}\right)
+		\left(\mathsf{diag}_p(\varepsilon_p+d_p)-\mathcal{M}^L\right)^{-1} \\ 
+		\mathsf{diag}_p(\varepsilon_p)
+		\left(\mathsf{diag}_p(\gamma_p+d_p)-\mathcal{M}^I\right)^{-1}
+		\Biggr)			
+\end{multline*}
+\end{frame}
+
+\begin{frame}{Local asymptotic stability of the DFE}
+\begin{theorem}\label{th:LAS_DFE_pSLIRS_toy}
+	Define $\R_0$ for the $|\mathcal{P}|$-SLIRS as 
+	\begin{multline*}
+		\R_0=\rho\Biggl(
+			\mathsf{diag}\left(
+			\frac{\partial\Phi_1}{\partial I_1},\ldots,\frac{\partial\Phi_{|\mathcal{P}|}}{\partial I_{|\mathcal{P}|}}\right)
+			\left(\mathsf{diag}_p(\varepsilon_p+d_p)-\mathcal{M}^L\right)^{-1}  \\
+			\mathsf{diag}_p(\varepsilon_p)
+			\left(\mathsf{diag}_p(\gamma_p+d_p)-\mathcal{M}^I\right)^{-1}
+			\Biggr)				
+	\end{multline*}
+	Then the DFE
+	$$
+	(\mathbf{S},\mathbf{L},\mathbf{I},\mathbf{R})=\left((\mathbf{d}-\mathcal{M}^S)^{-1}\mathbf{b},\mathbf{0},\mathbf{0},\mathbf{0}\right)
+	$$
+	is locally asymptotically stable if $\R_0<1$ and unstable if $\R_0>1$		
+\end{theorem}
+\vfill
+{\setstretch{0.5}\tiny
+From PvdD \& Watmough, \href{https://doi.org/10.1016/S0025-5564(02)00108-6}{Reproduction numbers and sub-threshold endemic equilibria for compartmental models of disease transmission}, \emph{Bulletin of Mathematical Biology} \textbf{180}(1-2): 29-48 (2002)}
+\end{frame}
+
+\begin{frame}{Some remarks about $\R_0$}
+	The expression for $\R_0$ in Theorem~\ref{th:LAS_DFE_pSLIRS_toy} is exact
+	\vfill
+	However, unless you consider a very small set of locations, you will not get a closed form expression
+	\vfill
+	Indeed, by Theorem~\ref{prop:behaviour_Mc}{(3)} and more importantly (often $\M$ is irreducible), Theorem~\ref{prop:behaviour_Mc}{(4)}, the two inverses in $\R_0$ are likely crowded ($\gg 0$ in the irreducible case)
+	\vfill
+	However, numerically, this works easy unless conditioning is bad
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Global stability of the DFE when $\R_0<1$}
+
+\frame{\frametitle{The toy $|\P|$-SLIRS}
+LAS results for $\R_0<1$ can sometimes be strengthened to GAS. One class of models where this works often is when the population is either constant or asymptotically constant and incidence is \emph{standard}
+\vfill
+\begin{theorem}\label{th:pSLIRS_GAS}
+Let $\R_0$ be defined as in Theorem~\ref{th:LAS_DFE_pSLIRS_toy} and use proportional incidence $\Phi_p=\beta_pS_pI_p/N_p$. If $\R_0<1$, then the DFE of system \eqref{sys:pSLIRS_toy} is globally asymptotically stable
+\end{theorem}
+}
+
+
+\frame{\frametitle{$|\S|\;|\P|$-SLIRS with multiple species}
+In the case in which movement is equal for all compartments and there is no disease death, a comparison theorem argument can be used as in Theorem~\ref{th:pSLIRS_GAS} to show that if $\R_0<1$, then the
+DFE of the $|\S|\;|\P|$-SLIRS \eqref{sys:spSLIRS} is globally asymptotically stable. 
+\vfill
+\begin{theorem}\label{th:R0_spSEIRS_GAS}
+For system \eqref{sys:spSLIRS} with $|\S|$ species and $|\P|$ locations, with movement equal for all compartments, define $\R_0$ appropriately and use proportional incidence. 
+If $\R_0<1$, then the DFE is globally asymptotically stable
+\end{theorem}
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+\section{Computational considerations}
+
+\begin{frame}[fragile]{Set up parameters}
+\begin{lstlisting}
+pop = c(34.017, 1348.932, 1224.614, 173.593, 93.261) * 1e+06
+countries = c("Canada", "China", "India", "Pakistan", "Philippines")
+T = matrix(data = 
+				c(0, 1268, 900, 489, 200, 
+				1274, 0, 678, 859, 150, 
+				985, 703, 0, 148, 58, 
+				515, 893, 144, 0, 9, 
+				209, 174, 90, 2, 0), 
+			nrow = 5, ncol = 5, byrow = TRUE)	
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Work out movement matrix}
+\begin{lstlisting}
+p = list()
+# Use the approximation explained in Arino & Portet (JMB 2015)
+p$M = mat.or.vec(nr = dim(T)[1], nc = dim(T)[2])
+for (from in 1:5) {
+	for (to in 1:5) {
+	p$M[to, from] = -log(1 - T[from, to]/pop[from])
+	}
+	p$M[from, from] = 0
+}
+p$M = p$M - diag(colSums(p$M))
+\end{lstlisting}	
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+p$P = dim(p$M)[1]
+p$eta = rep(0.3, p$P)
+p$epsilon = rep((1/1.5), p$P)
+p$pi = rep(0.7, p$P)
+p$gammaI = rep((1/5), p$P)
+p$gammaA = rep((1/3), p$P)
+# The desired values for R_0
+R_0 = rep(1.5, p$P)
+\end{lstlisting}	
+\end{frame}
+
+\begin{frame}[fragile]{Write down indices of the different state variable types}
+	Save index of state variable types in state variables vector (we have to use a vector and thus, for instance, the name ``S'' needs to be defined)
+\begin{lstlisting}
+p$idx_S = 1:p$P
+p$idx_L = (p$P+1):(2*p$P)
+p$idx_I = (2*p$P+1):(3*p$P)
+p$idx_A = (3*p$P+1):(4*p$P)
+p$idx_R = (4*p$P+1):(5*p$P)
+\end{lstlisting}	
+\end{frame}
+
+\begin{frame}[fragile]{Set up IC and time}
+\begin{lstlisting}
+# Set initial conditions. For example, we start with 2
+# infectious individuals in Canada.
+L0 = mat.or.vec(p$P, 1)
+I0 = mat.or.vec(p$P, 1)
+A0 = mat.or.vec(p$P, 1)
+R0 = mat.or.vec(p$P, 1)
+I0[1] = 2
+S0 = pop - (L0 + I0 + A0 + R0)
+# Vector of initial conditions to be passed to ODE solver.
+IC = c(S = S0, L = L0, I = I0, A = A0, R = R0)
+# Time span of the simulation (5 years here)
+tspan = seq(from = 0, to = 5 * 365.25, by = 0.1)
+\end{lstlisting}	
+\end{frame}
+
+
+\begin{frame}[fragile]{Set up $\beta$ to avoid blow up}
+	Let us take $\R_0=1.5$ for patches in isolation. Solve $\R_0$ for $\beta$ 
+	$$
+	\beta=\frac{\R_0}{S(0)}
+	\left(
+	\frac{1-\pi_p}{\gamma_{Ip}}
+	+\frac{\pi_p\eta_p}{\gamma_{Ap}}
+	\right)^{-1}
+	$$ 
+\begin{lstlisting}
+for (i in 1:p$P) {
+	p$beta[i] = 
+		R_0[i] / S0[i] * 1/((1 - p$pi[i])/p$gammaI[i] + p$pi[i] * p$eta[i]/p$gammaA[i])
+}
+\end{lstlisting}	
+\end{frame}
+
+\begin{frame}[fragile]{Define the vector field}
+\begin{lstlisting}[language=Renhanced]
+SLIAR_metapop_rhs <- function(t, x, p) {
+	with(as.list(p), {
+		S = x[idx_S]
+		L = x[idx_L]
+		I = x[idx_I]
+		A = x[idx_A]
+		R = x[idx_R]
+		N = S + L + I + A + R
+		Phi = beta * S * (I + eta * A) / N
+		dS = - Phi + MS \%*\% S
+		dL = Phi - epsilon * L + p$ML \%*\% L
+		dI = (1 - pi) * epsilon * L - gammaI * I + MI \%*\% I
+		dA = pi * epsilon * L - gammaA * A + MA \%*\% A
+		dR = gammaI * I + gammaA * A + MR \%*\% R
+		dx = list(c(dS, dL, dI, dA, dR))
+		return(dx)
+	})
+}	
+\end{lstlisting}
+\end{frame}
+	
+
+\begin{frame}[fragile]{And now call the solver}
+\begin{lstlisting}
+# Call the ODE solver
+sol <- ode(y = IC, 
+			times = tspan, 
+			func = SLIAR_metapop_rhs, 
+			parms = p,
+			method = "ode45")
+\end{lstlisting}	
+\end{frame}
+	
+\begin{frame}[fragile]{One little trick (case with demography)}
+	Suppose demographic EP is $\mathbf{N}^\star=(\bd-\mathcal{M})^{-1}\mathbf{b}$
+
+	Want to maintain $\mathbf{N}(t)=\mathbf{N}^\star$ for all $t$ to ignore convergence to demographic EP. Think in terms of $\mathbf{b}$:
+	
+	$$
+	\mathbf{N}'=0\iff \mathbf{b}-\bd\mathbf{N}+\mathcal{M}\mathbf{N}=0 \iff \mathbf{b} = (\bd-\mathcal{M})\mathbf{N}
+	$$
+	
+	So take $\mathbf{b}=(\bd-\mathcal{M})\mathbf{N}^\star$
+	
+	Then
+	$$
+	\mathbf{N}' = (\bd-\mathcal{M})\mathbf{N}^\star
+	-\bd\mathbf{N}+\mathcal{M}\mathbf{N}
+	$$
+	and thus if $\mathbf{N}(0)=\mathbf{N}^\star$, then $\mathbf{N}'(0)=0$ and thus $\mathbf{N}'=0$ for all $t\geq 0$, i.e., $\mathbf{N}(t)=\mathbf{N}^\star$ for all $t\geq 0$
+\end{frame}
+
+\begin{frame}{Word of warning about that trick, though..}
+$$
+\mathbf{b}=(\bd-\mathcal{M})\mathbf{N}^\star
+$$
+\vfill
+$\bd-\M$ has nonnegative (typically positive) diagonal entries and nonpositive off-diagonal entries
+\vfill
+Easy to think of situations where the diagonal will be dominated by the off-diagonal, so $\bb$ could have negative entries
+\vfill
+$\implies$ use this for numerics, not for the mathematical analysis
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{A few FMD models}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Ringa \& Bauch}
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/RingaBauch-FMD-pair-approx-cover-inverted.png}
 
 \maxFrameImage{../FIGS/HaydonWoolhouse-FMD-UK-cover-inverted.png}
 

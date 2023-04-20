@@ -31,6 +31,8 @@
   \item FMD was also called hoof-and-mouth disease (HMD) in the UK, although FMD tends to be used globally now
   \vfill
   \item I only consider single population aspects here, spatial spread is a later lecture
+  \vfill
+  \item Most models are ``spatial in some sense'', so only three models reviewed here
 \end{itemize}
 \end{frame}
 
@@ -140,11 +142,220 @@
 \section{A few models}
 
 \maxFrameImage{../FIGS/Keeling-FMD-models-cover-inverted.png}
-\maxFrameImage{../FIGS/ThornleyFrance-modelling-FMD-cover-inverted.png}
+
+\begin{frame}{Most work on the 2001 UK epidemic is ``spatial''}
+  We come back to this in the lecture about spatial aspects
+\end{frame}
+
+% %%%%%%%%%%%%%%%%%%%
+% \maxFrameImage{../FIGS/ThornleyFrance-modelling-FMD-cover-inverted.png}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Chis Ster, Dodd \& Ferguson}
+%%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Ster-FMD-within-farm-cover-inverted.png}
-\maxFrameImage{../FIGS/RingaBauch-FMD-pair-approx-cover-inverted.png}
+
+\begin{frame}{The model -- Setup}
+  \begin{itemize}
+    \item $S(t)$ number of animals on single species farm 
+    \item $n(t,j)$ number of infected animals on farm at time $t$ infected at time $j$ before $t$
+  \end{itemize}
+  \vfill
+Infectious load of farm at time $t$
+\begin{equation}
+  P(t)=\sum_{j=0}^t \phi(j)n(t,j)
+\end{equation}
+where $\phi(j)$ relative infectiousness of animal with infection age $j$
+\end{frame}
+
+\begin{frame}{Initial condition}
+  \[
+    n(0,0)=I_0
+  \]
+  \vfill
+  \[
+    n(0,j)=0,\quad j>0
+  \]
+  \vfill
+  \[
+    S(0) = N-I_0
+  \]
+\end{frame}
+
+\begin{frame}{The model}
+  \begin{subequations}
+    \begin{align}
+      S(t) &= S(t-1)\max\left(
+        1-\beta \frac{P(t)}{N},0
+      \right),\quad t>0 \\
+      n(t,j) &= n(t-1,j-1),\quad t>0,j>0
+    \end{align}
+    with boundary condition
+    \begin{equation}
+      n(t,0) = S(t)-S(t-1),\quad t>0
+    \end{equation}
+  \end{subequations} 
+\end{frame}
+
+
+\begin{frame}{Infectious profile}
+  \begin{equation}
+    \phi(j) = \theta^2j e^{-\theta j}
+  \end{equation}
+  \vfill
+  In case of two species farm, two cases
+  \begin{itemize}
+    \item $\theta^{-1}=4$ days for cattle and $\theta^{-1}=5$ days for sheep (TS1)
+    \item $\theta^{-1}=3$ days for cattle and $\theta^{-1}=4$ days for sheep (TS2)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Model for two species}
+  Infectious weight of mixed farm
+  \begin{equation}
+    F(t)=R_IP_C(t)+P_S(t)
+  \end{equation}
+  where $R_I$ is infectiousness of cattle relative to sheep
+  \vfill
+  If mixing is asssortative between species
+  \begin{equation}
+    \begin{pmatrix}
+      F_C(t) \\
+      F_S(t)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      1 & \rho \\ \rho & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      P_C(t)\\ P_S(t)
+    \end{pmatrix}
+  \end{equation}
+  \vfill
+  (mixing homogeneous when $\rho=1$)
+\end{frame}
+
+
+\begin{frame}{Infection times are unknown}
+  Infection times are unknown and some infections may be hidden, so define the cumulative infectiousness by day $t$ post infection for each species
+  \[
+    Y_X(t)=\sum_{j=1}^tP_X(j),\quad X=\{S,C\}
+  \]
+  \vfill
+  Hazard for surviving detection on day $t$
+  \[
+    h(t)=1-\exp\left(
+      -\frac{Y_C(t)}{\alpha_CN_C}
+      -\frac{Y_S(t)}{\alpha_SN_S}
+      \right)
+  \]
+  where $\alpha_X$ detection threshold parameter (quantifies when saturation of detection hazard occurs)
+\end{frame}
+
+\begin{frame}
+  They also look at a hybrid-farm model (HFM) and a between-farm model (BFM), additionally to this within-farm model (WFM)
+\end{frame}
+
+\maxFrameImage{../FIGS/Ster-FMD-within-farm-parameters-inverted.png}
+\maxFrameImage{../FIGS/Ster-FMD-within-farm-incidence-inverted.png}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Mushayabasa, Posny \& Wang}
+%%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Mushayabasa_etal-model-FMD-cover-inverted.png}
 
+\begin{frame}{State variables}
+  \begin{itemize}
+    \item $S$ susceptible
+    \item $H$ vaccinated
+    \item $E$ exposed
+    \item $I$ infected
+    \item $C$ carrier 
+    \item $R$ recovered
+  \end{itemize}
+  \vfill
+  $N(t)=S(t)+H(t)+E(t)+I(t)+C(t)+R(t)$
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \def\vertskip{*-2}
+    \def\horzskip{*2.25}
+    \begin{tikzpicture}[scale=1, transform shape]
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,-1\vertskip) (S) {$S$};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (H) {$H$};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (E) {$E$};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,0\vertskip) (I) {$I$};
+      \node [rectangle, fill=gray!10, text=black] at (3\horzskip,0\vertskip) (C) {$C$};
+      \node [rectangle, fill=gray!10, text=black] at (4\horzskip,0\vertskip) (R) {$R$};
+      %% Flows between compartments
+      \path [line, very thick, bend left] (S) to node [midway, left] (TextNode) {$\phi$} (H);
+      \path [line, very thick, bend left] (H) to node [midway, left] (TextNode) {$\alpha$} (S);
+      \path [line, very thick, sloped] (S) to node [midway, above] (TextNode) {$\lambda$} (E);
+      \path [line, very thick] (H) to node [midway, below,sloped] (TextNode) {$(1-\varepsilon)\lambda$} (E);
+      \path [line, very thick] (E) to node [midway, above] (TextNode) {$(1-\kappa)\gamma$} (I);
+      \path [line, very thick, bend right=60] (E) to node [midway, below] (TextNode) {$\kappa\gamma$} (C);
+      \path [line, very thick] (I) to node [midway, above] (TextNode) {$\sigma\pi_0$} (C);
+      \path [line, very thick, bend left=60] (I) to node [midway, above] (TextNode) {$\sigma\pi_2$} (R);
+      \path [line, very thick] (C) to node [midway, above] (TextNode) {$(1-p)d$} (R);
+      %% Flows into and out of compartments
+      \path [line, very thick] (-0.75\horzskip,-1\vertskip) to node [midway, above] (TextNode) {$\mu$} (S);
+      \path [line, very thick] (S) to node [midway, right] (TextNode) {$\mu$} (0\horzskip,-1.75\vertskip);
+      \path [line, very thick] (H) to node [midway, right] (TextNode) {$\mu$} (0\horzskip,1.75\vertskip);
+      \path [line, very thick] (E) to node [midway, right] (TextNode) {$\mu$} (1\horzskip,-0.75\vertskip);
+      \path [line, very thick] (I) to node [near end, left] (TextNode) {$\mu+\sigma\pi_1$} (2\horzskip,-0.75\vertskip);
+      \path [line, very thick] (C) to node [midway, right] (TextNode) {$\mu+pd$} (3\horzskip,0.75\vertskip);
+      \path [line, very thick] (R) to node [midway, right] (TextNode) {$\mu$} (4\horzskip,0.75\vertskip);
+    \end{tikzpicture}    
+  \end{center}  
+\end{frame}
+
+\maxFrameImage{../FIGS/Mushayabasa_etal-model-FMD-params-inverted.png}
+
+\begin{frame}{Results}
+  \begin{equation}
+    \R_c = \frac{\beta\gamma(1-\kappa)(\alpha+\mu+(1-\varepsilon)\phi)}{(\mu+\gamma)(\mu+\sigma)(\mu+\alpha+\phi)}
+  \end{equation}
+  \begin{theorem}
+    When $\R_c\leq 1$, the FMD-free EP is GAS in
+    \[
+      \Omega=\{
+        S\leq S^0,H\leq H^0,N=1
+      \}
+    \]
+    When $\R_c>1$, $\exists$ unique EE EP that is LAS when $\R_c$ close to 1
+  \end{theorem}
+\end{frame}
+
+\maxFrameImage{../FIGS/Mushayabasa_etal-model-FMD-Rc-heatmap-inverted.png}
+
+\begin{frame}{Periodic case}
+  Then consider 
+  \[
+    \beta(t)=\beta_0\left[
+      1+a\sin\left(
+        \frac{2\pi}{365}t+\varphi
+      \right)
+    \right]
+  \]
+  Compute $\R_0$ using the method for periodic systems (Bacaer, Wang \& Zhao, Thieme)
+\end{frame}
+
+\maxFrameImage{../FIGS/Mushayabasa_etal-model-FMD-periodic-R0-inverted.png}
+
+\begin{frame}
+  \begin{theorem}
+    If $\R_0<1$, the FMD-free EP is GAS in $\Omega$. If $\R_0>1$, then solutions to the system are uniformly persistent and the system admits at least one positive periodic solution
+  \end{theorem}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%
+\subsection{Nur \emph{et al}}
+
+\maxFrameImage{../FIGS/Nur_etal-FMD-goats-cover-inverted.png}
+\maxFrameImage{../FIGS/Nur_etal-FMD-goats-flow-diagram-inverted.png}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -155,9 +366,6 @@
 \maxFrameImage{../FIGS/Kitching_etal-FMD-abuse-of-models-cover-inverted.png}
 \maxFrameImage{../FIGS/Kitching_etal-FMD-abuse-of-models-table-inverted.png}
 
-
-\begin{frame}{Conclusion}
-\end{frame}
 
 
 \end{document}
