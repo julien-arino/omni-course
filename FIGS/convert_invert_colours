@@ -1,4 +1,4 @@
 #!/bin/bash
 
-for img in `ls *.png`; do convert -negate ${img%.*}.png ${img%.*}-inverted.png; done
-
+# for img in `ls *.png`; do convert -negate ${img%.*}.png ${img%.*}-inverted.png; done
+convert -negate $1.png $1-inverted.png
