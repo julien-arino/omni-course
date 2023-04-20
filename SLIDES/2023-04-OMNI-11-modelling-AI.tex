@@ -9,7 +9,7 @@
 \input{slides_setup_nonLightBoard_blackBG.tex}
 
 
-\title{Introduction to mathematical modelling of foot-and-mouth disease in livestock}
+\title{Introduction to mathematical modelling of avian influenza in livestock}
 \author{Julien Arino}
 \date{April 2023}
 
@@ -24,80 +24,66 @@
 \addtocounter{page}{-1}
 
 
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{AI characteristics}
+
+\maxFrameImage{../FIGS/Sonnberg_etal-HPAI-natural-history-cover-inverted.png}
+\maxFrameImage{../FIGS/Sonnberg_etal-HPAI-natural-history-interactions-inverted.png}
+\maxFrameImage{../FIGS/Sonnberg_etal-HPAI-natural-history-periods-inverted.png}
+\maxFrameImage{../FIGS/Sonnberg_etal-HPAI-natural-history-history-inverted.png}
+
+\maxFrameImage{../FIGS/Beato_etal-AI-poultry-products-cover-inverted}
+\maxFrameImage{../FIGS/Beato_etal-AI-poultry-products-HPAI-inverted}
+\maxFrameImage{../FIGS/Beato_etal-AI-poultry-products-LPAI-inverted}
+
+\maxFrameImage{../FIGS/Alexander-history-AI-outbreaks-inverted}
+
+\maxFrameImage{../FIGS/LupianiReddy-AI-history-cover-inverted}
+\maxFrameImage{../FIGS/LupianiReddy-AI-history-events-inverted}
+\maxFrameImage{../FIGS/LupianiReddy-AI-history-events2-inverted}
+\maxFrameImage{../FIGS/LupianiReddy-AI-history-events3-inverted}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Modelling AI}
 \begin{frame}
-\begin{itemize}
-  \item In these slides, I consider foot-and-mouth disease (FMD) in livestock
-  \vfill
-  \item FMD was also called hoof-and-mouth disease (HMD) in the UK, although FMD tends to be used globally now
-  \vfill
-  \item I only consider single population aspects here, spatial spread is a later lecture
-\end{itemize}
+  \begin{center}
+    \def\vertskip{*-2}
+    \def\horzskip{*2.25}
+    \begin{tikzpicture}[scale=1, transform shape]
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,-1\vertskip) (S) {$S$};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (H) {$H$};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (E) {$E$};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,0\vertskip) (I) {$I$};
+      \node [rectangle, fill=gray!10, text=black] at (3\horzskip,0\vertskip) (C) {$C$};
+      \node [rectangle, fill=gray!10, text=black] at (4\horzskip,0\vertskip) (R) {$R$};
+      %% Flows between compartments
+      \path [line, very thick, bend left] (S) to node [midway, left] (TextNode) {$\phi$} (H);
+      \path [line, very thick, bend left] (H) to node [midway, left] (TextNode) {$\alpha$} (S);
+      \path [line, very thick, sloped] (S) to node [midway, above] (TextNode) {$\lambda$} (E);
+      \path [line, very thick] (H) to node [midway, below,sloped] (TextNode) {$(1-\varepsilon)\lambda$} (E);
+      \path [line, very thick] (E) to node [midway, above] (TextNode) {$(1-\kappa)\gamma$} (I);
+      \path [line, very thick, bend right=60] (E) to node [midway, below] (TextNode) {$\kappa\gamma$} (C);
+      \path [line, very thick] (I) to node [midway, above] (TextNode) {$\sigma\pi_0$} (C);
+      \path [line, very thick, bend left=60] (I) to node [midway, above] (TextNode) {$\sigma\pi_2$} (R);
+      \path [line, very thick] (C) to node [midway, above] (TextNode) {$(1-p)d$} (R);
+      %% Flows into and out of compartments
+      \path [line, very thick] (-0.75\horzskip,-1\vertskip) to node [midway, above] (TextNode) {$\mu$} (S);
+      \path [line, very thick] (S) to node [midway, right] (TextNode) {$\mu$} (0\horzskip,-1.75\vertskip);
+      \path [line, very thick] (H) to node [midway, right] (TextNode) {$\mu$} (0\horzskip,1.75\vertskip);
+      \path [line, very thick] (E) to node [midway, right] (TextNode) {$\mu$} (1\horzskip,-0.75\vertskip);
+      \path [line, very thick] (I) to node [near end, left] (TextNode) {$\mu+\sigma\pi_1$} (2\horzskip,-0.75\vertskip);
+      \path [line, very thick] (C) to node [midway, right] (TextNode) {$\mu+pd$} (3\horzskip,0.75\vertskip);
+      \path [line, very thick] (R) to node [midway, right] (TextNode) {$\mu$} (4\horzskip,0.75\vertskip);
+    \end{tikzpicture}    
+  \end{center}  
 \end{frame}
 
-
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-\section{FMD characteristics}
-
-\begin{frame}{Foot-and-mouth disease}
-  \begin{minipage}{0.3\textwidth}
-    \includegraphics[width=1.1\textwidth]{../FIGS/Electronmicrograph_of_the_foot-and-mouth_disease_virus.png}
-  \end{minipage}
-  \begin{minipage}{0.65\textwidth}
-    \begin{itemize}
-      \item Severe, highly communicable \textbf{viral} disease of cattle and swine
-      \item Also affects sheep, goats, deer and other cloven-hoofed ruminants. Horses not affected
-      \item Elephants, hedgehogs and some rodents also susceptible but do not develop clinical signs of the disease
-    \end{itemize}      
-  \end{minipage}
-\end{frame}
-
-\begin{frame}{}
-  \begin{minipage}{0.3\textwidth}
-    \includegraphics[width=1.1\textwidth]{../FIGS/Foot_and_mouth_disease_in_mouth.jpg}
-  \end{minipage}
-  \begin{minipage}{0.65\textwidth}
-    \begin{itemize}
-      \item Fever and blister-like sores on the tongue and lips, in the mouth, on the teats and between the hooves
-      \item Many affected animals recover, but the disease leaves them weakened and debilitated
-    \end{itemize}
-  \end{minipage}
-\end{frame}
-
-
-\begin{frame}{2001 United Kingdom HMD outbreak}
-  \begin{itemize}
-    \item 2,000 cases of the disease in farms across most of the British countryside
-    \vfill
-    \item Over 6 million cows and sheep were killed to control the disease
-    \vfill
-    \item Ministry of Agriculture, Fisheries and Food (MAFF) adopted a policy of ``contiguous cull'' - all sheep within 3,000 metres of known cases slaughtered
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{More about transmission}
-
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-\section{Basic models}
-
-
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
-
-\begin{frame}{Conclusion}
-\end{frame}
 
 
 \end{document}
