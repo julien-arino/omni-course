@@ -60,40 +60,201 @@
   A lot more popular than FMD!
   \vfill
   There are \emph{many} mathematical models
+  \vfill
+  However, most models look at zoonotic aspects, i.e., include a human component
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Stegeman_etal-control-HPAI-models-cover-inverted}
+\maxFrameImage{../FIGS/Stegeman_etal-control-HPAI-models-analytical-vs-simulation-inverted}
+\maxFrameImage{../FIGS/Stegeman_etal-control-HPAI-models-transmission1-inverted}
+\maxFrameImage{../FIGS/Stegeman_etal-control-HPAI-models-transmission2-inverted}
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Xie_etal-H9N2-within-host-cover-inverted}
+\maxFrameImage{../FIGS/Xie_etal-H9N2-within-host-model-inverted}
+\maxFrameImage{../FIGS/Xie_etal-H9N2-within-host-different-models-AIC-inverted}
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Hagenaars_etal-immune-response-AI-cover-inverted}
+\maxFrameImage{../FIGS/Hagenaars_etal-immune-response-AI-flow-inverted}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Liu_etal-H5N1-cover-inverted}
+%\maxFrameImage{../FIGS/Liu_etal-H5N1-model-inverted}
+
+\begin{frame}{3 types of birds $+$ environment}
+  \begin{itemize}
+    \item Poultry (mainly chicken), $c$
+    \item Wild birds who die after H5N1 infection, $w$
+    \item Wild birds who survive after H5N1 infection, $d$
+    \item $V$ virus density in the environment
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
   \begin{center}
     \def\vertskip{*-2}
-    \def\horzskip{*2.25}
+    \def\horzskip{*2.5}
     \begin{tikzpicture}[scale=1, transform shape]
-      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,-1\vertskip) (S) {$S$};
-      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (H) {$H$};
-      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (E) {$E$};
-      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,0\vertskip) (I) {$I$};
-      \node [rectangle, fill=gray!10, text=black] at (3\horzskip,0\vertskip) (C) {$C$};
-      \node [rectangle, fill=gray!10, text=black] at (4\horzskip,0\vertskip) (R) {$R$};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,-1\vertskip) (Sc) {$S_c$};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,-1\vertskip) (Ic) {$I_c$};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,0\vertskip) (Sw) {$S_w$};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,0\vertskip) (Ew) {$E_w$};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,0\vertskip) (Iw) {$I_w$};
+      \node [rectangle, fill=gray!10, text=black] at (0\horzskip,1\vertskip) (Sd) {$S_d$};
+      \node [rectangle, fill=gray!10, text=black] at (1\horzskip,1\vertskip) (Id) {$I_d$};
+      \node [rectangle, fill=gray!10, text=black] at (2\horzskip,1\vertskip) (Rd) {$R_d$};
+      \node [rectangle, fill=gray!10, text=black] at (3\horzskip,0\vertskip) (V) {$V$};
       %% Flows between compartments
-      \path [line, very thick, bend left] (S) to node [midway, left] (TextNode) {$\phi$} (H);
-      \path [line, very thick, bend left] (H) to node [midway, left] (TextNode) {$\alpha$} (S);
-      \path [line, very thick, sloped] (S) to node [midway, above] (TextNode) {$\lambda$} (E);
-      \path [line, very thick] (H) to node [midway, below,sloped] (TextNode) {$(1-\varepsilon)\lambda$} (E);
-      \path [line, very thick] (E) to node [midway, above] (TextNode) {$(1-\kappa)\gamma$} (I);
-      \path [line, very thick, bend right=60] (E) to node [midway, below] (TextNode) {$\kappa\gamma$} (C);
-      \path [line, very thick] (I) to node [midway, above] (TextNode) {$\sigma\pi_0$} (C);
-      \path [line, very thick, bend left=60] (I) to node [midway, above] (TextNode) {$\sigma\pi_2$} (R);
-      \path [line, very thick] (C) to node [midway, above] (TextNode) {$(1-p)d$} (R);
-      %% Flows into and out of compartments
-      \path [line, very thick] (-0.75\horzskip,-1\vertskip) to node [midway, above] (TextNode) {$\mu$} (S);
-      \path [line, very thick] (S) to node [midway, right] (TextNode) {$\mu$} (0\horzskip,-1.75\vertskip);
-      \path [line, very thick] (H) to node [midway, right] (TextNode) {$\mu$} (0\horzskip,1.75\vertskip);
-      \path [line, very thick] (E) to node [midway, right] (TextNode) {$\mu$} (1\horzskip,-0.75\vertskip);
-      \path [line, very thick] (I) to node [near end, left] (TextNode) {$\mu+\sigma\pi_1$} (2\horzskip,-0.75\vertskip);
-      \path [line, very thick] (C) to node [midway, right] (TextNode) {$\mu+pd$} (3\horzskip,0.75\vertskip);
-      \path [line, very thick] (R) to node [midway, right] (TextNode) {$\mu$} (4\horzskip,0.75\vertskip);
+      \path [line, very thick] (Sc.north east) to node [midway, above] (TextNode) {$\alpha_c$} (Ic.north west);
+      \path [line, very thick, bend left] (Ic) to node [midway, above, sloped] (TextNode) {$r_c$} (V);
+      \path [line, very thick, sloped] (Sw.north east) to node [midway, above] (TextNode) {$\alpha_{ew},\alpha_{iw}$} (Ew.north west);
+      \path [line, very thick] (Ew) to node [midway, above] (TextNode) {$\mu_w$} (Iw);
+      \path [line, very thick, bend left=45] (Ew) to node [midway, above, sloped] (TextNode) {$r_{ew}$} (V);
+      \path [line, very thick] (Iw) to node [midway, above] (TextNode) {$r_{iw}$} (V);
+      \path [line, very thick] (Sd.north east) to node [midway, above] (TextNode) {$\alpha_d$} (Id.north west);
+      \path [line, very thick] (Id) to node [near end, above] (TextNode) {$\gamma_d$} (Rd);
+      \path [line, very thick] (Id) to node [midway, above, sloped] (TextNode) {$r_d$} (V);
+      \path [line, very thick, bend left=45] (Rd) to node [midway, below] (TextNode) {$\eta_d$} (Sd);
+      %% Flows into compartments
+      \path [line, very thick, dashed] (0.5\horzskip,-0.85\vertskip) to node [midway, below] (TextNode) {$\beta_{c}$} (Ic.south west);
+      \path [line, very thick, dashed] (0.5\horzskip,0.15\vertskip) to node [midway, below] (TextNode) {$\beta_{w}$} (Ew.south west);
+      \path [line, very thick, dashed] (0.5\horzskip,1.15\vertskip) to node [midway, below] (TextNode) {$\beta_{d}$} (Id.south west);
+      %% Flows out of compartments
+      \path [line, very thick] (Ic) to node [midway, right] (TextNode) {$d_{ic}$} ++(0\horzskip,-0.5\vertskip);
+      \path [line, very thick] (Iw) to node [midway, right] (TextNode) {$d_{iw}$} ++(0\horzskip,-0.5\vertskip);
+      \path [line, very thick] (V.north east) to node [midway, above] (TextNode) {$\delta$} ++(0.5\horzskip,0\vertskip);
+      \path [line, very thick] (V.south east) to node [midway, below] (TextNode) {$d_v$} ++(0.5\horzskip,0\vertskip);
     \end{tikzpicture}    
   \end{center}  
 \end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/MaWang-AI-seasonal-cover-inverted}
+
+\begin{frame}{Divide year in two periods}
+  \begin{itemize}
+    \item During the \emph{reproductive period}, denoted $p$, poultry can reproduce
+    \vfill
+    \item During the \emph{overwintering period}, denoted $w$, poultry does not reproduce and AI emerges. Further subdivided
+    \begin{itemize}
+      \item infection phase
+      \item disease-control phase
+    \end{itemize}
+  \end{itemize}
+  \vfill
+  Individuals infected with AI do not recover
+\end{frame}
+
+\begin{frame}
+  \begin{align*}
+  S_{n+1}^p &= f_r(N_n^w)(S_n^w+vI_n^w)+u_pS_n^w \\
+  I_{n+1}^p &= u_p\sigma_pI_n^w \\
+  S_{n+1} &= S_{n+1}^p\Phi\left(
+    \beta\frac{I_{n}1^p}{N_{n+1}^p}
+  \right) \\
+  I_{n+1} &= S_{n+1}^p\left(1-\Phi\left(
+    \beta\frac{I_{n}1^p}{N_{n+1}^p}
+  \right)\right)+I_{n+1}^p \\
+  S_{n+1}^w &= u_wS_{n+1} \\
+  I_{n+1}^w &= u_w\sigma_wI_{n+1}
+  \end{align*}
+  where
+  \begin{align*}
+    N_n^p &= S_n^p+I_n^p \\
+    N_n^w &= S_n^w+I_n^w \\
+    N_n &= S_n+I_n 
+  \end{align*}
+\end{frame}
+
+\begin{frame}{Assumptions on $\Phi$}
+  $\Phi$ satisfies
+  \begin{itemize}
+    \item $\Phi:[0,\infty)\to[0,1]$
+    \item $\Phi(0)=1$, $\lim_{x\to\infty}\Phi(x)=0$
+    \item $\Phi'(x)<0$ and $\Phi''(x)\geq 0$ for all $x\in[0,\infty)$
+    \item $-\Phi'(x)x<1$ for all $x\in[0,\infty)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  They then conduct a thorough analysis of the system using 
+  \[
+    \R^\star = \frac{au_w}{1-u_pu_w}
+  \]
+  and
+  \[
+    \R_0=\frac{-\beta u_wu_p\sigma_p\sigma_w\Phi'(0)}{1-u_p\sigma_pu_w\sigma_w}
+  \]
+  \vfill
+  \begin{proposition}
+    Let $\R^\star>1$. If $\R_0<1$, DFE is GAS; if $\R_0>1$, DFE is unstable and system is uniformly persistent
+  \end{proposition}
+  Additional results (flip bifurcation, Hopf bifurcation, etc.) based on another $\hat\R_0$
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%
+%\maxFrameImage{../FIGS/deJonmgHagenaars-cover-inverted}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Barnes_etal-cover-inverted}
+
+\begin{frame}{A branching process model}
+  $X$ r.v. ``number of newly infected birds in a generation''
+  \vfill
+  Generation time: average time in days between successive generations in infection process
+  \vfill
+  Assume Poisson branching process for transmission, mean transmission rate $\lambda=p_L^BL+p_G^BM$
+  \vfill
+  Local contact probability $p_L^B$ between birds within social group of size $L$ and smaller global component between all birds within the flock of size $M$ with lower infectious contact probability $p_G^B$
+\end{frame}
+
+\begin{frame}
+  Then probability generating function for number of newly infected birds in each generation is
+  \[
+    \Phi_X(s)=\exp\left(
+      (p_L^BL+p_G^BM)(s-1)
+    \right)
+  \]
+  and probability of extinction $q$ the smallest root in $(0,1]$ of
+  \[
+    q=\Phi_X(q)
+  \]
+  \vfill
+  Reproduction number is
+  \[
+    R_\star = p_L^BL+p_G^BM
+  \]
+\end{frame}
+
+\begin{frame}
+  They then derive a model for infection within a cage
+  \vfill
+  And models for emergence of HPAI from LPAI
+  \vfill
+  Then look at various population structures (barn and free-range layer flocks, caged layer flocks, barn and free-range meat flocks, LPAI introductions)
+\end{frame}
+
+\maxFrameImage{../FIGS/Barnes_etal-enterprise-characteristics-inverted}
+\maxFrameImage{../FIGS/Barnes_etal-proba-outbreak-inverted}
+
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Tiensin_etal-H5N1-Thailand-cover-inverted}
+\maxFrameImage{../FIGS/Tiensin_etal-H5N1-Thailand-model-inverted}
+\maxFrameImage{../FIGS/Tiensin_etal-H5N1-Thailand-characteristics-inverted}
+\maxFrameImage{../FIGS/Tiensin_etal-H5N1-Thailand-estimates-inverted}
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Nickbakhsh_etal-cocirculation-LPAI-HPAI-cover-inverted}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-cocirculation-LPAI-HPAI-hypotheses-inverted}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-cocirculation-LPAI-HPAI-flow-inverted}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-cocirculation-LPAI-HPAI-model1-inverted}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-cocirculation-LPAI-HPAI-model2-inverted}
 
 
 
