@@ -251,8 +251,8 @@ minimum height=2em]
 \begin{changemargin}{-1cm}{-1cm}
 \begin{center}
   \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}};
-    \node[align=center,red,font={\bfseries}] at (image.south) {#2};
+    \node[anchor=north west,inner sep=0] (image) at (0,0) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}};
+    \node[align=right,red,font={\bfseries}] at (image.south) {#2};
   \end{tikzpicture}
 \end{center}
 \end{changemargin}
