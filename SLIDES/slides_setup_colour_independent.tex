@@ -243,6 +243,22 @@ minimum height=2em]
 \end{frame}
 }
 
+% Make one image take up the entire slide area, including borders, in beamer.:
+% centered/centred full-screen image, no title:
+% This uses the entire whole screen
+\newcommand{\maxFrameImageBottomTitle}[2]{
+\begin{frame}[b,plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}};
+    \node[align=center,red,font={\bfseries}] at (image.south) {#2};
+  \end{tikzpicture}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
 % Add note to previous slide
 \newcommand{\maxFrameImageNote}[2]{
 \begin{frame}[plain]
