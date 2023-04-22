@@ -19,25 +19,62 @@
 
 % The title page
 \begin{frame}[noframenumbering,plain]
-  \titlepage
-\end{frame}
-\addtocounter{page}{-1}
+	\titlepage
+  \end{frame}
+  \addtocounter{page}{-1}
+  
+% The title page
+\begin{frame}[noframenumbering,plain]
+	\tableofcontents[hidesubsections]
+  \end{frame}
+  \addtocounter{page}{-1}
+  
+	
 
 
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Why it is important to incorporate space}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{General considerations about space-and-time spread}
+
+\maxFrameImage{../FIGS/Snow-cholera-map-inverted}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Foot-and-mouth disease}
+
+\maxFrameImage{../FIGS/JamalBelsham-FMD-geography-inverted}
+\maxFrameImage{../FIGS/JamalBelsham-FMD-control-inverted}
+\maxFrameImage{../FIGS/GrubmanBaxt-FMD-spread-panAsian-inverted}
+\maxFrameImage{../FIGS/Rweyemamu_etal-FMD-patterns-spread-old-world-inverted}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Avian influenza}
 \begin{frame}
-\begin{itemize}
-  \item We now consider spatial spread
-\end{itemize}
+	\begin{itemize}
+		\item AI global concern because it involves multiple bird species, both wild and livestock
+		\item The thing with wild birds is that they fly... :)
+	\end{itemize}
 \end{frame}
 
+\maxFrameImage{../FIGS/Map-Boreal-Bird-Migrations.jpg}
+\maxFrameImage{../FIGS/mm-birds3.png}
+\maxFrameImage{../FIGS/e71b4510-a97b-4285-9675-1c2f4aaf4ad9.jpg}
+\maxFrameImage{../FIGS/Learn_CCSC_AK-Flyway-exhibit-hero.jpg}
+
+\maxFrameImage{../FIGS/Sonnberg_etal-HPAI-natural-history-interactions-inverted}
 
 
-
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-\section[Brief history]{A brief history of metapopulations}
+\section{Metapopulation models}
 
 \frame{\frametitle{What are metapopulations?}
 Metapopulations are \emph{populations} of \emph{populations}.
@@ -105,7 +142,7 @@ Ecologists \& mathematicians think of patches differently. For mathematicians, t
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\subsection[Explicit movement]{Metapopulations with explicit movement}
+\subsection[Explicit movement]{Metapopulations \`a la Levin}
 
 \begin{frame}{Levins-type vs Explicit movement}
 	Levins model and its offspring: movement is implicit
@@ -166,12 +203,6 @@ Ecologists \& mathematicians think of patches differently. For mathematicians, t
 	\]
 }
 
-
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-\section{The general context}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -492,19 +523,6 @@ Since we now assume that $\bd$ is nonsingular, we have by Theorem~\ref{prop:beha
 $\mathcal{M}$ irreducible $\rightarrow$ $\mathbf{T}^\star\gg 0$ (provided $\mathbf{b}>\mathbf{0}$, of course)
 \end{frame}
 
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-\section{Diseases in metapopulations}
 
 
 
@@ -1013,10 +1031,6 @@ From PvdD \& Watmough, \href{https://doi.org/10.1016/S0025-5564(02)00108-6}{Repr
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
 \subsection{Global stability of the DFE when $\R_0<1$}
 
 \frame{\frametitle{The toy $|\P|$-SLIRS}
@@ -1044,9 +1058,7 @@ If $\R_0<1$, then the DFE is globally asymptotically stable
 
 %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%
-\section{Computational considerations}
+\subsection{Computational considerations}
 
 \begin{frame}[fragile]{Set up parameters}
 \begin{lstlisting}
@@ -1207,8 +1219,12 @@ $\implies$ use this for numerics, not for the mathematical analysis
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\section{A few FMD models}
+\section{A few foot-and-mouth disease models}
 
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Woolhouse and collaborators}
+\maxFrameImage{../FIGS/Woolhouse-models-FMD-cover-inverted}
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 \subsection{Ringa \& Bauch}
@@ -1229,6 +1245,18 @@ $\implies$ use this for numerics, not for the mathematical analysis
 \maxFrameImage{../FIGS/Andronico_etal-H5N8-control-curve-inverted}
 
 
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{A few avian influenza models}
+
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
 \begin{frame}{Conclusion}
 \end{frame}
 
