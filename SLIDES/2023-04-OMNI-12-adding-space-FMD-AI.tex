@@ -49,17 +49,26 @@
 %%%%%%%%%%%%%%%%%%%
 \subsection{Foot-and-mouth disease}
 
+%%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/JamalBelsham-FMD-geography-inverted}
 \maxFrameImage{../FIGS/JamalBelsham-FMD-control-inverted}
 \maxFrameImage{../FIGS/GrubmanBaxt-FMD-spread-panAsian-inverted}
 \maxFrameImage{../FIGS/Rweyemamu_etal-FMD-patterns-spread-old-world-inverted}
 
 %%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Gibbens_etal-FMD-UK2001-epi-cover-inverted}
+\maxFrameImage{../FIGS/Gibbens_etal-FMD-UK2001-epi-cases}
+\maxFrameImage{../FIGS/Gibbens_etal-FMD-UK2001-epi-infected-premises2-inverted}
+\maxFrameImage{../FIGS/Gibbens_etal-FMD-UK2001-epi-infected-premises1-inverted}
+\maxFrameImage{../FIGS/Gibbens_etal-FMD-UK2001-epi-cumulative-incidence-inverted}
+\maxFrameImage{../FIGS/Gibbens_etal-FMD-UK2001-epi-movement-inverted}
+%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 \subsection{Avian influenza}
 \begin{frame}
 	\begin{itemize}
-		\item AI global concern because it involves multiple bird species, both wild and livestock
+		\item Avian Influenza global concern because it involves multiple bird species, both wild and livestock
+		\vfill
 		\item The thing with wild birds is that they fly... :)
 	\end{itemize}
 \end{frame}
@@ -277,7 +286,7 @@ Matrix $A\in\IF^{n\times n}$ is irreducible if for all $i,j=1,\ldots,n$, there e
 \begin{itemize}
 	\item $N_{cp}(t)$ number of individuals of compartment $c$ in location $p$ at time $t$
 	\vfill
-	\item $N_c=\left(N_{c1},\ldots,N_{c|\P|}\right)^T$ distribution of individuals of compartment $c\in\C$ among the different locations 
+	\item $\bN_c=\left(N_{c1},\ldots,N_{c|\P|}\right)^T$ distribution of individuals of compartment $c\in\C$ among the different locations 
 	\vfill
 	\item $N^p=\left(N_1^p,\ldots,N_{|\P|}^p\right)^T$ composition of the population in location $p\in\P$
 \end{itemize}
@@ -315,7 +324,7 @@ where $m_{cpq}$ rate of movement of individuals in compartment $c\in\C$ from loc
 \begin{frame}{Vector form of the system}
 For compartment $c\in\C$,
 \begin{equation}\label{eq:general_metapop}
-N_c'=f(N)+\mathcal{M}_cN_c
+\bN_c'=f(\bN)+\mathcal{M}_c\bN_c
 \end{equation}
 with
 \begin{equation}\label{eq:movement_matrix}
@@ -371,7 +380,7 @@ $\mathcal{M}_c$ describes
 \end{frame}
 
 \begin{frame}{Properties of the movement matrix $\M$}
-	First, remark $-\M_c$ is a Laplacian matrix (cf. Michael's course)
+	First, remark $-\M_c$ is a Laplacian matrix
 	\vfill
 	\begin{lemma}\label{lemma:behaviour_Mc}
 		\begin{enumerate}
@@ -404,17 +413,17 @@ $\mathcal{M}_c$ describes
 \frame{\frametitle{Behaviour of the mobility component}
 Assume no within-location dynamics, just movement. Then \eqref{eq:general_metapop} takes the form
 \begin{equation}\label{eq:mobility_compartment}
-	N_c' = \mathcal{M}_cN_c
+	\bN_c' = \mathcal{M}_c\bN_c
 \end{equation}
 \vfill
 \begin{theorem}\label{th:GAS_metapop1}
-For a given compartment $c\in\C$, suppose that the movement matrix $\M_c$ is irreducible. Then for any $N_c(0)>0$, \eqref{eq:mobility_compartment} satisfies
+For a given compartment $c\in\C$, suppose that the movement matrix $\M_c$ is irreducible. Then for any $\bN_c(0)>0$, \eqref{eq:mobility_compartment} satisfies
 \[
-\lim_{t\to\infty}N_c(t)=N_c^\star\gg 0
+\lim_{t\to\infty}\bN_c(t)=\bN_c^\star\gg 0
 \]
 \end{theorem}
 \vfill
-Note that $N_c^\star$ depends on $\nbOne^TN_c(0)$
+Note that $\bN_c^\star$ depends on $\nbOne^T\bN_c(0)$
 }
 
 
@@ -471,8 +480,6 @@ Suppose movement rates \textbf{equal for all compartments}, i.e.,
 $$
 \M_c\equiv\M
 $$
-\vfill
-(stronger than Definition~\ref{def:mvt_similar_for_all_compartments}, which only requires zero/nonzero patterns in all $\M_c$, $c\in\C$, to be the same)
 \vfill
 Then
 \begin{align}
@@ -543,7 +550,7 @@ $\mathcal{M}$ irreducible $\rightarrow$ $\mathbf{T}^\star\gg 0$ (provided $\math
 		\node [box] at (4,2) (I) {$I$};
 		\node [box] at (6,2) (R) {$R$};
 		%% Flows
-		\path [line, thick] (-1.5,2) to node [midway, above] (TextNode) {$B(N)$} (S);
+		\path [line, thick] (-1.5,2) to node [midway, above] (TextNode) {$b$} (S);
 		\path [line, thick] (S) to node [midway, above, sloped] (TextNode) {$\Phi$} (L);
 		\path [line, thick] (L) to node [midway, above] (TextNode) {$\varepsilon L$} (I);
 		\path [line, thick] (I) to node [sloped, midway, above] (TextNode) {$\gamma I$} (R);
@@ -556,7 +563,7 @@ $\mathcal{M}$ irreducible $\rightarrow$ $\mathbf{T}^\star\gg 0$ (provided $\math
 \end{center}
 \begin{subequations}\label{sys:SLIRS}
 \begin{align}
-S' &= \B(N)+\nu R-\Phi-dS \\
+S' &= b+\nu R-\Phi-dS \\
 L' &= \Phi-(\varepsilon+d)L\\
 I' &= \varepsilon L-(\gamma+d+\delta)I\\
 R' &= \gamma I-(\nu+d)R
@@ -576,7 +583,7 @@ Mass action, $\Phi=\beta SI$, proportional incidence, $\Phi=\beta SI/N$
 \begin{subequations}
 	\label{sys:pSLIRS}
 	\begin{align}
-		S_{p}' &=\mathcal{B}_p\left(N_p\right)+\nu_pR_p-\Phi_p-d_pS_p 
+		S_{p}' &=b_p+\nu_pR_p-\Phi_p-d_pS_p 
 		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}} m_{Spq}S_{q}} 
 		\label{sys:pSLIRS_dS} \\
 		L_{p}' &=\Phi_p-\left( \varepsilon_{p}+d_{p}\right)L_{p}
@@ -604,7 +611,7 @@ $p\in\P$ and $s\in\mathcal{S}$ (a set of species)
 \begin{subequations}
 	\label{sys:spSLIRS}
 	\begin{align}
-		S_{sp}' &= \mathcal{B}_{sp}(N_{sp})+\nu_{sp}R_{sp}-\Phi_{sp}-d_{sp}S_{sp}
+		S_{sp}' &= b_{sp}+\nu_{sp}R_{sp}-\Phi_{sp}-d_{sp}S_{sp}
 		\color{red}{+\textstyle{\sum_{q\in\mathcal{P}}} m_{Sspq}S_{sq}} 
 		\label{sys:spSLIRS_dS} \\
 		L_{sp}' &= \Phi_{sp}-(\varepsilon_{sp}+d_{sp})L_{sp}
@@ -638,7 +645,7 @@ $p\in\P$ and $s\in\mathcal{S}$ (a set of species)
 	\label{sys:ppSLIRS}
 	\begin{align}
 		S_{pq}' =& 
-		\mathcal{B}_{pq}\left(N_p^r\right)+\nu_{pq} R_{pq}-\Phi_{pq}-d_{pq}S_{pq} \color{red}{+\textstyle{\sum_{k\in\mathcal{P}}} m_{Spqk}S_{pk}} 
+		b_{pq}+\nu_{pq} R_{pq}-\Phi_{pq}-d_{pq}S_{pq} \color{red}{+\textstyle{\sum_{k\in\mathcal{P}}} m_{Spqk}S_{pk}} 
 		\label{sys:ppSLIRS_dS} \\
 		L_{pq}' =& \Phi_{pq}
 		-(\varepsilon_{pq}+d_{pq})L_{pq}
@@ -689,11 +696,10 @@ $\ldots$
 }
 
 \begin{frame}{Analysis -- Toy system}
-For simplicity, consider $|\mathcal{P}|$-SLIRS with $\mathcal{B}_p(N_p)=\mathcal{B}_p$
 \begin{subequations}
 	\label{sys:pSLIRS_toy}
 	\begin{align}
-		S_{p}' &=\mathcal{B}_p-\Phi_p-d_pS_p+\nu_pR_p
+		S_{p}' &=b_p-\Phi_p-d_pS_p+\nu_pR_p
 		+\textstyle{\sum_{q\in\mathcal{P}}} m_{Spq}S_{q} 
 		\label{sys:pSLIRS_toy_dS} \\
 		L_{p}' &=\Phi_p-\left( \varepsilon_{p}+d_{p}\right)L_{p}
@@ -777,7 +783,7 @@ Here, we want to find the DFE for the $|\P|$-location model. Later, the existenc
 \begin{frame}{}
 Assume \eqref{sys:pSLIRS_toy} at metapopulation DFE. Then $\Phi_p=0$ and 
 \begin{align*}
-0 &=\mathcal{B}_p-d_pS_p+\nu_pR_p
+0 &=b_p-d_pS_p+\nu_pR_p
 +\textstyle{\sum_{q\in\mathcal{P}}} m_{Spq}S_{q} \\
 0 &=-\left(\nu_{p}+d_{p}\right)R_{p}
 +\textstyle{\sum_{q\in\mathcal{P}}} m_{Rpq}R_{q}
@@ -1029,10 +1035,6 @@ From PvdD \& Watmough, \href{https://doi.org/10.1016/S0025-5564(02)00108-6}{Repr
 
 
 
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-\subsection{Global stability of the DFE when $\R_0<1$}
-
 \frame{\frametitle{The toy $|\P|$-SLIRS}
 LAS results for $\R_0<1$ can sometimes be strengthened to GAS. One class of models where this works often is when the population is either constant or asymptotically constant and incidence is \emph{standard}
 \vfill
@@ -1224,25 +1226,21 @@ $\implies$ use this for numerics, not for the mathematical analysis
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 \subsection{Woolhouse and collaborators}
+\begin{frame}{Models \`a la Levins}
+    Space is implicit: count infected herds
+\end{frame}
+\maxFrameImage{../FIGS/HaydonWoolhouse-FMD-UK-cover-inverted}
 \maxFrameImage{../FIGS/Woolhouse-models-FMD-cover-inverted}
+
+
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 \subsection{Ringa \& Bauch}
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/RingaBauch-FMD-pair-approx-cover-inverted.png}
 
-\maxFrameImage{../FIGS/HaydonWoolhouse-FMD-UK-cover-inverted.png}
-
-\begin{frame}{A model \`a la Levin}
-    Space is implicit: count infected herds
-\end{frame}
-
-\maxFrameImage{../FIGS/Woolhouse-models-FMD-cover-inverted.png}
 
 
-%%%%%%%%%%%%%%%%%%%
-\maxFrameImage{../FIGS/Andronico_etal-H5N8-control-cover-inverted}
-\maxFrameImage{../FIGS/Andronico_etal-H5N8-control-curve-inverted}
 
 
 %%%%%%%%%%%%%%%%%%%
@@ -1251,14 +1249,14 @@ $\implies$ use this for numerics, not for the mathematical analysis
 %%%%%%%%%%%%%%%%%%%
 \section{A few avian influenza models}
 
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Andronico \emph{et al}}
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Andronico_etal-H5N8-control-cover-inverted}
+\maxFrameImage{../FIGS/Andronico_etal-H5N8-control-curve-inverted}
 
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
-\begin{frame}{Conclusion}
-\end{frame}
+
 
 
 \end{document}
