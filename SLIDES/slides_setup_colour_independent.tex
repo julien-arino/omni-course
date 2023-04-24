@@ -251,7 +251,7 @@ minimum height=2em]
 \begin{changemargin}{-1cm}{-1cm}
 \begin{center}
   \begin{tikzpicture}
-    \node[anchor=north west,inner sep=0] (image) at (0,0) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}};
+    \node[anchor=north west,inner sep=0] (image) at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}};
     \node[red,font={\tiny\bfseries},label=above:#2] at (image.south) {};
   \end{tikzpicture}
 \end{center}
@@ -297,7 +297,6 @@ minimum height=2em]
 \end{frame}
 }
 
-
 \usepackage{tikz}
 \usetikzlibrary{patterns,hobby}
 \usepackage{pgfplots}
@@ -318,6 +317,33 @@ minimum height=2em]
         mark=between positions 0.1 and 0.9 step 40pt with {\arrow{>}},
    }}}}
 
+
+% Background template
+\newcommand{\backgroundImage}[1]{
+%\newgeometry{margin=0pt}
+\setbeamertemplate{background}
+{
+\tikz[overlay,remember picture] \node[opacity=0.2, at=(current page.center)] {
+   \includegraphics[height=\paperheight,width=\paperwidth]{#1}};
+}
+}
+
+% \newlength{\picwidth}
+
+% \newcommand{\backgroundImageNew}[1]{
+% \usebackgroundtemplate{%
+%     \settowidth{\picwidth}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}}%
+%     \ifdim\picwidth<\paperwidth
+%     \begin{tikzpicture}[remember picture, overlay]%
+%       \node at (current page.center) {\includegraphics[width=\paperwidth]{#1}};%
+%     \end{tikzpicture}%
+%     \else
+%     \begin{tikzpicture}[remember picture, overlay]%
+%       \node at (current page.center) {\includegraphics[height=\paperheight]{#1}};%
+%     \end{tikzpicture}%
+%     \fi
+%   }
+% }
 
 
 % Listings, part without colour specific stuff
