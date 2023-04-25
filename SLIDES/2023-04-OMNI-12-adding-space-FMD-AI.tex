@@ -1474,7 +1474,45 @@ $\implies$ use this for numerics, not for the mathematical analysis
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/RingaBauch-FMD-pair-approx-cover-inverted.png}
 
+\begin{frame}{Pair approximation models}
+	Suppose farms are in status $X$ or $Y$ (e.g., susceptible and infected).
+	Pair approximation models consider the \emph{expected number} $[XY]$ of pairs of the form $X$ and $Y$ at time $t$
+\end{frame}
 
+\begin{frame}{A sample derivation (appendix in the paper)}
+	The dynamics of $[SI]$ are governed by the equation
+	\[
+		g'(t)=\sum r(\varepsilon)\Delta g(\varepsilon)
+	\]
+	where $g(t)$ state variable of interest ($[SI]$ here), $r(\varepsilon)$ rate of event $\varepsilon$ and $\Delta g(\varepsilon)$ change this event causes in $g(t)$
+	\vfill
+	We're interested in transformation of edges, e.g., infection through an $S-I$ edge converts $S$ into $E$, i.e. $SI\mapsto EI$ ($\mapsto$ means ``transformed to'')
+\end{frame}
+	
+\begin{frame}{What affects $[SI]'$}
+	\begin{itemize}
+		\item Infection of susceptible farm by infectious farm in the
+		$S-I$ edge converts $S$ into $E$, i.e. $SI\mapsto EI$. Adds $-\tau[SI]$, since this ``destroys'' $S-I$ edges
+		\item Infection of susceptible farm ``from the left'' in a triple $I-S-I$,
+		i.e. $I\leftrightarrow SI$ gives rise to $SI\mapsto EI$, i.e., $-\tau[ISI]$
+		\item Latent period $1/\nu$, so $SE\mapsto SI$, ``creating'' an $S-I$
+		\item Infectious farm recovers at rate $\sigma$, therefore $SI\mapsto SR$ contributes $\sigma[SI]$ 
+		\item Ring vaccination (vaccination of $E$ and $S$ farms with links with $I$ farms) in the $S$ farm in a pair $S-I$, at rate $\psi_r$ converts $S-I$ to $I-V$ and adds $\psi_r[SI]$
+		\item Ring vaccination in the susceptible farm in a triple $I-S-I$, at rate
+		$\psi_r$ converts $S-I$ to $I-V$ and adds $\psi_r[ISI]$
+		\item A recovered farm in an $I-R$ pair loses natural immunity at rate
+		$\omega$ to form an $S-I$ pair, thus adding $\omega[IR]$
+		\item A vaccinated farm in an $I-V$ pair loses vaccine protection at rate $\theta$ to form an $S-I$ pair, thus adding $\theta[IV]$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+Therefore the equation of motion for $[SI]$ is
+\begin{align*}
+	[SI]' &= -\tau([ISI]+[SI])+\nu[SE]-\sigma[SI]-\psi_r([SI]+[ISI])\\
+	&\quad -\psi_p[SI]+\omega[IR]+\theta[IV]
+\end{align*}
+\end{frame}
 
 
 
