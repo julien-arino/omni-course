@@ -26,6 +26,6 @@ Note that for now, I am using the following to have the information easily acces
 9. Introduction to livestock modelling [Slides](2023-04-OMNI-09-modelling-livestock.pdf)/[Video](https://youtu.be/oYBgO28q_ig)
 10. Introduction to mathematical modelling of foot and mouth disease in livestock [Slides](2023-04-OMNI-10-modelling-FMD.pdf)/[Video](https://youtu.be/Xrj6DC_qeVw)
 11. Introduction to mathematical modelling of avian influenza in livestock [Slides](2023-04-OMNI-11-modelling-AI.pdf)/[Video](https://youtu.be/2R5pSTgj2zE)
-12. Extension of the livestock models to include livestock movement (markets, trading between farms, selling for meat processing) (3 hours).
+12. Extension of the livestock models to include livestock movement (markets, trading between farms, selling for meat processing) [Slides](2023-04-OMNI-12-adding-space-FMD-AI.pdf)/[Video 1]()/[Video 2]()
 13. Discussion of disease control within the livestock movement environment (1 hour).
 
