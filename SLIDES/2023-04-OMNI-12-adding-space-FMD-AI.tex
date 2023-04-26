@@ -1345,11 +1345,11 @@ SLIAR_metapop_rhs <- function(t, x, p) {
 		R = x[idx_R]
 		N = S + L + I + A + R
 		Phi = beta * S * (I + eta * A) / N
-		dS = - Phi + MS \%*\% S
-		dL = Phi - epsilon * L + p$ML \%*\% L
-		dI = (1 - pi) * epsilon * L - gammaI * I + MI \%*\% I
-		dA = pi * epsilon * L - gammaA * A + MA \%*\% A
-		dR = gammaI * I + gammaA * A + MR \%*\% R
+		dS = - Phi + MS %*% S
+		dL = Phi - epsilon * L + p$ML %*% L
+		dI = (1 - pi) * epsilon * L - gammaI * I + MI %*% I
+		dA = pi * epsilon * L - gammaA * A + MA %*% A
+		dR = gammaI * I + gammaA * A + MR %*% R
 		dx = list(c(dS, dL, dI, dA, dR))
 		return(dx)
 	})
@@ -1554,7 +1554,52 @@ Therefore the equation of motion for $[SI]$ is
 \end{align*}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Cabezas \emph{et al}}
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-cover-inverted}
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-timing-inverted}
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-model-structure-inverted}
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-Sprime-inverted}
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-Lprime-inverted}
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-otherprime-inverted}
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-metapop-inverted}
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-sims-inverted}
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-correlation-inverted}
+ 
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Bradhurst \emph{et al}}
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-cover}
+\maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-model-in-patches.jpg}
+\maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-model-between-patches.jpg}
+\maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-wind-dissemination.jpg}
+\maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-farm-types}
+ 
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Buhnerkempe \emph{et al}}
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-cover} 
+\maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-transmission-routes}
+\maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-parameters}
+\maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-cattle-movement}
+\maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-connected-component}
+\maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-outdegree}
+\maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-indegree}
+\maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-epidemic-extent-infection-risk}
+\maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-movement-vs-local}
 
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\subsection{Glass \& Barnes}
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/GlassBarnes-metapopulation-infection-control-cover}
+\maxFrameImage{../FIGS/GlassBarnes-metapopulation-infection-control-interventions}
+\maxFrameImage{../FIGS/GlassBarnes-metapopulation-infection-control-scenarios1}
+\maxFrameImage{../FIGS/GlassBarnes-metapopulation-infection-control-scenarios2}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -1569,7 +1614,43 @@ Therefore the equation of motion for $[SI]$ is
 \maxFrameImage{../FIGS/Andronico_etal-H5N8-control-cover-inverted}
 \maxFrameImage{../FIGS/Andronico_etal-H5N8-control-curve-inverted}
 
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-cover}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-betweenness}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-metapop}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-baseline-model}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-force-infection-on-premises1}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-force-infection-on-premises2}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-control-measures}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-relative-risk-infection} 
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-tradeoffs}
 
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-cover}
+\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-model-within}
+\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-model-between}
+\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-strategy-timing}
+\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-strategy-spatial}
+\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-FoI1}
+\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-FoI2}
+\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-FoI3}
+\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-sims}
 
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Lee_etal-AI-Korea-cover}
+\maxFrameImage{../FIGS/Lee_etal-AI-Korea-farm-densities}
+\maxFrameImage{../FIGS/Lee_etal-AI-Korea-model1}
+\maxFrameImage{../FIGS/Lee_etal-AI-Korea-model2}
+\maxFrameImage{../FIGS/Lee_etal-AI-Korea-R0-compute}
+\maxFrameImage{../FIGS/Lee_etal-AI-Korea-R0-sim}
+\maxFrameImage{../FIGS/Lee_etal-AI-Korea-intervention1}
+\maxFrameImage{../FIGS/Lee_etal-AI-Korea-intervention2}
+
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-cover}
+\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-periods}
+\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-migration}
+\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-timing-of-events}
+\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-model1}
 
 \end{document}
