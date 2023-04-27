@@ -1579,10 +1579,22 @@ Therefore the equation of motion for $[SI]$ is
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-cover-inverted}
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-timing-inverted}
-\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-model-structure-inverted}
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-Sprime-inverted}
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-Lprime-inverted}
-\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-otherprime-inverted}
+
+\begin{frame}{Other compartments}
+	$I_1$, $I_2$ subclinical infectious, $I_3$ clinical infectious, $C$ clinical non-infectious, $R$ recovered
+	\vfill
+	\begin{align*}
+		I_1' &= \delta L-\theta I_1-\varphi I_1+\varphi_{(t-1)}I_{1_{(t-1)}}-\mu I_1 \\
+		I_2' &= \theta I_1-\varepsilon I_2-\varphi I_2+\varphi_{(t-1)}I_{2_{(t-1)}}-\mu I_2 \\
+		I_3' &= \varepsilon I_2-\gamma I_3-(\varphi+\zeta)I_3+(\varphi_{(t-1)}+\zeta)I_{3_{(t-1)}}-(\mu+\psi)I_3 \\
+		C' &= \gamma I_3-\tau C-(\varphi+\zeta)C+(\varphi_{(t-1)}+\zeta)C_{(t-1)}-(\mu+\psi)C \\
+		R' &= \tau C-\varphi R+\varphi_{(t-1)}R_{(t-1)}-\mu R 
+	\end{align*}
+\end{frame}
+
+\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-model-structure-inverted}
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-metapop-inverted}
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-sims-inverted}
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-correlation-inverted}
@@ -1675,11 +1687,17 @@ Therefore the equation of motion for $[SI]$ is
 \end{frame}
 
 
-\begin{frame}{Control mechanisms}
-	Consider two mechanisms of control
+\begin{frame}{Two types of control mechanisms}
 	\begin{itemize}
-		\item Compartmentalisation: allow spatial and within-company links
-		\item Zoning: allow within-population network-mediated links (beyond 10 km) and between-population network links
+		\item Zoning (or regionalisation): geographical boundaries separate
+		parts of a territory (or country). 
+		E.g., implementation of control zones used to enforce movement restrictions and enhanced biosecurity measures during outbreaks of notifiable disease
+		\newline
+		Allow within-population network-mediated links (beyond 10 km) and between-population network links
+		\vfill
+		\item Compartmentalisation: extends zoning by considering pathways other than geographical proximity that may jeopardize biosecurity of a compartment. Here, focus on premises with common ownership, due to vertical integration of their business
+		\newline
+		allow spatial and within-company links
 	\end{itemize}
 \end{frame}
 
@@ -1721,7 +1739,20 @@ Therefore the equation of motion for $[SI]$ is
 	\]
 	$N_0$ initial number of susceptible birds in the market
 \end{frame}
-\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-model-between-inverted}
+
+\begin{frame}{Environmental contamination ratio}
+	Environmental contamination ratio $\zeta$ is proportion of infectivity mediated by the environment
+	\[
+		\zeta 
+		=\frac{\text{inf}_\text{env}N_0}{\R_0}
+		=\frac{\beta\eta T_{inf}N_0}{\R_0}
+		\int_0^H(1-\Theta)^t\ dt
+	\]
+	\vfill
+	Given $\zeta$ and $\R_0$, one can compute $\beta$ and $\eta$
+	\vfill
+	Infection process is stochastic and density dependent; mixing is homogeneous
+\end{frame}
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-strategy-timing-inverted}
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-strategy-spatial-inverted}
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-FoI1-inverted}
@@ -1735,8 +1766,55 @@ Therefore the equation of motion for $[SI]$ is
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Lee_etal-AI-Korea-cover-inverted}
 \maxFrameImage{../FIGS/Lee_etal-AI-Korea-farm-densities-inverted}
-\maxFrameImage{../FIGS/Lee_etal-AI-Korea-model1-inverted}
-\maxFrameImage{../FIGS/Lee_etal-AI-Korea-model2-inverted}
+
+\begin{frame}{Metapopulation model with one species}
+	$S_i$, $I_i$, $R_i$ numbers of susceptible, infective but not identified and reported farms in location $i=0,\ldots,15$
+	\vfill
+	$I_i$ and $R_i$ both infectious, with $R_i$ less so because of control measures
+	\vfill
+	\begin{align*}
+		S_i' &= -\sum_{j=0}^{15}\beta(I_j+\varepsilon R_j)K(i,j)S_i-\psi(R_i,D_i;R)S_i \\
+		I_i' &= \sum_{j=0}^{15}\beta(I_j+\varepsilon R_j)K(i,j)S_i-\alpha I_i-\psi(R_i,D_i;R)I_i \\
+		R_i' &= \alpha I_i-\phi(R)R_i
+	\end{align*}
+	\vfill
+	with $K(i,j)=e^{d(i,j)/r_0}$
+\end{frame}
+
+\begin{frame}{Metapopulation model with two species}
+	Add indices $c$ for chicken farms and $d$ for duck farms
+	\footnotesize
+	\begin{align*}
+		S_{ci}' &= -\sum_{j=0}^{15}
+		\left(
+			\beta_{cc}(I_{cj}+\varepsilon R_{cj})
+			\beta_{cd}(I_{dj}+\varepsilon R_{dj})
+		\right)K(i,j)S_{ci}
+		-\psi(R_i,D_i;R)S_{ci} \\
+		I_{ci}' &= \sum_{j=0}^{15}
+		\left(
+			\beta_{cc}(I_{cj}+\varepsilon R_{cj})
+			\beta_{cd}(I_{dj}+\varepsilon R_{dj})
+		\right)K(i,j)S_{ci}
+		-\alpha_c I_{ci}-\psi(R_i,D_i;R)I_{ci} \\
+		R_{ci}' &= \alpha_c I_{ci}-\phi(R)R_{ci} \\
+		S_{di}' &= -\sum_{j=0}^{15}
+		\left(
+			\beta_{dc}(I_{cj}+\varepsilon R_{cj})
+			\beta_{dd}(I_{dj}+\varepsilon R_{dj})
+		\right)K(i,j)S_{di}
+		-\psi(R_i,D_i;R)S_{di} \\
+		I_{di}' &= \sum_{j=0}^{15}
+		\left(
+			\beta_{dc}(I_{cj}+\varepsilon R_{cj})
+			\beta_{dd}(I_{dj}+\varepsilon R_{dj})
+		\right)K(i,j)S_{di}
+		-\alpha_d I_{di}-\psi(R_i,D_i;R)I_{di} \\
+		R_{di}' &= \alpha_d I_{di}-\phi(R)R_{di}
+	\end{align*}
+	with $K(i,j)=e^{d(i,j)/r_0}$
+\end{frame}
+
 \maxFrameImage{../FIGS/Lee_etal-AI-Korea-R0-compute-inverted}
 \maxFrameImage{../FIGS/Lee_etal-AI-Korea-R0-sim-inverted}
 \maxFrameImage{../FIGS/Lee_etal-AI-Korea-intervention1-inverted}
