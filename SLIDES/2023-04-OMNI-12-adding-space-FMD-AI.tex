@@ -1497,7 +1497,7 @@ $\implies$ use this for numerics, not for the mathematical analysis
 	\]
 \end{frame}
 
-\begin{frame}{Then consider a metapopulation version}
+\begin{frame}{They then consider a metapopulation version}
 	Break down susceptible population into clusters of holdings within which short-range transmission occurs, and between which long-range transmission occurs
 	\vfill 
 	Transmission rate $\beta$  broken  down into a short-range transmission rate, $\beta_s$, corresponding to infections generated within the cluster, and a long-rangetransmission  rate,$\beta_l$,  corresponding  to  infections  generated outside the cluster in question
@@ -1505,7 +1505,26 @@ $\implies$ use this for numerics, not for the mathematical analysis
 
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Keeling_etal-vaccination-FMD-cover-inverted}
-\maxFrameImage{../FIGS/Keeling_etal-vaccination-FMD-model-inverted}
+
+\begin{frame}{Basic model -- Spatial stochastic model}
+	Infectious state of every livestock farm in Britain predicted daily 
+	\vfill
+	Rate $r$ at which currently susceptible farm $i$ is infected given by
+	\[
+		R_i = \sum_{L\in\text{livestock}}S_LN_L^i
+		\sum_{j\in\text{infectious}}\sum_{L\in\text{livestock}} T_LN_L^jK(d_{ij})
+	\]
+	\begin{itemize}
+		\item $N_L^i$ number of livestock of type $L$ in farm $i$
+		\item $S_L$ susceptibility of livestock $L$
+		\item $T_L$ transmission rate of livestock $L$
+		\item $d_{ij}$ distance between farms $i$ and $j$
+		\item $K$ transmission kernel
+	\end{itemize}
+	\vfill
+	Infected farm ``incubates'' for 4 days, then becomes infectious; 9 days after infection, presence of disease reported; 1--3 days (depending on epidemic status), animals are slaughtered and appropriate neighbourhood cull performed
+\end{frame}
+
 \maxFrameImage{../FIGS/Keeling_etal-vaccination-FMD-predictive-vacc-inverted}
 
 %%%%%%%%%%%%%%%%%%%
@@ -1619,6 +1638,57 @@ Therefore the equation of motion for $[SI]$ is
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
+\subsection{Nickbakhsh \emph{et al}}
+%%%%%%%%%%%%%%%%%%%
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-cover-inverted}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-betweenness-inverted}
+
+\begin{frame}{Interactions b/w network \emph{core} \& \emph{periphery} groups}
+	$p=\{1,2\}$ for population 1 (network \emph{core} group) and population 2 (network \emph{periphery} group), $j=\{MS,SS\}$ for multi-site and single-site premises
+	\begin{align*}
+		S_{pj}' &= -S_{pj}(W_{pj}+B_{pj}) \\
+		I_{pj}' & S_{pj}(W_{pj}+B_{pj})-\gamma I_{pj} \\
+		R_{pj}' &= \gamma I_{pj}
+	\end{align*}
+	with $W_{pj}$ and $B_{pj}$ the within- and between-population forces of infection acting upon premises of type $j=\{MS,SS\}$ within population $p=\{1,2\}$
+\end{frame}
+
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-metapop-inverted}
+
+\begin{frame}{Force of infection on MS premises within core group}
+	\begin{align*}
+		W_{1,MS} &= \beta\left(
+			\omega_{MS,MS}\frac{I_{1,MS}}{n_{1,MS}}+
+			\omega_{MS,SS}\frac{I_{1,SS}}{n_{1,SS}}
+			+\theta\delta_{MS,1}\frac{I_{1,MS}}{n_{1,MS}}
+		\right) \\
+		&\quad 
+		+\beta_{1,MS}'\left(
+			\sigma_{MS,MS}\frac{I_{1,MS}}{n_{1,MS}}+
+			\sigma_{MS,SS}\frac{I_{1,SS}}{n_{1,SS}}
+		\right) \\
+		B_{1,MS} &= \beta\left(\Omega_{MS,MS}\nu\frac{I_{2,MS}}{n_{2,MS}}
+		+\Omega_{MS,SS}\nu\frac{I_{2,MS}}{n_{2,MS}}\right)
+	\end{align*}
+	\vfill
+	$\beta$ and $\beta_{1,MS}'$ density-dependent and density-independent transmission rates, $\sigma_{MS,k}$ and $\omega_{MS,k}$ weight on rate of transmission for premises of type $k=\{MS,SS\}$ to $MS$ premises through spatial proximity and network links, resp., $\theta$ weight on rate of transmission between $MS$ premises of same company, $\delta_{MS,1}$ Kronecker delta, $\Omega_{MS,k}$ weights rate of transmission between populations and $\nu$ uniform weighting applied to vary transmission strength
+\end{frame}
+
+
+\begin{frame}{Control mechanisms}
+	Consider two mechanisms of control
+	\begin{itemize}
+		\item Compartmentalisation: allow spatial and within-company links
+		\item Zoning: allow within-population network-mediated links (beyond 10 km) and between-population network links
+	\end{itemize}
+\end{frame}
+
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-control-measures-inverted}
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-relative-risk-infection-inverted} 
+\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-tradeoffs-inverted}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
 \subsection{Andronico \emph{et al}}
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Andronico_etal-H5N8-control-cover-inverted}
@@ -1626,24 +1696,31 @@ Therefore the equation of motion for $[SI]$ is
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
-\subsection{Nickbakhsh \emph{et al}}
-%%%%%%%%%%%%%%%%%%%
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-cover-inverted}
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-betweenness-inverted}
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-metapop-inverted}
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-baseline-model-inverted}
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-force-infection-on-premises1-inverted}
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-force-infection-on-premises2-inverted}
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-control-measures-inverted}
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-relative-risk-infection-inverted} 
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-tradeoffs-inverted}
-
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
 \subsection{Fourni\'e \emph{et al}}
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-cover-inverted}
-\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-model-within-inverted}
+
+\begin{frame}{Direct and indirect transmission}
+	Infection through direct contact
+	\[
+		\text{inf}_\text{contact} = \int_{0}^{T_{inf}} \beta\ dt = \beta T_{inf}
+	\]
+	Infection through environment
+	\[
+		\text{inf}_\text{env} 
+		= \int_0^{T_{inf}}\ dt\ \int_0^H \beta\eta(1-\Theta)^t\ dt
+		= T_{inf}\int_0^H \beta\eta(1-\Theta)^t\ dt
+	\]
+	$T_{inf}$ infectious period, $H$ length of time faeces remain infectious, $\Theta$ rate of loss of infectiousness of faeces, $\beta$ rate of transmission per unit time and $\eta$ relative rate of transmission from the environmental reservoir compared to $\beta$
+\end{frame}
+
+\begin{frame}{Reproduction number}
+	If population size is stable and infectious period goes to its end without being stopped by selling or slaughtering, then basic reproduction number is
+	\[
+		\R_0=(\text{inf}_\text{contact}+\text{inf}_\text{env})N_0
+	\]
+	$N_0$ initial number of susceptible birds in the market
+\end{frame}
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-model-between-inverted}
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-strategy-timing-inverted}
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-strategy-spatial-inverted}
