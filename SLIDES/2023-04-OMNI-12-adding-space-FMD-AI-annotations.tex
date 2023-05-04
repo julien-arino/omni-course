@@ -1414,7 +1414,7 @@ $\implies$ use this for numerics, not for the mathematical analysis
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 \subsection{A few models of Woolhouse and collaborators}
-\begin{frame}{Most models are \`a la Levins}
+\begin{frame}{Most Woolhouse models are \`a la Levins}
     Space is implicit: count infected herds
 	\vfill
 	In simplest models, space is entirely implicit
@@ -1456,11 +1456,13 @@ $\implies$ use this for numerics, not for the mathematical analysis
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%
-\maxFrameImage{../FIGS/Woolhouse-models-FMD-cover-inverted}
+\maxFrameImageNote{../FIGS/Woolhouse-models-FMD-cover-inverted}{%
+Published 2004}
 
-\note{Published 2004}
-
-\maxFrameImage{../FIGS/Woolhouse-models-FMD-infected-farms-inverted}
+\maxFrameImageNote{../FIGS/Woolhouse-models-FMD-infected-farms-inverted}{%
+From a 1997 paper of Haydon, Woolhouse \& Kitching that we saw in the previous video
+\vfill
+($-\square -$) Cumulative numbers of the herds removed, $R(t)$, and ($\star$) the reconstructed number of infectives calculated from equation (3) during the 1967-68 UK (FMD) epidemic.\vfill}
 \maxFrameImage{../FIGS/Woolhouse-models-FMD-models-inverted}
 
 \note{Compartments, in theory and practice. 
@@ -1634,6 +1636,19 @@ The basic reproduction number $\R_0$ versus prophylactic vaccination $\psi_p$ an
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-cover-inverted}
 \maxFrameImageNote{../FIGS/Cabezas_etal-FMD-US-feedlots-timing-inverted}{As was already discussed in Woolhouse, timing and models do not necessarily match.}
+
+\begin{frame}{Model variables}
+	\begin{itemize}
+		\item $S$ susceptible
+		\item $L$ latent
+		\item $I_1$ subclinical infectious
+		\item $I_2$ subclinical infectious
+		\item $I_3$ clinical infectious
+		\item $C$ clinical but no longer infectious
+		\item $R$ non-infectious clinically recovered
+	\end{itemize}
+\end{frame}
+
 \maxFrameImageNote{../FIGS/Cabezas_etal-FMD-US-feedlots-Sprime-inverted}{%
 Equation for $S'$. Note the complexity of the setup: they use a binomial in places, they also consider ``switching'' and delay}
 \maxFrameImageNote{../FIGS/Cabezas_etal-FMD-US-feedlots-Lprime-inverted}{%
@@ -1650,8 +1665,14 @@ Same complexity for $L'$. Other equations are mostly simpler.}
 		R' &= \tau C-\varphi R+\varphi_{(t-1)}R_{(t-1)}-\mu R 
 	\end{align*}
 \end{frame}
-
-\maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-model-structure-inverted}
+%%
+\maxFrameImageNote{../FIGS/Cabezas_etal-FMD-US-feedlots-model-structure-inverted}{%
+FMDV transmission and FMD clinical manifestation dynamics in cattle within home-pens and among home-pens in a beef cattle feedlot
+\vfill
+Possibility that susceptible animals moved acquired infection in the hospital-pen and returned as latent to the home-pens
+\vfill
+Also virus transmission via animal direct contact fence-line, virus contaminated material transmitted by pen-riders, virus transmission via contaminated water-troughs shared by home-pens, airborne virus transmission\vfill}
+%%
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-metapop-inverted}
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-sims-inverted}
 \maxFrameImage{../FIGS/Cabezas_etal-FMD-US-feedlots-correlation-inverted}
@@ -1661,9 +1682,16 @@ Same complexity for $L'$. Other equations are mostly simpler.}
 \subsection{Bradhurst \emph{et al}}
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-cover-inverted}
-\maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-model-in-patches-inverted}
-\maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-model-between-patches-inverted}
-\maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-wind-dissemination-inverted}
+\maxFrameImageNote{../FIGS/Bradhurst_etal-FMD-Australia-model-in-patches-inverted}{%
+ODE system used by AADIS to model within-herd spread of FMD
+\vfill
+Australian Animal Disease Spread (AADIS)
+\vfill}
+\maxFrameImageNote{../FIGS/Bradhurst_etal-FMD-Australia-model-between-patches-inverted}{%
+Each herd instance has a customized SEIR ODE-based EBM (equation-based model). The ABM stochastically establishes infection connection paths between herds}
+\maxFrameImageNote{../FIGS/Bradhurst_etal-FMD-Australia-wind-dissemination-inverted}{%
+Downwind extent of airborne spread for an infected pig herd
+}
 \maxFrameImage{../FIGS/Bradhurst_etal-FMD-Australia-farm-types-inverted}
  
 %%%%%%%%%%%%%%%%%%%
@@ -1672,29 +1700,53 @@ Same complexity for $L'$. Other equations are mostly simpler.}
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImageNote{../FIGS/Buhnerkempe_etal-US-cattle-movement-cover-inverted}{%
 Published 2014 %doi:10.1371/journal.pone.0091724
-}
+\vfill
+Use Interstate Certificates of Veterinary Inspection (ICVI) data\vfill}
 \maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-transmission-routes-inverted}
 \maxFrameImage{../FIGS/Buhnerkempe_etal-US-cattle-movement-parameters-inverted}
 \maxFrameImageNote{../FIGS/Buhnerkempe_etal-US-cattle-movement-cattle-movement}{%
 State-to-state cattle flows. Given for the (A) ERS ICVI summary data [16] and (B) 10\% sample of paper ICVIs.}
 \maxFrameImageNote{../FIGS/Buhnerkempe_etal-US-cattle-movement-connected-component}{%
-The giant strongly connected component (GSCC) of the network from a 10\% sample of ICVIs. Maps at the (A) state and (B) county scales. Orange denotes a node in the GSCC. Brown denotes a node outside of the GSCC that either sends to or receives from nodes in the GSCC but not both, and black indicates nodes that are isolated from the GSCC. Gray indicates no data. New Jersey is outside the state level GSCC because it was the only state not to supply ICVI data.}
+Giant strongly connected component (GSCC) of the network from a 10\% sample of ICVIs
+\vfill 
+Maps at the (A) state and (B) county scales
+\vfill
+Orange denotes a node in the GSCC. Brown denotes a node outside of the GSCC that either sends to or receives from nodes in the GSCC but not both, and black indicates nodes that are isolated from the GSCC. Gray indicates no data
+\vfill
+New Jersey is outside the state level GSCC because it was the only state not to supply ICVI data\vfill}
 \maxFrameImageNote{../FIGS/Buhnerkempe_etal-US-cattle-movement-outdegree-inverted}{%
-Out-degree distributions of the cattle movement network from a 10\% sample of ICVIs. The network is aggregated into (A) state and (B) county nodes. The left-hand graphs show the frequency distribution of node out-degrees, while the maps show the value for that area. A logarithmic color scale is used to differentiate high (light yellow) from low (dark orange) out-degree. Counties with no sampled out-shipments are indicated in dark gray.}
+Out-degree distributions of the cattle movement network from a 10\% sample of ICVIs
+\vfill
+Network is aggregated into (A) state and (B) county nodes
+\vfill
+Left-hand graphs show frequency distribution of node out-degrees, while maps show the value for that area
+\vfill
+Logarithmic color scale is used to differentiate high (light yellow) from low (dark orange) out-degree
+\vfill 
+Counties with no sampled out-shipments are indicated in dark gray\vfill}
 
 \maxFrameImageNote{../FIGS/Buhnerkempe_etal-US-cattle-movement-indegree-inverted}{%
-In-degree distributions of the cattle movement network from a 10\% sample of ICVIs. The network is aggregated into (A) state and (B) county nodes. 
-
-The left-hand graphs show the frequency distribution of node in-degrees, whilst the maps show the value for that area. 
-
-A logarithmic color scale is used to differentiate high (light blue) from low (dark blue) in-degree. Counties with no sampled in-shipments are indicated in dark gray.}
+In-degree distributions of the cattle movement network from a 10\% sample of ICVIs
+\vfill
+Network aggregated into (A) state and (B) county nodes
+\vfill
+Left-hand graphs show the frequency distribution of node in-degrees, whilst the maps show the value for that area
+\vfill
+Logarithmic color scale is used to differentiate high (light blue) from low (dark blue) in-degree. Counties with no sampled in-shipments are indicated in dark gray\vfill}
 
 \maxFrameImageNote{../FIGS/Buhnerkempe_etal-US-cattle-movement-epidemic-extent-infection-risk-inverted}{%
-Epidemic extent and infection risk with unrestricted, county and, state movement bans. Upper tail of the distribution (based on the 97.5th percentile of 100 simulations) for epidemic extent and infection risk when infections are introduced to each of the 3109 counties of the continental US. (A \& B) assume standard movements while (C \& D) assume a county-level movement ban and (E \& F) assume a state-level movement ban. (A, C, \& E) the epidemic extent (the number of counties infected) for an infection seeded in each county. (B, D, \& F) the infection risk (the
-proportion of all simulated outbreaks that infect a county).}
+Epidemic extent and infection risk with unrestricted, county and, state movement bans
+\vfill
+Upper tail of the distribution (based on the 97.5th percentile of 100 simulations) for epidemic extent and infection risk when infections are introduced to each of the 3109 counties of the continental US
+\vfill
+(A \& B) assume standard movements while (C \& D) assume a county-level movement ban and (E \& F) assume a state-level movement ban. (A, C, \& E) the epidemic extent (the number of counties infected) for an infection seeded in each county. (B, D, \& F) the infection risk (the proportion of all simulated outbreaks that infect a county)\vfill}
 
 \maxFrameImageNote{../FIGS/Buhnerkempe_etal-US-cattle-movement-movement-vs-local-inverted}{%
-Relative importance of movement vs. local spread determined through a Principal component analysis. (A) Plot of PC1 (0.7071*Out-degree+0.7071*Premises density) vs. PC2 (0.7071*Out-degree+0.7071*Premises density) for each county. Colored dots represent counties in the upper 20\% of simulated epidemic extents with the counties where movement is relatively more important (i.e., $PC2>0$) ranging from green to blue and the counties where density is relatively more important (i.e., $PC2<0$) ranging from yellow to red based on epidemic extent. (B) Map depicting the spatial distribution of the counties within the upper 20\% of epidemic extents.}
+Relative importance of movement vs. local spread determined through a Principal component analysis
+\vfill
+(A) Plot of PC1 (0.7071*Out-degree+0.7071*Premises density) vs. PC2 (0.7071*Out-degree+0.7071*Premises density) for each county. Colored dots represent counties in the upper 20\% of simulated epidemic extents with the counties where movement is relatively more important (i.e., $PC2>0$) ranging from green to blue and the counties where density is relatively more important (i.e., $PC2<0$) ranging from yellow to red based on epidemic extent
+\vfill
+(B) Spatial distribution of counties within the upper 20\% of epidemic extents\vfill}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -1704,21 +1756,32 @@ Relative importance of movement vs. local spread determined through a Principal 
 A cool stochastic model that I will not detail..}
 
 \maxFrameImageNote{../FIGS/GlassBarnes-metapopulation-infection-control-interventions-inverted}{%
-Diagram of the model with and without control. Squares represent high-density regions (with local mixing rate $\lambda_H$), and circles represent low-density regions (with local mixing rate $\lambda_L$).
-Between-region mixing occurs according to a rate $\mu$, as well as through high-mixing events or locations (diamond). 
-Four control measures are shown: homogeneous vaccination of high-density regions, heterogeneous vaccination of high-density regions, quarantine, and banning of high-mixing events.}
+Diagram of the model with and without control
+\vfill
+Squares represent high-density regions (with local mixing rate $\lambda_H$), and circles represent low-density regions (with local mixing rate $\lambda_L$)
+\vfill
+Between-region mixing occurs according to a rate $\mu$, as well as through high-mixing events or locations (diamond)
+\vfill 
+Four control measures are shown: homogeneous vaccination of high-density regions, heterogeneous vaccination of high-density regions, quarantine, and banning of high-mixing events\vfill}
 
 \maxFrameImageNote{../FIGS/GlassBarnes-metapopulation-infection-control-scenarios1-inverted}{%
-The regions of parameter space for which disease can be eliminated by homogeneous and heterogeneous vaccination. Each plot shows a shaded region in $\mu-${\tt v} space giving parameter combinations for which disease is eliminated, where $\mu$ is the between-region transmission parameter, and {\tt v} is the vaccine coverage. 
-That is, {\tt v }$= v$ for homogeneous vaccination, and {\tt v }$= V$ for heterogeneous vaccination. 
-Note that regions are nested, so that the lightest region represents areas of parameter space where both interventions are successful. We consider three different values for the within-region transmission parameter in high-density regions ($\lambda_H = 1.2$, $1.5$, $2.0$), represented by the three rows of the figure. 
-Vaccine efficacy can be low ($\alpha_I = \alpha_S = \sqrt{0.7}$), medium ($\alpha_I = \alpha_S = \sqrt{0.4}$), or high ($\alpha_I = \alpha_S = \sqrt{0.1}$), as shown in the three columns of the figure. We assume the ransmission parameter for low-density regions is fixed at $\lambda_L = 0.6$, and set $n = 400$ and $\pi = 0.5$.}
+Regions of parameter space for which disease can be eliminated by homogeneous and heterogeneous vaccination
+\vfill
+Each plot shows a region in $\mu-${\tt v} space where disease is eliminated, where $\mu$ is the between-region transmission parameter, and {\tt v} is the vaccine coverage
+\vfill 
+{\tt v }$= v$ for homogeneous vaccination, and {\tt v }$= V$ for heterogeneous vaccination
+\vfill
+Regions are nested, so lightest region represents areas of parameter space where both interventions are successful
+\vfill
+Rows: three different values for the within-region transmission parameter in high-density regions ($\lambda_H = 1.2$, $1.5$, $2.0$). Columns: low ($\alpha_I = \alpha_S = \sqrt{0.7}$), medium ($\alpha_I = \alpha_S = \sqrt{0.4}$), or high ($\alpha_I = \alpha_S = \sqrt{0.1}$) vaccine efficacy. Transmission parameter for low-density regions fixed at $\lambda_L = 0.6$, and $n = 400$ and $\pi = 0.5$\vfill}
 
 \maxFrameImageNote{../FIGS/GlassBarnes-metapopulation-infection-control-scenarios2-inverted}{%
-The regions of parameter space for which disease can be eliminated by reactive quarantine according to the extent that quarantine reduces transmission from the first and second generation of cases. Each plot shows a shaded region in $\mu-p_1$ space giving parameter combinations for which disease is eliminated, where $\mu$ is the between-region transmission parameter, and $p_1$ is the proportion of the primary case's infectivity that occurs before quarantine is in place. 
-
-Note that regions are nested, so that the lightest region represents areas of parameter space where all interventions are successful. We compare two extreme values for the within-region transmission parameter in high-density regions ($\lambda_H = 1.2$, $5.0$), represented by the two subplots in the figure. The different regions (white, light grey and dark grey) compare the proportion of infectivity experienced by secondary cases ($p_2$).
-We assume the transmission parameter for low-density regions is fixed at $\lambda_L = 0.6$, and set $n = 400$ and $\pi = 0.5$.}
+Regions of parameter space for which disease can be eliminated by reactive quarantine according to the extent that quarantine reduces transmission from the first and second generation of cases
+\vfill
+Shaded region in $\mu-p_1$ space gives parameter combinations for which disease is eliminated, with $\mu$ between-region transmission parameter, and $p_1$ proportion of the primary case's infectivity that occurs before quarantine is in place
+\vfill
+Regions nested, so lightest region represents areas of parameter space where all interventions are successful. Two extreme values for the within-region transmission parameter in high-density regions ($\lambda_H = 1.2$, $5.0$). The different regions (white, light grey and dark grey) compare the proportion of infectivity experienced by secondary cases ($p_2$).
+Transmission parameter for low-density regions fixed at $\lambda_L = 0.6$, $n = 400$ and $\pi = 0.5$\vfill}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -1732,15 +1795,29 @@ We assume the transmission parameter for low-density regions is fixed at $\lambd
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-cover-inverted}{%
 In: Analyzing and Modeling Spatial and Temporal Dynamics of Infectious Diseases, First Edition. Edited by Dongmei Chen, Bernard Moulin, and Jianhong Wu. John Wiley \& Sons. 2015.}
-
+%%
 \maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-periods-inverted}{%
 Seasonality in migratory and biological functions with overlapping phases.}
+%%
 \maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-migration-inverted}{%
-Illustration of tracking of Bar-headed geese using GPS locations, showing long-range of motion from India toward Mongolia. Light dots correspond to terrains lower than 5000 meters elevation, while dark dots correspond to terrains higher than 5000 meters elevation (Hawkes et al. 2013).}
+Illustration of tracking of Bar-headed geese using GPS locations, showing long-range of motion from India toward Mongolia
+\vfill 
+Light dots correspond to terrains lower than 5000 meters elevation, while dark dots correspond to terrains higher than 5000 meters elevation\vfill}
+%%
 \maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-timing-of-events-inverted}{%
-Schematic diagram for (top) the spatial dynamics of bird migration in the form of a patch model; and (bottom) the associated temporal dynamics, assuming disjoint phases of bird ecology. In (top), the four patches are labeled b, o, w, r for the breeding patch, the outgoing (fall) stopover patch, the wintering patch, and the returning (spring) stopover patch, respectively. The breeding patch is that on which migratory birds breed and mature/molt, while the wintering patch is where they spend the winter season.}
+(top) spatial dynamics of bird migration in the form of a patch model
+\vfill
+(bottom) the associated temporal dynamics, assuming disjoint phases of bird ecology
+\vfill
+In (top), patches labeled b, o, w, r for breeding patch, outgoing (fall) stopover patch, wintering patch, and returning (spring) stopover patch, respectively
+\vfill
+Breeding patch is that on which migratory birds breed and mature/molt, while the wintering patch is where they spend the winter season\vfill}
 \maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-model1-inverted}{%
-Illustration of the multi-scale modeling of disease dynamics. The local disease transmission dynamics and interaction between local poultry and migrators is embedded in the overall cycle of migration, thus, contributing to the global disease pattern. On a given patch $i$ $S_m^i$ and $I_m^i$ are the number of susceptible and infectious migratory birds, respectively; $S_p^i$ and $I_p^i$ are the numbers of susceptible and infectious poultry, respectively.}
+Illustration of the multi-scale modeling of disease dynamics
+\vfill
+Local disease transmission dynamics and interaction between local poultry and migrators is embedded in the overall cycle of migration, thus, contributing to the global disease pattern
+\vfill
+On a given patch $i$ $S_m^i$ and $I_m^i$ are the number of susceptible and infectious migratory birds, respectively; $S_p^i$ and $I_p^i$ are the numbers of susceptible and infectious poultry, respectively\vfill}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -1749,7 +1826,13 @@ Illustration of the multi-scale modeling of disease dynamics. The local disease 
 \maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-cover-inverted}
 
 \maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-betweenness-inverted}{%
-Unipartite representation of the poultry company network of associations via slaughterhouses and catching companies; $n = 41$ poultry companies (excluding four that were unconnected to the giant component). Node labels are the normalized (by largest possible value) degree centralities with relative magnitudes represented by node size. Nodes circled in blue represent companies which also had a relatively high betweenness centrality. The line widths represent the number of slaughterhouses and/or catching companies that formed the associations.}
+Unipartite representation of the poultry company network of associations via slaughterhouses and catching companies; $n = 41$ poultry companies (excluding four that were unconnected to the giant component)
+\vfill
+Node labels are the normalized (by largest possible value) degree centralities with relative magnitudes represented by node size
+\vfill
+Nodes circled in blue represent companies which also had a relatively high betweenness centrality
+\vfill
+The line widths represent the number of slaughterhouses and/or catching companies that formed the associations\vfill}
 
 \begin{frame}{Interactions b/w network \emph{core} \& \emph{periphery} groups}
 	$\rho=\{1,2\}$ for population 1 (network \emph{core} group) and population 2 (network \emph{periphery} group), $j=\{MS,SS\}$ for multi-site and single-site premises
@@ -1762,20 +1845,14 @@ Unipartite representation of the poultry company network of associations via sla
 \end{frame}
 
 \maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-metapop-inverted}{%
-Schematic of the metapopulation model. The
-compartment populations represent the multi-site (MS)
+Metapopulation model
+\vfill
+Compartment populations represent the multi-site (MS)
 premises associated with a company from the network
-core ($\rho = 1$) and the network periphery ($\rho = 2$), and the
-single-site (SS) premises within proximity. 
-
-Solid arrows = within-population links; dashed arrows = between-popu-
-lation links; $\Omega$ = between-population network link weights;
-$\nu$ = between-population interaction strength; $\omega$ = within-
-population network link weights; $\theta$ = company-related
-network link weights and $\sigma$ = within-population spatial
-link weights. See Table 1 for full parameter details. Note
-that this schematic does not reﬂect the actual relative num-
-bers of MS and SS premises assumed in these analyses.}
+core ($\rho = 1$) and the network periphery ($\rho = 2$), and the single-site (SS) premises within proximity
+\vfill
+Solid arrows = within-population links; dashed arrows = between-population links; $\Omega$ = between-population network link weights;
+$\nu$ = between-population interaction strength; $\omega$ = within-population network link weights; $\theta$ = company-related network link weights and $\sigma$ = within-population spatial link weights\vfill}
 
 \begin{frame}{Force of infection on MS premises within core group}
 	\begin{align*}
@@ -1811,28 +1888,27 @@ bers of MS and SS premises assumed in these analyses.}
 \end{frame}
 %%
 \maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-control-measures-inverted}{%
-Schematic representation of zoning and compartmentalization control scenarios. 
-
-(a) Under compartmentalization the following links were enabled: spatial and within-company links $(\sigma,\theta)$. 
-
-(b) Under zoning control the following links were enabled: within-population network-mediated links (beyond 10 km) and between-population network links $(\omega,\Omega\nu)$.}
+Schematic representation of zoning and compartmentalization control scenarios
+\vfill
+(a) Under compartmentalization the following links were enabled: spatial and within-company links $(\sigma,\theta)$
+\vfill
+(b) Under zoning control the following links were enabled: within-population network-mediated links (beyond 10 km) and between-population network links $(\omega,\Omega\nu)$\vfill}
 %%
 \maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-relative-risk-infection-inverted}{%
-Schematic representation of the relative risk of infection spillover under compartmentalization. 
-
-Light-shaded area represents the additional risk of an outbreak (where $\R_0>1$) under compartmentalization and dark-shaded area represents the additional risk of an outbreak (where $R_0>1$) under zoning. 
-
-The relative risk under compartmentalization can be increased through two ways: (i) a rightwards shift to the curve under zoning or (ii) a downwards shift to the line under compartmentalization.}
+Schematic representation of the relative risk of infection spillover under compartmentalization
+\vfill
+Light-shaded area represents the additional risk of an outbreak (where $\R_0>1$) under compartmentalization and dark-shaded area represents the additional risk of an outbreak (where $R_0>1$) under zoning
+\vfill
+The relative risk under compartmentalization can be increased through two ways: (i) a rightwards shift to the curve under zoning or (ii) a downwards shift to the line under compartmentalization\vfill}
 %%
 \maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-tradeoffs-inverted}{%
-$\R_0$ thresholds under zoning (coloured curves) vs. compartmentalization (white lines). 
-
-$\Omega_{MM}$ = links between multi-site premises, $\Omega_{MS}$ and $\Omega_{SM}$ = links between multi-site and single-site premises; $\Omega_{SS}$ = links between single-site premises. 
-
-(a) For a medium infectious period corresponding to a premises depopulation rate of $0.25$ (day$^{-1}$), relative risk under compartmentalization was increased when the links enabling between-population interaction were reduced (from red to green to blue), as indicated by the arrow. Link types not shown in the legend are switched-off (i.e. $\Omega = 0$). 
-
-(b) For between-population interactions involving multi-site and single-site premises (i.e. $\Omega_{MS},\Omega_{SM},\Omega_{SS}$), the relative risk increased with the infectious period (from solid to dotted lines) under compartmentalization (black arrow) and zoning (green arrow). This model scenario assumed density-dependent spatial transmission occurred within a distance radius
-of 1 km.}
+$\R_0$ thresholds under zoning (coloured curves) vs. compartmentalization (white lines)
+\vfill
+$\Omega_{MM}$ = links b/w multi-site premises, $\Omega_{MS}$ and $\Omega_{SM}$ = links b/w multi-site and single-site premises; $\Omega_{SS}$ = links b/w single-site premises
+\vfill
+(a) For a medium infectious period (premises depopulation rate of $0.25$ day$^{-1}$), relative risk under compartmentalization $\nearrow$ when links enabling between-population interaction are reduced (from red to green to blue). Link types not shown in the legend are switched-off (i.e. $\Omega = 0$). 
+\vfill
+(b) For between-population interactions involving multi-site and single-site premises (i.e. $\Omega_{MS},\Omega_{SM},\Omega_{SS}$), relative risk $\nearrow$ with the infectious period (from solid to dotted lines) under compartmentalization (black arrow) and zoning (green arrow). This model scenario assumed density-dependent spatial transmission occurred within a distance radius of 1 km\vfill}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -1849,17 +1925,19 @@ Epidemic curve. Daily number of IPs by date of suspicion.}
 %%
 \maxFrameImageNote{../FIGS/Andronico_etal-H5N8-control-surveillance-inverted}{%
 Time intervals needed to evaluate the likelihood
-function. $L$ represents the latent period, $T$ the incubation
-period, and $D$ the time interval from infection to culling
-(suspicion) for IPs that were preventively culled (detected by
-active surveillance), respectively. 
-
-Pink denotes observed dates while white denotes unobserved time points.}
+function
+\vfill
+$L$ latent period, $T$ incubation period, and $D$ the time interval from infection to culling
+(suspicion) for IPs that were preventively culled (detected by active surveillance), respectively
+\vfill
+Pink: observed dates; white: unobserved time points\vfill}
 %%
 \maxFrameImageNote{../FIGS/Andronico_etal-H5N8-control-Rt-infection-distance-inverted}{%
-Reproduction number (A) and infection distance (B) through time. 
-
-Colored lines represent averages while colored areas represent 95\% CIs. Moving average smoothing with a window of 1 week was used to improve clarity. The dashed curve in panel A corresponds to a reproduction number of 1, while the dashed line in panel B corresponds to the average distance calculated over the entire epidemic (8.5 km).}
+Reproduction number (A) and infection distance (B) through time
+\vfill
+Colored lines represent averages while colored areas represent 95\% CIs
+\vfill
+Moving average smoothing with a window of 1 week was used to improve clarity. The dashed curve in panel A corresponds to a reproduction number of 1, while the dashed line in panel B corresponds to the average distance calculated over the entire epidemic (8.5 km)\vfill}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -1903,10 +1981,16 @@ Colored lines represent averages while colored areas represent 95\% CIs. Moving 
 	Infection process is stochastic and density dependent; mixing is homogeneous
 \end{frame}
 \maxFrameImageNote{../FIGS/Fournie_etal-H5N1-rest-days-strategy-timing-inverted}{%
-Illustration of the within-market model. (a) Probability that a bird introduced at time $t=0$ remains in the market as a
-function of time. In green: period during which the market is open for trading. In red: period during which the market is closed for
-trading. (b) Within-market SEI model. (c) Assumed distribution of the latent period (solid line, latent period). (d ) Assumed
-distribution of the infectious period (dotted line, infectious period).}
+Illustration of the within-market model
+\vfill
+(a) Probability that a bird introduced at time $t=0$ remains in the market as a function of time. In green: period during which the market is open for trading. In red: period during which the market is closed for
+trading
+\vfill
+(b) Within-market SEI model
+\vfill 
+(c) Assumed distribution of the latent period (solid line, latent period)
+\vfill 
+(d) Assumed distribution of the infectious period (dotted line, infectious period)\vfill}
 %%
 \maxFrameImageNote{../FIGS/Fournie_etal-H5N1-rest-days-strategy-spatial-inverted}{%
 Diagram of the poultry sector and routes of disease transmission in the meta-population model. 
@@ -1927,10 +2011,10 @@ Prevalence of infectious and symptomatic birds in the market under four differen
 (b) $T_r=1.5$ days, introduction of a cohort every 2 days. 
 (c) $T_r=2.5$ days, introduction of a cohort every day. 
 (d) $T_r=2.5$ days, introduction of a cohort every 2 days. 
-
+\vfill
 In all scenarios the mean prevalence $P^m$ is 19.5\%, the corresponding reproduction number $\R_0^m$ assuming the same $\beta$ and $\eta$ is equal to (a) 16.8, (b) 35.1, (c) 6.4, (d) 9.2. 
-
-Each graph shows the mean prevalence of infectious birds at each time step (solid blue line), the mean prevalence of infectious birds during the open period (dotted violet line) and the mean prevalence of symptomatic birds for each time step (solid orange line). 95\% bounds from the stochastic realizations closely follow the mean and so are not presented.}
+\vfill
+Each graph shows the mean prevalence of infectious birds at each time step (solid blue line), the mean prevalence of infectious birds during the open period (dotted violet line) and the mean prevalence of symptomatic birds for each time step (solid orange line). 95\% bounds from the stochastic realizations closely follow the mean and so are not presented\vfill}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
