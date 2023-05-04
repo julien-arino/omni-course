@@ -1495,15 +1495,25 @@ The constants $k$, $g$ and $h$ were fitted using the least squares method. The e
 \maxFrameImage{../FIGS/Keeling_etal-2001-S-table-inverted}
 
 \maxFrameImageNote{../FIGS/Keeling_etal-2001-S-figure}{%
-A comparison between the observed epidemic and 100 replicates of the stochastic model.
-Simulations start on 23 February 2001 (when movement restrictions were fully in place) and use the reported cases to that date and the position of all susceptible farms as initial conditions. 
-(A) The actual spatial distribution of IPs (red) and culled premises (black). 
-(B) The transmission kernel K as a function of distance (d), calculated from the distance between sources of infectious and their secondary cases. 
-(C) Comparison of the number of infected premises. 
-(D) Comparison of the cumulative total of culled or slaughtered premises. Black dots show the actual number, pale dots (red or blue) show the results from simulations, and solid lines (red or blue) show the average of the simulations. (E) The average number of simulated cases in 10-km-by-10-km squares. The model results shown are from 100 simulations.}
+Comparison between the observed epidemic and 100 replicates of the stochastic model.
+Simulations start on 23 February 2001 (when movement restrictions were fully in place) and use the reported cases to that date and the position of all susceptible farms as initial conditions
+
+(A) Actual spatial distribution of IPs (red) and culled premises (black)
+
+(B) Transmission kernel $K$ as a function of distance (d), calculated from the distance between sources of infectious and their secondary cases
+
+(C) Comparison of the number of infected premises
+
+(D) Comparison of the cumulative total of culled or slaughtered premises. Black dots show the actual number, pale dots (red or blue) show the results from simulations, and solid lines (red or blue) show the average of the simulations
+
+(E) Average number of simulated cases in 10-km-by-10-km squares}
 
 \maxFrameImageNote{../FIGS/Keeling_etal-2001-S-R0_map}{%
-The R0 map for the UK is calculated from the probability $P_i$, by considering how many secondary cases could be produced by each of the 144000 farms in the DEFRA database. The results are then aggregated into $10\times 10$km squares. The map gives the average value of $R_0$ in each square, with the colour-coding highlighting those areas where $R_0 > 1$ where we expect the number of cases to initially increase if there was no intervention.}
+$\R_0$ map for the UK calculated from the probability $P_i$ by considering how many secondary cases could be produced by each of the 144,000 farms in the DEFRA database
+\vfill
+Results are then aggregated into $10\times 10$km squares
+\vfill
+Map gives the average value of $\R_0$ in each square, with the colour-coding highlighting those areas where $R_0 > 1$ where we expect the number of cases to initially increase if there was no intervention\vfill}
 
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Matthews_etal-neighbourhood-control-cover-inverted}
@@ -1532,7 +1542,7 @@ The R0 map for the UK is calculated from the probability $P_i$, by considering h
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%
-\maxFrameImage{../FIGS/Keeling_etal-vaccination-FMD-cover-inverted}
+\maxFrameImageNote{../FIGS/Keeling_etal-vaccination-FMD-cover-inverted}{Nature \textbf{421} -- 9 January 2003}
 
 \begin{frame}{Basic model -- Spatial stochastic model}
 	Infectious state of every livestock farm in Britain predicted daily 
@@ -1553,7 +1563,14 @@ The R0 map for the UK is calculated from the probability $P_i$, by considering h
 	Infected farm ``incubates'' for 4 days, then becomes infectious; 9 days after infection, presence of disease reported; 1--3 days (depending on epidemic status), animals are slaughtered and appropriate neighbourhood cull performed
 \end{frame}
 
-\maxFrameImage{../FIGS/Keeling_etal-vaccination-FMD-predictive-vacc-inverted}
+\maxFrameImageNote{../FIGS/Keeling_etal-vaccination-FMD-predictive-vacc-inverted}{%
+In generation 0 the central farm is infected (it is an IP), surrounding farms are assumed susceptible
+
+At end of gen. 1, animals in the IP show signs and the farm reports infection -- at this stage vaccination should occur. In gen. 1, farms are infected in relation to their distance from the IP. Two closest farms have very high probabilities of already being infected, and are unlikely to be infected in the next gen. 
+
+Cluster of farms (circled yellow) have the greatest chance of being infected in gen. 2 because: there is a 99\% chance that at least one of them is still susceptible in gen. 1; they can get infected in gen. 2 from farms close to the original IP; and there is a 49\% chance that at least one of them got infected in gen. 1, subsequent spread to the remainder in gen. 2 is likely
+
+Therefore, in response to the IP, the circled cluster of farms should be vaccinated with the highest priority as here the vaccine has the maximal effect—vaccinating the nearest farms would be futile as they will already be infected before the vaccine takes effect.}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -1607,7 +1624,8 @@ More equations because all types of pairs are considered!}
 \maxFrameImage{../FIGS/RingaBauch-FMD-pair-approx-R01-inverted}
 \maxFrameImage{../FIGS/RingaBauch-FMD-pair-approx-R02-inverted}
 \maxFrameImage{../FIGS/RingaBauch-FMD-pair-approx-R03-inverted}
-\maxFrameImage{../FIGS/RingaBauch-FMD-pair-approx-R0-plot-inverted}
+\maxFrameImageNote{../FIGS/RingaBauch-FMD-pair-approx-R0-plot-inverted}{%
+The basic reproduction number $\R_0$ versus prophylactic vaccination $\psi_p$ and ring vaccination $\psi_r$.}
 
 
 %%%%%%%%%%%%%%%%%%%
@@ -1712,30 +1730,52 @@ We assume the transmission parameter for low-density regions is fixed at $\lambd
 %%%%%%%%%%%%%%%%%%%
 \subsection{Bourouiba \emph{et al}}
 %%%%%%%%%%%%%%%%%%%
-\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-cover-inverted}
-\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-periods-inverted}
-\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-migration-inverted}
-\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-timing-of-events-inverted}
-\maxFrameImage{../FIGS/Bourouiba_etal-AI-spread-model1-inverted}
+\maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-cover-inverted}{%
+In: Analyzing and Modeling Spatial and Temporal Dynamics of Infectious Diseases, First Edition. Edited by Dongmei Chen, Bernard Moulin, and Jianhong Wu. John Wiley \& Sons. 2015.}
+
+\maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-periods-inverted}{%
+Seasonality in migratory and biological functions with overlapping phases.}
+\maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-migration-inverted}{%
+Illustration of tracking of Bar-headed geese using GPS locations, showing long-range of motion from India toward Mongolia. Light dots correspond to terrains lower than 5000 meters elevation, while dark dots correspond to terrains higher than 5000 meters elevation (Hawkes et al. 2013).}
+\maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-timing-of-events-inverted}{%
+Schematic diagram for (top) the spatial dynamics of bird migration in the form of a patch model; and (bottom) the associated temporal dynamics, assuming disjoint phases of bird ecology. In (top), the four patches are labeled b, o, w, r for the breeding patch, the outgoing (fall) stopover patch, the wintering patch, and the returning (spring) stopover patch, respectively. The breeding patch is that on which migratory birds breed and mature/molt, while the wintering patch is where they spend the winter season.}
+\maxFrameImageNote{../FIGS/Bourouiba_etal-AI-spread-model1-inverted}{%
+Illustration of the multi-scale modeling of disease dynamics. The local disease transmission dynamics and interaction between local poultry and migrators is embedded in the overall cycle of migration, thus, contributing to the global disease pattern. On a given patch $i$ $S_m^i$ and $I_m^i$ are the number of susceptible and infectious migratory birds, respectively; $S_p^i$ and $I_p^i$ are the numbers of susceptible and infectious poultry, respectively.}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 \subsection{Nickbakhsh \emph{et al}}
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-cover-inverted}
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-betweenness-inverted}
+
+\maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-betweenness-inverted}{%
+Unipartite representation of the poultry company network of associations via slaughterhouses and catching companies; $n = 41$ poultry companies (excluding four that were unconnected to the giant component). Node labels are the normalized (by largest possible value) degree centralities with relative magnitudes represented by node size. Nodes circled in blue represent companies which also had a relatively high betweenness centrality. The line widths represent the number of slaughterhouses and/or catching companies that formed the associations.}
 
 \begin{frame}{Interactions b/w network \emph{core} \& \emph{periphery} groups}
-	$p=\{1,2\}$ for population 1 (network \emph{core} group) and population 2 (network \emph{periphery} group), $j=\{MS,SS\}$ for multi-site and single-site premises
+	$\rho=\{1,2\}$ for population 1 (network \emph{core} group) and population 2 (network \emph{periphery} group), $j=\{MS,SS\}$ for multi-site and single-site premises
 	\begin{align*}
-		S_{pj}' &= -S_{pj}(W_{pj}+B_{pj}) \\
-		I_{pj}' & S_{pj}(W_{pj}+B_{pj})-\gamma I_{pj} \\
-		R_{pj}' &= \gamma I_{pj}
+		S_{\rho j}' &= -S_{\rho j}(W_{\rho j}+B_{\rho j}) \\
+		I_{\rho j}' & S_{\rho j}(W_{\rho j}+B_{\rho j})-\gamma I_{\rho j} \\
+		R_{\rho j}' &= \gamma I_{\rho j}
 	\end{align*}
-	with $W_{pj}$ and $B_{pj}$ the within- and between-population forces of infection acting upon premises of type $j=\{MS,SS\}$ within population $p=\{1,2\}$
+	with $W_{\rho j}$ and $B_{\rho j}$ the within- and between-population forces of infection acting upon premises of type $j=\{MS,SS\}$ within population $\rho =\{1,2\}$
 \end{frame}
 
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-metapop-inverted}
+\maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-metapop-inverted}{%
+Schematic of the metapopulation model. The
+compartment populations represent the multi-site (MS)
+premises associated with a company from the network
+core ($\rho = 1$) and the network periphery ($\rho = 2$), and the
+single-site (SS) premises within proximity. 
+
+Solid arrows = within-population links; dashed arrows = between-popu-
+lation links; $\Omega$ = between-population network link weights;
+$\nu$ = between-population interaction strength; $\omega$ = within-
+population network link weights; $\theta$ = company-related
+network link weights and $\sigma$ = within-population spatial
+link weights. See Table 1 for full parameter details. Note
+that this schematic does not reﬂect the actual relative num-
+bers of MS and SS premises assumed in these analyses.}
 
 \begin{frame}{Force of infection on MS premises within core group}
 	\begin{align*}
@@ -1755,8 +1795,7 @@ We assume the transmission parameter for low-density regions is fixed at $\lambd
 	\vfill
 	$\beta$ and $\beta_{1,MS}'$ density-dependent and density-independent transmission rates, $\sigma_{MS,k}$ and $\omega_{MS,k}$ weight on rate of transmission for premises of type $k=\{MS,SS\}$ to $MS$ premises through spatial proximity and network links, resp., $\theta$ weight on rate of transmission between $MS$ premises of same company, $\delta_{MS,1}$ Kronecker delta, $\Omega_{MS,k}$ weights rate of transmission between populations and $\nu$ uniform weighting applied to vary transmission strength
 \end{frame}
-
-
+%%
 \begin{frame}{Two types of control mechanisms}
 	\begin{itemize}
 		\item Zoning (or regionalisation): geographical boundaries separate
@@ -1770,21 +1809,57 @@ We assume the transmission parameter for low-density regions is fixed at $\lambd
 		allow spatial and within-company links
 	\end{itemize}
 \end{frame}
+%%
+\maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-control-measures-inverted}{%
+Schematic representation of zoning and compartmentalization control scenarios. 
 
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-control-measures-inverted}
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-relative-risk-infection-inverted} 
-\maxFrameImage{../FIGS/Nickbakhsh_etal-metapop-AI-tradeoffs-inverted}
+(a) Under compartmentalization the following links were enabled: spatial and within-company links $(\sigma,\theta)$. 
+
+(b) Under zoning control the following links were enabled: within-population network-mediated links (beyond 10 km) and between-population network links $(\omega,\Omega\nu)$.}
+%%
+\maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-relative-risk-infection-inverted}{%
+Schematic representation of the relative risk of infection spillover under compartmentalization. 
+
+Light-shaded area represents the additional risk of an outbreak (where $\R_0>1$) under compartmentalization and dark-shaded area represents the additional risk of an outbreak (where $R_0>1$) under zoning. 
+
+The relative risk under compartmentalization can be increased through two ways: (i) a rightwards shift to the curve under zoning or (ii) a downwards shift to the line under compartmentalization.}
+%%
+\maxFrameImageNote{../FIGS/Nickbakhsh_etal-metapop-AI-tradeoffs-inverted}{%
+$\R_0$ thresholds under zoning (coloured curves) vs. compartmentalization (white lines). 
+
+$\Omega_{MM}$ = links between multi-site premises, $\Omega_{MS}$ and $\Omega_{SM}$ = links between multi-site and single-site premises; $\Omega_{SS}$ = links between single-site premises. 
+
+(a) For a medium infectious period corresponding to a premises depopulation rate of $0.25$ (day$^{-1}$), relative risk under compartmentalization was increased when the links enabling between-population interaction were reduced (from red to green to blue), as indicated by the arrow. Link types not shown in the legend are switched-off (i.e. $\Omega = 0$). 
+
+(b) For between-population interactions involving multi-site and single-site premises (i.e. $\Omega_{MS},\Omega_{SM},\Omega_{SS}$), the relative risk increased with the infectious period (from solid to dotted lines) under compartmentalization (black arrow) and zoning (green arrow). This model scenario assumed density-dependent spatial transmission occurred within a distance radius
+of 1 km.}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 \subsection{Andronico \emph{et al}}
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Andronico_etal-H5N8-control-cover-inverted}
-\maxFrameImage{../FIGS/Andronico_etal-H5N8-control-curve-inverted}
+%%
+\maxFrameImageNote{../FIGS/Andronico_etal-H5N8-control-curve-inverted}{%
+Epidemic curve. Daily number of IPs by date of suspicion.}
+%%
 \maxFrameImage{../FIGS/Andronico_etal-H5N8-control-model1-inverted}
+%%
 \maxFrameImage{../FIGS/Andronico_etal-H5N8-control-model2-inverted}
-\maxFrameImage{../FIGS/Andronico_etal-H5N8-control-surveillance-inverted}
-\maxFrameImage{../FIGS/Andronico_etal-H5N8-control-Rt-infection-distance-inverted}
+%%
+\maxFrameImageNote{../FIGS/Andronico_etal-H5N8-control-surveillance-inverted}{%
+Time intervals needed to evaluate the likelihood
+function. $L$ represents the latent period, $T$ the incubation
+period, and $D$ the time interval from infection to culling
+(suspicion) for IPs that were preventively culled (detected by
+active surveillance), respectively. 
+
+Pink denotes observed dates while white denotes unobserved time points.}
+%%
+\maxFrameImageNote{../FIGS/Andronico_etal-H5N8-control-Rt-infection-distance-inverted}{%
+Reproduction number (A) and infection distance (B) through time. 
+
+Colored lines represent averages while colored areas represent 95\% CIs. Moving average smoothing with a window of 1 week was used to improve clarity. The dashed curve in panel A corresponds to a reproduction number of 1, while the dashed line in panel B corresponds to the average distance calculated over the entire epidemic (8.5 km).}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
@@ -1827,19 +1902,43 @@ We assume the transmission parameter for low-density regions is fixed at $\lambd
 	\vfill
 	Infection process is stochastic and density dependent; mixing is homogeneous
 \end{frame}
-\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-strategy-timing-inverted}
-\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-strategy-spatial-inverted}
+\maxFrameImageNote{../FIGS/Fournie_etal-H5N1-rest-days-strategy-timing-inverted}{%
+Illustration of the within-market model. (a) Probability that a bird introduced at time $t=0$ remains in the market as a
+function of time. In green: period during which the market is open for trading. In red: period during which the market is closed for
+trading. (b) Within-market SEI model. (c) Assumed distribution of the latent period (solid line, latent period). (d ) Assumed
+distribution of the infectious period (dotted line, infectious period).}
+%%
+\maxFrameImageNote{../FIGS/Fournie_etal-H5N1-rest-days-strategy-spatial-inverted}{%
+Diagram of the poultry sector and routes of disease transmission in the meta-population model. 
+
+(a) Diagram of the poultry sector. All farms (light blue square) are clustered around regional markets (dark blue circle). 
+Poultry movements are from farms to the wholesale market (light blue circle) and from the wholesale to the retail markets. 
+
+(b) A given farm can be infected by farms located in the same cluster (light blue dotted arrow, relative strength of mixing: $\gamma_{ff}$), by farms in other clusters (light blue dashed arrow, $\Gamma_{ff}$), by a market in the same cluster (dark blue dotted arrow, $\gamma_{fm}$) and by markets in other clusters (dark blue dashed arrow, $\Gamma_{fm}$). 
+
+(c) A given regional market can be infected by the introduction of infected birds from the wholesale market, by markets in other clusters (dark blue dotted-dashed arrow, $\Gamma_{mm}$), by farms in the same cluster (dark blue dotted arrow, $\gamma_{fm}$) and by farms in other clusters (dark blue dashed arrow, $\Gamma_{fm}$).}
+%%
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-FoI1-inverted}
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-FoI2-inverted}
 \maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-FoI3-inverted}
-\maxFrameImage{../FIGS/Fournie_etal-H5N1-rest-days-sims-inverted}
+\maxFrameImageNote{../FIGS/Fournie_etal-H5N1-rest-days-sims-inverted}{%
+Prevalence of infectious and symptomatic birds in the market under four different scenarios. 
+(a) $T_r=1.5$ days, introduction of a cohort every day. 
+(b) $T_r=1.5$ days, introduction of a cohort every 2 days. 
+(c) $T_r=2.5$ days, introduction of a cohort every day. 
+(d) $T_r=2.5$ days, introduction of a cohort every 2 days. 
+
+In all scenarios the mean prevalence $P^m$ is 19.5\%, the corresponding reproduction number $\R_0^m$ assuming the same $\beta$ and $\eta$ is equal to (a) 16.8, (b) 35.1, (c) 6.4, (d) 9.2. 
+
+Each graph shows the mean prevalence of infectious birds at each time step (solid blue line), the mean prevalence of infectious birds during the open period (dotted violet line) and the mean prevalence of symptomatic birds for each time step (solid orange line). 95\% bounds from the stochastic realizations closely follow the mean and so are not presented.}
 
 %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%
 \subsection{Lee \emph{et al}}
 %%%%%%%%%%%%%%%%%%%
 \maxFrameImage{../FIGS/Lee_etal-AI-Korea-cover-inverted}
-\maxFrameImage{../FIGS/Lee_etal-AI-Korea-farm-densities-inverted}
+\maxFrameImageNote{../FIGS/Lee_etal-AI-Korea-farm-densities-inverted}{%
+Map of Eumseong-gun and Jincheon-gun, which are the municipal-level divisions located in the central part of the Republic of Korea, including the density of poultry farms with white indicating low density and red indicating high density. The index of the town is written below its name. There are 16 towns; 9 towns in Eumseong-gun and 7 in Jincheon-gun.}
 
 \begin{frame}{Metapopulation model with one species}
 	$S_i$, $I_i$, $R_i$ numbers of susceptible, infective but not identified and reported farms in location $i=0,\ldots,15$
@@ -1890,9 +1989,18 @@ We assume the transmission parameter for low-density regions is fixed at $\lambd
 \end{frame}
 
 \maxFrameImage{../FIGS/Lee_etal-AI-Korea-R0-compute-inverted}
-\maxFrameImage{../FIGS/Lee_etal-AI-Korea-R0-sim-inverted}
-\maxFrameImage{../FIGS/Lee_etal-AI-Korea-intervention1-inverted}
-\maxFrameImage{../FIGS/Lee_etal-AI-Korea-intervention2-inverted}
+\maxFrameImageNote{../FIGS/Lee_etal-AI-Korea-R0-sim-inverted}{%
+(A) Local reproductive numbers in each town. The lighter blue color represents the larger reproductive number.
+\vskip1cm
+(B) Local reproductive number with respect to farm density in each town. The size of circle shows the size of duck farms.}
+\maxFrameImageNote{../FIGS/Lee_etal-AI-Korea-intervention1-inverted}{%
+Impact of culling radius on the AI outbreak using the metapopulation model (Eq (2)) with all other parameters in Table 2. 
+
+The left panel depicts the final size of susceptible farms with respect to culling radius.
+
+The right panel displays the total number of PE culling (dot-dashed), IP culling (dashed) and both (solid) with respect to culling radius. Note that when culling radius is 2.24 km, the final size of susceptible farms is maximized and the total number of culling is minimized.}
+\maxFrameImageNote{../FIGS/Lee_etal-AI-Korea-intervention2-inverted}{%
+Impact of local-dependent culling radii on the final size of susceptible farms. The final size of susceptible farms with respect to culling radii is maximized as 459 when $r_{c\text{ high}}$ and $r_{c\text{ low}}$ are 2.65 and 0, respectively.}
 
 
 \end{document}
