@@ -20,8 +20,6 @@ For those who would be looking for more details about the modelling part, I have
 
 ### Part II - Livestock diseases
 
-Note that for now, I am using the following to have the information easily accessible, none of the topics below have slides at a point where they can be downloaded. Links to slides and videos will be added when they become available.
-
 8. Introduction to foot and mouth disease, avian influenza [Slides](2023-03-OMNI-08-livestock-diseases-introduction.html)/[Video](https://youtu.be/Q6XBP_xJvIw)
 9. Introduction to livestock modelling [Slides](2023-04-OMNI-09-modelling-livestock.pdf)/[Video](https://youtu.be/oYBgO28q_ig)
 10. Introduction to mathematical modelling of foot and mouth disease in livestock [Slides](2023-04-OMNI-10-modelling-FMD.pdf)/[Video](https://youtu.be/Xrj6DC_qeVw)
