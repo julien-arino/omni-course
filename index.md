@@ -1,4 +1,4 @@
-# OMNI/RÉUNIS Course on One Health Modelling for Emerging Infectious Diseases - Material of Julien Arino
+# OMNI/RÉUNIS One Health Modelling Course
 
 This is the web version of my course page for the OMNI/RÉUNIS Course on One Health Modelling for Emerging Infectious Diseases. It is used to access the presentation files in `html` format. To view files in other formats, to access the code, etc., click the *View on GitHub* button to access the repository content. You can also download the whole repository by clicking the buttons on the left. (You can of course clone the repo, but will have to do it from the GitHub version.)
 

@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Environmental transmission of bacterial, viral and fungal pathogens - Introduction
+title: Environmental Transmission of Pathogens | OMNI Course
 description: Julien Arino - OMNI/RÉUNIS & MfPH course on One Health Modelling for Emerging Infectious Diseases - Environmentally transmitted pathogens - Introduction
 theme: default
 class: invert
